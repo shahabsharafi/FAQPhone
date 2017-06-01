@@ -138,4 +138,10 @@
   <data name="signup" xml:space="preserve">
     <value>ثبت نام</value>
   </data>
+  <data name="activate" xml:space="preserve">
+    <value>فعال سازی</value>
+  </data>
+  <data name="activation" xml:space="preserve">
+    <value>کد فعال سازی</value>
+  </data>
 </root>

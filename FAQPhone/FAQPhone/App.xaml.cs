@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FAQPhone.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace FAQPhone
         public App()
         {
             InitializeComponent();
-
+            BindingContext = new AppViewModel();
             MainPage = new FAQPhone.Views.SignupPage();
         }
 

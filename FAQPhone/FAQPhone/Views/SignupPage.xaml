@@ -1,15 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:FAQPhone.ViewModels;assembly=FAQPhone"
              xmlns:infr="clr-namespace:FAQPhone.Inferstructure;assembly=FAQPhone"
              x:Class="FAQPhone.Views.SignupPage"
              Title="SignupPage">
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}">
-            <StackLayout.BindingContext>
-                <local:SignupViewModel />
-            </StackLayout.BindingContext>
             <Entry x:Name="usernameEntry" Placeholder="{infr:Translate username}" Text="{Binding username, Mode=TwoWay}" />
             <Entry x:Name="passwordEntry" Placeholder="{infr:Translate password}" IsPassword="true" Text="{Binding password, Mode=TwoWay}" />
             <Entry x:Name="confirmEntry" Placeholder="{infr:Translate confirm}" IsPassword="true" Text="{Binding confirm, Mode=TwoWay}" />

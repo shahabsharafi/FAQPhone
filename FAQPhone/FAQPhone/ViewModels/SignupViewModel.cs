@@ -1,5 +1,6 @@
 ﻿using FAQPhone.Infrastructure;
 using FAQPhone.Models;
+using FAQPhone.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,15 +13,11 @@ using Xamarin.Forms;
 
 namespace FAQPhone.ViewModels
 {
-    public class SignupViewModel : INotifyPropertyChanged
+    public class SignupViewModel : BaseViewModel, INotifyPropertyChanged
     {
-        public SignupViewModel()
+        public SignupViewModel(INavigation navigation): base (navigation)
         {
-            this.SignupCommand = new Command((nothing) =>
-            {
-                // Add the key to the input string.
-                //this.InputString += key;
-            });
+            this.SignupCommand = new Command(async () => await signupCommand());
         }
         string _username;
         public string username {
@@ -51,9 +48,13 @@ namespace FAQPhone.ViewModels
             get { return _mobile; }
             set { _mobile = value; OnPropertyChanged(); }
         }
-
-        public TextAlignment Direction { get { return ResourceManagerHelper.Direction; } }
         public ICommand SignupCommand { protected set; get; }
+
+        public async Task signupCommand()
+        {
+            /////
+            await this.Navigation.PushAsync(new ActivatePage());
+        }        
 
         public event PropertyChangedEventHandler PropertyChanged;
         void OnPropertyChanged([CallerMemberName]string propertyName = "") =>

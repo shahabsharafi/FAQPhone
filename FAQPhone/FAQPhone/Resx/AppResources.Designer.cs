@@ -62,6 +62,24 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to فعال سازی.
+        /// </summary>
+        internal static string activate {
+            get {
+                return ResourceManager.GetString("activate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کد فعال سازی.
+        /// </summary>
+        internal static string activation {
+            get {
+                return ResourceManager.GetString("activation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تایید کلمه عبور.
         /// </summary>
         internal static string confirm {
