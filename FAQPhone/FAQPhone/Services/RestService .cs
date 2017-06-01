@@ -1,4 +1,5 @@
 ﻿using FAQPhone.Inferstructure;
+using FAQPhone.Services.Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,83 +12,39 @@ using System.Threading.Tasks;
 
 namespace FAQPhone.Services
 {
-    public class RestService<T> : IRestService<T>
+    public class RestService<T> : BaseRestService, IRestService<T> where T : new()
     {
-        private string _relativeUrl { get { return "accounts/"; } }
-        HttpClient client;
-
-        public RestService()
+        protected string _relativeUrl { get; set; }
+        private string getUrl(string param = "")
         {
-            var authData = "";// string.Format("{0}:{1}", Constants.Username, Constants.Password);
-            var authHeaderValue = Convert.ToBase64String(Encoding.UTF8.GetBytes(authData));
-
-            client = new HttpClient();
-            client.MaxResponseContentBufferSize = 256000;
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authHeaderValue);
+            return string.Format(Constants.RestUrl, string.Format(this._relativeUrl, param));
+        }
+        public RestService(): base()
+        {
+            
         }
         public async  Task<List<T>> GetList()
         {
-            List<T> list = new List<T>();
+            string url = this.getUrl("");
+            return await this.get<List<T>>(url);
+        }
 
-            var uri = new Uri(string.Format(Constants.RestUrl, this._relativeUrl));
-            try
-            {
-                var response = await client.GetAsync(uri);
-                if (response.IsSuccessStatusCode)
-                {
-                    var content = await response.Content.ReadAsStringAsync();
-                    list = JsonConvert.DeserializeObject<List<T>>(content);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(@"				ERROR {0}", ex.Message);
-            }
-            return list;
+        public async Task<T> Get(string id)
+        {
+            string url = this.getUrl(id);
+            return await this.get<T>(id);
         }
 
         public async Task Save(T obj)
         {
-            var uri = new Uri(string.Format(Constants.RestUrl, this._relativeUrl));
-
-            try
-            {
-                var json = JsonConvert.SerializeObject(obj);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                HttpResponseMessage response = null;
-                response = await client.PostAsync(uri, content);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    Debug.WriteLine(@"				TodoItem successfully saved.");
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(@"				ERROR {0}", ex.Message);
-            }
+            string url = this.getUrl("");
+            await this.post<T>(url, obj);
         }
 
         public async Task Delete(string id)
         {
-            var uri = new Uri(string.Format(Constants.RestUrl, string.Format("{0}{1}", this._relativeUrl, id)));
-
-            try
-            {
-                var response = await client.DeleteAsync(uri);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    Debug.WriteLine(@"				TodoItem successfully deleted.");
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(@"				ERROR {0}", ex.Message);
-            }
+            string url = this.getUrl(id);
+            await this.delete(url);
         }
         
     }
