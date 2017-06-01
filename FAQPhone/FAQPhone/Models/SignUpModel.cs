@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FAQPhone.Models
 {
-    public class SignUpModel
+    public class SignupModel
     {
         public string username { get; set; }
         public string password { get; set; }

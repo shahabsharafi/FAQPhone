@@ -9,9 +9,9 @@ namespace FAQPhone.Services.Interfaces
 {
     public interface IAuthenticationService
     {
-        Task SignUp(SignUpModel model);
+        Task SignUp(SignupModel model);
 
-        Task SignIn(SignInModel model);
+        Task SignIn(SigninModel model);
 
         void SignOut();
     }

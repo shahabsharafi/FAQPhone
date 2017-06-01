@@ -21,9 +21,9 @@ namespace FAQPhone.Services
         {
             return string.Format(Constants.RestUrl, string.Format(this._relativeUrl, param));
         }
-        public async Task SignUp(SignUpModel model)
+        public async Task SignUp(SignupModel model)
         {
-            await this.post<SignUpModel>("signup", model);
+            await this.post<SignupModel>("signup", model);
         }
 
         public async Task Activate(ActivateModel model)
@@ -31,9 +31,9 @@ namespace FAQPhone.Services
             await this.post<ActivateModel>("activate", model);
         }
 
-        public async Task SignIn(SignInModel model)
+        public async Task SignIn(SigninModel model)
         {
-            await this.post<SignInModel>("signin", model);
+            await this.post<SigninModel>("signin", model);
         }
 
         public void SignOut()

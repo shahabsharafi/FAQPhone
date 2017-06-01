@@ -13,7 +13,7 @@ namespace FAQPhone
         {
             InitializeComponent();
 
-            MainPage = new FAQPhone.MainPage();
+            MainPage = new FAQPhone.Views.SignupPage();
         }
 
         protected override void OnStart()
