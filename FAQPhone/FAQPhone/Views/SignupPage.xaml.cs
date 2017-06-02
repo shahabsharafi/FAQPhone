@@ -56,18 +56,14 @@ namespace FAQPhone.Views
             set { _email = value; OnPropertyChanged(); }
         }
         string _mobile;
-        public string mobile
-        {
-            get { return _mobile; }
-            set { _mobile = value; OnPropertyChanged(); }
-        }
+        private string mobile { get; set; }
         public ICommand SignupCommand { protected set; get; }
 
         public async Task signupCommand()
         {
             /////
             
-            await this.Navigation.PushAsync(new SigninPage());
+            await this.Navigation.PushAsync(new MainPage());
             
         }
     }

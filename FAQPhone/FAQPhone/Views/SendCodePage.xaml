@@ -2,12 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:infr="clr-namespace:FAQPhone.Inferstructure;assembly=FAQPhone"
-             x:Class="FAQPhone.Views.ActivatePage"
-             Title="{infr:Translate activate}">
+             x:Class="FAQPhone.Views.SendCodePage"
+             Title="{infr:Translate sendcode}">
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}">
-            <Entry x:Name="activationEntry" Placeholder="{infr:Translate activation}" IsPassword="true" Text="{Binding activation, Mode=TwoWay}" />
-            <Button Text="{infr:Translate activate}" Command="{Binding ActivateCommand}" />
+            <Entry x:Name="mobileEntry" Placeholder="{infr:Translate mobile}" IsPassword="true" Text="{Binding mobile, Mode=TwoWay}" />
+            <Button Text="{infr:Translate sendcode}" Command="{Binding SendCodeCommand}" />
             <Label x:Name="messageLabel" />
         </StackLayout>
     </ScrollView>

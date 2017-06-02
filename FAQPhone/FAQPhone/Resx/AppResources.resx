@@ -138,16 +138,25 @@
   <data name="signup" xml:space="preserve">
     <value>ثبت نام</value>
   </data>
-  <data name="activate" xml:space="preserve">
-    <value>فعال سازی</value>
+  <data name="checkcode" xml:space="preserve">
+    <value>تایید کد</value>
   </data>
-  <data name="activation" xml:space="preserve">
-    <value>کد فعال سازی</value>
+  <data name="securitycode" xml:space="preserve">
+    <value>کد امنیتی</value>
   </data>
-  <data name="sendActivation" xml:space="preserve">
-    <value>ارسال کد فعال ساری</value>
+  <data name="sendcode" xml:space="preserve">
+    <value>ارسال کد امنیتی</value>
   </data>
   <data name="signin" xml:space="preserve">
     <value>ورود به سامانه</value>
+  </data>
+  <data name="forgetpassword" xml:space="preserve">
+    <value>فراموشی کلمه عبور</value>
+  </data>
+  <data name="resetpassword" xml:space="preserve">
+    <value>تغییر کلمه عبور</value>
+  </data>
+  <data name="mainpage" xml:space="preserve">
+    <value>امکانات نرم افزار</value>
   </data>
 </root>

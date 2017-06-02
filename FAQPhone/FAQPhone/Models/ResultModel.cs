@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace FAQPhone.Models
 {
-    public class ActivateModel
+    public class ResultModel
     {
-        public string username { get; set; }
-        public string activation { get; set; }
+        public string data { get; set; }
     }
 }

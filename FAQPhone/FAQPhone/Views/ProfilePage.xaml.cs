@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FAQPhone.Inferstructure;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -19,36 +20,24 @@ namespace FAQPhone.Views
         public ProfilePage()
         {
             InitializeComponent();
-            BindingContext = new ContentPageViewModel();
+            BindingContext = new ProfilePageViewModel(Navigation);
         }
     }
 
-    class ProfilePageViewModel : INotifyPropertyChanged
+    class ProfilePageViewModel : BaseViewModel
     {
 
-        public ProfilePageViewModel()
+        public ProfilePageViewModel(INavigation navigation) : base(navigation)
         {
-            IncreaseCountCommand = new Command(IncreaseCount);
+            this.SaveCommand = new Command(async () => await saveCommand());
         }
 
-        int count;
+        public ICommand SaveCommand { get; }
 
-        string countDisplay = "You clicked 0 times.";
-        public string CountDisplay
+        public async Task saveCommand()
         {
-            get { return countDisplay; }
-            set { countDisplay = value; OnPropertyChanged(); }
+            /////
+            //await this.Navigation.PushAsync(new SignupPage(this.mobile));
         }
-
-        public ICommand IncreaseCountCommand { get; }
-
-        void IncreaseCount() =>
-            CountDisplay = $"You clicked {++count} times";
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        void OnPropertyChanged([CallerMemberName]string propertyName = "") =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
     }
 }

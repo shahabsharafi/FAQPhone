@@ -62,20 +62,11 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to فعال سازی.
+        ///   Looks up a localized string similar to تایید کد.
         /// </summary>
-        internal static string activate {
+        internal static string checkcode {
             get {
-                return ResourceManager.GetString("activate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to کد فعال سازی.
-        /// </summary>
-        internal static string activation {
-            get {
-                return ResourceManager.GetString("activation", resourceCulture);
+                return ResourceManager.GetString("checkcode", resourceCulture);
             }
         }
         
@@ -107,6 +98,24 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to فراموشی کلمه عبور.
+        /// </summary>
+        internal static string forgetpassword {
+            get {
+                return ResourceManager.GetString("forgetpassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to امکانات نرم افزار.
+        /// </summary>
+        internal static string mainpage {
+            get {
+                return ResourceManager.GetString("mainpage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to موبایل.
         /// </summary>
         internal static string mobile {
@@ -125,11 +134,29 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ارسال کد فعال ساری.
+        ///   Looks up a localized string similar to تغییر کلمه عبور.
         /// </summary>
-        internal static string sendActivation {
+        internal static string resetpassword {
             get {
-                return ResourceManager.GetString("sendActivation", resourceCulture);
+                return ResourceManager.GetString("resetpassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کد امنیتی.
+        /// </summary>
+        internal static string securitycode {
+            get {
+                return ResourceManager.GetString("securitycode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ارسال کد امنیتی.
+        /// </summary>
+        internal static string sendcode {
+            get {
+                return ResourceManager.GetString("sendcode", resourceCulture);
             }
         }
         

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:infr="clr-namespace:FAQPhone.Inferstructure;assembly=FAQPhone"
+             x:Class="FAQPhone.Views.MainPage"
+             Title="{infr:Translate mainpage}">
+    <ScrollView>
+        <StackLayout Style="{StaticResource pageStyle}">
+            
+            <Label x:Name="a" Text="MainPage" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

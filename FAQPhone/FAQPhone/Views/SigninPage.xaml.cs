@@ -29,6 +29,8 @@ namespace FAQPhone.Views
         public SigninViewModel(INavigation navigation) : base(navigation)
         {
             this.SigninCommand = new Command(async () => await signinCommand());
+            this.SignupCommand = new Command(async () => await signupCommand());
+            this.ForgetPasswordCommand = new Command(async () => await forgetPasswordCommand());
         }
         string _username;
         public string username
@@ -47,7 +49,23 @@ namespace FAQPhone.Views
         public async Task signinCommand()
         {
             /////
-            //await this.Navigation.PushAsync(new ActivatePage());
+            await this.Navigation.PushAsync(new MainPage());
+        }
+
+        public ICommand SignupCommand { protected set; get; }
+
+        public async Task signupCommand()
+        {
+            /////
+            await this.Navigation.PushAsync(new SendCodePage("signup"));
+        }
+
+        public ICommand ForgetPasswordCommand { protected set; get; }
+
+        public async Task forgetPasswordCommand()
+        {
+            /////
+            await this.Navigation.PushAsync(new SendCodePage("forgetpassword"));
         }
     }
 }

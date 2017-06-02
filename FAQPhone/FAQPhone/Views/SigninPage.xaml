@@ -9,6 +9,8 @@
             <Entry x:Name="usernameEntry" Placeholder="{infr:Translate username}" Text="{Binding username, Mode=TwoWay}" />
             <Entry x:Name="passwordEntry" Placeholder="{infr:Translate password}" IsPassword="true" Text="{Binding password, Mode=TwoWay}" />
             <Button Text="{infr:Translate signin}" Command="{Binding SigninCommand}" />
+            <Button Text="{infr:Translate signup}" Command="{Binding SignupCommand}" />
+            <Button Text="{infr:Translate forgetpassword}" Command="{Binding ForgetPasswordCommand}" />
             <Label x:Name="messageLabel" />
         </StackLayout>
     </ScrollView>

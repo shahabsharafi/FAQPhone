@@ -60,7 +60,7 @@ namespace FAQPhone.Infrastructure
 
                 if (response.IsSuccessStatusCode)
                 {
-                    Debug.WriteLine(@"				TodoItem successfully saved.");
+                    Debug.WriteLine(@"				Not successfull");
                 }
 
             }
@@ -68,6 +68,33 @@ namespace FAQPhone.Infrastructure
             {
                 Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
+        }
+
+        protected async Task<T2> post<T1, T2>(string url, T1 obj) where T1 : new()
+        {
+            T2 resultObj = default(T2);
+            var uri = new Uri(url);
+
+            try
+            {
+                var json = JsonConvert.SerializeObject(obj);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = null;
+                response = await client.PostAsync(uri, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsStringAsync();
+                    resultObj = JsonConvert.DeserializeObject<T2>(result);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"				ERROR {0}", ex.Message);
+            }
+            return resultObj;
         }
 
         protected async Task delete(string url)

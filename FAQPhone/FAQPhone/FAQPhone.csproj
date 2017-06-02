@@ -42,11 +42,9 @@
     <Compile Include="Infrastructure\Constants.cs" />
     <Compile Include="Infrastructure\ResourceManagerHelper.cs" />
     <Compile Include="Infrastructure\TranslateExtension.cs" />
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Models\Account.cs" />
-    <Compile Include="Models\ActivateModel.cs" />
+    <Compile Include="Models\AuthenticationResultModel.cs" />
+    <Compile Include="Models\ResultModel.cs" />
     <Compile Include="Models\SigninModel.cs" />
     <Compile Include="Models\SignupModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,14 +60,20 @@
     <Compile Include="Services\Interfaces\IAuthenticationService.cs" />
     <Compile Include="Services\Interfaces\IRestService.cs" />
     <Compile Include="Services\RestService .cs" />
-    <Compile Include="Views\ActivatePage.xaml.cs">
-      <DependentUpon>ActivatePage.xaml</DependentUpon>
+    <Compile Include="Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ResetPasswordPage.xaml.cs">
+      <DependentUpon>ResetPasswordPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SecurityCodePage.xaml.cs">
+      <DependentUpon>SecurityCodePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SendActivationPage.xaml.cs">
-      <DependentUpon>SendActivationPage.xaml</DependentUpon>
+    <Compile Include="Views\SendCodePage.xaml.cs">
+      <DependentUpon>SendCodePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SigninPage.xaml.cs">
       <DependentUpon>SigninPage.xaml</DependentUpon>
@@ -79,10 +83,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MainPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -126,7 +126,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\ActivatePage.xaml">
+    <EmbeddedResource Include="Views\SecurityCodePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -138,13 +138,25 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\SendActivationPage.xaml">
+    <EmbeddedResource Include="Views\SendCodePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ResetPasswordPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

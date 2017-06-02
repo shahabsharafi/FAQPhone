@@ -15,33 +15,35 @@ namespace FAQPhone.Views
 {
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SendActivationPage : ContentPage
+    public partial class SendCodePage : ContentPage
     {
-        public SendActivationPage()
+        public SendCodePage(string flow)
         {
             InitializeComponent();
-            BindingContext = new SendActivationViewModel(Navigation);
+            BindingContext = new SendCodeViewModel(Navigation, flow);
         }
     }
 
-    public class SendActivationViewModel : BaseViewModel
+    public class SendCodeViewModel : BaseViewModel
     {
-        public SendActivationViewModel(INavigation navigation) : base(navigation)
+        public SendCodeViewModel(INavigation navigation, string flow) : base(navigation)
         {
-            this.SendActivationCommand = new Command(async () => await sendActivationCommand());
+            this.flow = flow;
+            this.SendCodeCommand = new Command(async () => await sendCodeCommand());
         }
+        private string flow { get; set; }
         string _mobile;
         public string mobile
         {
             get { return _mobile; }
             set { _mobile = value; OnPropertyChanged(); }
         }
-        public ICommand SendActivationCommand { protected set; get; }
+        public ICommand SendCodeCommand { protected set; get; }
 
-        public async Task sendActivationCommand()
+        public async Task sendCodeCommand()
         {
             /////
-            await this.Navigation.PushAsync(new ActivatePage(this.mobile));
+            await this.Navigation.PushAsync(new SecurityCodePage(this.flow, this.mobile));
         }
     }
 }
