@@ -17,17 +17,18 @@ namespace FAQPhone.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SignupPage : ContentPage
     {
-        public SignupPage()
+        public SignupPage(string mobile)
         {
             InitializeComponent();
-            BindingContext = new SignupViewModel(Navigation);
+            BindingContext = new SignupViewModel(Navigation, mobile);
         }
     }
 
     public class SignupViewModel : BaseViewModel
     {
-        public SignupViewModel(INavigation navigation) : base(navigation)
+        public SignupViewModel(INavigation navigation, string mobile) : base(navigation)
         {
+            this.mobile = mobile;
             this.SignupCommand = new Command(async () => await signupCommand());
         }
         string _username;
@@ -65,16 +66,9 @@ namespace FAQPhone.Views
         public async Task signupCommand()
         {
             /////
-            /*
-            SignupModel model = new SignupModel()
-            {
-                username = this.username,
-                password = this.password,
-                email = this.email,
-                mobile = this.mobile
-            };
-            await this.Navigation.PushAsync(new ActivatePage(model));
-            */
+            
+            await this.Navigation.PushAsync(new SigninPage());
+            
         }
     }
 }

@@ -44,7 +44,7 @@ namespace FAQPhone.Views
         public async Task activateCommand()
         {
             /////
-            await this.Navigation.PushAsync(new SignupPage());
+            await this.Navigation.PushAsync(new SignupPage(this.mobile));
         }
     }
 }
