@@ -125,6 +125,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ارسال کد فعال ساری.
+        /// </summary>
+        internal static string sendActivation {
+            get {
+                return ResourceManager.GetString("sendActivation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ورود به سامانه.
         /// </summary>
         internal static string signin {

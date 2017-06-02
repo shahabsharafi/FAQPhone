@@ -144,6 +144,9 @@
   <data name="activation" xml:space="preserve">
     <value>کد فعال سازی</value>
   </data>
+  <data name="sendActivation" xml:space="preserve">
+    <value>ارسال کد فعال ساری</value>
+  </data>
   <data name="signin" xml:space="preserve">
     <value>ورود به سامانه</value>
   </data>

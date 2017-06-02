@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace FAQPhone.ViewModels
+namespace FAQPhone.Inferstructure
 {
-    public class BaseViewModel: INotifyPropertyChanged
+    public class BaseViewModel : INotifyPropertyChanged
     {
         public INavigation Navigation { get; set; }
         public BaseViewModel(INavigation navigation)

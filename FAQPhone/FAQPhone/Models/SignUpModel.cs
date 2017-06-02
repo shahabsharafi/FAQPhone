@@ -10,7 +10,6 @@ namespace FAQPhone.Models
     {
         public string username { get; set; }
         public string password { get; set; }
-        public string confirm { get; set; }
         public string email { get; set; }
         public string mobile { get; set; }
     }

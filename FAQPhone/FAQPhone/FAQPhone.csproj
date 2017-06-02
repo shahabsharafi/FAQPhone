@@ -38,6 +38,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\BaseViewModel.cs" />
     <Compile Include="Infrastructure\Constants.cs" />
     <Compile Include="Infrastructure\ResourceManagerHelper.cs" />
     <Compile Include="Infrastructure\TranslateExtension.cs" />
@@ -56,18 +57,16 @@
     </Compile>
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
-    <Compile Include="Services\BaseRestService.cs" />
+    <Compile Include="Infrastructure\BaseRestService.cs" />
     <Compile Include="Services\Interfaces\IAccountService.cs" />
     <Compile Include="Services\Interfaces\IAuthenticationService.cs" />
     <Compile Include="Services\Interfaces\IRestService.cs" />
     <Compile Include="Services\RestService .cs" />
-    <Compile Include="ViewModels\AppViewModel.cs" />
-    <Compile Include="ViewModels\ActivateViewModel.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\SigninViewModel.cs" />
-    <Compile Include="ViewModels\SignupViewModel.cs" />
     <Compile Include="Views\ActivatePage.xaml.cs">
       <DependentUpon>ActivatePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SendActivationPage.xaml.cs">
+      <DependentUpon>SendActivationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SigninPage.xaml.cs">
       <DependentUpon>SigninPage.xaml</DependentUpon>
@@ -131,6 +130,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\SigninPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SendActivationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

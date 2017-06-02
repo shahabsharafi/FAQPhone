@@ -1,4 +1,4 @@
-﻿using FAQPhone.ViewModels;
+﻿using FAQPhone.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ namespace FAQPhone
         {
             InitializeComponent();
             BindingContext = new AppViewModel();
-            MainPage = new NavigationPage(new FAQPhone.Views.SignupPage());
+            MainPage = new NavigationPage(new FAQPhone.Views.SendActivationPage());
         }
 
         protected override void OnStart()
@@ -31,5 +31,10 @@ namespace FAQPhone
         {
             // Handle when your app resumes
         }
+    }
+
+    public class AppViewModel
+    {
+        public TextAlignment Direction { get { return ResourceManagerHelper.Direction; } }
     }
 }
