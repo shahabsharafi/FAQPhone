@@ -13,18 +13,14 @@ using Xamarin.Forms;
 
 namespace FAQPhone.ViewModels
 {
-    public class ActivateViewModel : BaseViewModel, INotifyPropertyChanged
+    public class ActivateViewModel : BaseViewModel
     {
-        public ActivateViewModel(INavigation navigation): base (navigation)
+        public ActivateViewModel(INavigation navigation, string username): base (navigation)
         {
+            this.username = username;
             this.ActivateCommand = new Command(async () => await activateCommand());
         }
-        string _username;
-        public string username
-        {
-            get { return _username; }
-            set { _username = value; OnPropertyChanged(); }
-        }
+        public string username { get; private set; }
         string _activation;
         public string activation
         {
@@ -36,11 +32,7 @@ namespace FAQPhone.ViewModels
         public async Task activateCommand()
         {
             /////
-            
+            await this.Navigation.PushAsync(new SigninPage());
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        void OnPropertyChanged([CallerMemberName]string propertyName = "") =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

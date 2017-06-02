@@ -15,12 +15,12 @@ namespace FAQPhone.Views
 {
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ActivatePage : ContentPage
+    public partial class SigninPage : ContentPage
     {
-        public ActivatePage(string username)
+        public SigninPage()
         {
             InitializeComponent();
-            BindingContext = new ActivateViewModel(Navigation, username);
+            BindingContext = new SigninViewModel(Navigation);
         }
     }
 }

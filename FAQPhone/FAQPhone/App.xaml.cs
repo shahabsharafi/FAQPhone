@@ -14,7 +14,7 @@ namespace FAQPhone
         {
             InitializeComponent();
             BindingContext = new AppViewModel();
-            MainPage = new FAQPhone.Views.SignupPage();
+            MainPage = new NavigationPage(new FAQPhone.Views.SignupPage());
         }
 
         protected override void OnStart()

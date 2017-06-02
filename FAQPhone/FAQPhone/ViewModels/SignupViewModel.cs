@@ -13,7 +13,7 @@ using Xamarin.Forms;
 
 namespace FAQPhone.ViewModels
 {
-    public class SignupViewModel : BaseViewModel, INotifyPropertyChanged
+    public class SignupViewModel : BaseViewModel
     {
         public SignupViewModel(INavigation navigation): base (navigation)
         {
@@ -53,11 +53,7 @@ namespace FAQPhone.ViewModels
         public async Task signupCommand()
         {
             /////
-            await this.Navigation.PushAsync(new ActivatePage());
-        }        
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        void OnPropertyChanged([CallerMemberName]string propertyName = "") =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            await this.Navigation.PushAsync(new ActivatePage(this.username));
+        } 
     }
 }

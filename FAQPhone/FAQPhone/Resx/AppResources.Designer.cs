@@ -125,6 +125,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ورود به سامانه.
+        /// </summary>
+        internal static string signin {
+            get {
+                return ResourceManager.GetString("signin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ثبت نام.
         /// </summary>
         internal static string signup {
