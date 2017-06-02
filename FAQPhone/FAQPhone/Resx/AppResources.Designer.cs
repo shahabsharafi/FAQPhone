@@ -98,6 +98,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to کد امنیتی اشتباه است.
+        /// </summary>
+        internal static string err_securitycode {
+            get {
+                return ResourceManager.GetString("err_securitycode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to فراموشی کلمه عبور.
         /// </summary>
         internal static string forgetpassword {

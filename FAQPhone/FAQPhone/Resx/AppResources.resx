@@ -159,4 +159,7 @@
   <data name="mainpage" xml:space="preserve">
     <value>امکانات نرم افزار</value>
   </data>
+  <data name="err_securitycode" xml:space="preserve">
+    <value>کد امنیتی اشتباه است</value>
+  </data>
 </root>

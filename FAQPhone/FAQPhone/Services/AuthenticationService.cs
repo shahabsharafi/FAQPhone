@@ -23,9 +23,9 @@ namespace FAQPhone.Services
         {
             return string.Format(Constants.RestUrl, string.Format(this._relativeUrl, param));
         }
-        public async Task<string> SendActivation(string mobile)
+        public async Task<string> SendCode(string mobile)
         {
-            var result = await this.get<ResultModel>(string.Format("sendactivation/{0}", mobile));
+            var result = await this.get<ResultModel>(string.Format("sendcode/{0}", mobile));
             return result.data;
         }
 

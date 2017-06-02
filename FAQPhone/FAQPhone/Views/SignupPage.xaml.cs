@@ -55,7 +55,6 @@ namespace FAQPhone.Views
             get { return _email; }
             set { _email = value; OnPropertyChanged(); }
         }
-        string _mobile;
         private string mobile { get; set; }
         public ICommand SignupCommand { protected set; get; }
 

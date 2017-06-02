@@ -14,10 +14,14 @@ namespace FAQPhone.Infrastructure
     {
         public static string GetValue(string key)
         {
-            string ResourceId = "FAQPhone.Resx.AppResources";
-            CultureInfo ci = new System.Globalization.CultureInfo("en");
-            ResourceManager temp = new ResourceManager(ResourceId, typeof(ResourceManagerHelper).GetTypeInfo().Assembly);
-            var val = temp.GetString(key, ci);
+            string val = key;
+            if (key != null)
+            {
+                string ResourceId = "FAQPhone.Resx.AppResources";
+                CultureInfo ci = new System.Globalization.CultureInfo("en");
+                ResourceManager temp = new ResourceManager(ResourceId, typeof(ResourceManagerHelper).GetTypeInfo().Assembly);
+                val = temp.GetString(key, ci);                
+            }
             return val;
         }
 

@@ -1,4 +1,5 @@
 ﻿using FAQPhone.Inferstructure;
+using FAQPhone.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -57,7 +58,7 @@ namespace FAQPhone.Views
         public async Task signupCommand()
         {
             /////
-            await this.Navigation.PushAsync(new SendCodePage("signup"));
+            await this.Navigation.PushAsync(new SendCodePage(FlowType.Signup));
         }
 
         public ICommand ForgetPasswordCommand { protected set; get; }
@@ -65,7 +66,7 @@ namespace FAQPhone.Views
         public async Task forgetPasswordCommand()
         {
             /////
-            await this.Navigation.PushAsync(new SendCodePage("forgetpassword"));
+            await this.Navigation.PushAsync(new SendCodePage(FlowType.ForgetPassword));
         }
     }
 }

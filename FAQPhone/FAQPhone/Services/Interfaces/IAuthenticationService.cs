@@ -9,10 +9,16 @@ namespace FAQPhone.Services.Interfaces
 {
     public interface IAuthenticationService
     {
+        Task<string> SendCode(string mobile);
+
         Task SignUp(SignupModel model);
 
         Task SignIn(SigninModel model);
 
         void SignOut();
+
+        bool IsAuthenticated();
+
+        string GetToken();
     }
 }

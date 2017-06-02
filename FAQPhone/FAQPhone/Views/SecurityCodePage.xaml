@@ -8,7 +8,7 @@
         <StackLayout Style="{StaticResource pageStyle}">
             <Entry x:Name="securitycodeEntry" Placeholder="{infr:Translate securitycode}" IsPassword="true" Text="{Binding securitycode, Mode=TwoWay}" />
             <Button Text="{infr:Translate checkcode}" Command="{Binding CheckCodeCommand}" />
-            <Label x:Name="messageLabel" />
+            <Label x:Name="messageLabel" Text="{Binding message}" />
         </StackLayout>
     </ScrollView>
 </ContentPage>

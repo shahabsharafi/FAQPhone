@@ -12,6 +12,12 @@ namespace FAQPhone.Inferstructure
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
+        string _message;
+        public string message
+        {
+            get { return ResourceManagerHelper.GetValue(_message); }
+            set { _message = value; OnPropertyChanged(); }
+        }
         public INavigation Navigation { get; set; }
         public BaseViewModel(INavigation navigation)
         {

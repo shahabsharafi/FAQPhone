@@ -1,4 +1,8 @@
 ﻿using FAQPhone.Infrastructure;
+using FAQPhone.Services;
+using FAQPhone.Services.Interfaces;
+using FAQPhone.Views;
+using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +18,29 @@ namespace FAQPhone
         {
             InitializeComponent();
             BindingContext = new AppViewModel();
-            MainPage = new NavigationPage(new FAQPhone.Views.SigninPage());
+
+            App.Initialize();
+
+            var signinPage = App.Resolve<SigninPage>();// App.Container.Resolve(typeof(SigninPage), "SigninPage") as SigninPage;
+            MainPage = new NavigationPage(signinPage);
+        }
+        public static UnityContainer Container { get; set; }
+        public static void Initialize()
+        {
+            App.Container = new UnityContainer();
+            App.Container.RegisterType<IAccountService, AccountService>();
+            App.Container.RegisterType<IAuthenticationService, AuthenticationService>();
+        }
+
+        public static T Resolve<T>() where T: class
+        {
+            return App.Container.Resolve(typeof(T), typeof(T).Name) as T;
         }
 
         protected override void OnStart()
         {
             // Handle when your app starts
+            
         }
 
         protected override void OnSleep()
