@@ -29,26 +29,26 @@ namespace FAQPhone.Views
     
     public class SendCodeViewModelFactory
     {
-        IAuthenticationService authenticationService;
-        public SendCodeViewModelFactory(IAuthenticationService authenticationService)
+        IAccountService accountService;
+        public SendCodeViewModelFactory(IAccountService accountService)
         {
-            this.authenticationService = authenticationService;
+            this.accountService = accountService;
         }
         public SendCodeViewModel Create(INavigation navigation, FlowType flow)
         {
-            return new SendCodeViewModel(this.authenticationService, navigation, flow);
+            return new SendCodeViewModel(this.accountService, navigation, flow);
         }
     }
     
     public class SendCodeViewModel : BaseViewModel
     {
-        public SendCodeViewModel(IAuthenticationService authenticationService, INavigation navigation, FlowType flow) : base(navigation)
+        public SendCodeViewModel(IAccountService accountService, INavigation navigation, FlowType flow) : base(navigation)
         {
-            this.authenticationService = authenticationService;
+            this.accountService = accountService;
             this.flow = flow;
             this.SendCodeCommand = new Command(async () => await sendCodeCommand());
         }
-        private IAuthenticationService authenticationService { get; set; }
+        private IAccountService accountService { get; set; }
         private FlowType flow { get; set; }
         string _mobile;
         public string mobile

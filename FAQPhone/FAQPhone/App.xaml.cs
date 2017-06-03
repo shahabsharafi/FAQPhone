@@ -31,7 +31,6 @@ namespace FAQPhone
             App.Bag = new BagModel();
             App.Container = new UnityContainer();
             App.Container.RegisterType<IAccountService, AccountService>();
-            App.Container.RegisterType<IAuthenticationService, AuthenticationService>();
         }
 
         public static BagModel Bag { get; set; }

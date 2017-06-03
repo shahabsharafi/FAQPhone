@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FAQPhone.Models
 {
-    public class AuthenticationResultModel
+    public class AutResultModel
     {
         public bool success { get; set; }
         public string message { get; set; }

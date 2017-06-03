@@ -12,7 +12,43 @@ namespace FAQPhone.Services
     {
         public AccountService(): base()
         {
-            this._relativeUrl = "";
+            this._relativeUrl = "account/";
+        }
+
+        public async Task<string> SendCode(string mobile)
+        {
+            var result = await this.get<ResultModel>(string.Format("sendcode/{0}", mobile));
+            return result.data;
+        }
+
+        public async Task SignUp(SignupModel model)
+        {
+            await this.post<SignupModel>("signup", model);
+            setAutenticationInfo(null);
+        }
+
+        public async Task SignIn(SigninModel model)
+        {
+            var result = await this.post<SigninModel, AutResultModel>("signin", model);
+            setAutenticationInfo(result);
+        }
+
+        public void SignOut()
+        {
+            setAutenticationInfo(null);
+        }
+
+        public bool IsAuthenticated()
+        {
+            return !string.IsNullOrEmpty(App.Bag.token);
+        }
+
+        private static void setAutenticationInfo(AutResultModel info)
+        {
+            App.Bag.username = info?.username;
+            App.Bag.token = info?.token;
+            App.Bag.firstName = info?.firstName;
+            App.Bag.lastName = info?.lastName;
         }
     }
 }
