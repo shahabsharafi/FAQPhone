@@ -45,6 +45,7 @@
     <Compile Include="Infrastructure\TranslateExtension.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AuthenticationResultModel.cs" />
+    <Compile Include="Models\BagModel.cs" />
     <Compile Include="Models\ResultModel.cs" />
     <Compile Include="Models\SigninModel.cs" />
     <Compile Include="Models\SignupModel.cs" />

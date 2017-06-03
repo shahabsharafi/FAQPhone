@@ -48,26 +48,15 @@ namespace FAQPhone.Services
 
         public bool IsAuthenticated()
         {
-            return Application.Current.Properties.Any(o => o.Key == "token" && o.Value != null);
-        }
-
-        public string GetToken()
-        {
-            string token = "";
-            object obj;
-            if (Application.Current.Properties.TryGetValue("token", out obj))
-            {
-                token = obj.ToString();
-            }
-            return token;
+            return !string.IsNullOrEmpty(App.Bag.token);
         }
 
         private static void setAutenticationInfo(AuthenticationResultModel info)
         {
-            Application.Current.Properties["username"] = info?.username;
-            Application.Current.Properties["token"] = info?.token;
-            Application.Current.Properties["firstName"] = info?.firstName;
-            Application.Current.Properties["lastName"] = info?.lastName;
+            App.Bag.username = info?.username;
+            App.Bag.token  = info?.token;
+            App.Bag.firstName  = info?.firstName;
+            App.Bag.lastName  = info?.lastName;
         }        
     }
 }

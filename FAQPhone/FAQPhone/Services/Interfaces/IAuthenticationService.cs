@@ -18,7 +18,5 @@ namespace FAQPhone.Services.Interfaces
         void SignOut();
 
         bool IsAuthenticated();
-
-        string GetToken();
     }
 }

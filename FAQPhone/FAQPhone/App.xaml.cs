@@ -1,4 +1,5 @@
 ﻿using FAQPhone.Infrastructure;
+using FAQPhone.Models;
 using FAQPhone.Services;
 using FAQPhone.Services.Interfaces;
 using FAQPhone.Views;
@@ -27,10 +28,13 @@ namespace FAQPhone
         public static UnityContainer Container { get; set; }
         public static void Initialize()
         {
+            App.Bag = new BagModel();
             App.Container = new UnityContainer();
             App.Container.RegisterType<IAccountService, AccountService>();
             App.Container.RegisterType<IAuthenticationService, AuthenticationService>();
         }
+
+        public static BagModel Bag { get; set; }
 
         public static T Resolve<T>() where T: class
         {
