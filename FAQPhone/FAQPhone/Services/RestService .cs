@@ -16,7 +16,7 @@ namespace FAQPhone.Services
     public class RestService<T> : BaseRestService, IRestService<T> where T : new()
     {
         protected string _relativeUrl { get; set; }
-        private string getUrl(string param = "")
+        protected string getUrl(string param = "")
         {
             return string.Format(Constants.RestUrl, string.Format(this._relativeUrl, param));
         }

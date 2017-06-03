@@ -12,12 +12,13 @@ namespace FAQPhone.Services
     {
         public AccountService(): base()
         {
-            this._relativeUrl = "account/";
+            this._relativeUrl = "accounts/{0}";
         }
 
         public async Task<string> SendCode(string mobile)
         {
-            var result = await this.get<ResultModel>(string.Format("sendcode/{0}", mobile));
+            var url = this.getUrl(string.Format("sendcode/{0}", mobile));
+            var result = await this.get<ResultModel>(url);
             return result.data;
         }
 

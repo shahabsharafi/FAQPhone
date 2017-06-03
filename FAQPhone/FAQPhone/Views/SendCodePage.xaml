@@ -6,7 +6,7 @@
              Title="{infr:Translate sendcode}">
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}">
-            <Entry x:Name="mobileEntry" Placeholder="{infr:Translate mobile}" IsPassword="true" Text="{Binding mobile, Mode=TwoWay}" />
+            <Entry x:Name="mobileEntry" Placeholder="{infr:Translate mobile}" Text="{Binding mobile, Mode=TwoWay}" />
             <Button Text="{infr:Translate sendcode}" Command="{Binding SendCodeCommand}" />
             <Label x:Name="messageLabel" />
         </StackLayout>

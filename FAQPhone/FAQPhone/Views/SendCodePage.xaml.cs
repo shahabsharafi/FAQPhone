@@ -61,8 +61,7 @@ namespace FAQPhone.Views
         public async Task sendCodeCommand()
         {
             /////
-            //string code = await this.authenticationService.SendCode(this.mobile);            
-            string code = "123456";
+            string code = await this.accountService.SendCode(this.mobile);            
             await this.Navigation.PushAsync(new SecurityCodePage(this.flow, this.mobile, code));
         }
     }
