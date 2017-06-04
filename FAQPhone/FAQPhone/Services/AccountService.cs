@@ -1,4 +1,5 @@
-﻿using FAQPhone.Models;
+﻿using FAQPhone.Inferstructure;
+using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -22,16 +23,28 @@ namespace FAQPhone.Services
             return result.data;
         }
 
-        public async Task SignUp(SignupModel model)
+        public async Task<bool> SignUp(SignupModel model)
         {
-            await this.post<SignupModel>("signup", model);
-            setAutenticationInfo(null);
+            var url = this.getUrl("signup");
+            await this.post<SignupModel>(url, model);
+            SigninModel m = new SigninModel()
+            {
+                username = model.username,
+                password = model.password
+            };
+            return await this.SignIn(m);
         }
 
-        public async Task SignIn(SigninModel model)
+        public async Task<bool> SignIn(SigninModel model)
         {
-            var result = await this.post<SigninModel, AutResultModel>("signin", model);
-            setAutenticationInfo(result);
+            string url = string.Format(Constants.RestUrl, "accounts/authenticate");
+            var result = await this.post<SigninModel, AutResultModel>(url, model);
+            if (result.success == true)
+            {
+                setAutenticationInfo(result);
+                return true;
+            }
+            return false;
         }
 
         public void SignOut()

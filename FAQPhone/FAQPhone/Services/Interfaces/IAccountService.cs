@@ -11,9 +11,9 @@ namespace FAQPhone.Services.Interfaces
     {
         Task<string> SendCode(string mobile);
 
-        Task SignUp(SignupModel model);
+        Task<bool> SignUp(SignupModel model);
 
-        Task SignIn(SigninModel model);
+        Task<bool> SignIn(SigninModel model);
 
         void SignOut();
 

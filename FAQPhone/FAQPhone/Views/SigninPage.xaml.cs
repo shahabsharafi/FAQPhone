@@ -1,5 +1,7 @@
 ﻿using FAQPhone.Inferstructure;
 using FAQPhone.Infrastructure;
+using FAQPhone.Models;
+using FAQPhone.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,18 +23,34 @@ namespace FAQPhone.Views
         public SigninPage()
         {
             InitializeComponent();
-            BindingContext = new SigninViewModel(Navigation);
+            var factory = App.Resolve<SigninViewModelFactory>();
+            BindingContext = factory.Create(Navigation);
+        }
+    }
+
+    public class SigninViewModelFactory
+    {
+        IAccountService accountService;
+        public SigninViewModelFactory(IAccountService accountService)
+        {
+            this.accountService = accountService;
+        }
+        public SigninViewModel Create(INavigation navigation)
+        {
+            return new SigninViewModel(this.accountService, navigation);
         }
     }
 
     public class SigninViewModel : BaseViewModel
     {
-        public SigninViewModel(INavigation navigation) : base(navigation)
+        public SigninViewModel(IAccountService accountService, INavigation navigation) : base(navigation)
         {
+            this.accountService = accountService;
             this.SigninCommand = new Command(async () => await signinCommand());
             this.SignupCommand = new Command(async () => await signupCommand());
             this.ForgetPasswordCommand = new Command(async () => await forgetPasswordCommand());
         }
+        private IAccountService accountService { get; set; }
         string _username;
         public string username
         {
@@ -50,7 +68,16 @@ namespace FAQPhone.Views
         public async Task signinCommand()
         {
             /////
-            await this.Navigation.PushAsync(new MainPage());
+            SigninModel model = new SigninModel()
+            {
+                username = this.username,
+                password = this.password
+            };
+            bool flag = await this.accountService.SignIn(model);
+            if (flag)
+            {
+                await this.Navigation.PushAsync(new MainPage());
+            }            
         }
 
         public ICommand SignupCommand { protected set; get; }
@@ -66,6 +93,7 @@ namespace FAQPhone.Views
         public async Task forgetPasswordCommand()
         {
             /////
+            
             await this.Navigation.PushAsync(new SendCodePage(FlowType.ForgetPassword));
         }
     }

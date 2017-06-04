@@ -1,4 +1,6 @@
 ﻿using FAQPhone.Inferstructure;
+using FAQPhone.Models;
+using FAQPhone.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,17 +22,33 @@ namespace FAQPhone.Views
         public SignupPage(string mobile)
         {
             InitializeComponent();
-            BindingContext = new SignupViewModel(Navigation, mobile);
+            var factory = App.Resolve<SignupViewModelFactory>();
+            BindingContext = factory.Create(Navigation, mobile);
+        }
+    }
+
+    public class SignupViewModelFactory
+    {
+        IAccountService accountService;
+        public SignupViewModelFactory(IAccountService accountService)
+        {
+            this.accountService = accountService;
+        }
+        public SignupViewModel Create(INavigation navigation, string mobile)
+        {
+            return new SignupViewModel(this.accountService, navigation, mobile);
         }
     }
 
     public class SignupViewModel : BaseViewModel
     {
-        public SignupViewModel(INavigation navigation, string mobile) : base(navigation)
+        public SignupViewModel(IAccountService accountService, INavigation navigation, string mobile) : base(navigation)
         {
+            this.accountService = accountService;
             this.mobile = mobile;
             this.SignupCommand = new Command(async () => await signupCommand());
         }
+        private IAccountService accountService { get; set; }
         string _username;
         public string username
         {
@@ -61,7 +79,14 @@ namespace FAQPhone.Views
         public async Task signupCommand()
         {
             /////
-            
+            SignupModel model = new SignupModel()
+            {
+                mobile = this.mobile,
+                username = this.username,
+                password = this.password,
+                email = this.email
+            };
+            await this.accountService.SignUp(model);
             await this.Navigation.PushAsync(new MainPage());
             
         }
