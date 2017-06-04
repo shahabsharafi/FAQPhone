@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace FAQPhone.Models
 {
-    public class SignupModel
+    public class AccountChangeModel
     {
+        public string code { get; set; }
         public string username { get; set; }
         public string password { get; set; }
-        public string email { get; set; }
         public string mobile { get; set; }
     }
 }

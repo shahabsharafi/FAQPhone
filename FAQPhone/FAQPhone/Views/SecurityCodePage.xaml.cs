@@ -19,10 +19,10 @@ namespace FAQPhone.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SecurityCodePage : ContentPage
     {
-        public SecurityCodePage(FlowType flow, string mobile, string code)
+        public SecurityCodePage(FlowType flow, string mobile, CodeResultModel codeResult)
         {
             InitializeComponent();
-            BindingContext = new SecurityCodeViewModel(Navigation, flow, mobile, code);
+            BindingContext = new SecurityCodeViewModel(Navigation, flow, mobile, codeResult);
         }
     }
 
@@ -30,14 +30,14 @@ namespace FAQPhone.Views
 
     public class SecurityCodeViewModel : BaseViewModel
     {
-        public SecurityCodeViewModel(INavigation navigation, FlowType flow, string mobile, string code) : base(navigation)
+        public SecurityCodeViewModel(INavigation navigation, FlowType flow, string mobile, CodeResultModel codeResult) : base(navigation)
         {
-            this.code = code;
+            this.codeResult = codeResult;
             this.flow = flow;
             this.mobile = mobile;
             this.CheckCodeCommand = new Command(async () => await checkCodeCommand());
         }
-        private string code { get; set; }
+        private CodeResultModel codeResult { get; set; }
         private FlowType flow { get; set; }
         private string mobile { get; set; }
         string _securitycode;
@@ -51,20 +51,34 @@ namespace FAQPhone.Views
         public async Task checkCodeCommand()
         {
             /////
-            if (this.securitycode == this.code)
+            if (this.securitycode == this.codeResult.code)
             {
                 if (this.flow == FlowType.Signup)
                 {
-                    await this.Navigation.PushAsync(new SignupPage(this.mobile));
+                    if (this.codeResult.username == "")
+                    {
+                        await this.Navigation.PushAsync(new SignupPage(this.mobile, this.codeResult.code));
+                    }
+                    else
+                    {
+                        this.message = "err_securitycode_userexists";
+                    }
                 }
                 else if (this.flow == FlowType.ForgetPassword)
                 {
-                    await this.Navigation.PushAsync(new ResetPasswordPage(this.mobile));
+                    if (this.codeResult.username != "")
+                    {
+                        await this.Navigation.PushAsync(new ResetPasswordPage(this.mobile, this.codeResult));
+                    }
+                    else
+                    {
+                        this.message = "err_securitycode_mobilenotfound";
+                    }
                 }
             }
             else
             {
-                this.message = "err_securitycode";
+                this.message = "err_securitycode_notmatch";
             }
         }
     }

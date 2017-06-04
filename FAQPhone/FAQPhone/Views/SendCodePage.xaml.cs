@@ -61,8 +61,8 @@ namespace FAQPhone.Views
         public async Task sendCodeCommand()
         {
             /////
-            string code = await this.accountService.SendCode(this.mobile);            
-            await this.Navigation.PushAsync(new SecurityCodePage(this.flow, this.mobile, code));
+            var codeResult = await this.accountService.SendCode(this.mobile);            
+            await this.Navigation.PushAsync(new SecurityCodePage(this.flow, this.mobile, codeResult));
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FAQPhone.Inferstructure;
+using FAQPhone.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,23 +18,26 @@ namespace FAQPhone.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ResetPasswordPage : ContentPage
     {
-        public ResetPasswordPage(string mobile)
+        public ResetPasswordPage(string mobile, CodeResultModel codeResult)
         {
             InitializeComponent();
-            BindingContext = new ResetPasswordPageViewModel(Navigation, mobile);
+            BindingContext = new ResetPasswordPageViewModel(Navigation, mobile, codeResult);
         }
     }
 
     class ResetPasswordPageViewModel : BaseViewModel
     {
 
-        public ResetPasswordPageViewModel(INavigation navigation, string mobile) : base (navigation)
+        public ResetPasswordPageViewModel(INavigation navigation, string mobile, CodeResultModel codeResult) : base (navigation)
         {
+            this.codeResult = codeResult;
             this.mobile = mobile;
             this.ResetPasswordCommand = new Command(async () => await resetPasswordCommand());
         }
 
         private string mobile { get; set; }
+
+        CodeResultModel codeResult { get; set; }
 
         string _password;
         public string password
@@ -47,7 +51,12 @@ namespace FAQPhone.Views
         public async Task resetPasswordCommand()
         {
             /////
-
+            AccountChangeModel model = new AccountChangeModel()
+            {
+                code = codeResult.code,
+                mobile = this.mobile,
+                password = this.password
+            };
             await this.Navigation.PushAsync(new MainPage());
 
         }

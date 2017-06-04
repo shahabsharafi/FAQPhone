@@ -98,11 +98,29 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to کاربری با این شماره موبایل قبلا ثبت نام نشده.
+        /// </summary>
+        internal static string err_securitycode_mobilenotfound {
+            get {
+                return ResourceManager.GetString("err_securitycode_mobilenotfound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to کد امنیتی اشتباه است.
         /// </summary>
-        internal static string err_securitycode {
+        internal static string err_securitycode_notmatch {
             get {
-                return ResourceManager.GetString("err_securitycode", resourceCulture);
+                return ResourceManager.GetString("err_securitycode_notmatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to شماره موبایل برای کاربر دیگری ثبت شده.
+        /// </summary>
+        internal static string err_securitycode_userexists {
+            get {
+                return ResourceManager.GetString("err_securitycode_userexists", resourceCulture);
             }
         }
         

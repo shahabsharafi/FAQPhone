@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace FAQPhone.Models
 {
-    public class ResultModel
+    public class AccountModel
     {
-        public string data { get; set; }
     }
 }

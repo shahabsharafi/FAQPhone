@@ -9,24 +9,24 @@ using System.Threading.Tasks;
 
 namespace FAQPhone.Services
 {
-    public class AccountService: RestService<Account>, IAccountService
+    public class AccountService: RestService<AccountModel>, IAccountService
     {
         public AccountService(): base()
         {
             this._relativeUrl = "accounts/{0}";
         }
 
-        public async Task<string> SendCode(string mobile)
+        public async Task<CodeResultModel> SendCode(string mobile)
         {
             var url = this.getUrl(string.Format("sendcode/{0}", mobile));
-            var result = await this.get<ResultModel>(url);
-            return result.data;
+            var result = await this.get<CodeResultModel>(url);
+            return result;
         }
 
-        public async Task<bool> SignUp(SignupModel model)
+        public async Task<bool> SignUp(AccountChangeModel model)
         {
             var url = this.getUrl("signup");
-            await this.post<SignupModel>(url, model);
+            await this.post<AccountChangeModel>(url, model);
             SigninModel m = new SigninModel()
             {
                 username = model.username,
@@ -45,6 +45,11 @@ namespace FAQPhone.Services
                 return true;
             }
             return false;
+        }
+
+        public Task<bool> ResetPasswordIn(AccountChangeModel model)
+        {
+            throw new NotImplementedException();
         }
 
         public void SignOut()

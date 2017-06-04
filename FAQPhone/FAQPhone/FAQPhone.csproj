@@ -43,12 +43,12 @@
     <Compile Include="Infrastructure\Constants.cs" />
     <Compile Include="Infrastructure\ResourceManagerHelper.cs" />
     <Compile Include="Infrastructure\TranslateExtension.cs" />
-    <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\AutResultModel.cs" />
     <Compile Include="Models\BagModel.cs" />
-    <Compile Include="Models\ResultModel.cs" />
+    <Compile Include="Models\CodeResultModel.cs" />
     <Compile Include="Models\SigninModel.cs" />
-    <Compile Include="Models\SignupModel.cs" />
+    <Compile Include="Models\AccountChangeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resx\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>

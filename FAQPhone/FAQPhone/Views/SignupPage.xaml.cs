@@ -19,11 +19,11 @@ namespace FAQPhone.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SignupPage : ContentPage
     {
-        public SignupPage(string mobile)
+        public SignupPage(string mobile, string code)
         {
             InitializeComponent();
             var factory = App.Resolve<SignupViewModelFactory>();
-            BindingContext = factory.Create(Navigation, mobile);
+            BindingContext = factory.Create(Navigation, mobile, code);
         }
     }
 
@@ -34,17 +34,18 @@ namespace FAQPhone.Views
         {
             this.accountService = accountService;
         }
-        public SignupViewModel Create(INavigation navigation, string mobile)
+        public SignupViewModel Create(INavigation navigation, string mobile, string code)
         {
-            return new SignupViewModel(this.accountService, navigation, mobile);
+            return new SignupViewModel(this.accountService, navigation, mobile, code);
         }
     }
 
     public class SignupViewModel : BaseViewModel
     {
-        public SignupViewModel(IAccountService accountService, INavigation navigation, string mobile) : base(navigation)
+        public SignupViewModel(IAccountService accountService, INavigation navigation, string mobile, string code) : base(navigation)
         {
             this.accountService = accountService;
+            this.code = code;
             this.mobile = mobile;
             this.SignupCommand = new Command(async () => await signupCommand());
         }
@@ -73,18 +74,19 @@ namespace FAQPhone.Views
             get { return _email; }
             set { _email = value; OnPropertyChanged(); }
         }
+        private string code { get; set; }
         private string mobile { get; set; }
         public ICommand SignupCommand { protected set; get; }
 
         public async Task signupCommand()
         {
             /////
-            SignupModel model = new SignupModel()
+            AccountChangeModel model = new AccountChangeModel()
             {
+                code = this.code,
                 mobile = this.mobile,
                 username = this.username,
-                password = this.password,
-                email = this.email
+                password = this.password
             };
             await this.accountService.SignUp(model);
             await this.Navigation.PushAsync(new MainPage());

@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace FAQPhone.Services.Interfaces
 {
-    public interface IAccountService: IRestService<Account>
+    public interface IAccountService: IRestService<AccountModel>
     {
-        Task<string> SendCode(string mobile);
+        Task<CodeResultModel> SendCode(string mobile);
 
-        Task<bool> SignUp(SignupModel model);
+        Task<bool> SignUp(AccountChangeModel model);
 
         Task<bool> SignIn(SigninModel model);
+        Task<bool> ResetPasswordIn(AccountChangeModel model);
 
         void SignOut();
 

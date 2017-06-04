@@ -159,7 +159,13 @@
   <data name="mainpage" xml:space="preserve">
     <value>امکانات نرم افزار</value>
   </data>
-  <data name="err_securitycode" xml:space="preserve">
+  <data name="err_securitycode_notmatch" xml:space="preserve">
     <value>کد امنیتی اشتباه است</value>
+  </data>
+  <data name="err_securitycode_mobilenotfound" xml:space="preserve">
+    <value>کاربری با این شماره موبایل قبلا ثبت نام نشده</value>
+  </data>
+  <data name="err_securitycode_userexists" xml:space="preserve">
+    <value>شماره موبایل برای کاربر دیگری ثبت شده</value>
   </data>
 </root>
