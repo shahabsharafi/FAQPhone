@@ -48,7 +48,7 @@ namespace FAQPhone.Services
             return false;
         }
 
-        public async Task<bool> ResetPasswordIn(AccountChangeModel model)
+        public async Task<bool> ResetPassword(AccountChangeModel model)
         {
             var url = this.getUrl("resetpassword");
             var result = await this.post<AccountChangeModel, AutResultModel>(url, model);

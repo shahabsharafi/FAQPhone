@@ -14,7 +14,7 @@ namespace FAQPhone.Services.Interfaces
         Task<bool> SignUp(AccountChangeModel model);
 
         Task<bool> SignIn(SigninModel model);
-        Task<bool> ResetPasswordIn(AccountChangeModel model);
+        Task<bool> ResetPassword(AccountChangeModel model);
 
         void SignOut();
 
