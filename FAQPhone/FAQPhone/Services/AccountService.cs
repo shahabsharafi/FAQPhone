@@ -26,18 +26,19 @@ namespace FAQPhone.Services
         public async Task<bool> SignUp(AccountChangeModel model)
         {
             var url = this.getUrl("signup");
-            await this.post<AccountChangeModel>(url, model);
-            SigninModel m = new SigninModel()
+            AutResultModel result = await this.post<AccountChangeModel, AutResultModel>(url, model);
+            if (result.success == true)
             {
-                username = model.username,
-                password = model.password
-            };
-            return await this.SignIn(m);
+                setAutenticationInfo(result);
+                return true;
+            }
+            return false;
         }
 
         public async Task<bool> SignIn(SigninModel model)
         {
-            string url = string.Format(Constants.RestUrl, "accounts/authenticate");
+            //string url = string.Format(Constants.RestUrl, "accounts/authenticate");
+            var url = this.getUrl("authenticate");
             var result = await this.post<SigninModel, AutResultModel>(url, model);
             if (result.success == true)
             {
@@ -47,9 +48,16 @@ namespace FAQPhone.Services
             return false;
         }
 
-        public Task<bool> ResetPasswordIn(AccountChangeModel model)
+        public async Task<bool> ResetPasswordIn(AccountChangeModel model)
         {
-            throw new NotImplementedException();
+            var url = this.getUrl("resetpassword");
+            var result = await this.post<AccountChangeModel, AutResultModel>(url, model);
+            if (result.success == true)
+            {
+                setAutenticationInfo(result);
+                return true;
+            }
+            return false;
         }
 
         public void SignOut()
@@ -66,8 +74,6 @@ namespace FAQPhone.Services
         {
             App.Bag.username = info?.username;
             App.Bag.token = info?.token;
-            App.Bag.firstName = info?.firstName;
-            App.Bag.lastName = info?.lastName;
         }
     }
 }

@@ -11,7 +11,5 @@ namespace FAQPhone.Models
     {
         public string username { get; set; }
         public string token { get; set; }
-        public string firstName { get; set; }
-        public string lastName { get; set; }
     }
 }
