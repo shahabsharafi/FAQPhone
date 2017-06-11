@@ -6,8 +6,11 @@
              Title="{infr:Translate mainpage}">
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}">
-            
-            <Label x:Name="a" Text="MainPage" />
+            <Button Text="{infr:Translate create_faq}" Command="{Binding CreateFAQCommand}" />
+            <Button Text="{infr:Translate receive_faq}" Command="{Binding ReceiveFAQCommand}" />
+            <Button Text="{infr:Translate inprogress_faq}" Command="{Binding ShowInprogressCommand}" />
+            <Button Text="{infr:Translate archived_faq}" Command="{Binding ShowArchivedCommand}" />
+            <Button Text="{infr:Translate signout}" Command="{Binding SignoutCommand}" />
         </StackLayout>
     </ScrollView>
 </ContentPage>

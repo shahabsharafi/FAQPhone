@@ -168,4 +168,19 @@
   <data name="err_securitycode_userexists" xml:space="preserve">
     <value>شماره موبایل برای کاربر دیگری ثبت شده</value>
   </data>
+  <data name="archived_faq" xml:space="preserve">
+    <value>بایگانی شده</value>
+  </data>
+  <data name="create_faq" xml:space="preserve">
+    <value>سوال جدید</value>
+  </data>
+  <data name="inprogress_faq" xml:space="preserve">
+    <value>در دست اقدام</value>
+  </data>
+  <data name="receive_faq" xml:space="preserve">
+    <value>دریافت سوال</value>
+  </data>
+  <data name="signout" xml:space="preserve">
+    <value>خروج از سامانه</value>
+  </data>
 </root>

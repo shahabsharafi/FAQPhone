@@ -62,6 +62,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to بایگانی شده.
+        /// </summary>
+        internal static string archived_faq {
+            get {
+                return ResourceManager.GetString("archived_faq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تایید کد.
         /// </summary>
         internal static string checkcode {
@@ -76,6 +85,15 @@ namespace FAQPhone.Resx {
         internal static string confirm {
             get {
                 return ResourceManager.GetString("confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to سوال جدید.
+        /// </summary>
+        internal static string create_faq {
+            get {
+                return ResourceManager.GetString("create_faq", resourceCulture);
             }
         }
         
@@ -134,6 +152,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to در دست اقدام.
+        /// </summary>
+        internal static string inprogress_faq {
+            get {
+                return ResourceManager.GetString("inprogress_faq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to امکانات نرم افزار.
         /// </summary>
         internal static string mainpage {
@@ -157,6 +184,15 @@ namespace FAQPhone.Resx {
         internal static string password {
             get {
                 return ResourceManager.GetString("password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to دریافت سوال.
+        /// </summary>
+        internal static string receive_faq {
+            get {
+                return ResourceManager.GetString("receive_faq", resourceCulture);
             }
         }
         
@@ -193,6 +229,15 @@ namespace FAQPhone.Resx {
         internal static string signin {
             get {
                 return ResourceManager.GetString("signin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to خروج از سامانه.
+        /// </summary>
+        internal static string signout {
+            get {
+                return ResourceManager.GetString("signout", resourceCulture);
             }
         }
         
