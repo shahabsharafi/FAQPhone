@@ -19,7 +19,7 @@ namespace FAQPhone.Services
         }
         public DepartmentService() : base()
         {
-            this._relativeUrl = "departments/{0}";
+            this._relativeUrl = "departments?{0}";
         }
         public async Task<List<DepartmentModel>> get(string parentId)
         {
@@ -27,7 +27,8 @@ namespace FAQPhone.Services
                 ? "$filter=type eq 'department'"
                 : "$filter=parentId eq '" + parentId + "'";
             string url = this.getUrl(prm);
-            return await this.get<List<DepartmentModel>>(url);
+            var data = await this.get<PaginationModel<DepartmentModel>>(url);
+            return data.docs.ToList();
         }
     }
 }

@@ -48,6 +48,7 @@
     <Compile Include="Models\BagModel.cs" />
     <Compile Include="Models\CodeResultModel.cs" />
     <Compile Include="Models\DepartmentModel.cs" />
+    <Compile Include="Models\PaginationModel.cs" />
     <Compile Include="Models\SigninModel.cs" />
     <Compile Include="Models\AccountChangeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

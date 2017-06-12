@@ -59,7 +59,7 @@ namespace FAQPhone.Views
         public async Task createFAQCommand()
         {
             /////           
-           
+            await this.Navigation.PushAsync(new DepartmentPage());
 
         }
 

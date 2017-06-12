@@ -5,8 +5,14 @@
              x:Class="FAQPhone.Views.DepartmentPage"
              Title="{infr:Translate select-department}">
     <ScrollView>
-        <StackLayout Padding="10">
-            <ListView ItemsSource="{ Binding list }"></ListView>
+        <StackLayout Style="{StaticResource pageStyle}">
+            <ListView ItemsSource="{ Binding list }">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding caption}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ScrollView>
 </ContentPage>

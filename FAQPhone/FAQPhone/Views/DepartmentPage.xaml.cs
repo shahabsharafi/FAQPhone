@@ -49,6 +49,7 @@ namespace FAQPhone.Views
             this.departmentService = departmentService;
             this.SelectCommand = new Command(async () => await selectCommand());
             this.ParentId = "";
+            this.list = new ObservableCollection<DepartmentModel>();
             Task.Run(async () => await loadItems());
         }
         private IDepartmentService departmentService { get; set; }
