@@ -183,4 +183,7 @@
   <data name="signout" xml:space="preserve">
     <value>خروج از سامانه</value>
   </data>
+  <data name="select-department" xml:space="preserve">
+    <value>انتخاب بخش</value>
+  </data>
 </root>

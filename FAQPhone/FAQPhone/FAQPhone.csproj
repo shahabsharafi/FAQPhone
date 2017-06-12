@@ -47,6 +47,7 @@
     <Compile Include="Models\AutResultModel.cs" />
     <Compile Include="Models\BagModel.cs" />
     <Compile Include="Models\CodeResultModel.cs" />
+    <Compile Include="Models\DepartmentModel.cs" />
     <Compile Include="Models\SigninModel.cs" />
     <Compile Include="Models\AccountChangeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -57,9 +58,14 @@
     </Compile>
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Infrastructure\BaseRestService.cs" />
+    <Compile Include="Services\DepartmentService.cs" />
     <Compile Include="Services\Interfaces\IAccountService.cs" />
+    <Compile Include="Services\Interfaces\IDepartmentService.cs" />
     <Compile Include="Services\Interfaces\IRestService.cs" />
     <Compile Include="Services\RestService .cs" />
+    <Compile Include="Views\DepartmentPage.xaml.cs">
+      <DependentUpon>DepartmentPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -176,6 +182,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\MainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DepartmentPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

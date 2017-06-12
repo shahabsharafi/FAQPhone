@@ -215,6 +215,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to انتخاب بخش.
+        /// </summary>
+        internal static string select_department {
+            get {
+                return ResourceManager.GetString("select-department", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ارسال کد امنیتی.
         /// </summary>
         internal static string sendcode {
