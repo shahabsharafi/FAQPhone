@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace FAQPhone.Services.Interfaces
 {
-    public interface IDepartmentService : IRestService<DepartmentModel>
+    public interface IDepartmentService
     {
+        Task<List<DepartmentModel>> get(string parentId);
     }
 }

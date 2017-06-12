@@ -6,7 +6,7 @@
              Title="{infr:Translate select-department}">
     <ScrollView>
         <StackLayout Padding="10">
-            <ListView></ListView>
+            <ListView ItemsSource="{ Binding list }"></ListView>
         </StackLayout>
     </ScrollView>
 </ContentPage>
