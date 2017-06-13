@@ -6,7 +6,7 @@
              Title="{infr:Translate select-department}">
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}">
-            <ListView ItemsSource="{ Binding List }">
+            <ListView ItemsSource="{ Binding List }" SelectedItem="{ Binding SelectCommand }" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
