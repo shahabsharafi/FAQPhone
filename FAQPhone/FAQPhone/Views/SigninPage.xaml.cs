@@ -92,8 +92,7 @@ namespace FAQPhone.Views
 
         public async Task forgetPasswordCommand()
         {
-            /////
-            
+            /////            
             await this.Navigation.PushAsync(new SendCodePage(FlowType.ForgetPassword));
         }
     }

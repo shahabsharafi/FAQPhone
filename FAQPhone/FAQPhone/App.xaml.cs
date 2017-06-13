@@ -32,6 +32,7 @@ namespace FAQPhone
             App.Container = new UnityContainer();
             App.Container.RegisterType<IAccountService, AccountService>();
             App.Container.RegisterType<IDepartmentService, DepartmentService>();
+            App.Container.RegisterType<IDiscussionService, DiscussionService>();
         }
 
         public static BagModel Bag { get; set; }
