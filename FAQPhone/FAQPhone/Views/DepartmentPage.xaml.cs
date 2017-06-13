@@ -48,13 +48,11 @@ namespace FAQPhone.Views
         public DepartmentPageViewModel(IDepartmentService departmentService, INavigation navigation) : base(navigation)
         {
             this.departmentService = departmentService;
-            this.SelectCommand = new Command(async () => await selectCommand());
-            this.ParentId = "";
+            this.SelectItemCommand = new Command<string>(async (parentId) => await selectItemCommand(parentId));
             this.List = new ObservableCollection<DepartmentModel>();
-            Task.Run(async () => await loadItems());
+            Task.Run(async () => await loadItems(""));
         }
         private IDepartmentService departmentService { get; set; }
-        public string ParentId { get; set; }
 
 
         ObservableCollection<DepartmentModel> _list;
@@ -64,17 +62,17 @@ namespace FAQPhone.Views
             set { _list = value; OnPropertyChanged(); }
         }
 
-        public ICommand SelectCommand { get; }
+        public ICommand SelectItemCommand { get; }
 
-        public async Task selectCommand()
+        public async Task selectItemCommand(string parentId)
         {
             ///// 
-            await loadItems();
+            await loadItems(parentId);
         }
-        public async Task loadItems()
+        public async Task loadItems(string parentId)
         {
             this.List.Clear();
-            var list = await this.departmentService.get(this.ParentId);
+            var list = await this.departmentService.get(parentId);
             foreach (var item in list)
             {
                 this.List.Add(item);
