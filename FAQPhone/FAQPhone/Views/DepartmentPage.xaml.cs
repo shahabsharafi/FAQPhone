@@ -1,4 +1,5 @@
 ﻿using FAQPhone.Inferstructure;
+using FAQPhone.Infrastructure;
 using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
 using System;
@@ -49,13 +50,19 @@ namespace FAQPhone.Views
             this.departmentService = departmentService;
             this.SelectCommand = new Command(async () => await selectCommand());
             this.ParentId = "";
-            this.list = new ObservableCollection<DepartmentModel>();
+            this.List = new ObservableCollection<DepartmentModel>();
             Task.Run(async () => await loadItems());
         }
         private IDepartmentService departmentService { get; set; }
         public string ParentId { get; set; }
 
-        public ObservableCollection<DepartmentModel> list { get; set; }
+
+        ObservableCollection<DepartmentModel> _list;
+        public ObservableCollection<DepartmentModel> List
+        {
+            get { return _list; }
+            set { _list = value; OnPropertyChanged(); }
+        }
 
         public ICommand SelectCommand { get; }
 
@@ -66,11 +73,11 @@ namespace FAQPhone.Views
         }
         public async Task loadItems()
         {
-            this.list.Clear();
+            this.List.Clear();
             var list = await this.departmentService.get(this.ParentId);
             foreach (var item in list)
             {
-                this.list.Add(item);
+                this.List.Add(item);
             }
         }
     }

@@ -33,5 +33,14 @@ namespace FAQPhone.Infrastructure
                 return dr == "RTL" ? TextAlignment.End : TextAlignment.Start;
             }
         }
+
+        public static LayoutOptions Layout
+        {
+            get
+            {
+                var dr = GetValue("direction");
+                return dr == "RTL" ? LayoutOptions.EndAndExpand : LayoutOptions.StartAndExpand;
+            }
+        }
     }
 }

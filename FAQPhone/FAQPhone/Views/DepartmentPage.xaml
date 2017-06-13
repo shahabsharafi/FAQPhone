@@ -6,10 +6,15 @@
              Title="{infr:Translate select-department}">
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}">
-            <ListView ItemsSource="{ Binding list }">
+            <ListView ItemsSource="{ Binding List }">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding caption}" />
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding caption}" TextColor="#4e5758" HorizontalTextAlignment="{Binding Direction}" />
+                                <Label Text="{Binding description}" TextColor="#7f8c8d" HorizontalTextAlignment="End" />
+                            </StackLayout>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

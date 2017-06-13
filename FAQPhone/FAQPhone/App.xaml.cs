@@ -61,5 +61,6 @@ namespace FAQPhone
     public class AppViewModel
     {
         public TextAlignment Direction { get { return ResourceManagerHelper.Direction; } }
+        public LayoutOptions Layout { get { return ResourceManagerHelper.Layout; } }
     }
 }

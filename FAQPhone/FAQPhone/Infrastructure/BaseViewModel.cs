@@ -25,6 +25,7 @@ namespace FAQPhone.Inferstructure
         }
 
         public TextAlignment Direction { get { return ResourceManagerHelper.Direction; } }
+        public LayoutOptions Layout { get { return ResourceManagerHelper.Layout; } }
 
 
 
