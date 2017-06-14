@@ -21,11 +21,11 @@ namespace FAQPhone.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DepartmentPage : ContentPage
     {
-        public DepartmentPage()
+        public DepartmentPage(List<DepartmentModel> list = null)
         {
             InitializeComponent();
             var factory = App.Resolve<DepartmentPageViewModelFactory>();
-            BindingContext = factory.Create(Navigation);
+            BindingContext = factory.Create(Navigation, list);
         }
     }
 
@@ -36,20 +36,28 @@ namespace FAQPhone.Views
         {
             this.departmentService = departmentService;
         }
-        public DepartmentPageViewModel Create(INavigation navigation)
+        public DepartmentPageViewModel Create(INavigation navigation, List<DepartmentModel> list)
         {
-            return new DepartmentPageViewModel(this.departmentService, navigation);
+            return new DepartmentPageViewModel(this.departmentService, navigation, list);
         }
     }
 
     public class DepartmentPageViewModel : BaseViewModel
     {
 
-        public DepartmentPageViewModel(IDepartmentService departmentService, INavigation navigation) : base(navigation)
+        public DepartmentPageViewModel(IDepartmentService departmentService, INavigation navigation, List<DepartmentModel> list) : base(navigation)
         {
             this.departmentService = departmentService;
+            this.SelectItemCommand = new Command<DepartmentModel>(async(model) => await selectItemCommand(model));
             this.List = new ObservableCollection<DepartmentModel>();
-            Task.Run(async () => await loadItems(""));
+            if (list == null)
+            {
+                Task.Run(async () => await loadItems(""));
+            }
+            else
+            {
+                this.setList(list);
+            }
         }
         private IDepartmentService departmentService { get; set; }
 
@@ -61,36 +69,37 @@ namespace FAQPhone.Views
             set { _list = value; OnPropertyChanged(); }
         }
 
-        object _selectedItem;
-        public object SelectedItem
-        {
-            get { return _selectedItem; }
-            set {
-                _selectedItem = value;
-                if (_selectedItem != null)
-                {
-                    string parentId = (_selectedItem as DepartmentModel)._id;
-                    Task.Run(async () => await loadItems(parentId));
-                }
-                OnPropertyChanged();
-            }
-        }
-
         public async Task loadItems(string parentId)
         {
             var list = await this.departmentService.get(parentId);
-            if (parentId != "" && (list == null || list.Count == 0))
+            if (parentId == "")
             {
-                await this.Navigation.PushAsync(new DiscussionPage());
+                this.setList(list);
+            }
+            else if (list == null || list.Count == 0)
+            {
+                await this.RootNavigate<DiscussionPage>();
             }
             else
             {
-                this.List.Clear();
-                foreach (var item in list)
-                {
-                    this.List.Add(item);
-                }
+                await this.Navigation.PushAsync(new DepartmentPage(list));
             }
+        }
+
+        private void setList(List<DepartmentModel> list)
+        {
+            this.List.Clear();
+            foreach (var item in list)
+            {
+                this.List.Add(item);
+            }
+        }
+
+        public ICommand SelectItemCommand { protected set; get; }
+
+        public async Task selectItemCommand(DepartmentModel model)
+        {
+            await loadItems(model._id);
         }
     }
 }

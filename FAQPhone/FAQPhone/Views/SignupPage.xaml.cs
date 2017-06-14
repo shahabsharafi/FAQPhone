@@ -89,8 +89,8 @@ namespace FAQPhone.Views
                 password = this.password
             };
             await this.accountService.SignUp(model);
-            await this.Navigation.PushAsync(new MainPage());
-            
+            await RootNavigate<MainPage>();
+
         }
     }
 }

@@ -57,7 +57,7 @@ namespace FAQPhone.Views
                 {
                     if (this.codeResult.username == "")
                     {
-                        await this.Navigation.PushAsync(new SignupPage(this.mobile, this.codeResult.code));
+                        await this.RootNavigate(new SignupPage(this.mobile, this.codeResult.code));
                     }
                     else
                     {
@@ -68,7 +68,7 @@ namespace FAQPhone.Views
                 {
                     if (this.codeResult.username != "")
                     {
-                        await this.Navigation.PushAsync(new ResetPasswordPage(this.mobile, this.codeResult));
+                        await this.RootNavigate(new ResetPasswordPage(this.mobile, this.codeResult));
                     }
                     else
                     {

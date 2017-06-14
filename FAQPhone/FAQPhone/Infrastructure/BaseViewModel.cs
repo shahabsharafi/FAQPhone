@@ -27,7 +27,16 @@ namespace FAQPhone.Inferstructure
         public TextAlignment Direction { get { return ResourceManagerHelper.Direction; } }
         public LayoutOptions Layout { get { return ResourceManagerHelper.Layout; } }
 
+        public async Task RootNavigate<T>() where T : Page, new()
+        {
+            await this.RootNavigate(new T());
+        }
 
+        public async Task RootNavigate(Page page)
+        {
+            this.Navigation.InsertPageBefore(page, this.Navigation.NavigationStack.First());
+            await this.Navigation.PopToRootAsync();
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName]string propertyName = "") =>

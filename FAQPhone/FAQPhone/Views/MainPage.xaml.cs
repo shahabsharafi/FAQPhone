@@ -59,7 +59,7 @@ namespace FAQPhone.Views
         public async Task createFAQCommand()
         {
             /////           
-            await this.Navigation.PushAsync(new DepartmentPage());
+            await this.RootNavigate(new DepartmentPage());
 
         }
 
@@ -96,7 +96,7 @@ namespace FAQPhone.Views
         {
             /////       
             this.accountService.SignOut();
-            await this.Navigation.PushAsync(new SigninPage());
+            await this.RootNavigate<SigninPage>();
 
         }
 

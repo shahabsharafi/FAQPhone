@@ -39,9 +39,12 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\BaseViewModel.cs" />
+    <Compile Include="Infrastructure\BehaviorBase.cs" />
+    <Compile Include="Infrastructure\EventToCommandBehavior.cs" />
     <Compile Include="Infrastructure\FlowType.cs" />
     <Compile Include="Infrastructure\Constants.cs" />
     <Compile Include="Infrastructure\ResourceManagerHelper.cs" />
+    <Compile Include="Infrastructure\SelectedItemEventArgsToSelectedItemConverter.cs" />
     <Compile Include="Infrastructure\TranslateExtension.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\AutResultModel.cs" />
