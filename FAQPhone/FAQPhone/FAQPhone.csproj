@@ -41,7 +41,6 @@
     <Compile Include="Infrastructure\BaseViewModel.cs" />
     <Compile Include="Infrastructure\FlowType.cs" />
     <Compile Include="Infrastructure\Constants.cs" />
-    <Compile Include="Infrastructure\ListViewSelectedItemBehavior.cs" />
     <Compile Include="Infrastructure\ResourceManagerHelper.cs" />
     <Compile Include="Infrastructure\TranslateExtension.cs" />
     <Compile Include="Models\AccountModel.cs" />

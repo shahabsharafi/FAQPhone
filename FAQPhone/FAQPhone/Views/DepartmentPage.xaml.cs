@@ -48,7 +48,6 @@ namespace FAQPhone.Views
         public DepartmentPageViewModel(IDepartmentService departmentService, INavigation navigation) : base(navigation)
         {
             this.departmentService = departmentService;
-            this.SelectItemCommand = new Command<string>(async (parentId) => await selectItemCommand(parentId));
             this.List = new ObservableCollection<DepartmentModel>();
             Task.Run(async () => await loadItems(""));
         }
@@ -62,20 +61,35 @@ namespace FAQPhone.Views
             set { _list = value; OnPropertyChanged(); }
         }
 
-        public ICommand SelectItemCommand { get; }
-
-        public async Task selectItemCommand(string parentId)
+        object _selectedItem;
+        public object SelectedItem
         {
-            ///// 
-            await loadItems(parentId);
+            get { return _selectedItem; }
+            set {
+                _selectedItem = value;
+                if (_selectedItem != null)
+                {
+                    string parentId = (_selectedItem as DepartmentModel)._id;
+                    Task.Run(async () => await loadItems(parentId));
+                }
+                OnPropertyChanged();
+            }
         }
+
         public async Task loadItems(string parentId)
         {
-            this.List.Clear();
             var list = await this.departmentService.get(parentId);
-            foreach (var item in list)
+            if (parentId != "" && (list == null || list.Count == 0))
             {
-                this.List.Add(item);
+                await this.Navigation.PushAsync(new DiscussionPage());
+            }
+            else
+            {
+                this.List.Clear();
+                foreach (var item in list)
+                {
+                    this.List.Add(item);
+                }
             }
         }
     }

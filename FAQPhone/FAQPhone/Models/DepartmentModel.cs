@@ -8,6 +8,7 @@ namespace FAQPhone.Models
 {
     public class DepartmentModel
     {
+        public string _id { get; set; }
         public string type { get; set; }
         public string caption { get; set; }
         public string parentId { get; set; }
