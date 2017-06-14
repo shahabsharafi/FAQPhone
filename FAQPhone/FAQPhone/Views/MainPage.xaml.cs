@@ -1,7 +1,10 @@
 ﻿using FAQPhone.Inferstructure;
+using FAQPhone.Infrastructure;
+using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -44,60 +47,79 @@ namespace FAQPhone.Views
 
         public MainPageViewModel(IAccountService accountService, INavigation navigation): base (navigation)
         {
-            this.CreateFAQCommand = new Command(async () => await createFAQCommand());
-            this.ReceiveFAQCommand = new Command(async () => await receiveFAQCommand());
-            this.ShowInprogressCommand = new Command(async () => await showInprogressCommand());
-            this.ShowArchivedCommand = new Command(async () => await showArchivedCommand());
-            this.SignoutCommand = new Command(async () => await signoutCommand());
+            MenuItemModel[] items =
+            {
+                new MenuItemModel()
+                {
+                    DisplayName = ResourceManagerHelper.GetValue("create_faq"),
+                    CommandName = "create_faq"
+                },
+                new MenuItemModel()
+                {
+                    DisplayName = ResourceManagerHelper.GetValue("receive_faq"),
+                    CommandName = "receive_faq"
+                },
+                new MenuItemModel()
+                {
+                    DisplayName = ResourceManagerHelper.GetValue("inprogress_faq"),
+                    CommandName = "inprogress_faq"
+                },
+                new MenuItemModel()
+                {
+                    DisplayName = ResourceManagerHelper.GetValue("archived_faq"),
+                    CommandName = "archived_faq"
+                },
+                new MenuItemModel()
+                {
+                    DisplayName = ResourceManagerHelper.GetValue("signout"),
+                    CommandName = "signout"
+                }
+            };
+            this.List = new ObservableCollection<MenuItemModel>();
+            this.setList(items);
             this.accountService = accountService;
+            this.SelectItemCommand = new Command<MenuItemModel>(async (model) => await selectItemCommand(model));
+        }
+
+        private void setList(MenuItemModel[] list)
+        {
+            this.List.Clear();
+            foreach (var item in list)
+            {
+                this.List.Add(item);
+            }
         }
 
         IAccountService accountService { get; set; }
 
-        public ICommand CreateFAQCommand { protected set; get; }
-
-        public async Task createFAQCommand()
+        ObservableCollection<MenuItemModel> _list;
+        public ObservableCollection<MenuItemModel> List
         {
-            /////           
-            await this.RootNavigate(new DepartmentPage());
-
+            get { return _list; }
+            set { _list = value; OnPropertyChanged(); }
         }
 
-        public ICommand ReceiveFAQCommand { protected set; get; }
+        public ICommand SelectItemCommand { protected set; get; }
 
-        public async Task receiveFAQCommand()
+        public async Task selectItemCommand(MenuItemModel model)
         {
-            /////           
-            
-
-        }
-
-        public ICommand ShowInprogressCommand { protected set; get; }
-
-        public async Task showInprogressCommand()
-        {
-            /////           
-            
-
-        }
-
-        public ICommand ShowArchivedCommand { protected set; get; }
-
-        public async Task showArchivedCommand()
-        {
-            /////           
-           
-
-        }
-
-        public ICommand SignoutCommand { protected set; get; }
-
-        public async Task signoutCommand()
-        {
-            /////       
-            this.accountService.SignOut();
-            await this.RootNavigate<SigninPage>();
-
+            if (model.Children != null && model.Children.Length > 0)
+            {
+                this.setList(model.Children);
+            }
+            else if (!string.IsNullOrEmpty(model.CommandName))
+            {
+                switch (model.CommandName)
+                {
+                    case "create_faq":
+                        await this.RootNavigate(new DepartmentPage());
+                        break;
+                    case "signout":
+                        this.accountService.SignOut();
+                        await this.RootNavigate<SigninPage>();
+                        break;
+                }
+            }
         }
 
     }

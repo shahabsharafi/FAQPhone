@@ -2,15 +2,30 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:infr="clr-namespace:FAQPhone.Inferstructure;assembly=FAQPhone"
+             xmlns:local="clr-namespace:EventToCommandBehavior"
              x:Class="FAQPhone.Views.MainPage"
              Title="{infr:Translate mainpage}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}">
-            <Button Text="{infr:Translate create_faq}" Command="{Binding CreateFAQCommand}" />
-            <Button Text="{infr:Translate receive_faq}" Command="{Binding ReceiveFAQCommand}" />
-            <Button Text="{infr:Translate inprogress_faq}" Command="{Binding ShowInprogressCommand}" />
-            <Button Text="{infr:Translate archived_faq}" Command="{Binding ShowArchivedCommand}" />
-            <Button Text="{infr:Translate signout}" Command="{Binding SignoutCommand}" />
+            <ListView ItemsSource="{ Binding List }" >
+                <ListView.Behaviors>
+                    <local:EventToCommandBehavior EventName="ItemSelected" Command="{Binding SelectItemCommand}" Converter="{StaticResource SelectedItemConverter}" />
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding DisplayName}" TextColor="#4e5758" HorizontalTextAlignment="End" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ScrollView>
 </ContentPage>
