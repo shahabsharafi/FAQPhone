@@ -89,7 +89,7 @@ namespace FAQPhone.Views
                 password = this.password
             };
             await this.accountService.SignUp(model);
-            await RootNavigate<MainPage>();
+            await RootNavigate(new MainPage());
 
         }
     }

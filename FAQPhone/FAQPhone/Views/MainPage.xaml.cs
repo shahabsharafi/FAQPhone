@@ -21,11 +21,11 @@ namespace FAQPhone.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : ContentPage
     {
-        public MainPage()
+        public MainPage(List<MenuItemModel> list = null)
         {
             InitializeComponent();
             var factory = App.Resolve<MainPageViewModelFactory>();
-            BindingContext = factory.Create(Navigation);
+            BindingContext = factory.Create(Navigation, list);
         }
     }
 
@@ -36,52 +36,76 @@ namespace FAQPhone.Views
         {
             this.accountService = accountService;
         }
-        public MainPageViewModel Create(INavigation navigation)
+        public MainPageViewModel Create(INavigation navigation, List<MenuItemModel> list)
         {
-            return new MainPageViewModel(this.accountService, navigation);
+            return new MainPageViewModel(this.accountService, navigation, list);
         }
     }
 
     public class MainPageViewModel : BaseViewModel
     {
 
-        public MainPageViewModel(IAccountService accountService, INavigation navigation): base (navigation)
-        {
-            MenuItemModel[] items =
-            {
-                new MenuItemModel()
-                {
-                    DisplayName = ResourceManagerHelper.GetValue("create_faq"),
-                    CommandName = "create_faq"
-                },
-                new MenuItemModel()
-                {
-                    DisplayName = ResourceManagerHelper.GetValue("receive_faq"),
-                    CommandName = "receive_faq"
-                },
-                new MenuItemModel()
-                {
-                    DisplayName = ResourceManagerHelper.GetValue("inprogress_faq"),
-                    CommandName = "inprogress_faq"
-                },
-                new MenuItemModel()
-                {
-                    DisplayName = ResourceManagerHelper.GetValue("archived_faq"),
-                    CommandName = "archived_faq"
-                },
-                new MenuItemModel()
-                {
-                    DisplayName = ResourceManagerHelper.GetValue("signout"),
-                    CommandName = "signout"
-                }
-            };
+        public MainPageViewModel(IAccountService accountService, INavigation navigation, List<MenuItemModel> list) : base (navigation)
+        {            
             this.List = new ObservableCollection<MenuItemModel>();
-            this.setList(items);
+            if (list == null)
+            {
+                List<MenuItemModel> items = new List<MenuItemModel>()
+                {
+                    new MenuItemModel()
+                    {
+                        CommandName = "user_faq",
+                        Children = new List<MenuItemModel>
+                        {
+                            new MenuItemModel()
+                            {
+                                CommandName = "user_create_faq",
+                            },
+                            new MenuItemModel()
+                            {
+                                CommandName = "user_inprogress_faq"
+                            },
+                            new MenuItemModel()
+                            {
+                                CommandName = "user_archived_faq"
+                            }
+                        }
+                    },
+                    new MenuItemModel()
+                    {
+                        CommandName = "operator_faq",
+                        Children = new List<MenuItemModel>
+                        {
+                            new MenuItemModel()
+                            {
+                                CommandName = "operator_receive_faq",
+                            },
+                            new MenuItemModel()
+                            {
+                                CommandName = "operator_inprogress_faq"
+                            },
+                            new MenuItemModel()
+                            {
+                                CommandName = "operator_archived_faq"
+                            }
+                        }
+                    },
+                    new MenuItemModel()
+                    {
+                        CommandName = "signout"
+                    }
+                };
+                this.setList(items);
+            }
+            else
+            {
+                this.setList(list);
+            }            
             this.accountService = accountService;
             this.SelectItemCommand = new Command<MenuItemModel>(async (model) => await selectItemCommand(model));
         }
 
-        private void setList(MenuItemModel[] list)
+        private void setList(List<MenuItemModel> list)
         {
             this.List.Clear();
             foreach (var item in list)
@@ -103,16 +127,16 @@ namespace FAQPhone.Views
 
         public async Task selectItemCommand(MenuItemModel model)
         {
-            if (model.Children != null && model.Children.Length > 0)
+            if (model.Children != null && model.Children.Count > 0)
             {
-                this.setList(model.Children);
+                await this.Navigation.PushAsync(new MainPage(model.Children));
             }
             else if (!string.IsNullOrEmpty(model.CommandName))
             {
                 switch (model.CommandName)
                 {
-                    case "create_faq":
-                        await this.RootNavigate(new DepartmentPage());
+                    case "user_create_faq":
+                        await this.Navigation.PushAsync(new DepartmentPage());
                         break;
                     case "signout":
                         this.accountService.SignOut();

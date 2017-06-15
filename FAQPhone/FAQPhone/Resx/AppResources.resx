@@ -168,22 +168,34 @@
   <data name="err_securitycode_userexists" xml:space="preserve">
     <value>شماره موبایل برای کاربر دیگری ثبت شده</value>
   </data>
-  <data name="archived_faq" xml:space="preserve">
-    <value>بایگانی شده</value>
+  <data name="user_faq" xml:space="preserve">
+    <value>سوال ها</value>
   </data>
-  <data name="create_faq" xml:space="preserve">
+  <data name="user_create_faq" xml:space="preserve">
     <value>سوال جدید</value>
   </data>
-  <data name="inprogress_faq" xml:space="preserve">
+  <data name="user_inprogress_faq" xml:space="preserve">
+    <value>منتظر پاسخگویی</value>
+  </data>
+  <data name="user_archived_faq" xml:space="preserve">
+    <value>پاسخ داده شده</value>
+  </data>
+  <data name="operator_faq" xml:space="preserve">
+    <value>پاسخ ها</value>
+  </data>
+  <data name="operator_receive_faq" xml:space="preserve">
+    <value>دریافت سوال</value>
+  </data>
+  <data name="operator_inprogress_faq" xml:space="preserve">
     <value>در دست اقدام</value>
   </data>
-  <data name="receive_faq" xml:space="preserve">
-    <value>دریافت سوال</value>
+  <data name="operator_archived_faq" xml:space="preserve">
+    <value>پاسخ داده شده</value>
   </data>
   <data name="signout" xml:space="preserve">
     <value>خروج از سامانه</value>
   </data>
-  <data name="select-department" xml:space="preserve">
+  <data name="select_department" xml:space="preserve">
     <value>انتخاب بخش</value>
   </data>
 </root>

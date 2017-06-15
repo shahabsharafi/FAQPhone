@@ -62,15 +62,6 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to بایگانی شده.
-        /// </summary>
-        internal static string archived_faq {
-            get {
-                return ResourceManager.GetString("archived_faq", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to تایید کد.
         /// </summary>
         internal static string checkcode {
@@ -85,15 +76,6 @@ namespace FAQPhone.Resx {
         internal static string confirm {
             get {
                 return ResourceManager.GetString("confirm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to سوال جدید.
-        /// </summary>
-        internal static string create_faq {
-            get {
-                return ResourceManager.GetString("create_faq", resourceCulture);
             }
         }
         
@@ -152,15 +134,6 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to در دست اقدام.
-        /// </summary>
-        internal static string inprogress_faq {
-            get {
-                return ResourceManager.GetString("inprogress_faq", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to امکانات نرم افزار.
         /// </summary>
         internal static string mainpage {
@@ -179,20 +152,47 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to کلمه عبور.
+        ///   Looks up a localized string similar to پاسخ داده شده.
         /// </summary>
-        internal static string password {
+        internal static string operator_archived_faq {
             get {
-                return ResourceManager.GetString("password", resourceCulture);
+                return ResourceManager.GetString("operator_archived_faq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to پاسخ ها.
+        /// </summary>
+        internal static string operator_faq {
+            get {
+                return ResourceManager.GetString("operator_faq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to در دست اقدام.
+        /// </summary>
+        internal static string operator_inprogress_faq {
+            get {
+                return ResourceManager.GetString("operator_inprogress_faq", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to دریافت سوال.
         /// </summary>
-        internal static string receive_faq {
+        internal static string operator_receive_faq {
             get {
-                return ResourceManager.GetString("receive_faq", resourceCulture);
+                return ResourceManager.GetString("operator_receive_faq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کلمه عبور.
+        /// </summary>
+        internal static string password {
+            get {
+                return ResourceManager.GetString("password", resourceCulture);
             }
         }
         
@@ -219,7 +219,7 @@ namespace FAQPhone.Resx {
         /// </summary>
         internal static string select_department {
             get {
-                return ResourceManager.GetString("select-department", resourceCulture);
+                return ResourceManager.GetString("select_department", resourceCulture);
             }
         }
         
@@ -256,6 +256,42 @@ namespace FAQPhone.Resx {
         internal static string signup {
             get {
                 return ResourceManager.GetString("signup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to پاسخ داده شده.
+        /// </summary>
+        internal static string user_archived_faq {
+            get {
+                return ResourceManager.GetString("user_archived_faq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to سوال جدید.
+        /// </summary>
+        internal static string user_create_faq {
+            get {
+                return ResourceManager.GetString("user_create_faq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to سوال ها.
+        /// </summary>
+        internal static string user_faq {
+            get {
+                return ResourceManager.GetString("user_faq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to منتظر پاسخگویی.
+        /// </summary>
+        internal static string user_inprogress_faq {
+            get {
+                return ResourceManager.GetString("user_inprogress_faq", resourceCulture);
             }
         }
         

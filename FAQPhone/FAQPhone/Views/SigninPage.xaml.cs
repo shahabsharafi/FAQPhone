@@ -76,7 +76,7 @@ namespace FAQPhone.Views
             bool flag = await this.accountService.SignIn(model);
             if (flag)
             {
-                await RootNavigate<MainPage>();
+                await RootNavigate(new MainPage());
             }            
         }
 

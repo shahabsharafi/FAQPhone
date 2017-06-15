@@ -77,7 +77,7 @@ namespace FAQPhone.Views
             bool flag = await this.accountService.ResetPassword(model);
             if (flag)
             {
-                await RootNavigate<MainPage>();
+                await RootNavigate(new MainPage());
             }
 
         }
