@@ -8,7 +8,7 @@
         <StackLayout Style="{StaticResource pageStyle}">
             <Entry x:Name="firstnameEntry" Placeholder="{infr:Translate firstname}" Text="{Binding firstname, Mode=TwoWay}" />
             <Entry x:Name="lastnameEntry" Placeholder="{infr:Translate lastname}" Text="{Binding lastname, Mode=TwoWay}" />
-            <Button Text="{infr:Translate signup}" Command="{Binding SignupCommand}" />
+            <Button Text="{infr:Translate signup}" Command="{Binding SignupCommand}" StyleClass="Info" />
             <Label x:Name="messageLabel" />
         </StackLayout>
     </ScrollView>

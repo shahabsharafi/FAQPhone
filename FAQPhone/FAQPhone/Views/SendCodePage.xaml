@@ -7,7 +7,7 @@
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}">
             <Entry x:Name="mobileEntry" Placeholder="{infr:Translate mobile}" Text="{Binding mobile, Mode=TwoWay}" />
-            <Button Text="{infr:Translate sendcode}" Command="{Binding SendCodeCommand}" />
+            <Button Text="{infr:Translate sendcode}" Command="{Binding SendCodeCommand}" StyleClass="Info" />
             <Label x:Name="messageLabel" />
         </StackLayout>
     </ScrollView>

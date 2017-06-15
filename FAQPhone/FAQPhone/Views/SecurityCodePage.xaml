@@ -7,7 +7,7 @@
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}">
             <Entry x:Name="securitycodeEntry" Placeholder="{infr:Translate securitycode}" Text="{Binding securitycode, Mode=TwoWay}" />
-            <Button Text="{infr:Translate checkcode}" Command="{Binding CheckCodeCommand}" />
+            <Button Text="{infr:Translate checkcode}" Command="{Binding CheckCodeCommand}" StyleClass="Info" />
             <Label x:Name="messageLabel" Text="{Binding message}" />
         </StackLayout>
     </ScrollView>

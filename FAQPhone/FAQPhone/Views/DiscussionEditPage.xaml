@@ -9,7 +9,7 @@
             <Label Text="ContentPage" FontSize="40"/>
             <Entry x:Name="title" Placeholder="{infr:Translate discussion_edit_title}" Text="{Binding title, Mode=TwoWay}" />
             <Entry x:Name="text" Placeholder="{infr:Translate discussion_edit_email}" Text="{Binding text, Mode=TwoWay}" />
-            <Button Text="{infr:Translate command_save}" Command="{Binding SaveCommand}" />
+            <Button Text="{infr:Translate command_save}" Command="{Binding SaveCommand}" StyleClass="Info" />
             <Label x:Name="messageLabel" />
         </StackLayout>
     </ScrollView>
