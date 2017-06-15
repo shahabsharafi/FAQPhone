@@ -21,7 +21,7 @@ namespace FAQPhone.Services
         {
             this._relativeUrl = "departments?{0}";
         }
-        public async Task<List<DepartmentModel>> get(string parentId)
+        public async Task<List<DepartmentModel>> Get(string parentId)
         {
             string prm = parentId == ""
                 ? "$filter=type eq 'department'"

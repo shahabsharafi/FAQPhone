@@ -2,11 +2,20 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:infr="clr-namespace:FAQPhone.Inferstructure;assembly=FAQPhone"
+             xmlns:local="clr-namespace:EventToCommandBehavior"
              x:Class="FAQPhone.Views.DiscussionPage"
              Title="DiscussionPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}">
-            <ListView ItemsSource="{ Binding List }" SelectedItem="{ Binding SelectCommand }" >
+            <ListView ItemsSource="{ Binding List }" >
+                <ListView.Behaviors>
+                    <local:EventToCommandBehavior EventName="ItemSelected" Command="{Binding SelectItemCommand}" Converter="{StaticResource SelectedItemConverter}" />
+                </ListView.Behaviors>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
