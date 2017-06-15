@@ -71,6 +71,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ثبت.
+        /// </summary>
+        internal static string command_save {
+            get {
+                return ResourceManager.GetString("command_save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تایید کلمه عبور.
         /// </summary>
         internal static string confirm {
@@ -85,6 +94,24 @@ namespace FAQPhone.Resx {
         internal static string direction {
             get {
                 return ResourceManager.GetString("direction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to متن گفتگو.
+        /// </summary>
+        internal static string discussion_edit_text {
+            get {
+                return ResourceManager.GetString("discussion_edit_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to عنوان سوال.
+        /// </summary>
+        internal static string discussion_edit_title {
+            get {
+                return ResourceManager.GetString("discussion_edit_title", resourceCulture);
             }
         }
         

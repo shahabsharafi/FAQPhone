@@ -78,7 +78,7 @@ namespace FAQPhone.Views
             }
             else if (list == null || list.Count == 0)
             {
-                await this.RootNavigate<DiscussionPage>();
+                await this.RootNavigate(new DiscussionEditPage(parentId));
             }
             else
             {

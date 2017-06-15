@@ -6,11 +6,23 @@ using System.Threading.Tasks;
 
 namespace FAQPhone.Models
 {
+    public class DiscussionDetailModel
+    {
+        public string _id { get; set; }
+        public AccountModel owner { get; set; }
+        public DateTime createDate { get; set; }
+        public string text { get; set; }
+    }
     public class DiscussionModel
     {
-        public string Id { get; set; }
-        public string From { get; set; }
-        public string To { get; set; }
-        public string Title { get; set; }        
+        public string _id { get; set; }
+        public AccountModel from { get; set; }
+        public AccountModel to { get; set; }
+        public string title { get; set; }
+        public string state { get; set; }
+        public DepartmentModel department { get; set; }
+        public DateTime createDate { get; set; }
+        public DateTime expDate { get; set; }
+        public DiscussionDetailModel[] items { get; set; }
     }
 }

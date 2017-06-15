@@ -198,4 +198,13 @@
   <data name="select_department" xml:space="preserve">
     <value>انتخاب بخش</value>
   </data>
+  <data name="command_save" xml:space="preserve">
+    <value>ثبت</value>
+  </data>
+  <data name="discussion_edit_text" xml:space="preserve">
+    <value>متن گفتگو</value>
+  </data>
+  <data name="discussion_edit_title" xml:space="preserve">
+    <value>عنوان سوال</value>
+  </data>
 </root>
