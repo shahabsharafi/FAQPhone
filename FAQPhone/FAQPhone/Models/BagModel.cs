@@ -12,5 +12,6 @@ namespace FAQPhone.Models
     {
         public string username { get; set; }
         public string token { get; set; }
+        public string[] access { get; set; }
     }
 }

@@ -74,6 +74,7 @@ namespace FAQPhone.Services
         {
             App.Bag.username = info?.username;
             App.Bag.token = info?.token;
+            App.Bag.access = info?.access;
         }
     }
 }

@@ -45,14 +45,15 @@ namespace FAQPhone.Views
     public class MainPageViewModel : BaseViewModel
     {
 
-        public MainPageViewModel(IAccountService accountService, INavigation navigation, List<MenuItemModel> list) : base (navigation)
-        {            
+        public MainPageViewModel(IAccountService accountService, INavigation navigation, List<MenuItemModel> list) : base(navigation)
+        {
             this.List = new ObservableCollection<MenuItemModel>();
             if (list == null)
             {
-                List<MenuItemModel> items = new List<MenuItemModel>()
+                List<MenuItemModel> items = new List<MenuItemModel>();
+                if (App.Bag.access.Contains("access_user"))
                 {
-                    new MenuItemModel()
+                    items.Add(new MenuItemModel()
                     {
                         CommandName = "user_faq",
                         Children = new List<MenuItemModel>
@@ -70,8 +71,11 @@ namespace FAQPhone.Views
                                 CommandName = "user_archived_faq"
                             }
                         }
-                    },
-                    new MenuItemModel()
+                    });
+                }
+                if (App.Bag.access.Contains("access_operator"))
+                {
+                    items.Add(new MenuItemModel()
                     {
                         CommandName = "operator_faq",
                         Children = new List<MenuItemModel>
@@ -89,18 +93,19 @@ namespace FAQPhone.Views
                                 CommandName = "operator_archived_faq"
                             }
                         }
-                    },
-                    new MenuItemModel()
-                    {
-                        CommandName = "signout"
-                    }
-                };
+                    });
+                }
+                items.Add(new MenuItemModel()
+                {
+                    CommandName = "signout"
+                });
+
                 this.setList(items);
             }
             else
             {
                 this.setList(list);
-            }            
+            }
             this.accountService = accountService;
             this.SelectItemCommand = new Command<MenuItemModel>(async (model) => await selectItemCommand(model));
         }
