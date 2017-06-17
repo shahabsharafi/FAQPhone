@@ -10,5 +10,9 @@ namespace FAQPhone.Services
 {
     public class DiscussionService:  RestService<DiscussionModel>, IDiscussionService
     {
+        public DiscussionService() : base()
+        {
+            this._relativeUrl = "discussions?{0}";
+        }
     }
 }

@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:infr="clr-namespace:FAQPhone.Inferstructure;assembly=FAQPhone"
              x:Class="FAQPhone.Views.DiscussionEditPage"
-             Title="DiscussionEditPage">
+             Title="{infr:Translate discussion_edit}">
     <ScrollView>
         <StackLayout Padding="10">
-            <Label Text="ContentPage" FontSize="40"/>
             <Entry x:Name="title" Placeholder="{infr:Translate discussion_edit_title}" Text="{Binding title, Mode=TwoWay}" />
-            <Entry x:Name="text" Placeholder="{infr:Translate discussion_edit_email}" Text="{Binding text, Mode=TwoWay}" />
+            <Label Text="{infr:Translate discussion_edit_text}" />
+            <Editor  x:Name="text" Text="{Binding text, Mode=TwoWay}" FontSize="Small" BackgroundColor="#efefef" HeightRequest="100" />
             <Button Text="{infr:Translate command_save}" Command="{Binding SaveCommand}" StyleClass="Info" />
             <Label x:Name="messageLabel" />
         </StackLayout>

@@ -98,6 +98,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to سوال جدید.
+        /// </summary>
+        internal static string discussion_edit {
+            get {
+                return ResourceManager.GetString("discussion_edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to متن گفتگو.
         /// </summary>
         internal static string discussion_edit_text {

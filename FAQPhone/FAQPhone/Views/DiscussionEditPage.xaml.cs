@@ -46,7 +46,6 @@ namespace FAQPhone.Views
         {
             this.discussionService = discussionService;            
             this.SaveCommand = new Command(async () => await saveCommand());
-            this.createDate = DateTime.Now;
             this.departmentId = departmentId;
         }
         private IDiscussionService discussionService { get; set; }
@@ -62,12 +61,6 @@ namespace FAQPhone.Views
             get { return _text; }
             set { _text = value; OnPropertyChanged(); }
         }
-        DateTime _createDate;
-        public DateTime createDate
-        {
-            get { return _createDate; }
-            set { _createDate = value; OnPropertyChanged(); }
-        }
         private string departmentId { get; set; }
         public ICommand SaveCommand { protected set; get; }
 
@@ -77,13 +70,13 @@ namespace FAQPhone.Views
             DiscussionModel model = new DiscussionModel()
             {
                 title = this.title,
-                createDate = this.createDate,
+                createDate = DateTime.Now,
                 department = new DepartmentModel() { _id = this.departmentId },
                 items = new DiscussionDetailModel[]
                 {
                     new DiscussionDetailModel()
                     {
-                        createDate = this.createDate,
+                        createDate = DateTime.Now,
                         text = this.text
                     }                    
                 }

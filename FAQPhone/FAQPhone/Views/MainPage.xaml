@@ -19,8 +19,8 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout>
-                                <Label Text="{Binding DisplayName}" TextColor="#4e5758" HorizontalTextAlignment="End" />
+                            <StackLayout VerticalOptions="CenterAndExpand">
+                                <Label Text="{Binding DisplayName}" TextColor="#4e5758" FontSize="Medium" HorizontalTextAlignment="End" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

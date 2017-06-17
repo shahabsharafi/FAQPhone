@@ -201,6 +201,9 @@
   <data name="command_save" xml:space="preserve">
     <value>ثبت</value>
   </data>
+  <data name="discussion_edit" xml:space="preserve">
+    <value>سوال جدید</value>
+  </data>
   <data name="discussion_edit_text" xml:space="preserve">
     <value>متن گفتگو</value>
   </data>
