@@ -20,11 +20,11 @@ namespace FAQPhone.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DiscussionPage : ContentPage
     {
-        public DiscussionPage()
+        public DiscussionPage(bool isUser, int state)
         {
             InitializeComponent();
             var factory = App.Resolve<DiscussionPageViewModelFactory>();
-            BindingContext = factory.Create(Navigation);
+            BindingContext = factory.Create(Navigation, isUser, state);
         }
     }
 
@@ -35,22 +35,26 @@ namespace FAQPhone.Views
         {
             this.discussionService = discussionService;
         }
-        public DiscussionPageViewModel Create(INavigation navigation)
+        public DiscussionPageViewModel Create(INavigation navigation, bool isUser, int state)
         {
-            return new DiscussionPageViewModel(this.discussionService, navigation);
+            return new DiscussionPageViewModel(this.discussionService, navigation, isUser, state);
         }
     }
 
     public class DiscussionPageViewModel : BaseViewModel
     {
 
-        public DiscussionPageViewModel(IDiscussionService discussionService, INavigation navigation) : base(navigation)
+        public DiscussionPageViewModel(IDiscussionService discussionService, INavigation navigation, bool isUser, int state) : base(navigation)
         {
+            this.IsUser = isUser;
+            this.State = state;
             this.discussionService = discussionService;
             this.SelectItemCommand = new Command<DiscussionModel>(async (model) => await selectItemCommand(model));
             Task.Run(async () => await loadItems());
         }
         private IDiscussionService discussionService { get; set; }
+        bool IsUser { get; set; }
+        int State { get; set; }
 
         public ICommand SelectItemCommand { protected set; get; }
 
@@ -74,7 +78,7 @@ namespace FAQPhone.Views
         }
         public async Task loadItems()
         {
-            var list = await this.discussionService.GetList();
+            var list = await this.discussionService.GetList(this.IsUser, this.State);
             this.setList(list);
         }
     }

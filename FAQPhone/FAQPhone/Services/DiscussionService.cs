@@ -14,5 +14,20 @@ namespace FAQPhone.Services
         {
             this._relativeUrl = "discussions?{0}";
         }
+
+        public async Task<List<DiscussionModel>> GetList(bool isUser, int state)
+        {
+            string prm = isUser
+                ? "$filter=state eq '" + state + "' and from_username eq '" + App.Bag.username + "'"
+                : "$filter=state eq '" + state + "' and to_username eq '" + App.Bag.username + "'";
+            string url = this.getUrl(prm);
+            var data = await this.get<PaginationModel<DiscussionModel>>(url);
+            return data.docs.ToList();
+        }
+
+        public async Task<DiscussionModel> Recive()
+        {
+            return null;
+        }
     }
 }

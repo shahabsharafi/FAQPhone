@@ -141,8 +141,21 @@ namespace FAQPhone.Views
                 switch (model.CommandName)
                 {
                     case "user_create_faq":
-                        App.Bookmark = this.Navigation;
                         await this.Navigation.PushAsync(new DepartmentPage());
+                        break;
+                    case "user_inprogress_faq":                        
+                        await this.Navigation.PushAsync(new DiscussionPage(true, 0));
+                        break;
+                    case "user_archived_faq":
+                        await this.Navigation.PushAsync(new DiscussionPage(true, 1));
+                        break;
+                    case "operator_receive_faq":
+                        break;
+                    case "operator_inprogress_faq":
+                        await this.Navigation.PushAsync(new DiscussionPage(false, 0));
+                        break;
+                    case "operator_archived_faq":
+                        await this.Navigation.PushAsync(new DiscussionPage(false, 1));
                         break;
                     case "signout":
                         this.accountService.SignOut();
