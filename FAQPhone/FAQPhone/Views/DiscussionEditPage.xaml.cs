@@ -82,6 +82,7 @@ namespace FAQPhone.Views
                 }
             };
             await this.discussionService.Save(model);
+            await App.Bookmark.PopToRootAsync();
         }
     }
 }

@@ -36,6 +36,7 @@ namespace FAQPhone
         }
 
         public static BagModel Bag { get; set; }
+        public static INavigation Bookmark { get; set; }
 
         public static T Resolve<T>() where T: class
         {

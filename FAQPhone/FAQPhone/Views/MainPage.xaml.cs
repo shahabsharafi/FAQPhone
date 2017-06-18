@@ -141,6 +141,7 @@ namespace FAQPhone.Views
                 switch (model.CommandName)
                 {
                     case "user_create_faq":
+                        App.Bookmark = this.Navigation;
                         await this.Navigation.PushAsync(new DepartmentPage());
                         break;
                     case "signout":
