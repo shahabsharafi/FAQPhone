@@ -70,13 +70,16 @@ namespace FAQPhone.Views
             DiscussionModel model = new DiscussionModel()
             {
                 title = this.title,
+                from = new AccountModel() { username = App.Bag.username },
                 createDate = DateTime.Now,
+                state = 0,
                 department = new DepartmentModel() { _id = this.departmentId },
                 items = new DiscussionDetailModel[]
                 {
                     new DiscussionDetailModel()
                     {
                         createDate = DateTime.Now,
+                        owner = new AccountModel() { username = App.Bag.username },
                         text = this.text
                     }                    
                 }

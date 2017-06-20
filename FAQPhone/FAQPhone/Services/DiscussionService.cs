@@ -1,4 +1,5 @@
-﻿using FAQPhone.Models;
+﻿using FAQPhone.Inferstructure;
+using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -12,15 +13,15 @@ namespace FAQPhone.Services
     {
         public DiscussionService() : base()
         {
-            this._relativeUrl = "discussions?{0}";
+            this._relativeUrl = "discussions/{0}";
         }
 
         public async Task<List<DiscussionModel>> GetList(bool isUser, int state)
         {
-            string prm = isUser
-                ? "$filter=state eq '" + state + "' and from_username eq '" + App.Bag.username + "'"
-                : "$filter=state eq '" + state + "' and to_username eq '" + App.Bag.username + "'";
-            string url = this.getUrl(prm);
+            string param = isUser
+                ? "$filter=state eq " + state + " and from_username eq '" + App.Bag.username + "'"
+                : "$filter=state eq " + state + " and to_username eq '" + App.Bag.username + "'";
+            string url = string.Format(Constants.RestUrl, string.Format("discussions?{0}", param));
             var data = await this.get<PaginationModel<DiscussionModel>>(url);
             return data.docs.ToList();
         }

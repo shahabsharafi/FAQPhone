@@ -16,13 +16,5 @@ namespace FAQPhone.Models
         public string _id { get; set; }
         public string username { get; set; }
         public ProfileModel profile { get; set; }
-
-        public string DisplayName
-        {
-            get
-            {
-                return this.profile.firstName + " " + this.profile.lastName;
-            }
-        }
     }
 }
