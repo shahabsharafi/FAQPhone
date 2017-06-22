@@ -107,7 +107,7 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to متن گفتگو.
+        ///   Looks up a localized string similar to متن سوال.
         /// </summary>
         internal static string discussion_edit_text {
             get {
@@ -121,6 +121,33 @@ namespace FAQPhone.Resx {
         internal static string discussion_edit_title {
             get {
                 return ResourceManager.GetString("discussion_edit_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to متن سوال.
+        /// </summary>
+        internal static string discussion_recive_text {
+            get {
+                return ResourceManager.GetString("discussion_recive_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to عنوان سوال.
+        /// </summary>
+        internal static string discussion_recive_title {
+            get {
+                return ResourceManager.GetString("discussion_recive_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to دربافت سوال.
+        /// </summary>
+        internal static string discussion_revice {
+            get {
+                return ResourceManager.GetString("discussion_revice", resourceCulture);
             }
         }
         
