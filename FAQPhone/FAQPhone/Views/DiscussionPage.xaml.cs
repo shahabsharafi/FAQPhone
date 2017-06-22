@@ -50,6 +50,7 @@ namespace FAQPhone.Views
             this.State = state;
             this.discussionService = discussionService;
             this.SelectItemCommand = new Command<DiscussionModel>(async (model) => await selectItemCommand(model));
+            this.List = new ObservableCollection<DiscussionModel>();
             Task.Run(async () => await loadItems());
         }
         private IDiscussionService discussionService { get; set; }

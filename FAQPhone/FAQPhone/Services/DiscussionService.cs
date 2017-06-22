@@ -18,12 +18,9 @@ namespace FAQPhone.Services
 
         public async Task<List<DiscussionModel>> GetList(bool isUser, int state)
         {
-            string param = isUser
-                ? "$filter=state eq " + state + " and from_username eq '" + App.Bag.username + "'"
-                : "$filter=state eq " + state + " and to_username eq '" + App.Bag.username + "'";
-            string url = string.Format(Constants.RestUrl, string.Format("discussions?{0}", param));
-            var data = await this.get<PaginationModel<DiscussionModel>>(url);
-            return data.docs.ToList();
+            string url = string.Format(Constants.RestUrl, string.Format("discussions/getlist/{0}/{1}/{2}", isUser, App.Bag.username, state));
+            var data = await this.get<List<DiscussionModel>>(url);
+            return data;
         }
 
         public async Task<DiscussionModel> Recive()
