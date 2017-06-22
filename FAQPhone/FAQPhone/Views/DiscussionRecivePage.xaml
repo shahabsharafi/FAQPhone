@@ -10,6 +10,8 @@
             <Label Text="{Binding title, Mode=TwoWay}" />
             <Label Text="{infr:Translate discussion_recive_text}" />
             <Label Text="{Binding text, Mode=TwoWay}" />
+            <Label Text="{infr:Translate discussion_recive_replay}" />
+            <Editor  x:Name="text" Text="{Binding replay, Mode=TwoWay}" FontSize="Small" BackgroundColor="#efefef" HeightRequest="100" />
             <Button Text="{infr:Translate command_save}" Command="{Binding SaveCommand}" StyleClass="Info" />
             <Label x:Name="messageLabel" />
         </StackLayout>

@@ -47,6 +47,7 @@ namespace FAQPhone.Views
         {
             this.discussionService = discussionService;
             this.SaveCommand = new Command(async () => await saveCommand());
+            Task.Run(async () => await loadItems());
         }
         private IDiscussionService discussionService { get; set; }
         DiscussionModel model { get; set; } 
@@ -56,11 +57,11 @@ namespace FAQPhone.Views
             get { return _title; }
             set { _title = value; OnPropertyChanged(); }
         }
-        ObservableCollection<DiscussionDetailModel> _items;
-        public ObservableCollection<DiscussionDetailModel> Items
+        string _text;
+        public string text
         {
-            get { return _items; }
-            set { _items = value; OnPropertyChanged(); }
+            get { return _text; }
+            set { _text = value; OnPropertyChanged(); }
         }
         string _replay;
         public string replay
@@ -73,14 +74,28 @@ namespace FAQPhone.Views
         public async Task saveCommand()
         {
             /////
-            this.Items.Add(new DiscussionDetailModel
+            var l = this.model.items.ToList();
+            l.Add(new DiscussionDetailModel
             {
                 createDate = DateTime.Now,
+                owner = new AccountModel() { username = App.Bag.username },
                 text = this.replay
             });
-            model.items = this.Items.ToArray();
+            model.items = l.ToArray();
+            model.state = 1;
             await this.discussionService.Save(model);
             await this.RootNavigate(new MainPage());
+        }
+
+        public async Task loadItems()
+        {
+            this.model = await this.discussionService.Recive();
+            this.title = this.model.title;
+            if (this.model.items.Length > 0)
+            {
+                this.text = this.model.items[0].text;                
+            }
+
         }
     }
 }

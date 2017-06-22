@@ -25,7 +25,9 @@ namespace FAQPhone.Services
 
         public async Task<DiscussionModel> Recive()
         {
-            return null;
+            string url = string.Format(Constants.RestUrl, "discussions/recive");
+            var data = await this.get<DiscussionModel>(url);
+            return data;
         }
     }
 }

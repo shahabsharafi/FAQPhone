@@ -150,6 +150,7 @@ namespace FAQPhone.Views
                         await this.Navigation.PushAsync(new DiscussionPage(true, 1));
                         break;
                     case "operator_receive_faq":
+                        await this.Navigation.PushAsync(new DiscussionRecivePage());
                         break;
                     case "operator_inprogress_faq":
                         await this.Navigation.PushAsync(new DiscussionPage(false, 0));

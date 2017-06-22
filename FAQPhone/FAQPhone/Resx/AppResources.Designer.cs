@@ -125,6 +125,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to پاسخ.
+        /// </summary>
+        internal static string discussion_recive_replay {
+            get {
+                return ResourceManager.GetString("discussion_recive_replay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to متن سوال.
         /// </summary>
         internal static string discussion_recive_text {
