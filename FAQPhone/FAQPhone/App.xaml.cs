@@ -24,6 +24,10 @@ namespace FAQPhone
 
             var signinPage = App.Resolve<SigninPage>();
             MainPage = new NavigationPage(signinPage);
+            //var detail = new DiscussionDetailModel() { createDate = DateTime.Now, owner = new AccountModel() { username = "user" }, text = "fdjkhdfdfh" };
+            //var model = new DiscussionModel() { items = new DiscussionDetailModel[] { detail } };
+            //var page = new ChatPage(model);
+            //MainPage = new NavigationPage(page);
         }
         public static UnityContainer Container { get; set; }
         public static void Initialize()

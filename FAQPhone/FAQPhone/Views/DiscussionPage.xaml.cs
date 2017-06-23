@@ -61,7 +61,7 @@ namespace FAQPhone.Views
 
         public async Task selectItemCommand(DiscussionModel model)
         {
-            
+            await this.RootNavigate(new ChatPage(model));
         }
         ObservableCollection<DiscussionModel> _list;
         public ObservableCollection<DiscussionModel> List

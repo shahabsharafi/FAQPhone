@@ -9,6 +9,7 @@ namespace CustomRenderer
 {
     public class MessageViewCell : ViewCell
     {
+        /*
         public MessageViewCell()
         {
             //var authorLabel = new Label();
@@ -23,10 +24,29 @@ namespace CustomRenderer
             var stack = new StackLayout
             {
                 Orientation = StackOrientation.Horizontal,
-                Children = { /*authorLabel, */messageLabel }
+                //Children = { authorLabel, messageLabel }
+                Children = { messageLabel }
+
             };
 
             this.View = stack;
+        }
+        */
+        
+        public static readonly BindableProperty BodyProperty = BindableProperty.Create("Body", typeof(string), typeof(MessageViewCell), "");
+
+        public string Body
+        {
+            get { return (string)GetValue(BodyProperty); }
+            set { SetValue(BodyProperty, value); }
+        }
+
+        public static readonly BindableProperty OwnerProperty = BindableProperty.Create("Owner", typeof(string), typeof(MessageViewCell), "");
+
+        public string Owner
+        {
+            get { return (string)GetValue(OwnerProperty); }
+            set { SetValue(OwnerProperty, value); }
         }
     }
 }

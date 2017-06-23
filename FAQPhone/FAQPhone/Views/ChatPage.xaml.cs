@@ -20,11 +20,11 @@ namespace FAQPhone.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ChatPage : ContentPage
     {
-        public ChatPage()
+        public ChatPage(DiscussionModel model)
         {
             InitializeComponent();
             var factory = App.Resolve<ChatViewModelFactory>();
-            BindingContext = factory.Create(Navigation);
+            BindingContext = factory.Create(Navigation, model);
         }
     }
 
@@ -35,52 +35,37 @@ namespace FAQPhone.Views
         {
             this.discussionService = discussionService;
         }
-        public ChatViewModel Create(INavigation navigation)
+        public ChatViewModel Create(INavigation navigation, DiscussionModel model)
         {
-            return new ChatViewModel(this.discussionService, navigation);
+            return new ChatViewModel(this.discussionService, navigation, model);
         }
     }
 
     public class ChatViewModel : BaseViewModel
     {
 
-        public ChatViewModel(IDiscussionService discussionService, INavigation navigation) : base(navigation)
+        public ChatViewModel(IDiscussionService discussionService, INavigation navigation, DiscussionModel model) : base(navigation)
         {
             this.discussionService = discussionService;
-            this.SendCommand = new Command(async (model) => await sendCommand());
+            this.SendCommand = new Command(async () => await sendCommand());
+            this.model = model;
             this.List = new ObservableCollection<DiscussionDetailModel>();
-            Task.Run(async () => await loadItems());
+            this.setList(this.model.items.ToList());
         }
         private IDiscussionService discussionService { get; set; }
-
+        private DiscussionModel model { get; set; }
+        string _replay;
+        public string replay
+        {
+            get { return _replay; }
+            set { _replay = value; OnPropertyChanged(); }
+        }
 
         ObservableCollection<DiscussionDetailModel> _list;
         public ObservableCollection<DiscussionDetailModel> List
         {
             get { return _list; }
             set { _list = value; OnPropertyChanged(); }
-        }
-
-        public async Task loadItems()
-        {
-            this.setList(new List<DiscussionDetailModel>()
-            {
-                new DiscussionDetailModel()
-                {
-                    createDate = DateTime.Now,
-                    text = "aaaaa"
-                },
-                new DiscussionDetailModel()
-                {
-                    createDate = DateTime.Now,
-                    text = "bbbb"
-                },
-                new DiscussionDetailModel()
-                {
-                    createDate = DateTime.Now,
-                    text = "ccccccc"
-                }
-            });
         }
 
         private void setList(List<DiscussionDetailModel> list)
@@ -96,7 +81,16 @@ namespace FAQPhone.Views
 
         public async Task sendCommand()
         {
-            ///
+            var l = this.model.items.ToList();
+            l.Add(new DiscussionDetailModel()
+            {
+                createDate = DateTime.Now,
+                owner = new AccountModel() { username = App.Bag.username },
+                text = this.replay
+            });
+            this.model.items = l.ToArray();
+            await this.discussionService.Save(model);
+            await this.RootNavigate(new MainPage());
         }
     }
 }

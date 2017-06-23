@@ -14,7 +14,7 @@
             <ListView ItemsSource="{ Binding List }">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <local:MessageViewCell />
+                        <local:MessageViewCell Body="{Binding text}"  Owner="{Binding owner.username}" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
