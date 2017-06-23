@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:infr="clr-namespace:FAQPhone.Inferstructure;assembly=FAQPhone"
+             xmlns:local="clr-namespace:CustomRenderer;assembly=FAQPhone"
+             x:Class="FAQPhone.Views.ChatPage"
+             Title="ChatPage">
+    <ScrollView>
+        <StackLayout>
+            <StackLayout>
+                <Editor  x:Name="text" Text="{Binding replay, Mode=TwoWay}" FontSize="Small" BackgroundColor="#efefef" HeightRequest="80" />
+                <Button Text="{infr:Translate command_send}" Command="{Binding SendCommand}" StyleClass="Info" />
+            </StackLayout>
+            <ListView ItemsSource="{ Binding List }">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <local:MessageViewCell />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -80,6 +80,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ارسال.
+        /// </summary>
+        internal static string command_send {
+            get {
+                return ResourceManager.GetString("command_send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تایید کلمه عبور.
         /// </summary>
         internal static string confirm {

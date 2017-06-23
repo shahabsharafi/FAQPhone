@@ -22,7 +22,7 @@ namespace FAQPhone
 
             App.Initialize();
 
-            var signinPage = App.Resolve<SigninPage>();// App.Container.Resolve(typeof(SigninPage), "SigninPage") as SigninPage;
+            var signinPage = App.Resolve<SigninPage>();
             MainPage = new NavigationPage(signinPage);
         }
         public static UnityContainer Container { get; set; }
