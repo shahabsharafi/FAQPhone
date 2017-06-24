@@ -46,7 +46,9 @@ namespace FAQPhone.Views
         public DiscussionReciveViewModel(IDiscussionService discussionService, INavigation navigation) : base(navigation)
         {
             this.discussionService = discussionService;
-            this.SaveCommand = new Command(async () => await saveCommand());
+            this.AcceptCommand = new Command(async () => await acceptCommand());
+            this.RejectCommand = new Command(async () => await rejectCommand());
+            this.ReportCommand = new Command(async () => await reportCommand());
             Task.Run(async () => await loadItems());
         }
         private IDiscussionService discussionService { get; set; }
@@ -69,9 +71,9 @@ namespace FAQPhone.Views
             get { return _replay; }
             set { _replay = value; OnPropertyChanged(); }
         }
-        public ICommand SaveCommand { protected set; get; }
+        public ICommand AcceptCommand { protected set; get; }
 
-        public async Task saveCommand()
+        public async Task acceptCommand()
         {
             /////
             var l = this.model.items.ToList();
@@ -83,8 +85,28 @@ namespace FAQPhone.Views
             });
             model.items = l.ToArray();
             model.state = 1;
+            model.to = new AccountModel() { username = App.Bag.username };
             await this.discussionService.Save(model);
-            await this.RootNavigate(new MainPage());
+            await this.Navigation.PopAsync();
+        }
+
+        public ICommand RejectCommand { protected set; get; }
+
+        public async Task rejectCommand()
+        {
+            /////       
+            await this.Navigation.PopAsync();
+        }
+
+        public ICommand ReportCommand { protected set; get; }
+
+        public async Task reportCommand()
+        {
+            /////     
+            model.state = 9;
+            model.to = new AccountModel() { username = App.Bag.username };
+            await this.discussionService.Save(model);
+            await this.Navigation.PopAsync();
         }
 
         public async Task loadItems()

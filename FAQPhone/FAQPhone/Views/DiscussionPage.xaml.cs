@@ -20,11 +20,11 @@ namespace FAQPhone.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DiscussionPage : ContentPage
     {
-        public DiscussionPage(bool isUser, int state)
+        public DiscussionPage(bool isUser, int[] states)
         {
             InitializeComponent();
             var factory = App.Resolve<DiscussionPageViewModelFactory>();
-            BindingContext = factory.Create(Navigation, isUser, state);
+            BindingContext = factory.Create(Navigation, isUser, states);
         }
     }
 
@@ -35,19 +35,19 @@ namespace FAQPhone.Views
         {
             this.discussionService = discussionService;
         }
-        public DiscussionPageViewModel Create(INavigation navigation, bool isUser, int state)
+        public DiscussionPageViewModel Create(INavigation navigation, bool isUser, int[] states)
         {
-            return new DiscussionPageViewModel(this.discussionService, navigation, isUser, state);
+            return new DiscussionPageViewModel(this.discussionService, navigation, isUser, states);
         }
     }
 
     public class DiscussionPageViewModel : BaseViewModel
     {
 
-        public DiscussionPageViewModel(IDiscussionService discussionService, INavigation navigation, bool isUser, int state) : base(navigation)
+        public DiscussionPageViewModel(IDiscussionService discussionService, INavigation navigation, bool isUser, int[] states) : base(navigation)
         {
             this.IsUser = isUser;
-            this.State = state;
+            this.States = states;
             this.discussionService = discussionService;
             this.SelectItemCommand = new Command<DiscussionModel>(async (model) => await selectItemCommand(model));
             this.List = new ObservableCollection<DiscussionModel>();
@@ -55,7 +55,7 @@ namespace FAQPhone.Views
         }
         private IDiscussionService discussionService { get; set; }
         bool IsUser { get; set; }
-        int State { get; set; }
+        int[] States { get; set; }
 
         public ICommand SelectItemCommand { protected set; get; }
 
@@ -79,7 +79,7 @@ namespace FAQPhone.Views
         }
         public async Task loadItems()
         {
-            var list = await this.discussionService.GetList(this.IsUser, this.State);
+            var list = await this.discussionService.GetList(this.IsUser, this.States);
             this.setList(list);
         }
     }

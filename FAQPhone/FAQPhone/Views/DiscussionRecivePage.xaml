@@ -5,14 +5,18 @@
              x:Class="FAQPhone.Views.DiscussionRecivePage"
              Title="{infr:Translate discussion_revice}">
     <ScrollView>
-        <StackLayout Padding="10">
+        <StackLayout Style="{StaticResource pageStyle}" >
             <Label Text="{infr:Translate discussion_recive_title}" />
             <Label Text="{Binding title, Mode=TwoWay}" />
             <Label Text="{infr:Translate discussion_recive_text}" />
             <Label Text="{Binding text, Mode=TwoWay}" />
             <Label Text="{infr:Translate discussion_recive_replay}" />
             <Editor  x:Name="text" Text="{Binding replay, Mode=TwoWay}" FontSize="Small" BackgroundColor="#efefef" HeightRequest="100" />
-            <Button Text="{infr:Translate command_save}" Command="{Binding SaveCommand}" StyleClass="Info" />
+            <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                <Button Text="{infr:Translate command_report}" Command="{Binding ReportCommand}" StyleClass="Info" />
+                <Button Text="{infr:Translate command_reject}" Command="{Binding RejectCommand}" StyleClass="Info" />
+                <Button Text="{infr:Translate command_accept}" Command="{Binding AcceptCommand}" StyleClass="Info" />
+            </StackLayout>
             <Label x:Name="messageLabel" />
         </StackLayout>
     </ScrollView>

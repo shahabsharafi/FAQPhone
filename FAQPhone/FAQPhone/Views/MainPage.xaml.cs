@@ -144,19 +144,19 @@ namespace FAQPhone.Views
                         await this.Navigation.PushAsync(new DepartmentPage());
                         break;
                     case "user_inprogress_faq":                        
-                        await this.Navigation.PushAsync(new DiscussionPage(true, 0));
+                        await this.Navigation.PushAsync(new DiscussionPage(true, new int[] { 0, 1 }));
                         break;
                     case "user_archived_faq":
-                        await this.Navigation.PushAsync(new DiscussionPage(true, 1));
+                        await this.Navigation.PushAsync(new DiscussionPage(true, new int[] { 2 }));
                         break;
                     case "operator_receive_faq":
                         await this.Navigation.PushAsync(new DiscussionRecivePage());
                         break;
                     case "operator_inprogress_faq":
-                        await this.Navigation.PushAsync(new DiscussionPage(false, 0));
+                        await this.Navigation.PushAsync(new DiscussionPage(false, new int[] { 0, 1 }));
                         break;
                     case "operator_archived_faq":
-                        await this.Navigation.PushAsync(new DiscussionPage(false, 1));
+                        await this.Navigation.PushAsync(new DiscussionPage(false, new int[] { 2 }));
                         break;
                     case "signout":
                         this.accountService.SignOut();

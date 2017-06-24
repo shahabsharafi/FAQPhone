@@ -225,4 +225,13 @@
   <data name="discussion_revice" xml:space="preserve">
     <value>دربافت سوال</value>
   </data>
+  <data name="command_accept" xml:space="preserve">
+    <value>قبول</value>
+  </data>
+  <data name="command_reject" xml:space="preserve">
+    <value>رد</value>
+  </data>
+  <data name="command_report" xml:space="preserve">
+    <value>گزارش</value>
+  </data>
 </root>

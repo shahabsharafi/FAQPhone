@@ -71,6 +71,33 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to قبول.
+        /// </summary>
+        internal static string command_accept {
+            get {
+                return ResourceManager.GetString("command_accept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to رد.
+        /// </summary>
+        internal static string command_reject {
+            get {
+                return ResourceManager.GetString("command_reject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to گزارش.
+        /// </summary>
+        internal static string command_report {
+            get {
+                return ResourceManager.GetString("command_report", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ثبت.
         /// </summary>
         internal static string command_save {

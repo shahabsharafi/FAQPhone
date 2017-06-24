@@ -16,9 +16,9 @@ namespace FAQPhone.Services
             this._relativeUrl = "discussions/{0}";
         }
 
-        public async Task<List<DiscussionModel>> GetList(bool isUser, int state)
+        public async Task<List<DiscussionModel>> GetList(bool isUser, int[] states)
         {
-            string url = string.Format(Constants.RestUrl, string.Format("discussions/getlist/{0}/{1}/{2}", isUser, App.Bag.username, state));
+            string url = string.Format(Constants.RestUrl, string.Format("discussions/getlist/{0}/{1}/{2}", isUser, App.Bag.username, string.Join(",", states)));
             var data = await this.get<List<DiscussionModel>>(url);
             return data;
         }

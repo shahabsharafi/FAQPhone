@@ -5,7 +5,7 @@
              x:Class="FAQPhone.Views.DiscussionEditPage"
              Title="{infr:Translate discussion_edit}">
     <ScrollView>
-        <StackLayout Padding="10">
+        <StackLayout Style="{StaticResource pageStyle}" >
             <Entry x:Name="title" Placeholder="{infr:Translate discussion_edit_title}" Text="{Binding title, Mode=TwoWay}" />
             <Label Text="{infr:Translate discussion_edit_text}" />
             <Editor  x:Name="text" Text="{Binding text, Mode=TwoWay}" FontSize="Small" BackgroundColor="#efefef" HeightRequest="100" />
