@@ -128,8 +128,6 @@
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
-    <AndroidResource Include="Resources\layout\image_item_opponent.axml" />
-    <AndroidResource Include="Resources\layout\image_item_owner.axml" />
     <AndroidResource Include="Resources\layout\item_row.axml" />
     <AndroidResource Include="Resources\layout\message_item_opponent.axml" />
     <AndroidResource Include="Resources\layout\message_item_owner.axml" />
