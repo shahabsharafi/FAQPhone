@@ -134,6 +134,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to فهرست.
+        /// </summary>
+        internal static string discussion {
+            get {
+                return ResourceManager.GetString("discussion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to سوال جدید.
         /// </summary>
         internal static string discussion_edit {

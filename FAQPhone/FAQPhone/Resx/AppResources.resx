@@ -234,4 +234,7 @@
   <data name="command_report" xml:space="preserve">
     <value>گزارش</value>
   </data>
+  <data name="discussion" xml:space="preserve">
+    <value>فهرست</value>
+  </data>
 </root>

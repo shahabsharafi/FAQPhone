@@ -121,6 +121,13 @@ namespace FAQPhone.Views
 
         IAccountService accountService { get; set; }
 
+        object _selectedItem;
+        public object SelectedItem
+        {
+            get { return _selectedItem; }
+            set { _selectedItem = value; OnPropertyChanged(); }
+        }
+
         ObservableCollection<MenuItemModel> _list;
         public ObservableCollection<MenuItemModel> List
         {
@@ -132,6 +139,8 @@ namespace FAQPhone.Views
 
         public async Task selectItemCommand(MenuItemModel model)
         {
+            if (model == null)
+                return;
             if (model.Children != null && model.Children.Count > 0)
             {
                 await this.Navigation.PushAsync(new MainPage(model.Children));
@@ -162,8 +171,9 @@ namespace FAQPhone.Views
                         this.accountService.SignOut();
                         await this.RootNavigate<SigninPage>();
                         break;
-                }
+                }                
             }
+            this.SelectedItem = null;
         }
 
     }
