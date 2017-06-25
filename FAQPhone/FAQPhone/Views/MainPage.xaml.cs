@@ -51,49 +51,52 @@ namespace FAQPhone.Views
             if (list == null)
             {
                 List<MenuItemModel> items = new List<MenuItemModel>();
-                if (App.Bag.access.Contains("access_user"))
+                if (App.Bag.access != null)
                 {
-                    items.Add(new MenuItemModel()
+                    if (App.Bag.access.Contains("access_user"))
                     {
-                        CommandName = "user_faq",
-                        Children = new List<MenuItemModel>
+                        items.Add(new MenuItemModel()
                         {
-                            new MenuItemModel()
+                            CommandName = "user_faq",
+                            Children = new List<MenuItemModel>
                             {
-                                CommandName = "user_create_faq",
-                            },
-                            new MenuItemModel()
-                            {
-                                CommandName = "user_inprogress_faq"
-                            },
-                            new MenuItemModel()
-                            {
-                                CommandName = "user_archived_faq"
+                                new MenuItemModel()
+                                {
+                                    CommandName = "user_create_faq",
+                                },
+                                new MenuItemModel()
+                                {
+                                    CommandName = "user_inprogress_faq"
+                                },
+                                new MenuItemModel()
+                                {
+                                    CommandName = "user_archived_faq"
+                                }
                             }
-                        }
-                    });
-                }
-                if (App.Bag.access.Contains("access_operator"))
-                {
-                    items.Add(new MenuItemModel()
+                        });
+                    }
+                    if (App.Bag.access.Contains("access_operator"))
                     {
-                        CommandName = "operator_faq",
-                        Children = new List<MenuItemModel>
+                        items.Add(new MenuItemModel()
                         {
-                            new MenuItemModel()
+                            CommandName = "operator_faq",
+                            Children = new List<MenuItemModel>
                             {
-                                CommandName = "operator_receive_faq",
-                            },
-                            new MenuItemModel()
-                            {
-                                CommandName = "operator_inprogress_faq"
-                            },
-                            new MenuItemModel()
-                            {
-                                CommandName = "operator_archived_faq"
+                                new MenuItemModel()
+                                {
+                                    CommandName = "operator_receive_faq",
+                                },
+                                new MenuItemModel()
+                                {
+                                    CommandName = "operator_inprogress_faq"
+                                },
+                                new MenuItemModel()
+                                {
+                                    CommandName = "operator_archived_faq"
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
                 }
                 items.Add(new MenuItemModel()
                 {
@@ -152,7 +155,7 @@ namespace FAQPhone.Views
                     case "user_create_faq":
                         await this.Navigation.PushAsync(new DepartmentPage());
                         break;
-                    case "user_inprogress_faq":                        
+                    case "user_inprogress_faq":
                         await this.Navigation.PushAsync(new DiscussionPage(true, new int[] { 0, 1 }));
                         break;
                     case "user_archived_faq":
@@ -171,7 +174,7 @@ namespace FAQPhone.Views
                         this.accountService.SignOut();
                         await this.RootNavigate<SigninPage>();
                         break;
-                }                
+                }
             }
             this.SelectedItem = null;
         }

@@ -4,14 +4,14 @@
              xmlns:infr="clr-namespace:FAQPhone.Inferstructure;assembly=FAQPhone"
              x:Class="FAQPhone.Views.SignupPage"
              Title="{infr:Translate signup}">
-  <ScrollView>
-    <StackLayout Style="{StaticResource pageStyle}">
-      <Entry x:Name="usernameEntry" Placeholder="{infr:Translate username}" Text="{Binding username, Mode=TwoWay}" />
-      <Entry x:Name="passwordEntry" Placeholder="{infr:Translate password}" IsPassword="true" Text="{Binding password, Mode=TwoWay}" />
-      <Entry x:Name="confirmEntry" Placeholder="{infr:Translate confirm}" IsPassword="true" Text="{Binding confirm, Mode=TwoWay}" />
-      <Entry x:Name="emailEntry" Placeholder="{infr:Translate email}" Text="{Binding email, Mode=TwoWay}" />
-      <Button Text="{infr:Translate signup}" Command="{Binding SignupCommand}" />
-      <Label x:Name="messageLabel" />
-    </StackLayout>
-  </ScrollView>
+    <ScrollView>
+        <StackLayout Style="{StaticResource pageStyle}">
+            <Entry x:Name="usernameEntry" Placeholder="{infr:Translate username}" Text="{Binding username, Mode=TwoWay}" />
+            <Entry x:Name="passwordEntry" Placeholder="{infr:Translate password}" IsPassword="true" Text="{Binding password, Mode=TwoWay}" />
+            <Entry x:Name="confirmEntry" Placeholder="{infr:Translate confirm}" IsPassword="true" Text="{Binding confirm, Mode=TwoWay}" />
+            <Entry x:Name="emailEntry" Placeholder="{infr:Translate email}" Text="{Binding email, Mode=TwoWay}" />
+            <Button Text="{infr:Translate signup}" Command="{Binding SignupCommand}" StyleClass="Info" />
+            <Label x:Name="messageLabel" />
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
