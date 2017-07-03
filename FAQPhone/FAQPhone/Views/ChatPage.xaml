@@ -4,7 +4,7 @@
              xmlns:infr="clr-namespace:FAQPhone.Inferstructure;assembly=FAQPhone"
              xmlns:local="clr-namespace:CustomRenderer;assembly=FAQPhone"
              x:Class="FAQPhone.Views.ChatPage"
-             Title="ChatPage">
+             Title="{infr:Translate chat}">
     <ScrollView>
         <StackLayout>
             <StackLayout>

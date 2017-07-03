@@ -237,4 +237,7 @@
   <data name="discussion" xml:space="preserve">
     <value>فهرست</value>
   </data>
+  <data name="chat" xml:space="preserve">
+    <value>گفتگو</value>
+  </data>
 </root>
