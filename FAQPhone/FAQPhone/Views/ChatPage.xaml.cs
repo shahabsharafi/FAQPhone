@@ -85,7 +85,7 @@ namespace FAQPhone.Views
             l.Add(new DiscussionDetailModel()
             {
                 createDate = DateTime.Now,
-                owner = new AccountModel() { username = App.Bag.username },
+                owner = new AccountModel() { username = App.Username },
                 text = this.replay
             });
             this.model.items = l.ToArray();

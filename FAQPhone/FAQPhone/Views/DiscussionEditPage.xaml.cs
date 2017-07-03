@@ -70,7 +70,7 @@ namespace FAQPhone.Views
             DiscussionModel model = new DiscussionModel()
             {
                 title = this.title,
-                from = new AccountModel() { username = App.Bag.username },
+                from = new AccountModel() { username = App.Username },
                 createDate = DateTime.Now,
                 state = 0,
                 department = new DepartmentModel() { _id = this.departmentId },
@@ -79,7 +79,7 @@ namespace FAQPhone.Views
                     new DiscussionDetailModel()
                     {
                         createDate = DateTime.Now,
-                        owner = new AccountModel() { username = App.Bag.username },
+                        owner = new AccountModel() { username = App.Username },
                         text = this.text
                     }                    
                 }

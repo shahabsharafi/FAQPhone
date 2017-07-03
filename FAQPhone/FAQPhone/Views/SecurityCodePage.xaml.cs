@@ -1,6 +1,7 @@
 ﻿using FAQPhone.Inferstructure;
 using FAQPhone.Infrastructure;
 using FAQPhone.Models;
+using FAQPhone.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,21 +23,35 @@ namespace FAQPhone.Views
         public SecurityCodePage(FlowType flow, string mobile, CodeResultModel codeResult)
         {
             InitializeComponent();
-            BindingContext = new SecurityCodeViewModel(Navigation, flow, mobile, codeResult);
+            var factory = App.Resolve<SecurityCodeViewModelFactory>();
+            BindingContext = factory.Create(Navigation, flow, mobile, codeResult);
         }
     }
 
-    
+    public class SecurityCodeViewModelFactory
+    {
+        IAccountService accountService;
+        public SecurityCodeViewModelFactory(IAccountService accountService)
+        {
+            this.accountService = accountService;
+        }
+        public SecurityCodeViewModel Create(INavigation navigation, FlowType flow, string mobile, CodeResultModel codeResult)
+        {
+            return new SecurityCodeViewModel(this.accountService, navigation, flow, mobile, codeResult);
+        }
+    }
 
     public class SecurityCodeViewModel : BaseViewModel
     {
-        public SecurityCodeViewModel(INavigation navigation, FlowType flow, string mobile, CodeResultModel codeResult) : base(navigation)
+        public SecurityCodeViewModel(IAccountService accountService, INavigation navigation, FlowType flow, string mobile, CodeResultModel codeResult) : base(navigation)
         {
+            this.accountService = accountService;
             this.codeResult = codeResult;
             this.flow = flow;
             this.mobile = mobile;
             this.CheckCodeCommand = new Command(async () => await checkCodeCommand());
         }
+        IAccountService accountService { get; set; }
         private CodeResultModel codeResult { get; set; }
         private FlowType flow { get; set; }
         private string mobile { get; set; }
@@ -57,7 +72,16 @@ namespace FAQPhone.Views
                 {
                     if (this.codeResult.username == "")
                     {
-                        await this.RootNavigate(new SignupPage(this.mobile, this.codeResult.code));
+                        //await this.RootNavigate(new SignupPage(this.mobile, this.codeResult.code));
+                        AccountChangeModel model = new AccountChangeModel()
+                        {
+                            code = this.codeResult.code,
+                            mobile = this.mobile,
+                            username = this.mobile,
+                            password = this.codeResult.code
+                        };
+                        await this.accountService.SignUp(model);
+                        await RootNavigate(new MainPage());
                     }
                     else
                     {

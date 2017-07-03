@@ -67,14 +67,14 @@ namespace FAQPhone.Services
 
         public bool IsAuthenticated()
         {
-            return !string.IsNullOrEmpty(App.Bag.token);
+            return !string.IsNullOrEmpty(App.Token);
         }
 
         private static void setAutenticationInfo(AutResultModel info)
         {
-            App.Bag.username = info?.username;
-            App.Bag.token = info?.token;
-            App.Bag.access = info?.access;
+            App.Username = info?.username;
+            App.Token = info?.token;
+            App.Access = info?.access;
         }
     }
 }

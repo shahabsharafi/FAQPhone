@@ -51,7 +51,7 @@ namespace FAQPhone.Views
             if (list == null)
             {
                 List<MenuItemModel> items = new List<MenuItemModel>();
-                if (App.Bag.access.Contains("access_user"))
+                if (App.Access.Contains("access_user"))
                 {
                     items.Add(new MenuItemModel()
                     {
@@ -73,7 +73,7 @@ namespace FAQPhone.Views
                         }
                     });
                 }
-                if (App.Bag.access.Contains("access_operator"))
+                if (App.Access.Contains("access_operator"))
                 {
                     items.Add(new MenuItemModel()
                     {

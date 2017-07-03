@@ -19,7 +19,7 @@ namespace FAQPhone.Infrastructure
         {
             client = new HttpClient();
             client.MaxResponseContentBufferSize = 256000;
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", App.Bag.token);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", App.Token);
         }
 
         protected async Task<T> get<T>(string url) where T : new()

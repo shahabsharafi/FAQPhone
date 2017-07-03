@@ -86,7 +86,7 @@ namespace FAQPhone.Droid.CustomRenderers
         {
             MessageViewCell = cell;
 
-            bool isMine = cell.Owner == App.Bag.username;
+            bool isMine = cell.Owner == App.Username;
             var view = (context as Activity).LayoutInflater.Inflate(isMine ? Resource.Layout.message_item_owner : Resource.Layout.message_item_opponent, null);
             MessageTextView = view.FindViewById<TextView>(Resource.Id.message);
 

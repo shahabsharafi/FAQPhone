@@ -1,4 +1,5 @@
-﻿using FAQPhone.Infrastructure;
+﻿using FAQPhone.Helpers;
+using FAQPhone.Infrastructure;
 using FAQPhone.Models;
 using FAQPhone.Services;
 using FAQPhone.Services.Interfaces;
@@ -8,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace FAQPhone
@@ -22,24 +23,45 @@ namespace FAQPhone
 
             App.Initialize();
 
-            var signinPage = App.Resolve<SigninPage>();
-            MainPage = new NavigationPage(signinPage);
-            //var detail = new DiscussionDetailModel() { createDate = DateTime.Now, owner = new AccountModel() { username = "user" }, text = "fdjkhdfdfh" };
-            //var model = new DiscussionModel() { items = new DiscussionDetailModel[] { detail } };
-            //var page = new ChatPage(model);
-            //MainPage = new NavigationPage(page);
+            bool flag = false;
+            if (!String.IsNullOrEmpty(Settings.Username) && !String.IsNullOrEmpty(Settings.Password))
+            {
+                SigninModel model = new SigninModel()
+                {
+                    username = Settings.Username,
+                    password = Settings.Password
+                };
+                var accountService = App.Resolve<IAccountService>();
+                Task.Run(async () => flag = await accountService.SignIn(model));
+            }
+
+            if (flag)
+            {
+                var page = new MainPage();
+                MainPage = new NavigationPage(page);
+            }
+            else
+            {
+                var page = new SendCodePage(FlowType.Signup);
+                MainPage = new NavigationPage(page);
+            }
+            //var signinPage = App.Resolve<SigninPage>();
+            //MainPage = new NavigationPage(signinPage);
         }
         public static UnityContainer Container { get; set; }
         public static void Initialize()
         {
-            App.Bag = new BagModel();
             App.Container = new UnityContainer();
             App.Container.RegisterType<IAccountService, AccountService>();
             App.Container.RegisterType<IDepartmentService, DepartmentService>();
             App.Container.RegisterType<IDiscussionService, DiscussionService>();
         }
 
-        public static BagModel Bag { get; set; }
+        public static string Username { get; set; }
+
+        public static string Token { get; set; }
+
+        public static string[] Access { get; set; }
 
         public static T Resolve<T>() where T: class
         {
