@@ -23,18 +23,30 @@ namespace FAQPhone
 
             App.Initialize();
 
-            bool flag = false;
             if (!String.IsNullOrEmpty(Settings.Username) && !String.IsNullOrEmpty(Settings.Password))
             {
-                SigninModel model = new SigninModel()
-                {
-                    username = Settings.Username,
-                    password = Settings.Password
-                };
-                var accountService = App.Resolve<IAccountService>();
-                Task.Run(async () => flag = await accountService.SignIn(model));
+                Task.Run(async () => await this.Login()).Wait();
             }
+            else
+            {
+                this.Go(false);
+            }
+        }
 
+        async Task Login()
+        {
+            SigninModel model = new SigninModel()
+            {
+                username = Settings.Username,
+                password = Settings.Password
+            };
+            var accountService = App.Resolve<AccountService>();
+            var flag = await accountService.SignIn(model);
+            Go(flag);
+        }
+
+        void Go(bool flag)
+        {
             if (flag)
             {
                 var page = new MainPage();
@@ -45,8 +57,6 @@ namespace FAQPhone
                 var page = new SendCodePage(FlowType.Signup);
                 MainPage = new NavigationPage(page);
             }
-            //var signinPage = App.Resolve<SigninPage>();
-            //MainPage = new NavigationPage(signinPage);
         }
         public static UnityContainer Container { get; set; }
         public static void Initialize()

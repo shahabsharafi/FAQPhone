@@ -1,4 +1,5 @@
-﻿using FAQPhone.Inferstructure;
+﻿using FAQPhone.Helpers;
+using FAQPhone.Inferstructure;
 using FAQPhone.Infrastructure;
 using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
@@ -80,13 +81,38 @@ namespace FAQPhone.Views
                             username = this.mobile,
                             password = this.codeResult.code
                         };
-                        await this.accountService.SignUp(model);
-                        await RootNavigate(new MainPage());
+                        if (await this.accountService.SignUp(model))
+                        {
+                            Settings.Username = this.mobile;
+                            Settings.Password = this.codeResult.code;
+                            await RootNavigate(new MainPage());
+                        }
+                        else
+                        {
+                            this.message = "err_securitycode_failed";
+                        }
                     }
                     else
                     {
-                        this.message = "err_securitycode_userexists";
+                        AccountChangeModel model = new AccountChangeModel()
+                        {
+                            code = this.codeResult.code,
+                            mobile = this.mobile,
+                            username = this.codeResult.username,
+                            password = this.codeResult.code
+                        };
+                        if (await this.accountService.ResetPassword(model))
+                        {
+                            Settings.Username = this.codeResult.username;
+                            Settings.Password = this.codeResult.code;
+                            await RootNavigate(new MainPage());
+                        }
+                        else
+                        {
+                            this.message = "err_securitycode_failed";
+                        }
                     }
+                    //
                 }
                 else if (this.flow == FlowType.ForgetPassword)
                 {

@@ -13,7 +13,6 @@ namespace FAQPhone.Models
                 return ResourceManagerHelper.GetValue(this.CommandName);
             }
         }
-        public List<MenuItemModel> Children { get; set; }
         public string CommandName { get; set; }
     }
 }

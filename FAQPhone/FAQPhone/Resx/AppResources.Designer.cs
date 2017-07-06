@@ -224,6 +224,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to فرایند ثبت نام با اشکال مواجه شده.
+        /// </summary>
+        internal static string err_securitycode_failed {
+            get {
+                return ResourceManager.GetString("err_securitycode_failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to کاربری با این شماره موبایل قبلا ثبت نام نشده.
         /// </summary>
         internal static string err_securitycode_mobilenotfound {
@@ -238,15 +247,6 @@ namespace FAQPhone.Resx {
         internal static string err_securitycode_notmatch {
             get {
                 return ResourceManager.GetString("err_securitycode_notmatch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to شماره موبایل برای کاربر دیگری ثبت شده.
-        /// </summary>
-        internal static string err_securitycode_userexists {
-            get {
-                return ResourceManager.GetString("err_securitycode_userexists", resourceCulture);
             }
         }
         
@@ -287,7 +287,7 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to پاسخ ها.
+        ///   Looks up a localized string similar to نرم افزار کارشناس.
         /// </summary>
         internal static string operator_faq {
             get {
@@ -404,7 +404,7 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to سوال ها.
+        ///   Looks up a localized string similar to نرم افزار کاربر.
         /// </summary>
         internal static string user_faq {
             get {

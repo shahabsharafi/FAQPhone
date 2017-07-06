@@ -165,11 +165,11 @@
   <data name="err_securitycode_mobilenotfound" xml:space="preserve">
     <value>کاربری با این شماره موبایل قبلا ثبت نام نشده</value>
   </data>
-  <data name="err_securitycode_userexists" xml:space="preserve">
-    <value>شماره موبایل برای کاربر دیگری ثبت شده</value>
+  <data name="err_securitycode_failed" xml:space="preserve">
+    <value>فرایند ثبت نام با اشکال مواجه شده</value>
   </data>
   <data name="user_faq" xml:space="preserve">
-    <value>سوال ها</value>
+    <value>نرم افزار کاربر</value>
   </data>
   <data name="user_create_faq" xml:space="preserve">
     <value>سوال جدید</value>
@@ -181,7 +181,7 @@
     <value>پاسخ داده شده</value>
   </data>
   <data name="operator_faq" xml:space="preserve">
-    <value>پاسخ ها</value>
+    <value>نرم افزار کارشناس</value>
   </data>
   <data name="operator_receive_faq" xml:space="preserve">
     <value>دریافت سوال</value>
