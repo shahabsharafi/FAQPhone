@@ -9,9 +9,10 @@
         <StackLayout>
             <StackLayout>
                 <Editor  x:Name="text" Text="{Binding replay, Mode=TwoWay}" FontSize="Small" BackgroundColor="#efefef" HeightRequest="80" />
-                <StackLayout Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                    <Button Text="{infr:Translate command_report}" Command="{Binding ReportCommand}" StyleClass="Info" />
+                    <Button Text="{infr:Translate command_finish}" Command="{Binding FinishCommand}" StyleClass="Info" />
                     <Button Text="{infr:Translate command_send}" Command="{Binding SendCommand}" StyleClass="Info" />
-                    <Button Text="{infr:Translate command_finish}" Command="{Binding FinishCommand}" StyleClass="Info" Grid.Row="1" Grid.Column="1" />
                 </StackLayout>
             </StackLayout>
             <ListView ItemsSource="{ Binding List }">

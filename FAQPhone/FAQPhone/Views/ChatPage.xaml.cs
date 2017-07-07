@@ -114,8 +114,18 @@ namespace FAQPhone.Views
             }
             model.state = 2;
             await this.discussionService.Save(model);
+            await this.Navigation.PopAsync();            
+        }
+
+        public ICommand ReportCommand { protected set; get; }
+
+        public async Task reportCommand()
+        {
+            /////     
+            model.state = 9;
+            model.to = new AccountModel() { username = App.Username };
+            await this.discussionService.Save(model);
             await this.Navigation.PopAsync();
-            
         }
     }
 }
