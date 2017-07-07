@@ -1,0 +1,1 @@
+CUSTOM FONT DOCUMENT: https://blog.verslu.is/xamarin/xamarin-forms-xamarin/using-custom-fonts-on-ios-and-android-with-xamarin-forms/

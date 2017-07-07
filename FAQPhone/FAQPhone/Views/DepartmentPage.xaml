@@ -19,10 +19,17 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout>
-                                <Label Text="{Binding caption}" TextColor="#4e5758" HorizontalTextAlignment="End" />
-                                <Label Text="{Binding description}" TextColor="#7f8c8d" HorizontalTextAlignment="End" />
-                            </StackLayout>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding caption}" TextColor="#4e5758" HorizontalTextAlignment="End" FontFamily="Yekan" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" />
+                                <Label Text="{Binding description}" TextColor="#7f8c8d" HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="0" />
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
