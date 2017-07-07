@@ -77,18 +77,21 @@ namespace FAQPhone.Views
         public async Task acceptCommand()
         {
             /////
-            var l = this.model.items.ToList();
-            l.Add(new DiscussionDetailModel
+            if (!string.IsNullOrWhiteSpace(this.replay))
             {
-                createDate = DateTime.Now,
-                owner = new AccountModel() { username = App.Username },
-                text = this.replay
-            });
-            model.items = l.ToArray();
-            model.state = 1;
-            model.to = new AccountModel() { username = App.Username };
-            await this.discussionService.Save(model);
-            await this.Navigation.PopAsync();
+                var l = this.model.items.ToList();
+                l.Add(new DiscussionDetailModel
+                {
+                    createDate = DateTime.Now,
+                    owner = new AccountModel() { username = App.Username },
+                    text = this.replay
+                });
+                model.items = l.ToArray();
+                model.state = 1;
+                model.to = new AccountModel() { username = App.Username };
+                await this.discussionService.Save(model);
+                await this.Navigation.PopAsync();
+            }
         }
 
         public ICommand RejectCommand { protected set; get; }
@@ -114,10 +117,21 @@ namespace FAQPhone.Views
 
         public async Task finishCommand()
         {
-            /////     
-            model.state = 2;
-            await this.discussionService.Save(model);
-            await this.Navigation.PopAsync();
+            ///// 
+            if (!string.IsNullOrWhiteSpace(this.replay))
+            {
+                var l = this.model.items.ToList();
+                l.Add(new DiscussionDetailModel
+                {
+                    createDate = DateTime.Now,
+                    owner = new AccountModel() { username = App.Username },
+                    text = this.replay
+                });
+                model.items = l.ToArray();
+                model.state = 2;
+                await this.discussionService.Save(model);
+                await this.Navigation.PopAsync();
+            }
         }
         public async Task loadItems()
         {

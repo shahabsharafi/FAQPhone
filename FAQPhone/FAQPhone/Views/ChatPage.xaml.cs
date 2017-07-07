@@ -81,16 +81,41 @@ namespace FAQPhone.Views
 
         public async Task sendCommand()
         {
-            var l = this.model.items.ToList();
-            l.Add(new DiscussionDetailModel()
+            if (!string.IsNullOrWhiteSpace(this.replay))
             {
-                createDate = DateTime.Now,
-                owner = new AccountModel() { username = App.Username },
-                text = this.replay
-            });
-            this.model.items = l.ToArray();
+                var l = this.model.items.ToList();
+                l.Add(new DiscussionDetailModel()
+                {
+                    createDate = DateTime.Now,
+                    owner = new AccountModel() { username = App.Username },
+                    text = this.replay
+                });
+                this.model.items = l.ToArray();
+                await this.discussionService.Save(model);
+                await this.RootNavigate(new MainPage());
+            }
+        }
+
+        public ICommand FinishCommand { protected set; get; }
+
+        public async Task finishCommand()
+        {
+            ///// 
+            if (!string.IsNullOrWhiteSpace(this.replay))
+            {
+                var l = this.model.items.ToList();
+                l.Add(new DiscussionDetailModel
+                {
+                    createDate = DateTime.Now,
+                    owner = new AccountModel() { username = App.Username },
+                    text = this.replay
+                });
+                model.items = l.ToArray();
+            }
+            model.state = 2;
             await this.discussionService.Save(model);
-            await this.RootNavigate(new MainPage());
+            await this.Navigation.PopAsync();
+            
         }
     }
 }

@@ -9,7 +9,10 @@
         <StackLayout>
             <StackLayout>
                 <Editor  x:Name="text" Text="{Binding replay, Mode=TwoWay}" FontSize="Small" BackgroundColor="#efefef" HeightRequest="80" />
-                <Button Text="{infr:Translate command_send}" Command="{Binding SendCommand}" StyleClass="Info" />
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="{infr:Translate command_send}" Command="{Binding SendCommand}" StyleClass="Info" />
+                    <Button Text="{infr:Translate command_finish}" Command="{Binding FinishCommand}" StyleClass="Info" Grid.Row="1" Grid.Column="1" />
+                </StackLayout>
             </StackLayout>
             <ListView ItemsSource="{ Binding List }">
                 <ListView.ItemTemplate>
