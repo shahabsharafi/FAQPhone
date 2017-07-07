@@ -21,7 +21,7 @@
                 </Grid.ColumnDefinitions>
                 <Button Text="{infr:Translate command_accept}" Command="{Binding AcceptCommand}" StyleClass="Info" Grid.Row="0" Grid.Column="1" />
                 <Button Text="{infr:Translate command_reject}" Command="{Binding RejectCommand}" StyleClass="Info" Grid.Row="0" Grid.Column="0" />
-                <Button Text="{infr:Translate command_finish}" Command="{Binding AcceptCommand}" StyleClass="Info" Grid.Row="1" Grid.Column="1" />
+                <Button Text="{infr:Translate command_finish}" Command="{Binding FinishCommand}" StyleClass="Info" Grid.Row="1" Grid.Column="1" />
                 <Button Text="{infr:Translate command_report}" Command="{Binding ReportCommand}" StyleClass="Info" Grid.Row="1" Grid.Column="0" />
             </Grid>
             <Label x:Name="messageLabel" />

@@ -49,6 +49,7 @@ namespace FAQPhone.Views
             this.AcceptCommand = new Command(async () => await acceptCommand());
             this.RejectCommand = new Command(async () => await rejectCommand());
             this.ReportCommand = new Command(async () => await reportCommand());
+            this.FinishCommand = new Command(async () => await finishCommand());
             Task.Run(async () => await loadItems());
         }
         private IDiscussionService discussionService { get; set; }
@@ -109,6 +110,15 @@ namespace FAQPhone.Views
             await this.Navigation.PopAsync();
         }
 
+        public ICommand FinishCommand { protected set; get; }
+
+        public async Task finishCommand()
+        {
+            /////     
+            model.state = 2;
+            await this.discussionService.Save(model);
+            await this.Navigation.PopAsync();
+        }
         public async Task loadItems()
         {
             this.model = await this.discussionService.Recive();
