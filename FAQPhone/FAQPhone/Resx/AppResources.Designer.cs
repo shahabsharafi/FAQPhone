@@ -80,7 +80,7 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to قبول.
+        ///   Looks up a localized string similar to پاسخ به سوال.
         /// </summary>
         internal static string command_accept {
             get {
@@ -89,7 +89,16 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to رد.
+        ///   Looks up a localized string similar to اتمام پاسخ گویی.
+        /// </summary>
+        internal static string command_finish {
+            get {
+                return ResourceManager.GetString("command_finish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to رد سوال.
         /// </summary>
         internal static string command_reject {
             get {
@@ -184,24 +193,6 @@ namespace FAQPhone.Resx {
         internal static string discussion_recive_replay {
             get {
                 return ResourceManager.GetString("discussion_recive_replay", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to متن سوال.
-        /// </summary>
-        internal static string discussion_recive_text {
-            get {
-                return ResourceManager.GetString("discussion_recive_text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to عنوان سوال.
-        /// </summary>
-        internal static string discussion_recive_title {
-            get {
-                return ResourceManager.GetString("discussion_recive_title", resourceCulture);
             }
         }
         

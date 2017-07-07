@@ -6,17 +6,24 @@
              Title="{infr:Translate discussion_revice}">
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}" >
-            <Label Text="{infr:Translate discussion_recive_title}" />
-            <Label Text="{Binding title, Mode=TwoWay}" />
-            <Label Text="{infr:Translate discussion_recive_text}" />
+            <Label Text="{Binding title, Mode=TwoWay}" FontSize="Large" FontFamily="Yekan" />
             <Label Text="{Binding text, Mode=TwoWay}" />
-            <Label Text="{infr:Translate discussion_recive_replay}" />
+            <Label Text="{infr:Translate discussion_recive_replay}" FontSize="Large" FontFamily="Yekan" />
             <Editor  x:Name="text" Text="{Binding replay, Mode=TwoWay}" FontSize="Small" BackgroundColor="#efefef" HeightRequest="100" />
-            <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-                <Button Text="{infr:Translate command_report}" Command="{Binding ReportCommand}" StyleClass="Info" />
-                <Button Text="{infr:Translate command_reject}" Command="{Binding RejectCommand}" StyleClass="Info" />
-                <Button Text="{infr:Translate command_accept}" Command="{Binding AcceptCommand}" StyleClass="Info" />
-            </StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Text="{infr:Translate command_accept}" Command="{Binding AcceptCommand}" StyleClass="Info" Grid.Row="0" Grid.Column="1" />
+                <Button Text="{infr:Translate command_reject}" Command="{Binding RejectCommand}" StyleClass="Info" Grid.Row="0" Grid.Column="0" />
+                <Button Text="{infr:Translate command_finish}" Command="{Binding AcceptCommand}" StyleClass="Info" Grid.Row="1" Grid.Column="1" />
+                <Button Text="{infr:Translate command_report}" Command="{Binding ReportCommand}" StyleClass="Info" Grid.Row="1" Grid.Column="0" />
+            </Grid>
             <Label x:Name="messageLabel" />
         </StackLayout>
     </ScrollView>

@@ -1,4 +1,5 @@
 ﻿using FAQPhone.Inferstructure;
+using FAQPhone.Infrastructure;
 using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
 using System;
@@ -20,11 +21,11 @@ namespace FAQPhone.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DiscussionPage : ContentPage
     {
-        public DiscussionPage(bool isUser, int[] states)
+        public DiscussionPage(string state)
         {
             InitializeComponent();
             var factory = App.Resolve<DiscussionPageViewModelFactory>();
-            BindingContext = factory.Create(Navigation, isUser, states);
+            BindingContext = factory.Create(Navigation, state);
         }
     }
 
@@ -35,19 +36,20 @@ namespace FAQPhone.Views
         {
             this.discussionService = discussionService;
         }
-        public DiscussionPageViewModel Create(INavigation navigation, bool isUser, int[] states)
+        public DiscussionPageViewModel Create(INavigation navigation, string state)
         {
-            return new DiscussionPageViewModel(this.discussionService, navigation, isUser, states);
+            return new DiscussionPageViewModel(this.discussionService, navigation, state);
         }
     }
 
     public class DiscussionPageViewModel : BaseViewModel
     {
 
-        public DiscussionPageViewModel(IDiscussionService discussionService, INavigation navigation, bool isUser, int[] states) : base(navigation)
+        public DiscussionPageViewModel(IDiscussionService discussionService, INavigation navigation, string state) : base(navigation)
         {
-            this.IsUser = isUser;
-            this.States = states;
+            this.Title = ResourceManagerHelper.GetValue(state);
+            this.IsUser = (state == "user_inprogress_faq" || state == "user_archived_faq");
+            this.States = (state == "user_inprogress_faq" || state == "operator_inprogress_faq") ? new int[] { 0, 1 } : new int[] { 2 };
             this.discussionService = discussionService;
             this.SelectItemCommand = new Command<DiscussionModel>(async (model) => await selectItemCommand(model));
             this.List = new ObservableCollection<DiscussionModel>();
@@ -56,6 +58,7 @@ namespace FAQPhone.Views
         private IDiscussionService discussionService { get; set; }
         bool IsUser { get; set; }
         int[] States { get; set; }
+        public string Title { get; set; }
 
         public ICommand SelectItemCommand { protected set; get; }
 

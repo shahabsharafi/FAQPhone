@@ -124,10 +124,10 @@ namespace FAQPhone.Views
                         await this.Navigation.PushAsync(new DepartmentPage());
                         break;
                     case "user_inprogress_faq":
-                        await this.Navigation.PushAsync(new DiscussionPage(true, new int[] { 0, 1 }));
+                        await this.Navigation.PushAsync(new DiscussionPage("user_inprogress_faq"));
                         break;
                     case "user_archived_faq":
-                        await this.Navigation.PushAsync(new DiscussionPage(true, new int[] { 2 }));
+                        await this.Navigation.PushAsync(new DiscussionPage("user_archived_faq"));
                         break;
                     case "operator_faq":
                         await this.RootNavigate(new MainPage("operator_faq"));
@@ -136,10 +136,10 @@ namespace FAQPhone.Views
                         await this.Navigation.PushAsync(new DiscussionRecivePage());
                         break;
                     case "operator_inprogress_faq":
-                        await this.Navigation.PushAsync(new DiscussionPage(false, new int[] { 0, 1 }));
+                        await this.Navigation.PushAsync(new DiscussionPage("operator_inprogress_faq"));
                         break;
                     case "operator_archived_faq":
-                        await this.Navigation.PushAsync(new DiscussionPage(false, new int[] { 2 }));
+                        await this.Navigation.PushAsync(new DiscussionPage("operator_archived_faq"));
                         break;
                     case "signout":
                         this.accountService.SignOut();
