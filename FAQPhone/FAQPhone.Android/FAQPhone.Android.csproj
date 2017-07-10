@@ -123,6 +123,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="com.xamarin.recipes.filepicker\FileListAdapter.cs" />
+    <Compile Include="com.xamarin.recipes.filepicker\FileListFragment.cs" />
+    <Compile Include="com.xamarin.recipes.filepicker\FileListRowViewHolder.cs" />
+    <Compile Include="com.xamarin.recipes.filepicker\FilePickerActivity.cs" />
+    <Compile Include="com.xamarin.recipes.filepicker\Helpers.cs" />
     <Compile Include="CustomRenderers\CustomLabelRenderer.cs" />
     <Compile Include="CustomRenderers\MessageRenderer.cs" />
     <Compile Include="MainActivity.cs" />
@@ -140,6 +145,9 @@
     <AndroidResource Include="Resources\layout\item_row.axml" />
     <AndroidResource Include="Resources\layout\message_item_opponent.axml" />
     <AndroidResource Include="Resources\layout\message_item_owner.axml" />
+    <AndroidResource Include="Resources\layout\file_picker_list_item.axml" />
+    <AndroidResource Include="Resources\layout\Main.axml" />
+    <AndroidResource Include="Resources\layout-large\main.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\icon.png" />
@@ -208,6 +216,27 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\empty_contact.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\file.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\file.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\file.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\Strings.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
