@@ -1,4 +1,5 @@
-﻿using FAQPhone.Inferstructure;
+﻿using FAQPhone.Helpers;
+using FAQPhone.Inferstructure;
 using FAQPhone.Infrastructure;
 using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
@@ -32,20 +33,22 @@ namespace FAQPhone.Views
     public class MainPageViewModelFactory
     {
         IAccountService accountService;
-        public MainPageViewModelFactory(IAccountService accountService)
+        IDiscussionService discussionService;
+        public MainPageViewModelFactory(IAccountService accountService, IDiscussionService discussionService)
         {
             this.accountService = accountService;
+            this.discussionService = discussionService;
         }
         public MainPageViewModel Create(INavigation navigation, string menu)
         {
-            return new MainPageViewModel(this.accountService, navigation, menu);
+            return new MainPageViewModel(this.accountService, this.discussionService, navigation, menu);
         }
     }
 
     public class MainPageViewModel : BaseViewModel
     {
 
-        public MainPageViewModel(IAccountService accountService, INavigation navigation, string menu) : base(navigation)
+        public MainPageViewModel(IAccountService accountService, IDiscussionService discussionService, INavigation navigation, string menu) : base(navigation)
         {
             this.List = new ObservableCollection<MenuItemModel>();
             List<MenuItemModel> items = new List<MenuItemModel>();
@@ -77,8 +80,10 @@ namespace FAQPhone.Views
                     items.Add(new MenuItemModel() { CommandName = "operator_faq" });
                 }
             }
+            items.Add(new MenuItemModel() { CommandName = "signout" });
             this.setList(items);
             this.accountService = accountService;
+            this.discussionService = discussionService;
             this.SelectItemCommand = new Command<MenuItemModel>(async (model) => await selectItemCommand(model));
         }
 
@@ -92,6 +97,7 @@ namespace FAQPhone.Views
         }
 
         IAccountService accountService { get; set; }
+        IDiscussionService discussionService { get; set; }
 
         object _selectedItem;
         public object SelectedItem
@@ -133,7 +139,11 @@ namespace FAQPhone.Views
                         await this.RootNavigate(new MainPage("operator_faq"));
                         break;
                     case "operator_receive_faq":
-                        await this.Navigation.PushAsync(new DiscussionRecivePage());
+                        var d = await this.discussionService.Recive();
+                        if (d != null)
+                        {
+                            await this.Navigation.PushAsync(new DiscussionRecivePage(d));
+                        }
                         break;
                     case "operator_inprogress_faq":
                         await this.Navigation.PushAsync(new DiscussionPage("operator_inprogress_faq"));
@@ -143,7 +153,9 @@ namespace FAQPhone.Views
                         break;
                     case "signout":
                         this.accountService.SignOut();
-                        await this.RootNavigate<SigninPage>();
+                        Settings.Username = string.Empty;
+                        Settings.Password = string.Empty;
+                        await this.RootNavigate(new SendCodePage(FlowType.Signup));
                         break;
                 }
                 this.SelectedItem = null;

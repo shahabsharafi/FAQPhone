@@ -20,11 +20,11 @@ namespace FAQPhone.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DiscussionRecivePage : ContentPage
     {
-        public DiscussionRecivePage()
+        public DiscussionRecivePage(DiscussionModel model)
         {
             InitializeComponent();
             var factory = App.Resolve<DiscussionReciveViewModelFactory>();
-            BindingContext = factory.Create(Navigation);
+            BindingContext = factory.Create(Navigation, model);
         }
     }
 
@@ -35,22 +35,27 @@ namespace FAQPhone.Views
         {
             this.discussionService = discussionService;
         }
-        public DiscussionReciveViewModel Create(INavigation navigation)
+        public DiscussionReciveViewModel Create(INavigation navigation, DiscussionModel model)
         {
-            return new DiscussionReciveViewModel(this.discussionService, navigation);
+            return new DiscussionReciveViewModel(this.discussionService, navigation, model);
         }
     }
 
     public class DiscussionReciveViewModel : BaseViewModel
     {
-        public DiscussionReciveViewModel(IDiscussionService discussionService, INavigation navigation) : base(navigation)
+        public DiscussionReciveViewModel(IDiscussionService discussionService, INavigation navigation, DiscussionModel model) : base(navigation)
         {
             this.discussionService = discussionService;
             this.AcceptCommand = new Command(async () => await acceptCommand());
             this.RejectCommand = new Command(async () => await rejectCommand());
             this.ReportCommand = new Command(async () => await reportCommand());
             this.FinishCommand = new Command(async () => await finishCommand());
-            Task.Run(async () => await loadItems());
+            this.model = model;
+            this.title = this.model.title;
+            if (this.model.items.Length > 0)
+            {
+                this.text = this.model.items[0].text;
+            }
         }
         private IDiscussionService discussionService { get; set; }
         DiscussionModel model { get; set; } 
@@ -132,16 +137,6 @@ namespace FAQPhone.Views
                 await this.discussionService.Save(model);
                 await this.Navigation.PopAsync();
             }
-        }
-        public async Task loadItems()
-        {
-            this.model = await this.discussionService.Recive();
-            this.title = this.model.title;
-            if (this.model.items.Length > 0)
-            {
-                this.text = this.model.items[0].text;                
-            }
-
         }
     }
 }
