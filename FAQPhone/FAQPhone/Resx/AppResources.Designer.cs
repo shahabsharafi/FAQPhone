@@ -80,7 +80,7 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to پاسخ به سوال.
+        ///   Looks up a localized string similar to پاسخ.
         /// </summary>
         internal static string command_accept {
             get {
@@ -89,7 +89,7 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to اتمام پاسخ گویی.
+        ///   Looks up a localized string similar to پاسخ و اتمام گفتگو.
         /// </summary>
         internal static string command_finish {
             get {
@@ -98,7 +98,7 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to رد سوال.
+        ///   Looks up a localized string similar to انصراف.
         /// </summary>
         internal static string command_reject {
             get {
@@ -107,7 +107,7 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to گزارش.
+        ///   Looks up a localized string similar to ابطال.
         /// </summary>
         internal static string command_report {
             get {
@@ -269,7 +269,7 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to پاسخ داده شده.
+        ///   Looks up a localized string similar to آرشیو.
         /// </summary>
         internal static string operator_archived_faq {
             get {
@@ -377,7 +377,7 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to پاسخ داده شده.
+        ///   Looks up a localized string similar to آرشیو.
         /// </summary>
         internal static string user_archived_faq {
             get {
@@ -404,7 +404,7 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to منتظر پاسخگویی.
+        ///   Looks up a localized string similar to منتظر پاسخ.
         /// </summary>
         internal static string user_inprogress_faq {
             get {

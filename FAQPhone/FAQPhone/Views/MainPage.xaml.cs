@@ -33,22 +33,24 @@ namespace FAQPhone.Views
     public class MainPageViewModelFactory
     {
         IAccountService accountService;
+        IDepartmentService departmentService;
         IDiscussionService discussionService;
-        public MainPageViewModelFactory(IAccountService accountService, IDiscussionService discussionService)
+        public MainPageViewModelFactory(IAccountService accountService, IDepartmentService departmentService, IDiscussionService discussionService)
         {
             this.accountService = accountService;
+            this.departmentService = departmentService;
             this.discussionService = discussionService;
         }
         public MainPageViewModel Create(INavigation navigation, string menu)
         {
-            return new MainPageViewModel(this.accountService, this.discussionService, navigation, menu);
+            return new MainPageViewModel(this.accountService, this.departmentService, this.discussionService, navigation, menu);
         }
     }
 
     public class MainPageViewModel : BaseViewModel
     {
 
-        public MainPageViewModel(IAccountService accountService, IDiscussionService discussionService, INavigation navigation, string menu) : base(navigation)
+        public MainPageViewModel(IAccountService accountService, IDepartmentService departmentService, IDiscussionService discussionService, INavigation navigation, string menu) : base(navigation)
         {
             this.List = new ObservableCollection<MenuItemModel>();
             List<MenuItemModel> items = new List<MenuItemModel>();
@@ -83,6 +85,7 @@ namespace FAQPhone.Views
             items.Add(new MenuItemModel() { CommandName = "signout" });
             this.setList(items);
             this.accountService = accountService;
+            this.departmentService = departmentService;
             this.discussionService = discussionService;
             this.SelectItemCommand = new Command<MenuItemModel>(async (model) => await selectItemCommand(model));
         }
@@ -97,6 +100,7 @@ namespace FAQPhone.Views
         }
 
         IAccountService accountService { get; set; }
+        IDepartmentService departmentService { get; set; }
         IDiscussionService discussionService { get; set; }
 
         object _selectedItem;
@@ -121,19 +125,32 @@ namespace FAQPhone.Views
                 return;
             if (!string.IsNullOrEmpty(model.CommandName))
             {
+                List<DiscussionModel> l;
                 switch (model.CommandName)
                 {
                     case "user_faq":
                         await this.RootNavigate(new MainPage("user_faq"));
                         break;
                     case "user_create_faq":
-                        await this.Navigation.PushAsync(new DepartmentPage());
+                        var dl = await this.departmentService.Get("");
+                        if (dl != null && dl.Count() > 0)
+                        {
+                            await this.Navigation.PushAsync(new DepartmentPage(dl));
+                        }
                         break;
                     case "user_inprogress_faq":
-                        await this.Navigation.PushAsync(new DiscussionPage("user_inprogress_faq"));
+                        l = await this.discussionService.GetList(true, new int[] { 0, 1 });
+                        if (l != null && l.Count() > 0)
+                        {
+                            await this.Navigation.PushAsync(new DiscussionPage("user_inprogress_faq", l));
+                        }
                         break;
                     case "user_archived_faq":
-                        await this.Navigation.PushAsync(new DiscussionPage("user_archived_faq"));
+                        l = await this.discussionService.GetList(true, new int[] { 2 });
+                        if (l != null && l.Count() > 0)
+                        {
+                            await this.Navigation.PushAsync(new DiscussionPage("user_archived_faq", l));
+                        }
                         break;
                     case "operator_faq":
                         await this.RootNavigate(new MainPage("operator_faq"));
@@ -146,10 +163,18 @@ namespace FAQPhone.Views
                         }
                         break;
                     case "operator_inprogress_faq":
-                        await this.Navigation.PushAsync(new DiscussionPage("operator_inprogress_faq"));
+                        l = await this.discussionService.GetList(false, new int[] { 0, 1 });
+                        if (l != null && l.Count() > 0)
+                        {
+                            await this.Navigation.PushAsync(new DiscussionPage("operator_inprogress_faq", l));
+                        }
                         break;
                     case "operator_archived_faq":
-                        await this.Navigation.PushAsync(new DiscussionPage("operator_archived_faq"));
+                        l = await this.discussionService.GetList(true, new int[] { 2 });
+                        if (l != null && l.Count() > 0)
+                        {
+                            await this.Navigation.PushAsync(new DiscussionPage("operator_archived_faq", l));
+                        }
                         break;
                     case "signout":
                         this.accountService.SignOut();

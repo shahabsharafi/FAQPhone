@@ -175,10 +175,10 @@
     <value>سوال جدید</value>
   </data>
   <data name="user_inprogress_faq" xml:space="preserve">
-    <value>منتظر پاسخگویی</value>
+    <value>منتظر پاسخ</value>
   </data>
   <data name="user_archived_faq" xml:space="preserve">
-    <value>پاسخ داده شده</value>
+    <value>آرشیو</value>
   </data>
   <data name="operator_faq" xml:space="preserve">
     <value>نرم افزار کارشناس</value>
@@ -190,7 +190,7 @@
     <value>در دست اقدام</value>
   </data>
   <data name="operator_archived_faq" xml:space="preserve">
-    <value>پاسخ داده شده</value>
+    <value>آرشیو</value>
   </data>
   <data name="signout" xml:space="preserve">
     <value>خروج از سامانه</value>
@@ -220,13 +220,13 @@
     <value>دربافت سوال</value>
   </data>
   <data name="command_accept" xml:space="preserve">
-    <value>پاسخ به سوال</value>
+    <value>پاسخ</value>
   </data>
   <data name="command_reject" xml:space="preserve">
-    <value>رد سوال</value>
+    <value>انصراف</value>
   </data>
   <data name="command_report" xml:space="preserve">
-    <value>گزارش</value>
+    <value>ابطال</value>
   </data>
   <data name="discussion" xml:space="preserve">
     <value>فهرست</value>
@@ -235,6 +235,6 @@
     <value>گفتگو</value>
   </data>
   <data name="command_finish" xml:space="preserve">
-    <value>اتمام پاسخ گویی</value>
+    <value>پاسخ و اتمام گفتگو</value>
   </data>
 </root>

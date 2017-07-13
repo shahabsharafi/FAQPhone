@@ -21,43 +21,36 @@ namespace FAQPhone.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DiscussionPage : ContentPage
     {
-        public DiscussionPage(string state)
+        public DiscussionPage(string state, List<DiscussionModel> list)
         {
             InitializeComponent();
             var factory = App.Resolve<DiscussionPageViewModelFactory>();
-            BindingContext = factory.Create(Navigation, state);
+            BindingContext = factory.Create(Navigation, state, list);
         }
     }
 
     public class DiscussionPageViewModelFactory
     {
-        IDiscussionService discussionService;
-        public DiscussionPageViewModelFactory(IDiscussionService discussionService)
+        List<DiscussionModel> list;
+        public DiscussionPageViewModelFactory()
         {
-            this.discussionService = discussionService;
+            
         }
-        public DiscussionPageViewModel Create(INavigation navigation, string state)
+        public DiscussionPageViewModel Create(INavigation navigation, string state, List<DiscussionModel> list)
         {
-            return new DiscussionPageViewModel(this.discussionService, navigation, state);
+            return new DiscussionPageViewModel(navigation, state, list);
         }
     }
 
     public class DiscussionPageViewModel : BaseViewModel
     {
 
-        public DiscussionPageViewModel(IDiscussionService discussionService, INavigation navigation, string state) : base(navigation)
+        public DiscussionPageViewModel(INavigation navigation, string state, List<DiscussionModel> list) : base(navigation)
         {
             this.Title = ResourceManagerHelper.GetValue(state);
-            this.IsUser = (state == "user_inprogress_faq" || state == "user_archived_faq");
-            this.States = (state == "user_inprogress_faq" || state == "operator_inprogress_faq") ? new int[] { 0, 1 } : new int[] { 2 };
-            this.discussionService = discussionService;
             this.SelectItemCommand = new Command<DiscussionModel>(async (model) => await selectItemCommand(model));
             this.List = new ObservableCollection<DiscussionModel>();
-            Task.Run(async () => await loadItems());
         }
-        private IDiscussionService discussionService { get; set; }
-        bool IsUser { get; set; }
-        int[] States { get; set; }
         public string Title { get; set; }
 
         public ICommand SelectItemCommand { protected set; get; }
@@ -79,11 +72,6 @@ namespace FAQPhone.Views
             {
                 this.List.Add(item);
             }
-        }
-        public async Task loadItems()
-        {
-            var list = await this.discussionService.GetList(this.IsUser, this.States);
-            this.setList(list);
         }
     }
 }
