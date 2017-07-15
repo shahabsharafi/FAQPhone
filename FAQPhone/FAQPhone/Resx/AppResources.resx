@@ -237,4 +237,16 @@
   <data name="command_finish" xml:space="preserve">
     <value>پاسخ و اتمام گفتگو</value>
   </data>
+  <data name="command_select_all" xml:space="preserve">
+    <value>همه</value>
+  </data>
+  <data name="command_select_none" xml:space="preserve">
+    <value>هیچکدام</value>
+  </data>
+  <data name="discussion_select_tags" xml:space="preserve">
+    <value>انتخاب نمایه ها</value>
+  </data>
+  <data name="discussion_tags" xml:space="preserve">
+    <value>نمایه ها</value>
+  </data>
 </root>

@@ -9,6 +9,7 @@ namespace FAQPhone.Services.Interfaces
 {
     public interface IDepartmentService
     {
-        Task<List<DepartmentModel>> Get(string parentId);
+        Task<List<DepartmentModel>> GetByParent(string parentId);
+        Task<List<DepartmentModel>> GetById(string id);
     }
 }

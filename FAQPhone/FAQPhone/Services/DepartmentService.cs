@@ -21,11 +21,19 @@ namespace FAQPhone.Services
         {
             this._relativeUrl = "departments?{0}";
         }
-        public async Task<List<DepartmentModel>> Get(string parentId)
+        public async Task<List<DepartmentModel>> GetByParent(string parentId)
         {
             string prm = parentId == ""
                 ? "$filter=type eq 'department'"
                 : "$filter=parentId eq '" + parentId + "'";
+            string url = this.getUrl(prm);
+            var data = await this.get<PaginationModel<DepartmentModel>>(url);
+            return data.docs.ToList();
+        }
+
+        public async Task<List<DepartmentModel>> GetById(string id)
+        {
+            string prm = "$filter=_id eq '" + id + "'";
             string url = this.getUrl(prm);
             var data = await this.get<PaginationModel<DepartmentModel>>(url);
             return data.docs.ToList();

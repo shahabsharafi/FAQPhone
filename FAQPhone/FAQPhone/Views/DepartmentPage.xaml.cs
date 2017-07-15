@@ -71,7 +71,7 @@ namespace FAQPhone.Views
 
         public async Task loadItems(string parentId)
         {
-            var list = await this.departmentService.Get(parentId);
+            var list = await this.departmentService.GetByParent(parentId);
             if (parentId == "")
             {
                 this.setList(list);

@@ -4,6 +4,7 @@ using Xamarin.Forms;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Linq;
+using FAQPhone.Infrastructure;
 
 namespace Multiselect
 {
@@ -57,7 +58,8 @@ namespace Multiselect
 				View = layout;
 			}
 		}
-		public List<WrappedSelection<T>> WrappedItems = new List<WrappedSelection<T>>();
+        public event EventHandler Select;
+        public List<WrappedSelection<T>> WrappedItems = new List<WrappedSelection<T>>();
 		public SelectMultipleBasePage(List<T> items)
 		{
 			WrappedItems = items.Select (item => new WrappedSelection<T> () { Item = item, IsSelected = false }).ToList ();
@@ -72,21 +74,38 @@ namespace Multiselect
 				o.IsSelected = !o.IsSelected;
 				((ListView)sender).SelectedItem = null; //de-select
 			};
-			Content = mainList;
+            Button btn = new Button() {
+                Text = ResourceManagerHelper.GetValue("discussion_select_tags"),
+                StyleClass = new List<string>() { "Info" },                
+            };
+            btn.Clicked += (sender, e) => {
+                Select?.Invoke(this, new EventArgs());
+                Navigation.PopAsync();
+            }; 
+            StackLayout stack = new StackLayout()
+            {
+                Orientation = StackOrientation.Vertical,
+            };
+            stack.Children.Add(mainList);
+            stack.Children.Add(btn);
+			Content = stack;
+            string selectAllCaption = ResourceManagerHelper.GetValue("command_select_all");
+            string selectNoneCaption = ResourceManagerHelper.GetValue("command_select_none");
             if (Device.OS == TargetPlatform.Windows)
             {   // fix issue where rows are badly sized (as tall as the screen) on WinPhone8.1
                 mainList.RowHeight = 40;
                 // also need icons for Windows app bar (other platforms can just use text)
-                ToolbarItems.Add(new ToolbarItem("All", "check.png", SelectAll, ToolbarItemOrder.Primary));
-                ToolbarItems.Add(new ToolbarItem("None", "cancel.png", SelectNone, ToolbarItemOrder.Primary));
+                ToolbarItems.Add(new ToolbarItem(selectAllCaption, "check.png", SelectAll, ToolbarItemOrder.Primary));
+                ToolbarItems.Add(new ToolbarItem(selectNoneCaption, "cancel.png", SelectNone, ToolbarItemOrder.Primary));
             }
             else
             {
-                ToolbarItems.Add(new ToolbarItem("All", null, SelectAll, ToolbarItemOrder.Primary));
-                ToolbarItems.Add(new ToolbarItem("None", null, SelectNone, ToolbarItemOrder.Primary));
+                ToolbarItems.Add(new ToolbarItem(selectAllCaption, null, SelectAll, ToolbarItemOrder.Primary));
+                ToolbarItems.Add(new ToolbarItem(selectNoneCaption, null, SelectNone, ToolbarItemOrder.Primary));
             }
 		}
-		void SelectAll ()
+
+        void SelectAll ()
 		{
 			foreach (var wi in WrappedItems) {
 				wi.IsSelected = true;

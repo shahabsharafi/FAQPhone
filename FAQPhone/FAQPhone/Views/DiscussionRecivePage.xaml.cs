@@ -1,6 +1,8 @@
 ﻿using FAQPhone.Inferstructure;
+using FAQPhone.Infrastructure;
 using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
+using Multiselect;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -31,21 +33,24 @@ namespace FAQPhone.Views
     public class DiscussionReciveViewModelFactory
     {
         IDiscussionService discussionService;
-        public DiscussionReciveViewModelFactory(IDiscussionService discussionService)
+        IDepartmentService departmentService;
+        public DiscussionReciveViewModelFactory(IDiscussionService discussionService, IDepartmentService departmentService)
         {
             this.discussionService = discussionService;
+            this.departmentService = departmentService;
         }
         public DiscussionReciveViewModel Create(INavigation navigation, DiscussionModel model)
         {
-            return new DiscussionReciveViewModel(this.discussionService, navigation, model);
+            return new DiscussionReciveViewModel(this.discussionService, this.departmentService, navigation, model);
         }
     }
 
     public class DiscussionReciveViewModel : BaseViewModel
     {
-        public DiscussionReciveViewModel(IDiscussionService discussionService, INavigation navigation, DiscussionModel model) : base(navigation)
+        public DiscussionReciveViewModel(IDiscussionService discussionService, IDepartmentService departmentService, INavigation navigation, DiscussionModel model) : base(navigation)
         {
             this.discussionService = discussionService;
+            this.departmentService = departmentService;
             this.AcceptCommand = new Command(async () => await acceptCommand());
             this.RejectCommand = new Command(async () => await rejectCommand());
             this.ReportCommand = new Command(async () => await reportCommand());
@@ -58,6 +63,7 @@ namespace FAQPhone.Views
             }
         }
         private IDiscussionService discussionService { get; set; }
+        private IDepartmentService departmentService { get; set; }
         DiscussionModel model { get; set; } 
         string _title;
         public string title
@@ -82,6 +88,22 @@ namespace FAQPhone.Views
         public async Task acceptCommand()
         {
             /////
+            if (model.department != null && model.department.tags != null && model.department.tags.Length > 0)
+            {
+                var items = new List<CheckItem>();
+                foreach (var item in model.department.tags)
+                {
+                    items.Add(new CheckItem { Name = item });
+                }
+
+                var multiPage = new SelectMultipleBasePage<CheckItem>(items) { Title = ResourceManagerHelper.GetValue("discussion_tags") };
+                multiPage.Select += (sender, e) =>
+                {
+                    var results = multiPage.GetSelection();
+                };
+                await Navigation.PushAsync(multiPage);
+            }
+            /*
             if (!string.IsNullOrWhiteSpace(this.replay))
             {
                 var l = this.model.items.ToList();
@@ -97,6 +119,12 @@ namespace FAQPhone.Views
                 await this.discussionService.Save(model);
                 await this.Navigation.PopAsync();
             }
+            */
+        }
+
+        private void MultiPage_Select(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         public ICommand RejectCommand { protected set; get; }

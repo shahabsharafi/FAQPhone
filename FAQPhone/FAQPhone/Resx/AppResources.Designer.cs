@@ -125,6 +125,24 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to همه.
+        /// </summary>
+        internal static string command_select_all {
+            get {
+                return ResourceManager.GetString("command_select_all", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to هیچکدام.
+        /// </summary>
+        internal static string command_select_none {
+            get {
+                return ResourceManager.GetString("command_select_none", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ارسال.
         /// </summary>
         internal static string command_send {
@@ -202,6 +220,24 @@ namespace FAQPhone.Resx {
         internal static string discussion_revice {
             get {
                 return ResourceManager.GetString("discussion_revice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to انتخاب نمایه ها.
+        /// </summary>
+        internal static string discussion_select_tags {
+            get {
+                return ResourceManager.GetString("discussion_select_tags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نمایه ها.
+        /// </summary>
+        internal static string discussion_tags {
+            get {
+                return ResourceManager.GetString("discussion_tags", resourceCulture);
             }
         }
         

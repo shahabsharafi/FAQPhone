@@ -132,7 +132,7 @@ namespace FAQPhone.Views
                         await this.RootNavigate(new MainPage("user_faq"));
                         break;
                     case "user_create_faq":
-                        var dl = await this.departmentService.Get("");
+                        var dl = await this.departmentService.GetByParent("");
                         if (dl != null && dl.Count() > 0)
                         {
                             await this.Navigation.PushAsync(new DepartmentPage(dl));
