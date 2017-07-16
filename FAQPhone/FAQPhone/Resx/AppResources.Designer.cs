@@ -206,11 +206,20 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to پاسخ.
+        ///   Looks up a localized string similar to عنوان قابل نمایش.
         /// </summary>
-        internal static string discussion_recive_replay {
+        internal static string discussion_recive_display {
             get {
-                return ResourceManager.GetString("discussion_recive_replay", resourceCulture);
+                return ResourceManager.GetString("discussion_recive_display", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to قیمت.
+        /// </summary>
+        internal static string discussion_recive_price {
+            get {
+                return ResourceManager.GetString("discussion_recive_price", resourceCulture);
             }
         }
         

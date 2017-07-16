@@ -12,7 +12,7 @@
     </ContentPage.Resources>
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}">
-            <ListView ItemsSource="{ Binding List }">
+            <ListView ItemsSource="{ Binding List }" SelectedItem="{ Binding SelectedItem, Mode=TwoWay }" >
                 <ListView.Behaviors>
                     <local:EventToCommandBehavior EventName="ItemSelected" Command="{Binding SelectItemCommand}" Converter="{StaticResource SelectedItemConverter}" />
                 </ListView.Behaviors>

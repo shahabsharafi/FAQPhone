@@ -213,8 +213,8 @@
   <data name="command_send" xml:space="preserve">
     <value>ارسال</value>
   </data>
-  <data name="discussion_recive_replay" xml:space="preserve">
-    <value>پاسخ</value>
+  <data name="discussion_recive_display" xml:space="preserve">
+    <value>عنوان قابل نمایش</value>
   </data>
   <data name="discussion_revice" xml:space="preserve">
     <value>دربافت سوال</value>
@@ -248,5 +248,8 @@
   </data>
   <data name="discussion_tags" xml:space="preserve">
     <value>نمایه ها</value>
+  </data>
+  <data name="discussion_recive_price" xml:space="preserve">
+    <value>قیمت</value>
   </data>
 </root>

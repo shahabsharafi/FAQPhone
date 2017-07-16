@@ -19,10 +19,12 @@ namespace FAQPhone.Models
         public AccountModel from { get; set; }
         public AccountModel to { get; set; }
         public string title { get; set; }
+        public string display { get; set; }
         public int state { get; set; }
         public DepartmentModel department { get; set; }
         public DateTime createDate { get; set; }
         public DateTime expDate { get; set; }
         public DiscussionDetailModel[] items { get; set; }
+        public string[] tags { get; set; }
     }
 }

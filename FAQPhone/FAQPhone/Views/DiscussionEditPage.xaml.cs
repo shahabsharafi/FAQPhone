@@ -1,4 +1,5 @@
 ﻿using FAQPhone.Inferstructure;
+using FAQPhone.Infrastructure;
 using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
 using System;
@@ -19,11 +20,11 @@ namespace FAQPhone.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DiscussionEditPage : ContentPage
     {
-        public DiscussionEditPage(string departmentId)
+        public DiscussionEditPage(DepartmentModel department)
         {
             InitializeComponent();
             var factory = App.Resolve<DiscussionEditViewModelFactory>();
-            BindingContext = factory.Create(Navigation, departmentId);
+            BindingContext = factory.Create(Navigation, department);
         }
     }
 
@@ -34,19 +35,20 @@ namespace FAQPhone.Views
         {
             this.discussionService = discussionService;
         }
-        public DiscussionEditViewModel Create(INavigation navigation, string departmentId)
+        public DiscussionEditViewModel Create(INavigation navigation, DepartmentModel department)
         {
-            return new DiscussionEditViewModel(this.discussionService, navigation, departmentId);
+            return new DiscussionEditViewModel(this.discussionService, navigation, department);
         }
     }
 
     public class DiscussionEditViewModel : BaseViewModel
     {
-        public DiscussionEditViewModel(IDiscussionService discussionService, INavigation navigation, string departmentId) : base(navigation)
+        public DiscussionEditViewModel(IDiscussionService discussionService, INavigation navigation, DepartmentModel department) : base(navigation)
         {
             this.discussionService = discussionService;            
             this.SaveCommand = new Command(async () => await saveCommand());
-            this.departmentId = departmentId;
+            this.department = department;
+            this.price = ResourceManagerHelper.GetValue("discussion_recive_price") + ":" + department.price;
         }
         private IDiscussionService discussionService { get; set; }
         string _title;
@@ -61,7 +63,15 @@ namespace FAQPhone.Views
             get { return _text; }
             set { _text = value; OnPropertyChanged(); }
         }
-        private string departmentId { get; set; }
+
+        string _price;
+        public string price
+        {
+            get { return _price; }
+            set { _price = value; OnPropertyChanged(); }
+        }
+
+        private DepartmentModel department { get; set; }
         public ICommand SaveCommand { protected set; get; }
 
         public async Task saveCommand()
@@ -73,7 +83,7 @@ namespace FAQPhone.Views
                 from = new AccountModel() { username = App.Username },
                 createDate = DateTime.Now,
                 state = 0,
-                department = new DepartmentModel() { _id = this.departmentId },
+                department = new DepartmentModel() { _id = this.department._id },
                 items = new DiscussionDetailModel[]
                 {
                     new DiscussionDetailModel()

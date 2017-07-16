@@ -54,7 +54,6 @@ namespace FAQPhone.Views
             this.AcceptCommand = new Command(async () => await acceptCommand());
             this.RejectCommand = new Command(async () => await rejectCommand());
             this.ReportCommand = new Command(async () => await reportCommand());
-            this.FinishCommand = new Command(async () => await finishCommand());
             this.model = model;
             this.title = this.model.title;
             if (this.model.items.Length > 0)
@@ -88,6 +87,9 @@ namespace FAQPhone.Views
         public async Task acceptCommand()
         {
             /////
+            model.state = 1;
+            model.to = new AccountModel() { username = App.Username };
+            await this.discussionService.Save(model);
             if (model.department != null && model.department.tags != null && model.department.tags.Length > 0)
             {
                 var items = new List<CheckItem>();
@@ -100,8 +102,23 @@ namespace FAQPhone.Views
                 multiPage.Select += (sender, e) =>
                 {
                     var results = multiPage.GetSelection();
+                    if (results != null && results.Count > 0)
+                    {
+                        model.tags = results.Select(o => o.Name).ToArray();
+                    }
+                    else
+                    {
+                        model.tags = new string[] { };                        
+                    }
+                    this.Navigation.PopAsync();
+                    this.Navigation.PopAsync();
+                    this.Navigation.PushAsync(new ChatPage(model));
                 };
                 await Navigation.PushAsync(multiPage);
+            }
+            else
+            {
+                await Navigation.PushAsync(new ChatPage(model));
             }
             /*
             if (!string.IsNullOrWhiteSpace(this.replay))
@@ -145,26 +162,6 @@ namespace FAQPhone.Views
             await this.discussionService.Save(model);
             await this.Navigation.PopAsync();
         }
-
-        public ICommand FinishCommand { protected set; get; }
-
-        public async Task finishCommand()
-        {
-            ///// 
-            if (!string.IsNullOrWhiteSpace(this.replay))
-            {
-                var l = this.model.items.ToList();
-                l.Add(new DiscussionDetailModel
-                {
-                    createDate = DateTime.Now,
-                    owner = new AccountModel() { username = App.Username },
-                    text = this.replay
-                });
-                model.items = l.ToArray();
-                model.state = 2;
-                await this.discussionService.Save(model);
-                await this.Navigation.PopAsync();
-            }
-        }
+        
     }
 }

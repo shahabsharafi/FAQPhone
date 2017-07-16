@@ -3,13 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:infr="clr-namespace:FAQPhone.Inferstructure;assembly=FAQPhone"
              x:Class="FAQPhone.Views.DiscussionRecivePage"
-             Title="{infr:Translate discussion_revice}">
+             Title="{infr:Translate discussion_revice}" StyleId="DiscussionRecivePage">
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}" >
             <Label Text="{Binding title, Mode=TwoWay}" FontSize="Large" FontFamily="Yekan" />
             <Label Text="{Binding text, Mode=TwoWay}" />
-            <Label Text="{infr:Translate discussion_recive_replay}" FontSize="Large" FontFamily="Yekan" />
-            <Editor  x:Name="text" Text="{Binding replay, Mode=TwoWay}" FontSize="Small" BackgroundColor="#efefef" HeightRequest="100" />
+            <Entry x:Name="display" Placeholder="{infr:Translate discussion_recive_display}" Text="{Binding display, Mode=TwoWay}" />
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -19,9 +18,8 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Text="{infr:Translate command_accept}" Command="{Binding AcceptCommand}" StyleClass="Info" Grid.Row="0" Grid.Column="1" />
-                <Button Text="{infr:Translate command_reject}" Command="{Binding RejectCommand}" StyleClass="Info" Grid.Row="0" Grid.Column="0" />
-                <Button Text="{infr:Translate command_finish}" Command="{Binding FinishCommand}" StyleClass="Info" Grid.Row="1" Grid.Column="1" />
+                <Button Text="{infr:Translate command_accept}" Command="{Binding AcceptCommand}" StyleClass="Info" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+                <Button Text="{infr:Translate command_reject}" Command="{Binding RejectCommand}" StyleClass="Info" Grid.Row="1" Grid.Column="1" />
                 <Button Text="{infr:Translate command_report}" Command="{Binding ReportCommand}" StyleClass="Info" Grid.Row="1" Grid.Column="0" />
             </Grid>
             <Label x:Name="messageLabel" />

@@ -52,7 +52,7 @@ namespace FAQPhone.Views
             this.List = new ObservableCollection<DepartmentModel>();
             if (list == null)
             {
-                Task.Run(async () => await loadItems(""));
+                Task.Run(async () => await loadItems(null));
             }
             else
             {
@@ -61,6 +61,12 @@ namespace FAQPhone.Views
         }
         private IDepartmentService departmentService { get; set; }
 
+        object _selectedItem;
+        public object SelectedItem
+        {
+            get { return _selectedItem; }
+            set { _selectedItem = value; OnPropertyChanged(); }
+        }
 
         ObservableCollection<DepartmentModel> _list;
         public ObservableCollection<DepartmentModel> List
@@ -69,20 +75,20 @@ namespace FAQPhone.Views
             set { _list = value; OnPropertyChanged(); }
         }
 
-        public async Task loadItems(string parentId)
+        public async Task loadItems(DepartmentModel model)
         {
-            var list = await this.departmentService.GetByParent(parentId);
-            if (parentId == "")
+            var list = await this.departmentService.GetByParent(model._id);
+            if (model == null)
             {
                 this.setList(list);
             }
             else if (list == null || list.Count == 0)
             {
-                await this.Navigation.PushAsync(new DiscussionEditPage(parentId));
+                await this.Navigation.PushAsync(new DiscussionEditPage(model));                
             }
             else
             {
-                await this.Navigation.PushAsync(new DepartmentPage(list));
+                await this.Navigation.PushAsync(new DepartmentPage(list));                
             }
         }
 
@@ -99,7 +105,10 @@ namespace FAQPhone.Views
 
         public async Task selectItemCommand(DepartmentModel model)
         {
-            await loadItems(model._id);
+            if (model == null)
+                return;
+            await loadItems(model);
+            this.SelectedItem = null;
         }
     }
 }

@@ -31,7 +31,6 @@ namespace FAQPhone.Views
 
     public class DiscussionPageViewModelFactory
     {
-        List<DiscussionModel> list;
         public DiscussionPageViewModelFactory()
         {
             
@@ -50,6 +49,7 @@ namespace FAQPhone.Views
             this.Title = ResourceManagerHelper.GetValue(state);
             this.SelectItemCommand = new Command<DiscussionModel>(async (model) => await selectItemCommand(model));
             this.List = new ObservableCollection<DiscussionModel>();
+            this.setList(list);
         }
         public string Title { get; set; }
 
@@ -57,8 +57,19 @@ namespace FAQPhone.Views
 
         public async Task selectItemCommand(DiscussionModel model)
         {
+            if (model == null)
+                return;            
             await this.Navigation.PushAsync(new ChatPage(model));
+            this.SelectedItem = null;
         }
+
+        object _selectedItem;
+        public object SelectedItem
+        {
+            get { return _selectedItem; }
+            set { _selectedItem = value; OnPropertyChanged(); }
+        }
+
         ObservableCollection<DiscussionModel> _list;
         public ObservableCollection<DiscussionModel> List
         {

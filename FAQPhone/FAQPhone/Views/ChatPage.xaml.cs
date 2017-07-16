@@ -48,6 +48,8 @@ namespace FAQPhone.Views
         {
             this.discussionService = discussionService;
             this.SendCommand = new Command(async () => await sendCommand());
+            this.FinishCommand = new Command(async () => await finishCommand());
+            this.ReportCommand = new Command(async () => await reportCommand());
             this.model = model;
             this.List = new ObservableCollection<DiscussionDetailModel>();
             this.setList(this.model.items.ToList());
@@ -114,7 +116,7 @@ namespace FAQPhone.Views
             }
             model.state = 2;
             await this.discussionService.Save(model);
-            await this.Navigation.PopAsync();            
+            await this.RootNavigate(new MainPage());
         }
 
         public ICommand ReportCommand { protected set; get; }
@@ -125,7 +127,7 @@ namespace FAQPhone.Views
             model.state = 9;
             model.to = new AccountModel() { username = App.Username };
             await this.discussionService.Save(model);
-            await this.Navigation.PopAsync();
+            await this.RootNavigate(new MainPage());
         }
     }
 }

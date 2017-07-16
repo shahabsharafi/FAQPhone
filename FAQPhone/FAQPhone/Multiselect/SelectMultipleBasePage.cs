@@ -80,7 +80,7 @@ namespace Multiselect
             };
             btn.Clicked += (sender, e) => {
                 Select?.Invoke(this, new EventArgs());
-                Navigation.PopAsync();
+                //Navigation.PopAsync();
             }; 
             StackLayout stack = new StackLayout()
             {
