@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:infr="clr-namespace:FAQPhone.Inferstructure;assembly=FAQPhone"
+             xmlns:local="clr-namespace:CustomRenderer;assembly=FAQPhone"
+             x:Class="FAQPhone.Views.TagPage"
+             Title="{infr:Translate discussion_tags}">
+    <ScrollView>
+        <StackLayout>
+            <StackLayout>
+                <Editor  Text="{Binding tag, Mode=TwoWay}" FontSize="Small" BackgroundColor="#efefef" HeightRequest="80" />
+                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                    <Button Text="{infr:Translate command_add}" Command="{Binding AddCommand}" StyleClass="Info" />
+                    <Button Text="{infr:Translate command_save}" Command="{Binding SaveCommand}" StyleClass="Info" />
+                </StackLayout>
+            </StackLayout>
+            <ListView ItemsSource="{ Binding List }">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding text}" TextColor="#7f8c8d" FontSize="Large" FontFamily="Yekan" HorizontalTextAlignment="End" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

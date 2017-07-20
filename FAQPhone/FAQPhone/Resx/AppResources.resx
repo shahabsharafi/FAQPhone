@@ -252,4 +252,7 @@
   <data name="discussion_recive_price" xml:space="preserve">
     <value>قیمت</value>
   </data>
+  <data name="command_add" xml:space="preserve">
+    <value>افرودن</value>
+  </data>
 </root>

@@ -90,6 +90,8 @@ namespace FAQPhone.Views
             model.state = 1;
             model.to = new AccountModel() { username = App.Username };
             await this.discussionService.Save(model);
+            await Navigation.PushAsync(new TagPage(model));
+            /*
             if (model.department != null && model.department.tags != null && model.department.tags.Length > 0)
             {
                 var items = new List<CheckItem>();
@@ -119,22 +121,6 @@ namespace FAQPhone.Views
             else
             {
                 await Navigation.PushAsync(new ChatPage(model));
-            }
-            /*
-            if (!string.IsNullOrWhiteSpace(this.replay))
-            {
-                var l = this.model.items.ToList();
-                l.Add(new DiscussionDetailModel
-                {
-                    createDate = DateTime.Now,
-                    owner = new AccountModel() { username = App.Username },
-                    text = this.replay
-                });
-                model.items = l.ToArray();
-                model.state = 1;
-                model.to = new AccountModel() { username = App.Username };
-                await this.discussionService.Save(model);
-                await this.Navigation.PopAsync();
             }
             */
         }

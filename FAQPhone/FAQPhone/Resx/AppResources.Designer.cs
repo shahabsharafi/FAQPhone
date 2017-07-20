@@ -89,6 +89,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to افرودن.
+        /// </summary>
+        internal static string command_add {
+            get {
+                return ResourceManager.GetString("command_add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to پاسخ و اتمام گفتگو.
         /// </summary>
         internal static string command_finish {
