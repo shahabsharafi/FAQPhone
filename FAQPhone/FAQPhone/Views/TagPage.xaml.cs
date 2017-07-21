@@ -86,7 +86,7 @@ namespace FAQPhone.Views
             {
                 this.model.tags = this.List.Select(o => o.text).ToArray();
                 await this.discussionService.Save(model);
-                await this.RootNavigate(new MainPage());
+                await this.RootNavigate(new ChatPage(Constants.OPERATOR_INPROGRESS_FAQ, model));
             }
         }
     }

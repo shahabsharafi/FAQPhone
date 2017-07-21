@@ -76,21 +76,37 @@ namespace FAQPhone.Views
             get { return _text; }
             set { _text = value; OnPropertyChanged(); }
         }
-        string _replay;
-        public string replay
+        string _display;
+        public string display
         {
-            get { return _replay; }
-            set { _replay = value; OnPropertyChanged(); }
+            get { return _display; }
+            set {
+                _display = value;
+                OnPropertyChanged();
+                CanAccepting = !string.IsNullOrWhiteSpace(_display);
+            }
         }
+
+        bool _CanAccepting;
+        public bool CanAccepting
+        {
+            get { return _CanAccepting; }
+            set { _CanAccepting = value; OnPropertyChanged(); }
+        }
+
         public ICommand AcceptCommand { protected set; get; }
 
         public async Task acceptCommand()
         {
             /////
-            model.state = 1;
-            model.to = new AccountModel() { username = App.Username };
-            await this.discussionService.Save(model);
-            await Navigation.PushAsync(new TagPage(model));
+            if (!string.IsNullOrWhiteSpace(this.display))
+            {
+                model.state = 1;
+                model.display = this.display;
+                model.to = new AccountModel() { username = App.Username };
+                await this.discussionService.Save(model);
+                await Navigation.PushAsync(new TagPage(model));
+            }
             /*
             if (model.department != null && model.department.tags != null && model.department.tags.Length > 0)
             {

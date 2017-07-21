@@ -18,9 +18,9 @@ namespace FAQPhone.Views
 {
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DiscussionEditPage : ContentPage
+    public partial class DiscussionNewPage : ContentPage
     {
-        public DiscussionEditPage(DepartmentModel department)
+        public DiscussionNewPage(DepartmentModel department)
         {
             InitializeComponent();
             var factory = App.Resolve<DiscussionEditViewModelFactory>();
@@ -30,38 +30,41 @@ namespace FAQPhone.Views
 
     public class DiscussionEditViewModelFactory
     {
-        IDiscussionService discussionService;
-        public DiscussionEditViewModelFactory(IDiscussionService discussionService)
+        public DiscussionEditViewModelFactory()
         {
-            this.discussionService = discussionService;
+            
         }
         public DiscussionEditViewModel Create(INavigation navigation, DepartmentModel department)
         {
-            return new DiscussionEditViewModel(this.discussionService, navigation, department);
+            return new DiscussionEditViewModel(navigation, department);
         }
     }
 
     public class DiscussionEditViewModel : BaseViewModel
     {
-        public DiscussionEditViewModel(IDiscussionService discussionService, INavigation navigation, DepartmentModel department) : base(navigation)
+        public DiscussionEditViewModel(INavigation navigation, DepartmentModel department) : base(navigation)
         {
-            this.discussionService = discussionService;            
-            this.SaveCommand = new Command(async () => await saveCommand());
+            this.CanNext = false;
+            this.NextCommand = new Command(async () => await nextCommand());
             this.department = department;
             this.price = ResourceManagerHelper.GetValue("discussion_recive_price") + ":" + department.price;
         }
-        private IDiscussionService discussionService { get; set; }
         string _title;
         public string title
         {
             get { return _title; }
-            set { _title = value; OnPropertyChanged(); }
+            set {
+                _title = value;
+                OnPropertyChanged();
+                CanNext = !string.IsNullOrWhiteSpace(_title);
+            }
         }
-        string _text;
-        public string text
+
+        bool _CanNext;
+        public bool CanNext
         {
-            get { return _text; }
-            set { _text = value; OnPropertyChanged(); }
+            get { return _CanNext; }
+            set { _CanNext = value; OnPropertyChanged(); }
         }
 
         string _price;
@@ -72,9 +75,9 @@ namespace FAQPhone.Views
         }
 
         private DepartmentModel department { get; set; }
-        public ICommand SaveCommand { protected set; get; }
+        public ICommand NextCommand { protected set; get; }
 
-        public async Task saveCommand()
+        public async Task nextCommand()
         {
             /////
             DiscussionModel model = new DiscussionModel()
@@ -84,18 +87,9 @@ namespace FAQPhone.Views
                 createDate = DateTime.Now,
                 state = 0,
                 department = new DepartmentModel() { _id = this.department._id },
-                items = new DiscussionDetailModel[]
-                {
-                    new DiscussionDetailModel()
-                    {
-                        createDate = DateTime.Now,
-                        owner = new AccountModel() { username = App.Username },
-                        text = this.text
-                    }                    
-                }
+                items = new DiscussionDetailModel[] { }
             };
-            await this.discussionService.Save(model);
-            await this.RootNavigate(new MainPage());
+            await this.Navigation.PushAsync(new ChatPage(Constants.USER_INPROGRESS_FAQ, model));
         }
     }
 }

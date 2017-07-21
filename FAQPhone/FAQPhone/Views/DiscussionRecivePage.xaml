@@ -11,14 +11,14 @@
             <Entry x:Name="display" Placeholder="{infr:Translate discussion_recive_display}" Text="{Binding display, Mode=TwoWay}" />
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Text="{infr:Translate command_accept}" Command="{Binding AcceptCommand}" StyleClass="Info" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+                <Button Text="{infr:Translate command_accept}" Command="{Binding AcceptCommand}" StyleClass="Info" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="{ Binding CanAccepting }" />
                 <Button Text="{infr:Translate command_reject}" Command="{Binding RejectCommand}" StyleClass="Info" Grid.Row="1" Grid.Column="1" />
                 <Button Text="{infr:Translate command_report}" Command="{Binding ReportCommand}" StyleClass="Info" Grid.Row="1" Grid.Column="0" />
             </Grid>

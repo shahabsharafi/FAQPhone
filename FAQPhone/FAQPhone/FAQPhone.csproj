@@ -75,14 +75,17 @@
     <Compile Include="Services\Interfaces\IDiscussionService.cs" />
     <Compile Include="Services\Interfaces\IRestService.cs" />
     <Compile Include="Services\RestService .cs" />
+    <Compile Include="Views\CancelationPage.xaml.cs">
+      <DependentUpon>CancelationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ChatPage.xaml.cs">
       <DependentUpon>ChatPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DepartmentPage.xaml.cs">
       <DependentUpon>DepartmentPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DiscussionEditPage.xaml.cs">
-      <DependentUpon>DiscussionEditPage.xaml</DependentUpon>
+    <Compile Include="Views\DiscussionNewPage.xaml.cs">
+      <DependentUpon>DiscussionNewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DiscussionPage.xaml.cs">
       <DependentUpon>DiscussionPage.xaml</DependentUpon>
@@ -232,7 +235,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\DiscussionEditPage.xaml">
+    <EmbeddedResource Include="Views\DiscussionNewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -251,6 +254,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\TagPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CancelationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

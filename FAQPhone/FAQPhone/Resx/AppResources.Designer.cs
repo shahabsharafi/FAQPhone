@@ -107,6 +107,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ادامه.
+        /// </summary>
+        internal static string command_next {
+            get {
+                return ResourceManager.GetString("command_next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to انصراف.
         /// </summary>
         internal static string command_reject {
@@ -211,6 +220,15 @@ namespace FAQPhone.Resx {
         internal static string discussion_edit_title {
             get {
                 return ResourceManager.GetString("discussion_edit_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to در این قسمت یک عنوان مناسب برای سوال خود انتخاب کنید و برای رفتن به قسمت ارسال سوال دکمه ادامه را فشار دهید.
+        /// </summary>
+        internal static string discussion_edit_title_help {
+            get {
+                return ResourceManager.GetString("discussion_edit_title_help", resourceCulture);
             }
         }
         

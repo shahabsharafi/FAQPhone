@@ -20,11 +20,11 @@ namespace FAQPhone.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ChatPage : ContentPage
     {
-        public ChatPage(DiscussionModel model)
+        public ChatPage(string state, DiscussionModel model)
         {
             InitializeComponent();
             var factory = App.Resolve<ChatViewModelFactory>();
-            BindingContext = factory.Create(Navigation, model);
+            BindingContext = factory.Create(Navigation, state, model);
         }
     }
 
@@ -35,16 +35,16 @@ namespace FAQPhone.Views
         {
             this.discussionService = discussionService;
         }
-        public ChatViewModel Create(INavigation navigation, DiscussionModel model)
+        public ChatViewModel Create(INavigation navigation, string state, DiscussionModel model)
         {
-            return new ChatViewModel(this.discussionService, navigation, model);
+            return new ChatViewModel(this.discussionService, navigation, state, model);
         }
     }
 
     public class ChatViewModel : BaseViewModel
     {
 
-        public ChatViewModel(IDiscussionService discussionService, INavigation navigation, DiscussionModel model) : base(navigation)
+        public ChatViewModel(IDiscussionService discussionService, INavigation navigation, string state, DiscussionModel model) : base(navigation)
         {
             this.discussionService = discussionService;
             this.SendCommand = new Command(async () => await sendCommand());
@@ -52,15 +52,53 @@ namespace FAQPhone.Views
             this.ReportCommand = new Command(async () => await reportCommand());
             this.model = model;
             this.List = new ObservableCollection<DiscussionDetailModel>();
+            bool isOperator = (state == Constants.OPERATOR_ARCHIVED_FAQ || state == Constants.OPERATOR_INPROGRESS_FAQ);
+            this.Editable = (state == Constants.OPERATOR_INPROGRESS_FAQ || state == Constants.USER_INPROGRESS_FAQ);
+            this.HasFinishing = isOperator;
+            this.HasReporting = isOperator;
             this.setList(this.model.items.ToList());
         }
         private IDiscussionService discussionService { get; set; }
         private DiscussionModel model { get; set; }
+
+        bool _HasReporting;
+        public bool HasReporting
+        {
+            get { return _HasReporting; }
+            set { _HasReporting = value; OnPropertyChanged(); }
+        }
+
+        bool _HasFinishing;
+        public bool HasFinishing
+        {
+            get { return _HasFinishing; }
+            set { _HasFinishing = value; OnPropertyChanged(); }
+        }
+
+        bool _CanSending;
+        public bool CanSending
+        {
+            get { return _CanSending; }
+            set { _CanSending = value; OnPropertyChanged(); }
+        }
+
+        bool _Editable;
+        public bool Editable
+        {
+            get { return _Editable; }
+            set { _Editable = value; OnPropertyChanged(); }
+        }
+
         string _replay;
         public string replay
         {
             get { return _replay; }
-            set { _replay = value; OnPropertyChanged(); }
+            set
+            {
+                _replay = value;
+                OnPropertyChanged();
+                CanSending = !string.IsNullOrWhiteSpace(_replay);
+            }
         }
 
         ObservableCollection<DiscussionDetailModel> _list;

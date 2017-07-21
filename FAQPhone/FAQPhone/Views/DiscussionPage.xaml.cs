@@ -46,12 +46,14 @@ namespace FAQPhone.Views
 
         public DiscussionPageViewModel(INavigation navigation, string state, List<DiscussionModel> list) : base(navigation)
         {
+            this.State = state;
             this.Title = ResourceManagerHelper.GetValue(state);
             this.SelectItemCommand = new Command<DiscussionModel>(async (model) => await selectItemCommand(model));
             this.List = new ObservableCollection<DiscussionModel>();
             this.setList(list);
         }
         public string Title { get; set; }
+        string State { get; set; }
 
         public ICommand SelectItemCommand { protected set; get; }
 
@@ -59,7 +61,7 @@ namespace FAQPhone.Views
         {
             if (model == null)
                 return;            
-            await this.Navigation.PushAsync(new ChatPage(model));
+            await this.Navigation.PushAsync(new ChatPage(this.State, model));
             this.SelectedItem = null;
         }
 

@@ -255,4 +255,10 @@
   <data name="command_add" xml:space="preserve">
     <value>افرودن</value>
   </data>
+  <data name="command_next" xml:space="preserve">
+    <value>ادامه</value>
+  </data>
+  <data name="discussion_edit_title_help" xml:space="preserve">
+    <value>در این قسمت یک عنوان مناسب برای سوال خود انتخاب کنید و برای رفتن به قسمت ارسال سوال دکمه ادامه را فشار دهید</value>
+  </data>
 </root>

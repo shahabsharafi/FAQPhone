@@ -84,7 +84,7 @@ namespace FAQPhone.Views
             }
             else if (list == null || list.Count == 0)
             {
-                await this.Navigation.PushAsync(new DiscussionEditPage(model));                
+                await this.Navigation.PushAsync(new DiscussionNewPage(model));                
             }
             else
             {

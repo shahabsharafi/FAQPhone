@@ -2,15 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:infr="clr-namespace:FAQPhone.Inferstructure;assembly=FAQPhone"
-             x:Class="FAQPhone.Views.DiscussionEditPage"
+             x:Class="FAQPhone.Views.DiscussionNewPage"
              Title="{infr:Translate discussion_edit}">
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}" >
             <Label Text="{Binding price, Mode=TwoWay}" />
+            <Label Text="{infr:Translate discussion_edit_title_help}" />
             <Entry x:Name="title" Placeholder="{infr:Translate discussion_edit_title}" Text="{Binding title, Mode=TwoWay}" />
-            <Label Text="{infr:Translate discussion_edit_text}" FontSize="Large" FontFamily="Yekan" />
-            <Editor  x:Name="text" Text="{Binding text, Mode=TwoWay}" FontSize="Small" BackgroundColor="#efefef" HeightRequest="100" />
-            <Button Text="{infr:Translate command_save}" Command="{Binding SaveCommand}" StyleClass="Info" />
+            <Button Text="{infr:Translate command_next}" Command="{Binding NextCommand}" StyleClass="Info" IsVisible="{ Binding CanNext }" />
             <Label x:Name="messageLabel" />
         </StackLayout>
     </ScrollView>

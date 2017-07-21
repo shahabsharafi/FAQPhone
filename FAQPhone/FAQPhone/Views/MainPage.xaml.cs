@@ -54,35 +54,35 @@ namespace FAQPhone.Views
         {
             this.List = new ObservableCollection<MenuItemModel>();
             List<MenuItemModel> items = new List<MenuItemModel>();
-            if (menu == "operator_faq" || (menu == null && App.Access.Contains("access_operator")))
+            if (menu == Constants.OPERATOR_FAQ || (menu == null && App.Access.Contains("access_operator")))
             {
                 items.AddRange(
                     new MenuItemModel[] {
-                        new MenuItemModel() { CommandName = "operator_receive_faq" },
-                        new MenuItemModel() { CommandName = "operator_inprogress_faq" },
-                        new MenuItemModel() { CommandName = "operator_archived_faq" }
+                        new MenuItemModel() { CommandName = Constants.OPERATOR_RECEIVE_FAQ },
+                        new MenuItemModel() { CommandName = Constants.OPERATOR_INPROGRESS_FAQ },
+                        new MenuItemModel() { CommandName = Constants.OPERATOR_ARCHIVED_FAQ }
                     }
                 );
                 if (App.Access.Contains("access_user"))
                 {
-                    items.Add(new MenuItemModel() { CommandName = "user_faq" });
+                    items.Add(new MenuItemModel() { CommandName = Constants.USER_FAQ });
                 }
             }
-            else if (menu == "user_faq" || (menu == null && App.Access.Contains("access_user")))
+            else if (menu == Constants.USER_FAQ || (menu == null && App.Access.Contains("access_user")))
             {
                 items.AddRange(
                     new MenuItemModel[] {
-                        new MenuItemModel() { CommandName = "user_create_faq" },
-                        new MenuItemModel() { CommandName = "user_inprogress_faq" },
-                        new MenuItemModel() { CommandName = "user_archived_faq" }
+                        new MenuItemModel() { CommandName = Constants.USER_CREATE_FAQ },
+                        new MenuItemModel() { CommandName = Constants.USER_INPROGRESS_FAQ },
+                        new MenuItemModel() { CommandName = Constants.USER_ARCHIVED_FAQ }
                     }
                 );
                 if (App.Access.Contains("access_operator"))
                 {
-                    items.Add(new MenuItemModel() { CommandName = "operator_faq" });
+                    items.Add(new MenuItemModel() { CommandName = Constants.OPERATOR_FAQ });
                 }
             }
-            items.Add(new MenuItemModel() { CommandName = "signout" });
+            items.Add(new MenuItemModel() { CommandName = Constants.SIGNOUT });
             this.setList(items);
             this.accountService = accountService;
             this.departmentService = departmentService;
@@ -128,55 +128,55 @@ namespace FAQPhone.Views
                 List<DiscussionModel> l;
                 switch (model.CommandName)
                 {
-                    case "user_faq":
-                        await this.RootNavigate(new MainPage("user_faq"));
+                    case Constants.USER_FAQ:
+                        await this.RootNavigate(new MainPage(model.CommandName));
                         break;
-                    case "user_create_faq":
+                    case Constants.USER_CREATE_FAQ:
                         var dl = await this.departmentService.GetByParent("");
                         if (dl != null && dl.Count() > 0)
                         {
                             await this.Navigation.PushAsync(new DepartmentPage(dl));
                         }
                         break;
-                    case "user_inprogress_faq":
+                    case Constants.USER_INPROGRESS_FAQ:
                         l = await this.discussionService.GetList(true, new int[] { 0, 1 });
                         if (l != null && l.Count() > 0)
                         {
-                            await this.Navigation.PushAsync(new DiscussionPage("user_inprogress_faq", l));
+                            await this.Navigation.PushAsync(new DiscussionPage(model.CommandName, l));
                         }
                         break;
-                    case "user_archived_faq":
+                    case Constants.USER_ARCHIVED_FAQ:
                         l = await this.discussionService.GetList(true, new int[] { 2 });
                         if (l != null && l.Count() > 0)
                         {
-                            await this.Navigation.PushAsync(new DiscussionPage("user_archived_faq", l));
+                            await this.Navigation.PushAsync(new DiscussionPage(model.CommandName, l));
                         }
                         break;
-                    case "operator_faq":
-                        await this.RootNavigate(new MainPage("operator_faq"));
+                    case Constants.OPERATOR_FAQ:
+                        await this.RootNavigate(new MainPage(model.CommandName));
                         break;
-                    case "operator_receive_faq":
+                    case Constants.OPERATOR_RECEIVE_FAQ:
                         var d = await this.discussionService.Recive();
                         if (d != null)
                         {
                             await this.Navigation.PushAsync(new DiscussionRecivePage(d));
                         }
                         break;
-                    case "operator_inprogress_faq":
+                    case Constants.OPERATOR_INPROGRESS_FAQ:
                         l = await this.discussionService.GetList(false, new int[] { 0, 1 });
                         if (l != null && l.Count() > 0)
                         {
-                            await this.Navigation.PushAsync(new DiscussionPage("operator_inprogress_faq", l));
+                            await this.Navigation.PushAsync(new DiscussionPage(model.CommandName, l));
                         }
                         break;
-                    case "operator_archived_faq":
+                    case Constants.OPERATOR_ARCHIVED_FAQ:
                         l = await this.discussionService.GetList(true, new int[] { 2 });
                         if (l != null && l.Count() > 0)
                         {
-                            await this.Navigation.PushAsync(new DiscussionPage("operator_archived_faq", l));
+                            await this.Navigation.PushAsync(new DiscussionPage(model.CommandName, l));
                         }
                         break;
-                    case "signout":
+                    case Constants.SIGNOUT:
                         this.accountService.SignOut();
                         Settings.Username = string.Empty;
                         Settings.Password = string.Empty;
