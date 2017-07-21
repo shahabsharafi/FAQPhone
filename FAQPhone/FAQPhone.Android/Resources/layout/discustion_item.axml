@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent" >
+    <TextView
+        android:id="@+id/discussion_createdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:text="createdate" />
+    <TextView
+        android:id="@+id/discussion_department"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="department" />
+  </RelativeLayout>
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent" >
+    <TextView
+        android:id="@+id/discussion_lastanswer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:text="lastanswer" />
+    <TextView
+        android:id="@+id/discussion_operator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="operator" />
+  </RelativeLayout>
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent" >
+    <TextView
+        android:id="@+id/discussion_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="title" />
+  </RelativeLayout>
+</LinearLayout>

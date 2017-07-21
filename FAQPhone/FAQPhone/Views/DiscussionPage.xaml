@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:infr="clr-namespace:FAQPhone.Inferstructure;assembly=FAQPhone"
              xmlns:local="clr-namespace:EventToCommandBehavior"
+             xmlns:render="clr-namespace:CustomRenderer;assembly=FAQPhone"
              x:Class="FAQPhone.Views.DiscussionPage"
              Title="{Binding Title}">
     <ContentPage.Resources>
@@ -18,11 +19,7 @@
                 </ListView.Behaviors>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
-                            <StackLayout>
-                                <Label Text="{Binding title}"  TextColor="#4e5758" FontSize="Large" FontFamily="Yekan" HorizontalTextAlignment="End" />
-                            </StackLayout>
-                        </ViewCell>
+                        <render:DiscussionViewCell Title="{Binding title}" Department="{Binding Department}"  CreateDate="{Binding CreateDate}" LastAnswer="lastanswer"  Operator="{Binding Operator}" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

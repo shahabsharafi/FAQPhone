@@ -124,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomRenderers\CustomLabelRenderer.cs" />
+    <Compile Include="CustomRenderers\DiscussionRenderer.cs" />
     <Compile Include="CustomRenderers\MessageRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -143,6 +144,7 @@
     <AndroidResource Include="Resources\layout\file_picker_list_item.axml" />
     <AndroidResource Include="Resources\layout\Main.axml" />
     <AndroidResource Include="Resources\layout-large\main.axml" />
+    <AndroidResource Include="Resources\layout\discustion_item.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\icon.png" />

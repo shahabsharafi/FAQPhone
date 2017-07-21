@@ -38,13 +38,14 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomRenderer\DiscussionViewCell.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Infrastructure\BaseViewModel.cs" />
     <Compile Include="Infrastructure\BehaviorBase.cs" />
     <Compile Include="Infrastructure\EventToCommandBehavior.cs" />
     <Compile Include="Infrastructure\FlowType.cs" />
     <Compile Include="Infrastructure\Constants.cs" />
-    <Compile Include="CustomRenderer\MessageCell.cs" />
+    <Compile Include="CustomRenderer\MessageViewCell.cs" />
     <Compile Include="Infrastructure\ResourceManagerHelper.cs" />
     <Compile Include="Infrastructure\SelectedItemEventArgsToSelectedItemConverter.cs" />
     <Compile Include="Infrastructure\TranslateExtension.cs" />

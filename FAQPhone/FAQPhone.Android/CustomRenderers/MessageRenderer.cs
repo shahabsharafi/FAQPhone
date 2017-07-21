@@ -19,6 +19,30 @@ namespace FAQPhone.Droid.CustomRenderers
 {
     public class MessageRenderer : ViewCellRenderer
     {
+        internal class NativeAndroidCell : LinearLayout, INativeElementView
+        {
+            public TextView MessageTextView { get; set; }
+
+            public MessageViewCell MessageViewCell { get; private set; }
+            public Element Element => MessageViewCell;
+
+            public NativeAndroidCell(Context context, MessageViewCell cell) : base(context)
+            {
+                MessageViewCell = cell;
+
+                bool isMine = cell.Owner == App.Username;
+                var view = (context as Activity).LayoutInflater.Inflate(isMine ? Resource.Layout.message_item_owner : Resource.Layout.message_item_opponent, null);
+                MessageTextView = view.FindViewById<TextView>(Resource.Id.message);
+
+                AddView(view);
+            }
+
+            public void UpdateCell(MessageViewCell cell)
+            {
+                MessageTextView.Text = cell.Body;
+            }
+        }
+
         NativeAndroidCell cell;
 
         protected override Android.Views.View GetCellCore(Cell item, Android.Views.View convertView, ViewGroup parent, Context context)
@@ -49,53 +73,7 @@ namespace FAQPhone.Droid.CustomRenderers
                 cell.MessageTextView.Text = nativeCell.Body;
             }
         }
-        /*
-        protected override View GetCellCore(Cell item, View convertView, ViewGroup parent, Context context)
-        {
-            var inflatorservice = (LayoutInflater)Forms.Context.GetSystemService(Android.Content.Context.LayoutInflaterService);
-            var textMsgVm = item.BindingContext as DiscussionDetailModel;
-            if (textMsgVm != null)
-            {
-                bool isMine = textMsgVm.owner.username == "user";// App.Bag.username;
-                var template = (LinearLayout)inflatorservice.Inflate(isMine ? Resource.Layout.message_item_owner : Resource.Layout.message_item_opponent, null, false);
-                //template.FindViewById<TextView>(Resource.Id.timestamp).Text = textMsgVm.Timestamp.ToString("HH:mm");
-                template.FindViewById<TextView>(Resource.Id.nick).Text = isMine ? "Me:" : textMsgVm.owner.username + ":";
-                template.FindViewById<TextView>(Resource.Id.message).Text = textMsgVm.text;
-                //return template;
-            }
-
-            return base.GetCellCore(item, convertView, parent, context);
-        }
-
-
-        protected override void OnCellPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            base.OnCellPropertyChanged(sender, e);
-        }
-        */
     }
 
-    internal class NativeAndroidCell : LinearLayout, INativeElementView
-    {
-        public TextView MessageTextView { get; set; }
-
-        public MessageViewCell MessageViewCell { get; private set; }
-        public Element Element => MessageViewCell;
-
-        public NativeAndroidCell(Context context, MessageViewCell cell) : base(context)
-        {
-            MessageViewCell = cell;
-
-            bool isMine = cell.Owner == App.Username;
-            var view = (context as Activity).LayoutInflater.Inflate(isMine ? Resource.Layout.message_item_owner : Resource.Layout.message_item_opponent, null);
-            MessageTextView = view.FindViewById<TextView>(Resource.Id.message);
-
-            AddView(view);
-        }
-
-        public void UpdateCell(MessageViewCell cell)
-        {
-            MessageTextView.Text = cell.Body;
-        }
-    }
+    
 }

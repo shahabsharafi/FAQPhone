@@ -26,5 +26,26 @@ namespace FAQPhone.Models
         public DateTime expDate { get; set; }
         public DiscussionDetailModel[] items { get; set; }
         public string[] tags { get; set; }
+        public string CreateDate
+        {
+            get
+            {
+                return this.createDate.ToString("HH:mm");
+            }
+        }
+        public string Operator
+        {
+            get
+            {
+                return this.to?.profile?.firstName + " " + this.to?.profile?.lastName;
+            }
+        }
+        public string Department
+        {
+            get
+            {
+                return this.department.caption;
+            }
+        }
     }
 }
