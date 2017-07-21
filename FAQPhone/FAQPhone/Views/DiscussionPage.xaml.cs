@@ -61,7 +61,7 @@ namespace FAQPhone.Views
         {
             if (model == null)
                 return;            
-            await this.Navigation.PushAsync(new ChatPage(this.State, model));
+            await this.Navigation.PushAsync(new ChatPage(this.State, model, 0));
             this.SelectedItem = null;
         }
 

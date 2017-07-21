@@ -269,6 +269,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to نمایه جدید.
+        /// </summary>
+        internal static string discussion_tag_new {
+            get {
+                return ResourceManager.GetString("discussion_tag_new", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to نمایه ها.
         /// </summary>
         internal static string discussion_tags {

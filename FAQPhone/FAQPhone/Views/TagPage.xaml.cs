@@ -51,6 +51,8 @@ namespace FAQPhone.Views
             this.SaveCommand = new Command(async () => await saveCommand());
             this.model = model;
             this.List = new ObservableCollection<TagItemModel>();
+            this.CanSaving = false;
+            this.CanAdding = false;
         }
         private IDiscussionService discussionService { get; set; }
         private DiscussionModel model { get; set; }
@@ -58,7 +60,12 @@ namespace FAQPhone.Views
         public string tag
         {
             get { return _tag; }
-            set { _tag = value; OnPropertyChanged(); }
+            set
+            {
+                _tag = value;
+                OnPropertyChanged();
+                CanAdding = !string.IsNullOrWhiteSpace(_tag);
+            }
         }
 
         ObservableCollection<TagItemModel> _list;
@@ -68,14 +75,36 @@ namespace FAQPhone.Views
             set { _list = value; OnPropertyChanged(); }
         }
 
+        bool _CanAdding;
+        public bool CanAdding
+        {
+            get { return _CanAdding; }
+            set { _CanAdding = value; OnPropertyChanged(); }
+        }
+
+        bool _CanSaving;
+        public bool CanSaving
+        {
+            get { return _CanSaving; }
+            set { _CanSaving = value; OnPropertyChanged(); }
+        }
+
         public ICommand AddCommand { protected set; get; }
 
         public void addCommand()
         {
-            this.List.Add(new TagItemModel()
+            if (!string.IsNullOrWhiteSpace(this.tag))
             {
-                text = this.tag
-            });
+                this.List.Add(new TagItemModel()
+                {
+                    text = this.tag
+                });
+                this.tag = string.Empty;
+                if (this.List.Count > 2)
+                {
+                    this.CanSaving = true;
+                }
+            }
         }
 
         public ICommand SaveCommand { protected set; get; }
@@ -86,7 +115,7 @@ namespace FAQPhone.Views
             {
                 this.model.tags = this.List.Select(o => o.text).ToArray();
                 await this.discussionService.Save(model);
-                await this.RootNavigate(new ChatPage(Constants.OPERATOR_INPROGRESS_FAQ, model));
+                await this.Navigation.PushAsync(new ChatPage(Constants.OPERATOR_INPROGRESS_FAQ, model, 2));
             }
         }
     }

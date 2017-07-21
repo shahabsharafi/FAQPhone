@@ -21,11 +21,11 @@ namespace FAQPhone.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DepartmentPage : ContentPage
     {
-        public DepartmentPage(List<DepartmentModel> list = null)
+        public DepartmentPage(List<DepartmentModel> list = null, int pushCount = 1)
         {
             InitializeComponent();
             var factory = App.Resolve<DepartmentPageViewModelFactory>();
-            BindingContext = factory.Create(Navigation, list);
+            BindingContext = factory.Create(Navigation, list, pushCount);
         }
     }
 
@@ -36,17 +36,18 @@ namespace FAQPhone.Views
         {
             this.departmentService = departmentService;
         }
-        public DepartmentPageViewModel Create(INavigation navigation, List<DepartmentModel> list)
+        public DepartmentPageViewModel Create(INavigation navigation, List<DepartmentModel> list, int pushCount)
         {
-            return new DepartmentPageViewModel(this.departmentService, navigation, list);
+            return new DepartmentPageViewModel(this.departmentService, navigation, list, pushCount);
         }
     }
 
     public class DepartmentPageViewModel : BaseViewModel
     {
 
-        public DepartmentPageViewModel(IDepartmentService departmentService, INavigation navigation, List<DepartmentModel> list) : base(navigation)
+        public DepartmentPageViewModel(IDepartmentService departmentService, INavigation navigation, List<DepartmentModel> list, int pushCount) : base(navigation)
         {
+            this._pushCount = pushCount;
             this.departmentService = departmentService;
             this.SelectItemCommand = new Command<DepartmentModel>(async(model) => await selectItemCommand(model));
             this.List = new ObservableCollection<DepartmentModel>();
@@ -60,6 +61,8 @@ namespace FAQPhone.Views
             }
         }
         private IDepartmentService departmentService { get; set; }
+
+        int _pushCount;
 
         object _selectedItem;
         public object SelectedItem
@@ -84,11 +87,11 @@ namespace FAQPhone.Views
             }
             else if (list == null || list.Count == 0)
             {
-                await this.Navigation.PushAsync(new DiscussionNewPage(model));                
+                await this.Navigation.PushAsync(new DiscussionNewPage(model, this._pushCount));                
             }
             else
             {
-                await this.Navigation.PushAsync(new DepartmentPage(list));                
+                await this.Navigation.PushAsync(new DepartmentPage(list, (this._pushCount + 1)));                
             }
         }
 

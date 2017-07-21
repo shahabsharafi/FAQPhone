@@ -20,9 +20,15 @@ namespace FAQPhone.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DiscussionNewPage : ContentPage
     {
-        public DiscussionNewPage(DepartmentModel department)
+        public DiscussionNewPage(DepartmentModel department, int pushCount)
         {
             InitializeComponent();
+            this.Appearing += (sender, e) => {
+                for (var i = 0; i < pushCount; i++)
+                {
+                    this.Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
+                }
+            };            
             var factory = App.Resolve<DiscussionEditViewModelFactory>();
             BindingContext = factory.Create(Navigation, department);
         }
@@ -43,12 +49,13 @@ namespace FAQPhone.Views
     public class DiscussionEditViewModel : BaseViewModel
     {
         public DiscussionEditViewModel(INavigation navigation, DepartmentModel department) : base(navigation)
-        {
+        {            
             this.CanNext = false;
             this.NextCommand = new Command(async () => await nextCommand());
             this.department = department;
             this.price = ResourceManagerHelper.GetValue("discussion_recive_price") + ":" + department.price;
         }
+
         string _title;
         public string title
         {
@@ -89,7 +96,8 @@ namespace FAQPhone.Views
                 department = new DepartmentModel() { _id = this.department._id },
                 items = new DiscussionDetailModel[] { }
             };
-            await this.Navigation.PushAsync(new ChatPage(Constants.USER_INPROGRESS_FAQ, model));
+            await this.Navigation.PushAsync(new ChatPage(Constants.USER_INPROGRESS_FAQ, model, 1));
+            //await this.Navigation.PushAsync(new ChatPage(Constants.USER_INPROGRESS_FAQ, model));
         }
     }
 }

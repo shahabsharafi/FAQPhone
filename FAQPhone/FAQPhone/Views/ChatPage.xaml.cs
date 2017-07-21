@@ -20,9 +20,15 @@ namespace FAQPhone.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ChatPage : ContentPage
     {
-        public ChatPage(string state, DiscussionModel model)
+        public ChatPage(string state, DiscussionModel model, int pushCount)
         {
             InitializeComponent();
+            this.Appearing += (sender, e) => {
+                for (var i = 0; i < pushCount; i++)
+                {
+                    this.Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
+                }
+            };
             var factory = App.Resolve<ChatViewModelFactory>();
             BindingContext = factory.Create(Navigation, state, model);
         }
@@ -130,9 +136,11 @@ namespace FAQPhone.Views
                     owner = new AccountModel() { username = App.Username },
                     text = this.replay
                 });
-                this.model.items = l.ToArray();
+                this.model.items = l.ToArray();                
                 await this.discussionService.Save(model);
-                await this.RootNavigate(new MainPage());
+                this.replay = string.Empty;
+                this.setList(l);
+                //await this.RootNavigate(new MainPage());
             }
         }
 
@@ -154,7 +162,7 @@ namespace FAQPhone.Views
             }
             model.state = 2;
             await this.discussionService.Save(model);
-            await this.RootNavigate(new MainPage());
+            await this.Navigation.PopAsync();
         }
 
         public ICommand ReportCommand { protected set; get; }
@@ -165,7 +173,7 @@ namespace FAQPhone.Views
             model.state = 9;
             model.to = new AccountModel() { username = App.Username };
             await this.discussionService.Save(model);
-            await this.RootNavigate(new MainPage());
+            await this.Navigation.PopAsync();
         }
     }
 }
