@@ -42,7 +42,7 @@ namespace FAQPhone.Droid.CustomRenderers
                 LastAnswerTextView = view.FindViewById<TextView>(Resource.Id.discussion_lastanswer);
                 TitleTextView = view.FindViewById<TextView>(Resource.Id.discussion_title);
 
-                var font = Typeface.CreateFromAsset(Forms.Context.ApplicationContext.Assets, "Yekan.ttf");
+                var font = Typeface.CreateFromAsset(Forms.Context.ApplicationContext.Assets, "Irsans.ttf");
 
                 DepartmentTextView.Typeface = font;
                 CreateDateTextView.Typeface = font;

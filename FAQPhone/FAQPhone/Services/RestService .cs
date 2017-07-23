@@ -36,8 +36,14 @@ namespace FAQPhone.Services
             return await this.get<T>(id);
         }
 
+        public virtual void OnSaving(T obj)
+        {
+
+        }
+
         public async Task Save(T obj)
         {
+            this.OnSaving(obj);
             string url = this.getUrl("");
             await this.post<T>(url, obj);
         }

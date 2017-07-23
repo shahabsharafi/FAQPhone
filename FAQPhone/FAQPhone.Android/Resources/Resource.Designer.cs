@@ -2364,20 +2364,20 @@ namespace FAQPhone.Droid
 			// aapt resource value: 0x7f07000e
 			public const int disableHome = 2131165198;
 			
-			// aapt resource value: 0x7f070072
-			public const int discussion_createdate = 2131165298;
-			
 			// aapt resource value: 0x7f070073
-			public const int discussion_department = 2131165299;
+			public const int discussion_createdate = 2131165299;
 			
 			// aapt resource value: 0x7f070074
-			public const int discussion_lastanswer = 2131165300;
+			public const int discussion_department = 2131165300;
 			
 			// aapt resource value: 0x7f070075
-			public const int discussion_operator = 2131165301;
+			public const int discussion_lastanswer = 2131165301;
 			
 			// aapt resource value: 0x7f070076
-			public const int discussion_title = 2131165302;
+			public const int discussion_operator = 2131165302;
+			
+			// aapt resource value: 0x7f070072
+			public const int discussion_title = 2131165298;
 			
 			// aapt resource value: 0x7f07005c
 			public const int edit_query = 2131165276;

@@ -26,7 +26,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout>
-                                <Label Text="{Binding text}" TextColor="#7f8c8d" FontSize="Large" FontFamily="Yekan" HorizontalTextAlignment="End" />
+                                <Label Text="{Binding text}" TextColor="#7f8c8d" FontSize="Small" FontFamily="Irsans" HorizontalTextAlignment="End" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

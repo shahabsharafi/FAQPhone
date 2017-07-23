@@ -135,6 +135,7 @@
     <None Include="app.config" />
     <AndroidAsset Include="Assets\Nazanin.ttf" />
     <AndroidAsset Include="Assets\Yekan.ttf" />
+    <AndroidAsset Include="Assets\Irsans.ttf" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />

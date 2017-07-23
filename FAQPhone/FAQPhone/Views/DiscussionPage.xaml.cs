@@ -47,12 +47,14 @@ namespace FAQPhone.Views
         public DiscussionPageViewModel(INavigation navigation, string state, List<DiscussionModel> list) : base(navigation)
         {
             this.State = state;
+            this.IsOperator = (state == Constants.OPERATOR_ARCHIVED_FAQ || state == Constants.OPERATOR_INPROGRESS_FAQ);
             this.Title = ResourceManagerHelper.GetValue(state);
             this.SelectItemCommand = new Command<DiscussionModel>(async (model) => await selectItemCommand(model));
             this.List = new ObservableCollection<DiscussionModel>();
             this.setList(list);
         }
         public string Title { get; set; }
+        public bool IsOperator { get; set; }
         string State { get; set; }
 
         public ICommand SelectItemCommand { protected set; get; }
@@ -83,6 +85,7 @@ namespace FAQPhone.Views
             this.List.Clear();
             foreach (var item in list)
             {
+                item.Caption = this.IsOperator ? item.display : item.title;
                 this.List.Add(item);
             }
         }

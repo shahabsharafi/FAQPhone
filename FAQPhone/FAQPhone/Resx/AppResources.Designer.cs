@@ -197,6 +197,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to جواب.
+        /// </summary>
+        internal static string discussion_answer {
+            get {
+                return ResourceManager.GetString("discussion_answer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to سوال جدید.
         /// </summary>
         internal static string discussion_edit {
@@ -229,6 +238,24 @@ namespace FAQPhone.Resx {
         internal static string discussion_edit_title_help {
             get {
                 return ResourceManager.GetString("discussion_edit_title_help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کارشناس.
+        /// </summary>
+        internal static string discussion_operator {
+            get {
+                return ResourceManager.GetString("discussion_operator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to سوال.
+        /// </summary>
+        internal static string discussion_question {
+            get {
+                return ResourceManager.GetString("discussion_question", resourceCulture);
             }
         }
         

@@ -54,7 +54,7 @@ namespace FAQPhone.Views
         {
             this.List = new ObservableCollection<MenuItemModel>();
             List<MenuItemModel> items = new List<MenuItemModel>();
-            if (menu == Constants.OPERATOR_FAQ || (menu == null && App.Access.Contains("access_operator")))
+            if (menu == Constants.OPERATOR_FAQ || (menu == null && App.Access.Contains(Constants.ACCESS_OPERATOR)))
             {
                 items.AddRange(
                     new MenuItemModel[] {
@@ -63,12 +63,12 @@ namespace FAQPhone.Views
                         new MenuItemModel() { CommandName = Constants.OPERATOR_ARCHIVED_FAQ }
                     }
                 );
-                if (App.Access.Contains("access_user"))
+                if (App.Access.Contains(Constants.ACCESS_USER))
                 {
                     items.Add(new MenuItemModel() { CommandName = Constants.USER_FAQ });
                 }
             }
-            else if (menu == Constants.USER_FAQ || (menu == null && App.Access.Contains("access_user")))
+            else if (menu == Constants.USER_FAQ || (menu == null && App.Access.Contains(Constants.ACCESS_USER)))
             {
                 items.AddRange(
                     new MenuItemModel[] {
@@ -77,7 +77,7 @@ namespace FAQPhone.Views
                         new MenuItemModel() { CommandName = Constants.USER_ARCHIVED_FAQ }
                     }
                 );
-                if (App.Access.Contains("access_operator"))
+                if (App.Access.Contains(Constants.ACCESS_OPERATOR))
                 {
                     items.Add(new MenuItemModel() { CommandName = Constants.OPERATOR_FAQ });
                 }

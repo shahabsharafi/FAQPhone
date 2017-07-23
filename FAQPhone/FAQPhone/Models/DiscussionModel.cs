@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FAQPhone.Inferstructure;
+using FAQPhone.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,21 +33,21 @@ namespace FAQPhone.Models
         {
             get
             {
-                return this.createDate.ToString("HH:mm");
+                return string.Format("{0}: {1}", ResourceManagerHelper.GetValue("discussion_question"), this.createDate.ToString("HH:mm"));
             }
         }
         public string AnswerDate
         {
             get
             {
-                return this.answerDate.ToString("HH:mm");
+                return string.Format("{0}: {1}", ResourceManagerHelper.GetValue("discussion_answer"), this.answerDate.ToString("HH:mm"));
             }
         }
         public string Operator
         {
             get
             {
-                return this.to?.profile?.firstName + " " + this.to?.profile?.lastName;
+                return string.Format("{0}: {1} {2}", ResourceManagerHelper.GetValue("discussion_operator"), this.to?.profile?.firstName, this.to?.profile?.lastName);
             }
         }
         public string Department
@@ -55,5 +57,6 @@ namespace FAQPhone.Models
                 return this.department.caption;
             }
         }
+        public string Caption { get; set; }
     }
 }

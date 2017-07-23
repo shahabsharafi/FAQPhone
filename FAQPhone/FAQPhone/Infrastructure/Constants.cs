@@ -20,5 +20,8 @@ namespace FAQPhone.Inferstructure
         public const string USER_ARCHIVED_FAQ = "user_archived_faq";
         public const string USER_FAQ = "user_faq";
         public const string SIGNOUT = "signout";
+
+        public const string ACCESS_OPERATOR = "access_operator";
+        public const string ACCESS_USER = "access_user";
     }
 }

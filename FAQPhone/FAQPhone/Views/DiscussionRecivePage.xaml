@@ -6,8 +6,8 @@
              Title="{infr:Translate discussion_revice}" StyleId="DiscussionRecivePage">
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}" >
-            <Label Text="{Binding title, Mode=TwoWay}" FontSize="Large" FontFamily="Yekan" />
-            <Label Text="{Binding text, Mode=TwoWay}" />
+            <Label Text="{Binding title, Mode=TwoWay}" FontSize="Medium" FontFamily="Irsans" />
+            <Label Text="{Binding text, Mode=TwoWay}" FontSize="Small" FontFamily="Irsans" />
             <Entry x:Name="display" Placeholder="{infr:Translate discussion_recive_display}" Text="{Binding display, Mode=TwoWay}" />
             <Grid>
                 <Grid.RowDefinitions>

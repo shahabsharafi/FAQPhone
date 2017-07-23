@@ -16,6 +16,25 @@ namespace FAQPhone.Services
             this._relativeUrl = "discussions/{0}";
         }
 
+        public override void OnSaving(DiscussionModel obj)
+        {
+            
+            if (obj.items != null)
+            {
+                var answerList = obj.items.Where(o => o.owner.username == App.Username);
+                if (answerList.Any())
+                {
+                    var item = answerList.Last();
+                    if (item.owner.username == App.Username)
+                    {
+                        obj.answerDate = item.createDate;
+                    }
+                }
+            }
+            
+            base.OnSaving(obj);
+        }
+
         public async Task<List<DiscussionModel>> GetList(bool isUser, int[] states)
         {
             string url = string.Format(Constants.RestUrl, string.Format("discussions/getlist/{0}/{1}/{2}", isUser, App.Username, string.Join(",", states)));

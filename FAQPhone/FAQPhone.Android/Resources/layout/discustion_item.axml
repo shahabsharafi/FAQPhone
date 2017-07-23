@@ -7,18 +7,29 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent" >
     <TextView
+        android:id="@+id/discussion_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:textSize="16sp"
+        android:text="title" />
+  </RelativeLayout>
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent" >
+    <TextView
         android:id="@+id/discussion_createdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:textSize="10sp"
+        android:textSize="12sp"
         android:text="createdate" />
     <TextView
         android:id="@+id/discussion_department"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:text="department" />
   </RelativeLayout>
   <RelativeLayout
@@ -29,25 +40,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:textSize="10sp"
+        android:textSize="12sp"
         android:text="lastanswer" />
     <TextView
         android:id="@+id/discussion_operator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:textSize="10sp"
+        android:textSize="12sp"
         android:text="operator" />
-  </RelativeLayout>
-  <RelativeLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent" >
-    <TextView
-        android:id="@+id/discussion_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:textSize="20sp"
-        android:text="title" />
-  </RelativeLayout>
+  </RelativeLayout>  
 </LinearLayout>

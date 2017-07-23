@@ -264,4 +264,13 @@
   <data name="discussion_tag_new" xml:space="preserve">
     <value>نمایه جدید</value>
   </data>
+  <data name="discussion_answer" xml:space="preserve">
+    <value>جواب</value>
+  </data>
+  <data name="discussion_question" xml:space="preserve">
+    <value>سوال</value>
+  </data>
+  <data name="discussion_operator" xml:space="preserve">
+    <value>کارشناس</value>
+  </data>
 </root>

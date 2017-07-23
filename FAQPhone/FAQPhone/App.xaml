@@ -11,7 +11,7 @@
                 <Setter Property="HorizontalTextAlignment" Value="{Binding Direction}" />
             </Style>
             <Style TargetType="Label">
-                <Setter Property="FontFamily" Value="Nazanin" />
+                <Setter Property="FontFamily" Value="Irsans" />
                 <Setter Property="TextColor" Value="#4e5758" />
                 <Setter Property="HorizontalTextAlignment" Value="{Binding Direction}" />
             </Style>
