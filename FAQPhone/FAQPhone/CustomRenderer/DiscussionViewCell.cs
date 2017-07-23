@@ -33,12 +33,12 @@ namespace CustomRenderer
             set { SetValue(OperatorProperty, value); }
         }
 
-        public static readonly BindableProperty LastAnswerProperty = BindableProperty.Create("LastAnswer", typeof(string), typeof(DiscussionViewCell), "");
+        public static readonly BindableProperty AnswerDateProperty = BindableProperty.Create("LastAnswer", typeof(string), typeof(DiscussionViewCell), "");
 
-        public string LastAnswer
+        public string AnswerDate
         {
-            get { return (string)GetValue(LastAnswerProperty); }
-            set { SetValue(LastAnswerProperty, value); }
+            get { return (string)GetValue(AnswerDateProperty); }
+            set { SetValue(AnswerDateProperty, value); }
         }
 
         public static readonly BindableProperty TitleProperty = BindableProperty.Create("Title", typeof(string), typeof(DiscussionViewCell), "");

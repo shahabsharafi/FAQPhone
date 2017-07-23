@@ -23,6 +23,7 @@ namespace FAQPhone.Models
         public int state { get; set; }
         public DepartmentModel department { get; set; }
         public DateTime createDate { get; set; }
+        public DateTime answerDate { get; set; }
         public DateTime expDate { get; set; }
         public DiscussionDetailModel[] items { get; set; }
         public string[] tags { get; set; }
@@ -31,6 +32,13 @@ namespace FAQPhone.Models
             get
             {
                 return this.createDate.ToString("HH:mm");
+            }
+        }
+        public string AnswerDate
+        {
+            get
+            {
+                return this.answerDate.ToString("HH:mm");
             }
         }
         public string Operator

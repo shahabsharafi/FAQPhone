@@ -42,6 +42,14 @@ namespace FAQPhone.Droid.CustomRenderers
                 LastAnswerTextView = view.FindViewById<TextView>(Resource.Id.discussion_lastanswer);
                 TitleTextView = view.FindViewById<TextView>(Resource.Id.discussion_title);
 
+                var font = Typeface.CreateFromAsset(Forms.Context.ApplicationContext.Assets, "Yekan.ttf");
+
+                DepartmentTextView.Typeface = font;
+                CreateDateTextView.Typeface = font;
+                OperatorTextView.Typeface = font;
+                LastAnswerTextView.Typeface = font;
+                TitleTextView.Typeface = font;
+
                 AddView(view);
             }
 
@@ -50,7 +58,7 @@ namespace FAQPhone.Droid.CustomRenderers
                 DepartmentTextView.Text = cell.Department;
                 CreateDateTextView.Text = cell.CreateDate;
                 OperatorTextView.Text = cell.Operator;
-                LastAnswerTextView.Text = cell.LastAnswer;
+                LastAnswerTextView.Text = cell.AnswerDate;
                 TitleTextView.Text = cell.Title;
             }
 
@@ -93,14 +101,14 @@ namespace FAQPhone.Droid.CustomRenderers
             {
                 cell.OperatorTextView.Text = nativeCell.Operator;
             }
-            if (e.PropertyName == DiscussionViewCell.LastAnswerProperty.PropertyName)
+            if (e.PropertyName == DiscussionViewCell.AnswerDateProperty.PropertyName)
             {
-                cell.LastAnswerTextView.Text = nativeCell.LastAnswer;
+                cell.LastAnswerTextView.Text = nativeCell.AnswerDate;
             }
             if (e.PropertyName == DiscussionViewCell.TitleProperty.PropertyName)
             {
                 cell.TitleTextView.Text = nativeCell.Title;
             }
-        }
+        }        
     }    
 }

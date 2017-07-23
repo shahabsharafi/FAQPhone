@@ -19,7 +19,7 @@
                 </ListView.Behaviors>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <render:DiscussionViewCell Title="{Binding title}" Department="{Binding Department}"  CreateDate="{Binding CreateDate}" LastAnswer="lastanswer"  Operator="{Binding Operator}" />
+                        <render:DiscussionViewCell Title="{Binding title}" Department="{Binding Department}"  CreateDate="{Binding CreateDate}" AnswerDate="{Binding AnswerDate}"  Operator="{Binding Operator}" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
