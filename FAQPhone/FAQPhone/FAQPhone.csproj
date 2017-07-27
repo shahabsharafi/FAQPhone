@@ -43,9 +43,11 @@
     <Compile Include="Infrastructure\BaseViewModel.cs" />
     <Compile Include="Infrastructure\BehaviorBase.cs" />
     <Compile Include="Infrastructure\EventToCommandBehavior.cs" />
+    <Compile Include="Infrastructure\FilePickerHelper.cs" />
     <Compile Include="Infrastructure\FlowType.cs" />
     <Compile Include="Infrastructure\Constants.cs" />
     <Compile Include="CustomRenderer\MessageViewCell.cs" />
+    <Compile Include="Infrastructure\IFilePicker.cs" />
     <Compile Include="Infrastructure\ResourceManagerHelper.cs" />
     <Compile Include="Infrastructure\SelectedItemEventArgsToSelectedItemConverter.cs" />
     <Compile Include="Infrastructure\TranslateExtension.cs" />

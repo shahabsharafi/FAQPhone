@@ -123,9 +123,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="com.xamarin.recipes.filepicker\FileListAdapter.cs" />
+    <Compile Include="com.xamarin.recipes.filepicker\FileListFragment.cs" />
+    <Compile Include="com.xamarin.recipes.filepicker\FileListRowViewHolder.cs" />
+    <Compile Include="com.xamarin.recipes.filepicker\FilePickerActivity.cs" />
+    <Compile Include="com.xamarin.recipes.filepicker\Helpers.cs" />
     <Compile Include="CustomRenderers\CustomLabelRenderer.cs" />
     <Compile Include="CustomRenderers\DiscussionRenderer.cs" />
     <Compile Include="CustomRenderers\MessageRenderer.cs" />
+    <Compile Include="Infrastructure\FilePickerLoader.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -133,8 +139,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <AndroidAsset Include="Assets\Nazanin.ttf" />
-    <AndroidAsset Include="Assets\Yekan.ttf" />
     <AndroidAsset Include="Assets\Irsans.ttf" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />

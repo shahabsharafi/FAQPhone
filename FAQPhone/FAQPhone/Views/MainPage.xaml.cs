@@ -83,6 +83,7 @@ namespace FAQPhone.Views
                 }
             }
             items.Add(new MenuItemModel() { CommandName = Constants.SIGNOUT });
+            items.Add(new MenuItemModel() { CommandName = "FILE_PICKER" });
             this.setList(items);
             this.accountService = accountService;
             this.departmentService = departmentService;
@@ -181,6 +182,9 @@ namespace FAQPhone.Views
                         Settings.Username = string.Empty;
                         Settings.Password = string.Empty;
                         await this.RootNavigate(new SendCodePage(FlowType.Signup));
+                        break;
+                    case "FILE_PICKER":
+                        FilePickerHelper.Open();
                         break;
                 }
                 this.SelectedItem = null;
