@@ -31,28 +31,31 @@ namespace FAQPhone.Views
 
     public class DiscussionPageViewModelFactory
     {
-        public DiscussionPageViewModelFactory()
+        IDiscussionService discussionService;
+        public DiscussionPageViewModelFactory(IDiscussionService discussionService)
         {
-            
+            this.discussionService = discussionService;
         }
         public DiscussionPageViewModel Create(INavigation navigation, string state, List<DiscussionModel> list)
         {
-            return new DiscussionPageViewModel(navigation, state, list);
+            return new DiscussionPageViewModel(this.discussionService, navigation, state, list);
         }
     }
 
     public class DiscussionPageViewModel : BaseViewModel
     {
 
-        public DiscussionPageViewModel(INavigation navigation, string state, List<DiscussionModel> list) : base(navigation)
+        public DiscussionPageViewModel(IDiscussionService discussionService, INavigation navigation, string state, List<DiscussionModel> list) : base(navigation)
         {
+            this.discussionService = discussionService;
             this.State = state;
-            this.IsOperator = (state == Constants.OPERATOR_ARCHIVED_FAQ || state == Constants.OPERATOR_INPROGRESS_FAQ);
+            this.IsOperator = state == Constants.OPERATOR_INPROGRESS_FAQ;
             this.Title = ResourceManagerHelper.GetValue(state);
             this.SelectItemCommand = new Command<DiscussionModel>(async (model) => await selectItemCommand(model));
             this.List = new ObservableCollection<DiscussionModel>();
             this.setList(list);
         }
+        IDiscussionService discussionService;
         public string Title { get; set; }
         public bool IsOperator { get; set; }
         string State { get; set; }
@@ -62,7 +65,18 @@ namespace FAQPhone.Views
         public async Task selectItemCommand(DiscussionModel model)
         {
             if (model == null)
-                return;            
+                return;
+            if (this.IsOperator && !model.operatorRead)
+            {
+                model.operatorRead = true;
+                await this.discussionService.Save(model);
+            }
+            else if (!this.IsOperator && !model.userRead)
+            {
+                model.userRead = true;
+                await this.discussionService.Save(model);
+            }
+            
             await this.Navigation.PushAsync(new ChatPage(this.State, model, 0));
             this.SelectedItem = null;
         }
@@ -85,6 +99,9 @@ namespace FAQPhone.Views
             this.List.Clear();
             foreach (var item in list)
             {
+                item.Mode = this.IsOperator
+                    ? (item.operatorRead ? "read" : "unread")
+                    : (item.userRead ? "read" : "unread");
                 item.Caption = this.IsOperator ? item.display : item.title;
                 this.List.Add(item);
             }

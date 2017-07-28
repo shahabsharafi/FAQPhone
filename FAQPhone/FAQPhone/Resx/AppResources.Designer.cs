@@ -62,6 +62,87 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ابطال.
+        /// </summary>
+        internal static string cancelation {
+            get {
+                return ResourceManager.GetString("cancelation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مزاحم.
+        /// </summary>
+        internal static string cancelation_annoying {
+            get {
+                return ResourceManager.GetString("cancelation_annoying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to سوال شما مزاحمت تلقی شده بنابر این مقداری از وجه شما کسر شده و باقی آن بازگردانده میشود و در صورت تکرار ممکن است کاربری شما غیر فعال شود.
+        /// </summary>
+        internal static string cancelation_annoying_text {
+            get {
+                return ResourceManager.GetString("cancelation_annoying_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to توهین آمیز.
+        /// </summary>
+        internal static string cancelation_offensiv {
+            get {
+                return ResourceManager.GetString("cancelation_offensiv", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to سوال شما توهین تلقی شده بنابر این مقداری از وجه شما کسر شده و باقی آن بازگردانده میشود و در صورت تکرار ممکن است کاربری شما غیر فعال شود.
+        /// </summary>
+        internal static string cancelation_offensiv_text {
+            get {
+                return ResourceManager.GetString("cancelation_offensiv_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ناواضح.
+        /// </summary>
+        internal static string cancelation_unclear {
+            get {
+                return ResourceManager.GetString("cancelation_unclear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to سوال شما واضح نیست بنابراین وجه شما بازگردانده می شود و شما باید سوال خود را بار دیگر و به طور واضح بپرسید.
+        /// </summary>
+        internal static string cancelation_unclear_text {
+            get {
+                return ResourceManager.GetString("cancelation_unclear_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نامریوط.
+        /// </summary>
+        internal static string cancelation_unrelated {
+            get {
+                return ResourceManager.GetString("cancelation_unrelated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to سوال شما به بخش انتحاب شده مربوط نیست بنابراین وجه شما بازگردانده می شود و شما باید سوال خود را بار دیگر و در بخش صحیح بپرسید.
+        /// </summary>
+        internal static string cancelation_unrelated_text {
+            get {
+                return ResourceManager.GetString("cancelation_unrelated_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to گفتگو.
         /// </summary>
         internal static string chat {

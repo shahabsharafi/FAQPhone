@@ -159,7 +159,7 @@ namespace FAQPhone.Views
         public async Task reportCommand()
         {
             /////     
-            model.state = 9;
+            model.state = 3;
             model.to = new AccountModel() { username = App.Username };
             await this.discussionService.Save(model);
             await this.Navigation.PopAsync();

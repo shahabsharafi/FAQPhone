@@ -1,11 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:infr="clr-namespace:FAQPhone.Inferstructure;assembly=FAQPhone"
+             xmlns:local="clr-namespace:EventToCommandBehavior"
              x:Class="FAQPhone.Views.CancelationPage"
-             Title="CancelationPage">
-  <ScrollView>
-    <StackLayout Padding="10">
-      
-    </StackLayout>
-  </ScrollView>
+             Title="{infr:Translate cancelation}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+        <StackLayout Style="{StaticResource pageStyle}">
+            <ListView ItemsSource="{ Binding List }" SelectedItem="{ Binding SelectedItem, Mode=TwoWay }" >
+                <ListView.Behaviors>
+                    <local:EventToCommandBehavior EventName="ItemSelected" Command="{Binding SelectItemCommand}" Converter="{StaticResource SelectedItemConverter}" />
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout VerticalOptions="CenterAndExpand">
+                                <Label Text="{Binding caption}" TextColor="#4e5758" FontSize="Small" FontAttributes="Bold" HorizontalTextAlignment="End" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

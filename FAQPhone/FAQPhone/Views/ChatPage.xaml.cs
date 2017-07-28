@@ -58,14 +58,16 @@ namespace FAQPhone.Views
             this.ReportCommand = new Command(async () => await reportCommand());
             this.model = model;
             this.List = new ObservableCollection<DiscussionDetailModel>();
-            bool isOperator = (state == Constants.OPERATOR_ARCHIVED_FAQ || state == Constants.OPERATOR_INPROGRESS_FAQ);
+            this.IsOperator = state == Constants.OPERATOR_INPROGRESS_FAQ;
             this.Editable = (state == Constants.OPERATOR_INPROGRESS_FAQ || state == Constants.USER_INPROGRESS_FAQ);
-            this.HasFinishing = isOperator;
-            this.HasReporting = isOperator;
+            this.HasFinishing = this.IsOperator;
+            this.HasReporting = this.IsOperator;
             this.setList(this.model.items.ToList());
         }
         private IDiscussionService discussionService { get; set; }
         private DiscussionModel model { get; set; }
+
+        bool IsOperator { get; set; }
 
         bool _HasReporting;
         public bool HasReporting
@@ -129,6 +131,14 @@ namespace FAQPhone.Views
         {
             if (!string.IsNullOrWhiteSpace(this.replay))
             {
+                if (this.IsOperator)
+                {
+                    model.operatorRead = false;
+                }
+                else
+                {
+                    model.userRead = false;
+                }
                 var l = this.model.items.ToList();
                 l.Add(new DiscussionDetailModel()
                 {
@@ -151,6 +161,14 @@ namespace FAQPhone.Views
             ///// 
             if (!string.IsNullOrWhiteSpace(this.replay))
             {
+                if (this.IsOperator)
+                {
+                    model.userRead = false;
+                }
+                else
+                {
+                    model.operatorRead = false;
+                }
                 var l = this.model.items.ToList();
                 l.Add(new DiscussionDetailModel
                 {
@@ -170,7 +188,7 @@ namespace FAQPhone.Views
         public async Task reportCommand()
         {
             /////     
-            model.state = 9;
+            model.state = 3;
             model.to = new AccountModel() { username = App.Username };
             await this.discussionService.Save(model);
             await this.Navigation.PopAsync();

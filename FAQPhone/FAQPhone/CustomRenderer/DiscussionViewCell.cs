@@ -41,6 +41,14 @@ namespace CustomRenderer
             set { SetValue(AnswerDateProperty, value); }
         }
 
+        public static readonly BindableProperty ModeProperty = BindableProperty.Create("Mode", typeof(string), typeof(DiscussionViewCell), "");
+
+        public string Mode
+        {
+            get { return (string)GetValue(ModeProperty); }
+            set { SetValue(ModeProperty, value); }
+        }
+
         public static readonly BindableProperty TitleProperty = BindableProperty.Create("Title", typeof(string), typeof(DiscussionViewCell), "");
 
         public string Title

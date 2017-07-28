@@ -26,6 +26,7 @@ namespace FAQPhone.Droid.CustomRenderers
             public TextView OperatorTextView { get; set; }
             public TextView LastAnswerTextView { get; set; }
             public TextView TitleTextView { get; set; }
+            public ImageView UnreadImageView { get; set; }
 
             public DiscussionViewCell DiscussionViewCell { get; private set; }
             public Element Element => DiscussionViewCell;
@@ -41,6 +42,7 @@ namespace FAQPhone.Droid.CustomRenderers
                 OperatorTextView = view.FindViewById<TextView>(Resource.Id.discussion_operator);
                 LastAnswerTextView = view.FindViewById<TextView>(Resource.Id.discussion_lastanswer);
                 TitleTextView = view.FindViewById<TextView>(Resource.Id.discussion_title);
+                UnreadImageView = view.FindViewById<ImageView>(Resource.Id.unread_image);
 
                 var font = Typeface.CreateFromAsset(Forms.Context.ApplicationContext.Assets, "Irsans.ttf");
 
@@ -48,7 +50,7 @@ namespace FAQPhone.Droid.CustomRenderers
                 CreateDateTextView.Typeface = font;
                 OperatorTextView.Typeface = font;
                 LastAnswerTextView.Typeface = font;
-                TitleTextView.Typeface = font;
+                TitleTextView.Typeface = font;                
 
                 AddView(view);
             }
@@ -60,6 +62,7 @@ namespace FAQPhone.Droid.CustomRenderers
                 OperatorTextView.Text = cell.Operator;
                 LastAnswerTextView.Text = cell.AnswerDate;
                 TitleTextView.Text = cell.Title;
+                UnreadImageView.Visibility = cell.Mode == "unread" ? ViewStates.Visible : ViewStates.Invisible;
             }
 
         }
@@ -108,7 +111,11 @@ namespace FAQPhone.Droid.CustomRenderers
             if (e.PropertyName == DiscussionViewCell.TitleProperty.PropertyName)
             {
                 cell.TitleTextView.Text = nativeCell.Title;
-            }
+            }            
+            if (e.PropertyName == DiscussionViewCell.ModeProperty.PropertyName)
+            {
+                cell.UnreadImageView.Visibility = nativeCell.Mode == "unread" ? ViewStates.Visible : ViewStates.Invisible;
+            }            
         }        
     }    
 }

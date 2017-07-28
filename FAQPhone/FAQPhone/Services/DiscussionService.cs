@@ -19,16 +19,13 @@ namespace FAQPhone.Services
         public override void OnSaving(DiscussionModel obj)
         {
             
-            if (obj.items != null)
+            if (obj.to.username == App.Username && obj.items != null)
             {
-                var answerList = obj.items.Where(o => o.owner.username == App.Username);
+                var answerList = obj.items.Where(o => o.owner.username == obj.to.username);
                 if (answerList.Any())
                 {
                     var item = answerList.Last();
-                    if (item.owner.username == App.Username)
-                    {
-                        obj.answerDate = item.createDate;
-                    }
+                    obj.answerDate = item.createDate;
                 }
             }
             

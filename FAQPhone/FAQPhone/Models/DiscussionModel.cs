@@ -23,6 +23,8 @@ namespace FAQPhone.Models
         public string title { get; set; }
         public string display { get; set; }
         public int state { get; set; }
+        public bool userRead { get; set; }
+        public bool operatorRead { get; set; }
         public DepartmentModel department { get; set; }
         public DateTime createDate { get; set; }
         public DateTime answerDate { get; set; }
@@ -58,5 +60,6 @@ namespace FAQPhone.Models
             }
         }
         public string Caption { get; set; }
+        public string Mode { get; set; }
     }
 }

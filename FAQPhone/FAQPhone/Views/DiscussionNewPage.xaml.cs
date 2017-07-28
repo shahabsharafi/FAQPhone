@@ -93,6 +93,8 @@ namespace FAQPhone.Views
                 from = new AccountModel() { username = App.Username },
                 createDate = DateTime.Now,
                 state = 0,
+                userRead = false,
+                operatorRead = false,
                 department = new DepartmentModel() { _id = this.department._id },
                 items = new DiscussionDetailModel[] { }
             };

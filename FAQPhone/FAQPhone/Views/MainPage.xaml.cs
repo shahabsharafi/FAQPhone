@@ -59,8 +59,7 @@ namespace FAQPhone.Views
                 items.AddRange(
                     new MenuItemModel[] {
                         new MenuItemModel() { CommandName = Constants.OPERATOR_RECEIVE_FAQ },
-                        new MenuItemModel() { CommandName = Constants.OPERATOR_INPROGRESS_FAQ },
-                        new MenuItemModel() { CommandName = Constants.OPERATOR_ARCHIVED_FAQ }
+                        new MenuItemModel() { CommandName = Constants.OPERATOR_INPROGRESS_FAQ }
                     }
                 );
                 if (App.Access.Contains(Constants.ACCESS_USER))
@@ -73,8 +72,7 @@ namespace FAQPhone.Views
                 items.AddRange(
                     new MenuItemModel[] {
                         new MenuItemModel() { CommandName = Constants.USER_CREATE_FAQ },
-                        new MenuItemModel() { CommandName = Constants.USER_INPROGRESS_FAQ },
-                        new MenuItemModel() { CommandName = Constants.USER_ARCHIVED_FAQ }
+                        new MenuItemModel() { CommandName = Constants.USER_INPROGRESS_FAQ }
                     }
                 );
                 if (App.Access.Contains(Constants.ACCESS_OPERATOR))
@@ -83,7 +81,7 @@ namespace FAQPhone.Views
                 }
             }
             items.Add(new MenuItemModel() { CommandName = Constants.SIGNOUT });
-            items.Add(new MenuItemModel() { CommandName = "FILE_PICKER" });
+            //items.Add(new MenuItemModel() { CommandName = "FILE_PICKER" });
             this.setList(items);
             this.accountService = accountService;
             this.departmentService = departmentService;
@@ -140,14 +138,7 @@ namespace FAQPhone.Views
                         }
                         break;
                     case Constants.USER_INPROGRESS_FAQ:
-                        l = await this.discussionService.GetList(true, new int[] { 0, 1 });
-                        if (l != null && l.Count() > 0)
-                        {
-                            await this.Navigation.PushAsync(new DiscussionPage(model.CommandName, l));
-                        }
-                        break;
-                    case Constants.USER_ARCHIVED_FAQ:
-                        l = await this.discussionService.GetList(true, new int[] { 2 });
+                        l = await this.discussionService.GetList(true, new int[] { 0, 1, 2 });
                         if (l != null && l.Count() > 0)
                         {
                             await this.Navigation.PushAsync(new DiscussionPage(model.CommandName, l));
@@ -164,14 +155,7 @@ namespace FAQPhone.Views
                         }
                         break;
                     case Constants.OPERATOR_INPROGRESS_FAQ:
-                        l = await this.discussionService.GetList(false, new int[] { 0, 1 });
-                        if (l != null && l.Count() > 0)
-                        {
-                            await this.Navigation.PushAsync(new DiscussionPage(model.CommandName, l));
-                        }
-                        break;
-                    case Constants.OPERATOR_ARCHIVED_FAQ:
-                        l = await this.discussionService.GetList(true, new int[] { 2 });
+                        l = await this.discussionService.GetList(false, new int[] { 0, 1, 2 });
                         if (l != null && l.Count() > 0)
                         {
                             await this.Navigation.PushAsync(new DiscussionPage(model.CommandName, l));
@@ -183,9 +167,9 @@ namespace FAQPhone.Views
                         Settings.Password = string.Empty;
                         await this.RootNavigate(new SendCodePage(FlowType.Signup));
                         break;
-                    case "FILE_PICKER":
-                        FilePickerHelper.Open();
-                        break;
+                    //case "FILE_PICKER":
+                    //    FilePickerHelper.Open();
+                    //    break;
                 }
                 this.SelectedItem = null;
             }            
