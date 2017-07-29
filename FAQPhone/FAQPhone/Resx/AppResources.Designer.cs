@@ -503,6 +503,78 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to اطلاعات شخصی.
+        /// </summary>
+        internal static string profile {
+            get {
+                return ResourceManager.GetString("profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to محل تولد.
+        /// </summary>
+        internal static string profile_birthPlace {
+            get {
+                return ResourceManager.GetString("profile_birthPlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نام پدر.
+        /// </summary>
+        internal static string profile_fatherName {
+            get {
+                return ResourceManager.GetString("profile_fatherName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نام.
+        /// </summary>
+        internal static string profile_firstName {
+            get {
+                return ResourceManager.GetString("profile_firstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نام خانوادگی.
+        /// </summary>
+        internal static string profile_lastName {
+            get {
+                return ResourceManager.GetString("profile_lastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کدملی.
+        /// </summary>
+        internal static string profile_nationalCode {
+            get {
+                return ResourceManager.GetString("profile_nationalCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to شماره شناسنامه.
+        /// </summary>
+        internal static string profile_no {
+            get {
+                return ResourceManager.GetString("profile_no", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to محل صدور.
+        /// </summary>
+        internal static string profile_placeOfIssues {
+            get {
+                return ResourceManager.GetString("profile_placeOfIssues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تغییر کلمه عبور.
         /// </summary>
         internal static string resetpassword {

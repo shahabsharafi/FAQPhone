@@ -300,4 +300,28 @@
   <data name="cancelation_unrelated_text" xml:space="preserve">
     <value>سوال شما به بخش انتحاب شده مربوط نیست بنابراین وجه شما بازگردانده می شود و شما باید سوال خود را بار دیگر و در بخش صحیح بپرسید</value>
   </data>
+  <data name="profile_birthPlace" xml:space="preserve">
+    <value>محل تولد</value>
+  </data>
+  <data name="profile_fatherName" xml:space="preserve">
+    <value>نام پدر</value>
+  </data>
+  <data name="profile_firstName" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="profile_lastName" xml:space="preserve">
+    <value>نام خانوادگی</value>
+  </data>
+  <data name="profile_nationalCode" xml:space="preserve">
+    <value>کدملی</value>
+  </data>
+  <data name="profile_no" xml:space="preserve">
+    <value>شماره شناسنامه</value>
+  </data>
+  <data name="profile_placeOfIssues" xml:space="preserve">
+    <value>محل صدور</value>
+  </data>
+  <data name="profile" xml:space="preserve">
+    <value>اطلاعات شخصی</value>
+  </data>
 </root>

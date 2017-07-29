@@ -3,13 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:infr="clr-namespace:FAQPhone.Inferstructure;assembly=FAQPhone"
              x:Class="FAQPhone.Views.ProfilePage"
-             Title="ProfilePage">
+             Title="{infr:Translate profile}">
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}">
-            <Entry x:Name="firstnameEntry" Placeholder="{infr:Translate firstname}" Text="{Binding firstname, Mode=TwoWay}" />
-            <Entry x:Name="lastnameEntry" Placeholder="{infr:Translate lastname}" Text="{Binding lastname, Mode=TwoWay}" />
-            <Button Text="{infr:Translate signup}" Command="{Binding SignupCommand}" StyleClass="Info" />
-            <Label x:Name="messageLabel" />
+            <Entry Placeholder="{infr:Translate profile_firstName}" Text="{Binding firstName, Mode=TwoWay}" />
+            <Entry Placeholder="{infr:Translate profile_lastName}" Text="{Binding lastName, Mode=TwoWay}" />
+            <Entry Placeholder="{infr:Translate profile_fatherName}" Text="{Binding fatherName, Mode=TwoWay}" />
+            <Entry Placeholder="{infr:Translate profile_no}" Text="{Binding no, Mode=TwoWay}" />
+            <Entry Placeholder="{infr:Translate profile_placeOfIssues}" Text="{Binding placeOfIssues, Mode=TwoWay}" />
+            <Entry Placeholder="{infr:Translate profile_nationalCode}" Text="{Binding nationalCode, Mode=TwoWay}" />
+            <Entry Placeholder="{infr:Translate profile_birthPlace}" Text="{Binding birthPlace, Mode=TwoWay}" />
+            <Button Text="{infr:Translate command_save}" Command="{Binding SaveCommand}" StyleClass="Info" />
+            <Label Text="{Binding CountDisplay}"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>

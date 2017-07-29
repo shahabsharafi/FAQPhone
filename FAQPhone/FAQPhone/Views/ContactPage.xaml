@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:infr="clr-namespace:FAQPhone.Inferstructure;assembly=FAQPhone"
+             x:Class="FAQPhone.Views.ContactPage"
+             Title="{infr:Translate contact}">
+    <ScrollView>
+        <StackLayout Style="{StaticResource pageStyle}">
+            <Entry Placeholder="{infr:Translate contact_email}" Text="{Binding email, Mode=TwoWay}" />
+            <Entry Placeholder="{infr:Translate contact_sms}" Text="{Binding sms, Mode=TwoWay}" />
+            <Entry Placeholder="{infr:Translate contact_house}" Text="{Binding house, Mode=TwoWay}" />
+            <Entry Placeholder="{infr:Translate contact_work}" Text="{Binding work, Mode=TwoWay}" />
+            <Picker Title="{infr:Translate contact_province}" SelectedIndex="{Binding ProvineSelectedIndex}" ItemsSource="{Binding ProvinceList}" />
+            <Picker Title="{infr:Translate contact_city}" SelectedIndex="{Binding CitySelectedIndex}" ItemsSource="{Binding CityList}" />
+            <Button Text="{infr:Translate command_save}" Command="{Binding SaveCommand}" StyleClass="Info" />
+            <Label Text="{Binding CountDisplay}"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
