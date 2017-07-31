@@ -3,6 +3,7 @@ using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -22,9 +23,8 @@ namespace FAQPhone.Views
         public ContactPage(AccountModel model)
         {
             InitializeComponent();
-
             var factory = App.Resolve<ContactViewModelFactory>();
-            BindingContext = factory.Create(Navigation, model);
+            BindingContext = factory.Create(Navigation, model);            
         }
     }
 
@@ -49,6 +49,13 @@ namespace FAQPhone.Views
             this.accountService = accountService;
             this.model = model;
             this.SaveCommand = new Command(async () => await saveCommand());
+
+            var provinceList = App.AttributeList.Where(o => o.type == "province");
+            this.ProvinceList.Clear();
+            foreach (var item in provinceList)
+            {
+                this.ProvinceList.Add(item);
+            }
         }
         private IAccountService accountService { get; set; }
         AccountModel model { get; set; }
@@ -67,18 +74,42 @@ namespace FAQPhone.Views
             set { _work = value; OnPropertyChanged(); }
         }
 
-        string _province;
-        public string province
+        private ObservableCollection<AttributeModel> _ProvinceList;
+        public ObservableCollection<AttributeModel> ProvinceList
         {
-            get { return _province; }
-            set { _province = value; OnPropertyChanged(); }
+            get { return _ProvinceList; }
+            set { _ProvinceList = value; OnPropertyChanged(); }
         }
 
-        string _city;
-        public string city
+        private AttributeModel _SelectedProvince;
+        public AttributeModel SelectedProvince
         {
-            get { return _city; }
-            set { _city = value; OnPropertyChanged(); }
+            get { return _SelectedProvince; }
+            set
+            {
+                _SelectedProvince = value;
+                OnPropertyChanged();
+                var cityList = App.AttributeList.Where(o => o.parentId == _SelectedProvince._id);
+                this.CityList.Clear();
+                foreach (var item in cityList)
+                {
+                    this.CityList.Add(item);
+                }
+            }
+        }
+
+        private ObservableCollection<AttributeModel> _CityList;
+        public ObservableCollection<AttributeModel> CityList
+        {
+            get { return _CityList; }
+            set { _CityList = value; OnPropertyChanged(); }
+        }
+
+        private AttributeModel _SelectedCity;
+        public AttributeModel SelectedCity
+        {
+            get { return _SelectedCity; }
+            set { _SelectedCity = value; OnPropertyChanged(); }
         }
 
         string _address;
@@ -107,7 +138,7 @@ namespace FAQPhone.Views
             }            
             this.model.contact.house= this.house;
             this.model.contact.work = this.work;
-            this.model.contact.province = this.province;
+            this.model.contact.province = this.SelectedProvince._id;
             this.model.contact.city = this.city;
             this.model.contact.address = this.address;
             this.model.contact.pcode = this.pcode;

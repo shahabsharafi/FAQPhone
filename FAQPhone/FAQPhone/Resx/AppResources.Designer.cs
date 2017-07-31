@@ -260,6 +260,69 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to اطلاعات تماس.
+        /// </summary>
+        internal static string contact {
+            get {
+                return ResourceManager.GetString("contact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to شهر.
+        /// </summary>
+        internal static string contact_city {
+            get {
+                return ResourceManager.GetString("contact_city", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ایمیل.
+        /// </summary>
+        internal static string contact_email {
+            get {
+                return ResourceManager.GetString("contact_email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تلفن منزل.
+        /// </summary>
+        internal static string contact_house {
+            get {
+                return ResourceManager.GetString("contact_house", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to استان.
+        /// </summary>
+        internal static string contact_province {
+            get {
+                return ResourceManager.GetString("contact_province", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تلفن همراه.
+        /// </summary>
+        internal static string contact_sms {
+            get {
+                return ResourceManager.GetString("contact_sms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تلفن محل کار.
+        /// </summary>
+        internal static string contact_work {
+            get {
+                return ResourceManager.GetString("contact_work", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RTL.
         /// </summary>
         internal static string direction {

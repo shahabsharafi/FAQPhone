@@ -324,4 +324,25 @@
   <data name="profile" xml:space="preserve">
     <value>اطلاعات شخصی</value>
   </data>
+  <data name="contact_city" xml:space="preserve">
+    <value>شهر</value>
+  </data>
+  <data name="contact_email" xml:space="preserve">
+    <value>ایمیل</value>
+  </data>
+  <data name="contact_house" xml:space="preserve">
+    <value>تلفن منزل</value>
+  </data>
+  <data name="contact_province" xml:space="preserve">
+    <value>استان</value>
+  </data>
+  <data name="contact_sms" xml:space="preserve">
+    <value>تلفن همراه</value>
+  </data>
+  <data name="contact_work" xml:space="preserve">
+    <value>تلفن محل کار</value>
+  </data>
+  <data name="contact" xml:space="preserve">
+    <value>اطلاعات تماس</value>
+  </data>
 </root>

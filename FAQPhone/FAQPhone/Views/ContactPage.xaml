@@ -4,14 +4,42 @@
              xmlns:infr="clr-namespace:FAQPhone.Inferstructure;assembly=FAQPhone"
              x:Class="FAQPhone.Views.ContactPage"
              Title="{infr:Translate contact}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!--  this isn't working yet  -->
+            <DataTemplate x:Key="SugestionItemTemplate">
+                <ViewCell Height="40">
+                    <ViewCell.View>
+                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Label HorizontalOptions="Start"
+                                   Text="{Binding caption}"
+                                    TextColor="#4e5758" 
+                                   FontSize="Small" 
+                                   FontFamily="Irsans" 
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center" />
+                        </StackLayout>
+                    </ViewCell.View>
+                </ViewCell>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}">
+            <controls:AutoCompleteView 
+                Placeholder="{infr:Translate contact_province}"
+                SelectedItem="{Binding SelectedProvince}"
+                SuggestionItemDataTemplate="{StaticResource SugestionItemTemplate}"
+                Suggestions="{Binding ProvinceList, Mode=TwoWay}" />
+            <controls:AutoCompleteView 
+                Placeholder="{infr:Translate contact_city}"
+                SelectedItem="{Binding SelectedCity}"
+                SuggestionItemDataTemplate="{StaticResource SugestionItemTemplate}"
+                Suggestions="{Binding CityList, Mode=TwoWay}" />
             <Entry Placeholder="{infr:Translate contact_email}" Text="{Binding email, Mode=TwoWay}" />
             <Entry Placeholder="{infr:Translate contact_sms}" Text="{Binding sms, Mode=TwoWay}" />
             <Entry Placeholder="{infr:Translate contact_house}" Text="{Binding house, Mode=TwoWay}" />
             <Entry Placeholder="{infr:Translate contact_work}" Text="{Binding work, Mode=TwoWay}" />
-            <Picker Title="{infr:Translate contact_province}" SelectedIndex="{Binding ProvineSelectedIndex}" ItemsSource="{Binding ProvinceList}" />
-            <Picker Title="{infr:Translate contact_city}" SelectedIndex="{Binding CitySelectedIndex}" ItemsSource="{Binding CityList}" />
             <Button Text="{infr:Translate command_save}" Command="{Binding SaveCommand}" StyleClass="Info" />
             <Label Text="{Binding CountDisplay}"/>
         </StackLayout>

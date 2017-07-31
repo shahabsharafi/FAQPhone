@@ -3,7 +3,9 @@ using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -48,9 +50,18 @@ namespace FAQPhone.Views
             this.accountService = accountService;
             this.model = model;
             this.SaveCommand = new Command(async () => await saveCommand());
+
+            Items = new ObservableCollection<AttributeModel>();
+            foreach (var item in App.AttributeList)
+            {
+                Items.Add(new AttributeModel
+                {
+                    caption = item.caption
+                });
+            }
         }
         private IAccountService accountService { get; set; }
-        AccountModel model { get; set; }
+        AccountModel model { get; set; }        
 
         string _firstName;
         public string firstName
@@ -117,6 +128,21 @@ namespace FAQPhone.Views
             this.model.profile.nationalCode = this.nationalCode;
             this.model.profile.birthPlace = this.birthPlace;
             await this.accountService.Save(this.model);
+        }
+
+
+        private ObservableCollection<AttributeModel> _items;        
+        public ObservableCollection<AttributeModel> Items
+        {
+            get { return _items; }
+            set { _items = value; OnPropertyChanged(); }
+        }
+
+        private AttributeModel _SelectedItem;
+        public AttributeModel SelectedItem
+        {
+            get { return _SelectedItem; }
+            set { _SelectedItem = value; OnPropertyChanged(); }
         }
     }
 }

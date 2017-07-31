@@ -80,6 +80,7 @@ namespace FAQPhone.Views
                     items.Add(new MenuItemModel() { CommandName = Constants.OPERATOR_FAQ });
                 }
             }
+            items.Add(new MenuItemModel() { CommandName = "aaa" });
             items.Add(new MenuItemModel() { CommandName = Constants.SIGNOUT });
             //items.Add(new MenuItemModel() { CommandName = "FILE_PICKER" });
             this.setList(items);
@@ -166,6 +167,9 @@ namespace FAQPhone.Views
                         Settings.Username = string.Empty;
                         Settings.Password = string.Empty;
                         await this.RootNavigate(new SendCodePage(FlowType.Signup));
+                        break;
+                    case "aaa":
+                        await this.RootNavigate(new ProfilePage(new AccountModel()));
                         break;
                     //case "FILE_PICKER":
                     //    FilePickerHelper.Open();
