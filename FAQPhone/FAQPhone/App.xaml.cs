@@ -42,6 +42,8 @@ namespace FAQPhone
             };
             var accountService = App.Resolve<AccountService>();
             var flag = await accountService.SignIn(model);
+            var attributeService = App.Resolve<AttributeService>();
+            AttributeList = await attributeService.GetAll();
             Go(flag);
         }
 
@@ -72,6 +74,8 @@ namespace FAQPhone
         public static string Token { get; set; }
 
         public static string[] Access { get; set; }
+
+        public static List<AttributeModel> AttributeList { get; set; }
 
         public static T Resolve<T>() where T: class
         {
