@@ -50,12 +50,13 @@ namespace FAQPhone.Views
             this.model = model;
             this.SaveCommand = new Command(async () => await saveCommand());
 
+            this.ProvinceList = new ObservableCollection<AttributeModel>();
             var provinceList = App.AttributeList.Where(o => o.type == "province");
-            this.ProvinceList.Clear();
             foreach (var item in provinceList)
             {
                 this.ProvinceList.Add(item);
             }
+            this.CityList = new ObservableCollection<AttributeModel>();
         }
         private IAccountService accountService { get; set; }
         AccountModel model { get; set; }
@@ -139,7 +140,7 @@ namespace FAQPhone.Views
             this.model.contact.house= this.house;
             this.model.contact.work = this.work;
             this.model.contact.province = this.SelectedProvince._id;
-            this.model.contact.city = this.city;
+            this.model.contact.city = this.SelectedCity._id;
             this.model.contact.address = this.address;
             this.model.contact.pcode = this.pcode;
             await this.accountService.Save(this.model);

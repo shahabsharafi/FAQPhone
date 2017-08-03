@@ -64,6 +64,11 @@ namespace FAQPhone.Services
         {
             setAutenticationInfo(null);
         }
+        public async Task<AccountModel> GetMe()
+        {
+            string url = this.getUrl("me");
+            return await this.get<AccountModel>(url);
+        }
 
         public bool IsAuthenticated()
         {

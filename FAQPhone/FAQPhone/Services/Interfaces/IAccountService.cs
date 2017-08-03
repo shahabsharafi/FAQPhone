@@ -18,6 +18,8 @@ namespace FAQPhone.Services.Interfaces
 
         void SignOut();
 
+        Task<AccountModel> GetMe();
+
         bool IsAuthenticated();
     }
 }

@@ -169,7 +169,8 @@ namespace FAQPhone.Views
                         await this.RootNavigate(new SendCodePage(FlowType.Signup));
                         break;
                     case "aaa":
-                        await this.RootNavigate(new ProfilePage(new AccountModel()));
+                        var account = await this.accountService.GetMe();
+                        await this.RootNavigate(new ProfilePage(account));
                         break;
                     //case "FILE_PICKER":
                     //    FilePickerHelper.Open();
