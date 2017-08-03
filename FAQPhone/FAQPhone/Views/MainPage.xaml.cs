@@ -80,9 +80,8 @@ namespace FAQPhone.Views
                     items.Add(new MenuItemModel() { CommandName = Constants.OPERATOR_FAQ });
                 }
             }
-            items.Add(new MenuItemModel() { CommandName = "aaa" });
+            items.Add(new MenuItemModel() { CommandName = Constants.ACCOUNT });
             items.Add(new MenuItemModel() { CommandName = Constants.SIGNOUT });
-            //items.Add(new MenuItemModel() { CommandName = "FILE_PICKER" });
             this.setList(items);
             this.accountService = accountService;
             this.departmentService = departmentService;
@@ -168,9 +167,9 @@ namespace FAQPhone.Views
                         Settings.Password = string.Empty;
                         await this.RootNavigate(new SendCodePage(FlowType.Signup));
                         break;
-                    case "aaa":
+                    case Constants.ACCOUNT:
                         var account = await this.accountService.GetMe();
-                        await this.RootNavigate(new ProfilePage(account));
+                        await this.Navigation.PushAsync(new ProfilePage(account));
                         break;
                     //case "FILE_PICKER":
                     //    FilePickerHelper.Open();

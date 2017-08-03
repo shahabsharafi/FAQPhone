@@ -345,4 +345,25 @@
   <data name="contact" xml:space="preserve">
     <value>اطلاعات تماس</value>
   </data>
+  <data name="account" xml:space="preserve">
+    <value>حساب کاربری</value>
+  </data>
+  <data name="setting" xml:space="preserve">
+    <value>تنظیمات</value>
+  </data>
+  <data name="education" xml:space="preserve">
+    <value>اطلاعات تحصیلی</value>
+  </data>
+  <data name="education_grade" xml:space="preserve">
+    <value>درجه</value>
+  </data>
+  <data name="education_level" xml:space="preserve">
+    <value>سطح</value>
+  </data>
+  <data name="education_major" xml:space="preserve">
+    <value>شعبه</value>
+  </data>
+  <data name="education_university" xml:space="preserve">
+    <value>دانشگاه</value>
+  </data>
 </root>

@@ -49,7 +49,17 @@ namespace FAQPhone.Views
         {
             this.accountService = accountService;
             this.model = model;
-            this.SaveCommand = new Command(async () => await saveCommand());
+            if (this.model.profile != null)
+            {
+                this.SaveCommand = new Command(async () => await saveCommand());
+                this.firstName = model.profile.firstName;
+                this.lastName = model.profile.lastName;
+                this.fatherName = model.profile.fatherName;
+                this.no = model.profile.no;
+                this.placeOfIssues = model.profile.placeOfIssues;
+                this.nationalCode = model.profile.nationalCode;
+                this.birthPlace = model.profile.birthPlace;
+            }
         }
         private IAccountService accountService { get; set; }
         AccountModel model { get; set; }        
@@ -119,7 +129,7 @@ namespace FAQPhone.Views
             this.model.profile.nationalCode = this.nationalCode;
             this.model.profile.birthPlace = this.birthPlace;
             await this.accountService.Save(this.model);
-            await this.RootNavigate(new ContactPage(new AccountModel()));
+            await this.Navigation.PushAsync(new ContactPage(this.model));
         }
     }
 }

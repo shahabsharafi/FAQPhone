@@ -39,6 +39,7 @@ namespace XLabs.Forms.Controls
         /// </summary>
         public static readonly BindableProperty ExecuteOnSuggestionClickProperty = BindableProperty.Create<AutoCompleteView, bool>(p => p.ExecuteOnSuggestionClick, false);
 
+        public static readonly BindableProperty DefaultTextProperty = BindableProperty.Create<AutoCompleteView, string>(p => p.DefaultText, string.Empty, BindingMode.TwoWay, null, DefaultTextChanged);
         /// <summary>
         /// The placeholder property.
         /// </summary>
@@ -177,6 +178,11 @@ namespace XLabs.Forms.Controls
             set { SetValue(ExecuteOnSuggestionClickProperty, value); }
         }
 
+        public string DefaultText
+        {
+            get { return (string)GetValue(DefaultTextProperty); }
+            set { SetValue(DefaultTextProperty, value); }
+        }
         /// <summary>
         /// Gets or sets the placeholder.
         /// </summary>
@@ -294,6 +300,15 @@ namespace XLabs.Forms.Controls
         {
             get { return (LayoutOptions)GetValue(TextVerticalOptionsProperty); }
             set { SetValue(TextVerticalOptionsProperty, value); }
+        }
+
+        private static void DefaultTextChanged(BindableObject obj, string oldDefaultTextValue, string newDefaultTextValue)
+        {
+            var autoCompleteView = obj as AutoCompleteView;
+            if (autoCompleteView != null)
+            {
+                autoCompleteView._entText.Text = newDefaultTextValue;
+            }
         }
         /// <summary>
         /// Places the holder changed.

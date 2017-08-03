@@ -62,6 +62,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to حساب کاربری.
+        /// </summary>
+        internal static string account {
+            get {
+                return ResourceManager.GetString("account", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ابطال.
         /// </summary>
         internal static string cancelation {
@@ -458,6 +467,51 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to اطلاعات تحصیلی.
+        /// </summary>
+        internal static string education {
+            get {
+                return ResourceManager.GetString("education", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to درجه.
+        /// </summary>
+        internal static string education_grade {
+            get {
+                return ResourceManager.GetString("education_grade", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to سطح.
+        /// </summary>
+        internal static string education_level {
+            get {
+                return ResourceManager.GetString("education_level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to شعبه.
+        /// </summary>
+        internal static string education_major {
+            get {
+                return ResourceManager.GetString("education_major", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to دانشگاه.
+        /// </summary>
+        internal static string education_university {
+            get {
+                return ResourceManager.GetString("education_university", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ایمیل.
         /// </summary>
         internal static string email {
@@ -670,6 +724,15 @@ namespace FAQPhone.Resx {
         internal static string sendcode {
             get {
                 return ResourceManager.GetString("sendcode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تنظیمات.
+        /// </summary>
+        internal static string setting {
+            get {
+                return ResourceManager.GetString("setting", resourceCulture);
             }
         }
         

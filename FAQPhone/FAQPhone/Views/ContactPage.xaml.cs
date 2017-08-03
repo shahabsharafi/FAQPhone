@@ -23,8 +23,11 @@ namespace FAQPhone.Views
         public ContactPage(AccountModel model)
         {
             InitializeComponent();
+            this.Appearing += (sender, e) => {
+                this.Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
+            };
             var factory = App.Resolve<ContactViewModelFactory>();
-            BindingContext = factory.Create(Navigation, model);            
+            BindingContext = factory.Create(Navigation, model);
         }
     }
 
@@ -49,14 +52,24 @@ namespace FAQPhone.Views
             this.accountService = accountService;
             this.model = model;
             this.SaveCommand = new Command(async () => await saveCommand());
-
             this.ProvinceList = new ObservableCollection<AttributeModel>();
+            this.CityList = new ObservableCollection<AttributeModel>();
             var provinceList = App.AttributeList.Where(o => o.type == "province");
             foreach (var item in provinceList)
             {
                 this.ProvinceList.Add(item);
             }
-            this.CityList = new ObservableCollection<AttributeModel>();
+            if (this.model.contact != null)
+            {
+                this.house = model.contact.house;
+                this.work = model.contact.work;                
+                this.SelectedProvince = App.AttributeList.Find(o => o._id == model.contact.province);
+                this.ProvinceText = this.SelectedProvince.caption;
+                this.SelectedCity = App.AttributeList.Find(o => o._id == model.contact.city);
+                this.CityText = this.SelectedCity.caption;
+                this.address = model.contact.address;
+                this.pcode = model.contact.pcode;
+            }
         }
         private IAccountService accountService { get; set; }
         AccountModel model { get; set; }
@@ -99,6 +112,13 @@ namespace FAQPhone.Views
             }
         }
 
+        public string _ProvinceText;
+        public string ProvinceText
+        {
+            get { return _ProvinceText; }
+            set { _ProvinceText = value; OnPropertyChanged(); }
+        }
+
         private ObservableCollection<AttributeModel> _CityList;
         public ObservableCollection<AttributeModel> CityList
         {
@@ -111,6 +131,13 @@ namespace FAQPhone.Views
         {
             get { return _SelectedCity; }
             set { _SelectedCity = value; OnPropertyChanged(); }
+        }
+
+        public string _CityText;
+        public string CityText
+        {
+            get { return _CityText; }
+            set { _CityText = value; OnPropertyChanged(); }
         }
 
         string _address;
@@ -135,7 +162,7 @@ namespace FAQPhone.Views
             this.model.sms = "";
             if (this.model.contact == null)
             {
-                this.model.contact = new Contact();
+                this.model.contact = new ContactModel();
             }            
             this.model.contact.house= this.house;
             this.model.contact.work = this.work;
@@ -144,6 +171,7 @@ namespace FAQPhone.Views
             this.model.contact.address = this.address;
             this.model.contact.pcode = this.pcode;
             await this.accountService.Save(this.model);
+            await this.Navigation.PushAsync(new EducationPage(this.model));
         }
     }
 }

@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:infr="clr-namespace:FAQPhone.Inferstructure;assembly=FAQPhone"
              xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=FAQPhone"
-             x:Class="FAQPhone.Views.ContactPage"
-             Title="{infr:Translate contact}">
+             x:Class="FAQPhone.Views.EducationPage"
+             Title="{infr:Translate education}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <!--  this isn't working yet  -->
@@ -28,21 +28,29 @@
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}">
             <controls:AutoCompleteView 
-                Placeholder="{infr:Translate contact_province}"
-                DefaultText="{Binding ProvinceText, Mode=TwoWay}"
-                SelectedItem="{Binding SelectedProvince, Mode=TwoWay}"
+                Placeholder="{infr:Translate education_grade}"
+                DefaultText="{Binding GradeText, Mode=TwoWay}"
+                SelectedItem="{Binding SelectedGrade, Mode=TwoWay}"
                 SuggestionItemDataTemplate="{StaticResource SugestionItemTemplate}"
-                Suggestions="{Binding ProvinceList, Mode=TwoWay}" />
+                Suggestions="{Binding GradeList, Mode=TwoWay}" />
             <controls:AutoCompleteView 
-                Placeholder="{infr:Translate contact_city}"
-                DefaultText="{Binding CityText, Mode=TwoWay}"
-                SelectedItem="{Binding SelectedCity, Mode=TwoWay}"
+                Placeholder="{infr:Translate education_major}"
+                DefaultText="{Binding MajorText, Mode=TwoWay}"
+                SelectedItem="{Binding SelectedMajor, Mode=TwoWay}"
                 SuggestionItemDataTemplate="{StaticResource SugestionItemTemplate}"
-                Suggestions="{Binding CityList, Mode=TwoWay}" />
-            <Entry Placeholder="{infr:Translate contact_email}" Text="{Binding email, Mode=TwoWay}" />
-            <Entry Placeholder="{infr:Translate contact_sms}" Text="{Binding sms, Mode=TwoWay}" />
-            <Entry Placeholder="{infr:Translate contact_house}" Text="{Binding house, Mode=TwoWay}" />
-            <Entry Placeholder="{infr:Translate contact_work}" Text="{Binding work, Mode=TwoWay}" />
+                Suggestions="{Binding MajorList, Mode=TwoWay}" />
+            <controls:AutoCompleteView 
+                Placeholder="{infr:Translate education_university}"
+                DefaultText="{Binding UniversityText, Mode=TwoWay}"
+                SelectedItem="{Binding SelectedUniversity, Mode=TwoWay}"
+                SuggestionItemDataTemplate="{StaticResource SugestionItemTemplate}"
+                Suggestions="{Binding UniversityList, Mode=TwoWay}" />
+            <controls:AutoCompleteView 
+                Placeholder="{infr:Translate education_level}"
+                DefaultText="{Binding LevelText, Mode=TwoWay}"
+                SelectedItem="{Binding SelectedLevel, Mode=TwoWay}"
+                SuggestionItemDataTemplate="{StaticResource SugestionItemTemplate}"
+                Suggestions="{Binding LevelList, Mode=TwoWay}" />
             <Button Text="{infr:Translate command_save}" Command="{Binding SaveCommand}" StyleClass="Info" />
             <Label Text="{Binding CountDisplay}"/>
         </StackLayout>
