@@ -16,7 +16,6 @@
                                    Text="{Binding caption}"
                                     TextColor="#4e5758" 
                                    FontSize="Small" 
-                                   FontFamily="Irsans" 
                                    FontAttributes="Bold"
                                    VerticalOptions="Center" />
                         </StackLayout>

@@ -128,6 +128,7 @@
     <Compile Include="com.xamarin.recipes.filepicker\FileListRowViewHolder.cs" />
     <Compile Include="com.xamarin.recipes.filepicker\FilePickerActivity.cs" />
     <Compile Include="com.xamarin.recipes.filepicker\Helpers.cs" />
+    <Compile Include="CustomRenderers\CustomButtonRenderer.cs" />
     <Compile Include="CustomRenderers\CustomLabelRenderer.cs" />
     <Compile Include="CustomRenderers\DiscussionRenderer.cs" />
     <Compile Include="CustomRenderers\MessageRenderer.cs" />

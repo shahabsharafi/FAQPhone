@@ -9,7 +9,7 @@
             <Label Text="{Binding price, Mode=TwoWay}" />
             <Label Text="{infr:Translate discussion_edit_title_help}" />
             <Entry x:Name="title" Placeholder="{infr:Translate discussion_edit_title}" Text="{Binding title, Mode=TwoWay}" />
-            <Button Text="{infr:Translate command_next}" Command="{Binding NextCommand}" StyleClass="Info" IsVisible="{ Binding CanNext }" />
+            <Button Text="{infr:Translate command_next}" Command="{Binding NextCommand}" StyleClass="Info" IsEnabled="{ Binding CanNext }" />
             <Label x:Name="messageLabel" />
         </StackLayout>
     </ScrollView>

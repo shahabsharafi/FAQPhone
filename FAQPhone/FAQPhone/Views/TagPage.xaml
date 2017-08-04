@@ -17,8 +17,8 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Button Text="{infr:Translate command_save}" Command="{Binding SaveCommand}" StyleClass="Info" Grid.Column="0" Grid.Row="0" IsVisible="{ Binding CanSaving }" />
-                    <Button Text="{infr:Translate command_add}" Command="{Binding AddCommand}" StyleClass="Info" Grid.Column="1" Grid.Row="0" IsVisible="{ Binding CanAdding }" />
+                    <Button Text="{infr:Translate command_save}" Command="{Binding SaveCommand}" StyleClass="Info" Grid.Column="0" Grid.Row="0" IsEnabled="{ Binding CanSaving }" />
+                    <Button Text="{infr:Translate command_add}" Command="{Binding AddCommand}" StyleClass="Info" Grid.Column="1" Grid.Row="0" IsEnabled="{ Binding CanAdding }" />
                 </Grid>
             </StackLayout>
             <ListView ItemsSource="{ Binding List }">
@@ -26,7 +26,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout>
-                                <Label Text="{Binding text}" TextColor="#7f8c8d" FontSize="Small" FontFamily="Irsans" HorizontalTextAlignment="End" />
+                                <Label Text="{Binding text}" TextColor="#7f8c8d" FontSize="Small" HorizontalTextAlignment="End" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

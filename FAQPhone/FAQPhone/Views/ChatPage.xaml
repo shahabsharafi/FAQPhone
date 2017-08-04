@@ -12,15 +12,15 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <Button Text="{infr:Translate command_report}" Command="{Binding ReportCommand}" StyleClass="Info" IsVisible="{ Binding HasReporting }" Grid.Column="0" Grid.Row="0" />
-                    <Button Text="{infr:Translate command_finish}" Command="{Binding FinishCommand}" StyleClass="Info" IsVisible="{ Binding HasFinishing }" Grid.Column="1" Grid.Row="0" />
-                    <Button Text="{infr:Translate command_send}" Command="{Binding SendCommand}" StyleClass="Info" IsVisible="{ Binding CanSending }" Grid.Column="2" Grid.Row="0" />
+                    <Button Text="{infr:Translate command_send}" Command="{Binding SendCommand}" StyleClass="Info" IsEnabled="{ Binding CanSending }" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+                    <Button Text="{infr:Translate command_finish}" Command="{Binding FinishCommand}" StyleClass="Info" IsVisible="{ Binding HasFinishing }" Grid.Row="1" Grid.Column="1" />
+                    <Button Text="{infr:Translate command_report}" Command="{Binding ReportCommand}" StyleClass="Info" IsVisible="{ Binding HasReporting }" Grid.Row="1" Grid.Column="0" />
                 </Grid>
             </StackLayout>
             <ListView ItemsSource="{ Binding List }">

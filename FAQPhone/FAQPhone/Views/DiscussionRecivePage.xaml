@@ -6,8 +6,8 @@
              Title="{infr:Translate discussion_revice}" StyleId="DiscussionRecivePage">
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}" >
-            <Label Text="{Binding title, Mode=TwoWay}" FontSize="Medium" FontFamily="Irsans" />
-            <Label Text="{Binding text, Mode=TwoWay}" FontSize="Small" FontFamily="Irsans" />
+            <Label Text="{Binding title, Mode=TwoWay}" FontSize="Medium" />
+            <Label Text="{Binding text, Mode=TwoWay}" FontSize="Small" />
             <Entry x:Name="display" Placeholder="{infr:Translate discussion_recive_display}" Text="{Binding display, Mode=TwoWay}" />
             <Grid>
                 <Grid.RowDefinitions>
@@ -18,7 +18,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Text="{infr:Translate command_accept}" Command="{Binding AcceptCommand}" StyleClass="Info" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="{ Binding CanAccepting }" />
+                <Button Text="{infr:Translate command_accept}" Command="{Binding AcceptCommand}" StyleClass="Info" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" IsEnabled="{ Binding CanAccepting }" />
                 <Button Text="{infr:Translate command_reject}" Command="{Binding RejectCommand}" StyleClass="Info" Grid.Row="1" Grid.Column="1" />
                 <Button Text="{infr:Translate command_report}" Command="{Binding ReportCommand}" StyleClass="Info" Grid.Row="1" Grid.Column="0" />
             </Grid>
