@@ -19,7 +19,7 @@ namespace FAQPhone.Services
         public override void OnSaving(DiscussionModel obj)
         {
             
-            if (obj.to.username == App.Username && obj.items != null)
+            if (obj != null && obj.items != null && obj.items.Length > 0 && obj.to != null && obj.to.username == App.Username)
             {
                 var answerList = obj.items.Where(o => o.owner.username == obj.to.username);
                 if (answerList.Any())

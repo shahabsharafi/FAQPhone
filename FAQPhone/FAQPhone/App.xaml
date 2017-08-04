@@ -19,7 +19,7 @@
                 <Setter Property="VerticalOptions" Value="StartAndExpand" />
                 <Setter Property="Padding" Value="5,20,5,5" />
             </Style>
-            <Style TargetType="Button" Class="Info">
+            <Style TargetType="Button">
                 <Setter Property="FontFamily" Value="Irsans"/>
             </Style>
         </ResourceDictionary>
