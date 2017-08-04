@@ -59,7 +59,7 @@ namespace FAQPhone.Views
             this.model = model;
             this.List = new ObservableCollection<DiscussionDetailModel>();
             this.IsOperator = state == Constants.OPERATOR_INPROGRESS_FAQ;
-            this.Editable = (state == Constants.OPERATOR_INPROGRESS_FAQ || state == Constants.USER_INPROGRESS_FAQ);
+            this.Editable = (state == Constants.OPERATOR_INPROGRESS_FAQ || (state == Constants.USER_INPROGRESS_FAQ && model.state < 2));
             this.HasFinishing = this.IsOperator;
             this.HasReporting = this.IsOperator;
             this.setList(this.model.items.ToList());
@@ -76,6 +76,11 @@ namespace FAQPhone.Views
             set { _HasReporting = value; OnPropertyChanged(); }
         }
 
+        public string ReportingStyle
+        {
+            get { return _HasReporting ? "Info" : ""; }
+        }
+
         bool _HasFinishing;
         public bool HasFinishing
         {
@@ -83,11 +88,21 @@ namespace FAQPhone.Views
             set { _HasFinishing = value; OnPropertyChanged(); }
         }
 
+        public string FinishingStyle
+        {
+            get { return _HasFinishing ? "Info" : ""; }
+        }
+
         bool _CanSending;
         public bool CanSending
         {
             get { return _CanSending; }
             set { _CanSending = value; OnPropertyChanged(); }
+        }
+
+        public string SendingStyle
+        {
+            get { return _CanSending ? "Info" : ""; }
         }
 
         bool _Editable;
@@ -188,10 +203,7 @@ namespace FAQPhone.Views
         public async Task reportCommand()
         {
             /////     
-            model.state = 3;
-            model.to = new AccountModel() { username = App.Username };
-            await this.discussionService.Save(model);
-            await this.Navigation.PopAsync();
+            await this.Navigation.PushAsync(new CancelationPage(model));
         }
     }
 }

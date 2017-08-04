@@ -25,7 +25,11 @@ namespace FAQPhone.Views
         {
             InitializeComponent();
             var factory = App.Resolve<DiscussionPageViewModelFactory>();
-            BindingContext = factory.Create(Navigation, state, list);
+            var vm = factory.Create(Navigation, state, list);
+            this.Appearing += (sender, e) => {
+                Task.Run(async () => await vm.Load()).Wait();
+            };
+            BindingContext = vm;
         }
     }
 
@@ -53,12 +57,28 @@ namespace FAQPhone.Views
             this.Title = ResourceManagerHelper.GetValue(state);
             this.SelectItemCommand = new Command<DiscussionModel>(async (model) => await selectItemCommand(model));
             this.List = new ObservableCollection<DiscussionModel>();
-            this.setList(list);
+            this.list = list;                    
         }
         IDiscussionService discussionService;
+        List<DiscussionModel> list;
         public string Title { get; set; }
         public bool IsOperator { get; set; }
         string State { get; set; }
+
+        bool _loaded = false;
+        public async Task Load()
+        {
+            if (this._loaded)
+            {
+                var l = await this.discussionService.GetList(!this.IsOperator, new int[] { 0, 1, 2, 3 });
+                this.setList(l);
+            }
+            else
+            {
+                this._loaded = true;
+                this.setList(this.list);
+            }
+        }
 
         public ICommand SelectItemCommand { protected set; get; }
 

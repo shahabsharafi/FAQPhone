@@ -24,7 +24,7 @@
             </DataTemplate>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ScrollView>
+    <ScrollView Style="{StaticResource pageStyle}">
         <StackLayout Style="{StaticResource pageStyle}">
             <controls:AutoCompleteView 
                 Placeholder="{infr:Translate education_grade}"

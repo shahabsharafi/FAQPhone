@@ -12,8 +12,7 @@ namespace FAQPhone.Droid.CustomRenderers
     {
         protected override void OnDraw(Android.Graphics.Canvas canvas)
         {
-            base.OnDraw(canvas);
-            
+            base.OnDraw(canvas);            
         }
         protected override void OnElementChanged(ElementChangedEventArgs<Button> e)
         {

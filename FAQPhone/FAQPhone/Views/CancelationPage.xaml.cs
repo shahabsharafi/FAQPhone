@@ -1,4 +1,5 @@
 ﻿using FAQPhone.Inferstructure;
+using FAQPhone.Infrastructure;
 using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
 using System;
@@ -112,12 +113,16 @@ namespace FAQPhone.Views
                 {
                     createDate = DateTime.Now,
                     owner = new AccountModel() { username = App.Username },
-                    text = message
+                    text = ResourceManagerHelper.GetValue(message)
                 });
                 model.items = l.ToArray();
+                model.state = 3;
                 model.userRead = false;
+                model.to = new AccountModel() { username = App.Username };
                 await this.discussionService.Save(model);
                 this.SelectedItem = null;
+                this.Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
+                await this.Navigation.PopAsync();
             }
         }
     }

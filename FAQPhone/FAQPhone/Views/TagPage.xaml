@@ -6,7 +6,7 @@
              x:Class="FAQPhone.Views.TagPage"
              Title="{infr:Translate discussion_tags}">
     <ScrollView>
-        <StackLayout>
+        <StackLayout Style="{StaticResource pageStyle}">
             <StackLayout>
                 <Entry Placeholder="{infr:Translate discussion_tag_new}" Text="{Binding tag, Mode=TwoWay}" />
                 <Grid>

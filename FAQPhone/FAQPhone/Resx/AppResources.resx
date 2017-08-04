@@ -286,7 +286,7 @@
     <value>ناواضح</value>
   </data>
   <data name="cancelation_unrelated" xml:space="preserve">
-    <value>نامریوط</value>
+    <value>نامربوط</value>
   </data>
   <data name="cancelation_annoying_text" xml:space="preserve">
     <value>سوال شما مزاحمت تلقی شده بنابر این مقداری از وجه شما کسر شده و باقی آن بازگردانده میشود و در صورت تکرار ممکن است کاربری شما غیر فعال شود</value>

@@ -44,6 +44,7 @@
     <Compile Include="Infrastructure\BaseViewModel.cs" />
     <Compile Include="Infrastructure\BehaviorBase.cs" />
     <Compile Include="Infrastructure\EventToCommandBehavior.cs" />
+    <Compile Include="Infrastructure\ExtendedButton.cs" />
     <Compile Include="Infrastructure\FilePickerHelper.cs" />
     <Compile Include="Infrastructure\FlowType.cs" />
     <Compile Include="Infrastructure\Constants.cs" />

@@ -6,7 +6,7 @@
              x:Class="FAQPhone.Views.ChatPage"
              Title="{infr:Translate chat}">
     <ScrollView>
-        <StackLayout>
+        <StackLayout Style="{StaticResource pageStyle}">
             <StackLayout IsVisible="{ Binding Editable }">
                 <Editor  x:Name="text" Text="{Binding replay, Mode=TwoWay}" FontSize="Small" BackgroundColor="#efefef" HeightRequest="80" />
                 <Grid>

@@ -138,7 +138,7 @@ namespace FAQPhone.Views
                         }
                         break;
                     case Constants.USER_INPROGRESS_FAQ:
-                        l = await this.discussionService.GetList(true, new int[] { 0, 1, 2 });
+                        l = await this.discussionService.GetList(true, new int[] { 0, 1, 2, 3 });
                         if (l != null && l.Count() > 0)
                         {
                             await this.Navigation.PushAsync(new DiscussionPage(model.CommandName, l));
@@ -155,7 +155,7 @@ namespace FAQPhone.Views
                         }
                         break;
                     case Constants.OPERATOR_INPROGRESS_FAQ:
-                        l = await this.discussionService.GetList(false, new int[] { 0, 1, 2 });
+                        l = await this.discussionService.GetList(false, new int[] { 0, 1, 2, 3 });
                         if (l != null && l.Count() > 0)
                         {
                             await this.Navigation.PushAsync(new DiscussionPage(model.CommandName, l));

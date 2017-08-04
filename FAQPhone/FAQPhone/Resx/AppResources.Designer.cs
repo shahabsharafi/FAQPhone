@@ -134,7 +134,7 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to نامریوط.
+        ///   Looks up a localized string similar to نامربوط.
         /// </summary>
         internal static string cancelation_unrelated {
             get {
