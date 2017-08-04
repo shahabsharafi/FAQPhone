@@ -7,9 +7,6 @@
 
 		<!-- Application resource dictionary -->
         <ResourceDictionary MergedWith="light:LightThemeResources">
-            <Style>
-                
-            </Style>
             <Style TargetType="Entry">
                 <Setter Property="HorizontalTextAlignment" Value="{Binding Direction}" />
             </Style>
