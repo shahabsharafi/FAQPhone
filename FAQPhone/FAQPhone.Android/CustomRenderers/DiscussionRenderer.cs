@@ -26,7 +26,7 @@ namespace FAQPhone.Droid.CustomRenderers
             public TextView OperatorTextView { get; set; }
             public TextView LastAnswerTextView { get; set; }
             public TextView TitleTextView { get; set; }
-            public ImageView UnreadImageView { get; set; }
+            public TextView UnreadIconView { get; set; }
 
             public DiscussionViewCell DiscussionViewCell { get; private set; }
             public Element Element => DiscussionViewCell;
@@ -42,15 +42,17 @@ namespace FAQPhone.Droid.CustomRenderers
                 OperatorTextView = view.FindViewById<TextView>(Resource.Id.discussion_operator);
                 LastAnswerTextView = view.FindViewById<TextView>(Resource.Id.discussion_lastanswer);
                 TitleTextView = view.FindViewById<TextView>(Resource.Id.discussion_title);
-                UnreadImageView = view.FindViewById<ImageView>(Resource.Id.unread_image);
+                UnreadIconView = view.FindViewById<TextView>(Resource.Id.unread_icon);
 
                 var font = Typeface.CreateFromAsset(Forms.Context.ApplicationContext.Assets, "Irsans.ttf");
+                var fontawesome = Typeface.CreateFromAsset(Forms.Context.ApplicationContext.Assets, "fontawesome.ttf");
 
                 DepartmentTextView.Typeface = font;
                 CreateDateTextView.Typeface = font;
                 OperatorTextView.Typeface = font;
                 LastAnswerTextView.Typeface = font;
-                TitleTextView.Typeface = font;                
+                TitleTextView.Typeface = font;
+                UnreadIconView.Typeface = fontawesome;
 
                 AddView(view);
             }
@@ -62,7 +64,7 @@ namespace FAQPhone.Droid.CustomRenderers
                 OperatorTextView.Text = cell.Operator;
                 LastAnswerTextView.Text = cell.AnswerDate;
                 TitleTextView.Text = cell.Title;
-                UnreadImageView.Visibility = cell.Mode == "unread" ? ViewStates.Visible : ViewStates.Invisible;
+                UnreadIconView.Text = cell.Mode == "unread" ? "\uf0e0" : "\uf2b7";
             }
 
         }
@@ -114,7 +116,7 @@ namespace FAQPhone.Droid.CustomRenderers
             }            
             if (e.PropertyName == DiscussionViewCell.ModeProperty.PropertyName)
             {
-                cell.UnreadImageView.Visibility = nativeCell.Mode == "unread" ? ViewStates.Visible : ViewStates.Invisible;
+                cell.UnreadIconView.Text = nativeCell.Mode == "unread" ? "\uf0e0" : "\uf2b7";
             }            
         }        
     }    

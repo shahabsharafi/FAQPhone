@@ -1,4 +1,5 @@
-﻿using FAQPhone.Helpers;
+﻿using Awesome;
+using FAQPhone.Helpers;
 using FAQPhone.Inferstructure;
 using FAQPhone.Infrastructure;
 using FAQPhone.Models;
@@ -58,30 +59,30 @@ namespace FAQPhone.Views
             {
                 items.AddRange(
                     new MenuItemModel[] {
-                        new MenuItemModel() { CommandName = Constants.OPERATOR_RECEIVE_FAQ },
-                        new MenuItemModel() { CommandName = Constants.OPERATOR_INPROGRESS_FAQ }
+                        new MenuItemModel() { CommandName = Constants.OPERATOR_RECEIVE_FAQ, Icon = FontAwesome.FADownload },
+                        new MenuItemModel() { CommandName = Constants.OPERATOR_INPROGRESS_FAQ, Icon = FontAwesome.FATasks }
                     }
                 );
                 if (App.Access.Contains(Constants.ACCESS_USER))
                 {
-                    items.Add(new MenuItemModel() { CommandName = Constants.USER_FAQ });
+                    items.Add(new MenuItemModel() { CommandName = Constants.USER_FAQ, Icon = FontAwesome.FAUser });
                 }
             }
             else if (menu == Constants.USER_FAQ || (menu == null && App.Access.Contains(Constants.ACCESS_USER)))
             {
                 items.AddRange(
                     new MenuItemModel[] {
-                        new MenuItemModel() { CommandName = Constants.USER_CREATE_FAQ },
-                        new MenuItemModel() { CommandName = Constants.USER_INPROGRESS_FAQ }
+                        new MenuItemModel() { CommandName = Constants.USER_CREATE_FAQ, Icon = FontAwesome.FAPlus },
+                        new MenuItemModel() { CommandName = Constants.USER_INPROGRESS_FAQ, Icon = FontAwesome.FATasks }
                     }
                 );
                 if (App.Access.Contains(Constants.ACCESS_OPERATOR))
                 {
-                    items.Add(new MenuItemModel() { CommandName = Constants.OPERATOR_FAQ });
+                    items.Add(new MenuItemModel() { CommandName = Constants.OPERATOR_FAQ, Icon = FontAwesome.FAUserMd });
                 }
             }
-            items.Add(new MenuItemModel() { CommandName = Constants.ACCOUNT });
-            items.Add(new MenuItemModel() { CommandName = Constants.SIGNOUT });
+            items.Add(new MenuItemModel() { CommandName = Constants.ACCOUNT, Icon = FontAwesome.FAAddressCardO });
+            items.Add(new MenuItemModel() { CommandName = Constants.SIGNOUT, Icon = FontAwesome.FASignOut });
             this.setList(items);
             this.accountService = accountService;
             this.departmentService = departmentService;

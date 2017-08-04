@@ -14,5 +14,6 @@ namespace FAQPhone.Models
             }
         }
         public string CommandName { get; set; }
+        public string Icon { get; set; }
     }
 }

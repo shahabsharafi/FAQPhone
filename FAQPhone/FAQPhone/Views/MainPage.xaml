@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:infr="clr-namespace:FAQPhone.Inferstructure;assembly=FAQPhone"
              xmlns:local="clr-namespace:EventToCommandBehavior"
-             x:Class="FAQPhone.Views.MainPage"
+             xmlns:icon="clr-namespace:Awesome;assembly=FAQPhone"
+	         x:Class="FAQPhone.Views.MainPage"
              Title="{infr:Translate mainpage}">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -19,9 +20,17 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout VerticalOptions="CenterAndExpand">
-                                <Label Text="{Binding DisplayName}" TextColor="#4e5758" FontSize="Small" FontAttributes="Bold" HorizontalTextAlignment="End" />
-                            </StackLayout>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Icon}" FontFamily="fontawesome" TextColor="#4e5758" FontSize="20" HorizontalTextAlignment="Center" Margin="5,10,5,0" Grid.Row="0" Grid.Column="1" />
+                                <Label Text="{Binding DisplayName}" TextColor="#4e5758" FontSize="Small" FontAttributes="Bold" HorizontalTextAlignment="End" Margin="0,10,0,0" Grid.Row="0" Grid.Column="0" />
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
