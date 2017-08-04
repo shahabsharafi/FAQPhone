@@ -23,6 +23,10 @@ namespace FAQPhone.Models
         public string title { get; set; }
         public string display { get; set; }
         public int state { get; set; }
+        public int cancelation { get; set; }//1: CANCELATION_UNCLEAR, 2:CANCELATION_UNRELATED, 3:CANCELATION_ANNOYING, 4:CANCELATION_OFFENSIV
+        public long price { get; set; }
+        public decimal payment { get; set; }
+        public decimal wage { get; set; }
         public bool userRead { get; set; }
         public bool operatorRead { get; set; }
         public DepartmentModel department { get; set; }

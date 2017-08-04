@@ -93,19 +93,24 @@ namespace FAQPhone.Views
             if (!string.IsNullOrEmpty(item.CommandName))
             {
                 string message = "";
+                int cancelation = 0;
                 switch (item.CommandName)
                 {
                     case Constants.CANCELATION_UNCLEAR:
                         message = Constants.CANCELATION_UNCLEAR_TEXT;
+                        cancelation = 1;
                         break;
                     case Constants.CANCELATION_UNRELATED:
                         message = Constants.CANCELATION_UNRELATED_TEXT;
+                        cancelation = 2;
                         break;
                     case Constants.CANCELATION_ANNOYING:
                         message = Constants.CANCELATION_ANNOYING_TEXT;
+                        cancelation = 3;
                         break;
                     case Constants.CANCELATION_OFFENSIV:
                         message = Constants.CANCELATION_OFFENSIV_TEXT;
+                        cancelation = 4;
                         break;
                 }
                 var l = model.items.ToList();
@@ -117,6 +122,7 @@ namespace FAQPhone.Views
                 });
                 model.items = l.ToArray();
                 model.state = 3;
+                model.cancelation = cancelation;
                 model.userRead = false;
                 model.to = new AccountModel() { username = App.Username };
                 await this.discussionService.Save(model);
