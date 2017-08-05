@@ -59,6 +59,7 @@ namespace FAQPhone.Views
             {
                 this.ProvinceList.Add(item);
             }
+            this.email = this.model.email;
             if (this.model.contact != null)
             {
                 this.house = model.contact.house;
@@ -140,6 +141,13 @@ namespace FAQPhone.Views
             set { _CityText = value; OnPropertyChanged(); }
         }
 
+        string _email;
+        public string email
+        {
+            get { return _email; }
+            set { _email = value; OnPropertyChanged(); }
+        }
+
         string _address;
         public string address
         {
@@ -158,12 +166,11 @@ namespace FAQPhone.Views
 
         public async Task saveCommand()
         {
-            this.model.email = "";
-            this.model.sms = "";
             if (this.model.contact == null)
             {
                 this.model.contact = new ContactModel();
-            }            
+            }
+            this.model.email = this.email;
             this.model.contact.house= this.house;
             this.model.contact.work = this.work;
             this.model.contact.province = this.SelectedProvince._id;

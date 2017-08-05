@@ -71,6 +71,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to اعتبار.
+        /// </summary>
+        internal static string account_credit {
+            get {
+                return ResourceManager.GetString("account_credit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ابطال.
         /// </summary>
         internal static string cancelation {
@@ -184,6 +193,15 @@ namespace FAQPhone.Resx {
         internal static string command_add {
             get {
                 return ResourceManager.GetString("command_add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ویرایش.
+        /// </summary>
+        internal static string command_edit {
+            get {
+                return ResourceManager.GetString("command_edit", resourceCulture);
             }
         }
         
@@ -305,20 +323,20 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to تلفن همراه.
+        /// </summary>
+        internal static string contact_mobile {
+            get {
+                return ResourceManager.GetString("contact_mobile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to استان.
         /// </summary>
         internal static string contact_province {
             get {
                 return ResourceManager.GetString("contact_province", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to تلفن همراه.
-        /// </summary>
-        internal static string contact_sms {
-            get {
-                return ResourceManager.GetString("contact_sms", resourceCulture);
             }
         }
         

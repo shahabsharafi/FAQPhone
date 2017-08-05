@@ -37,7 +37,8 @@ namespace FAQPhone.Models
         public string _id { get; set; }
         public string username { get; set; }
         public string email { get; set; }
-        public string sms { get; set; }
+        public string mobile { get; set; }
+        public decimal credit { get; set; }
         public ProfileModel profile { get; set; }
         public ContactModel contact { get; set; }
         public EducationModel education { get; set; }

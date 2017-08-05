@@ -78,7 +78,7 @@ namespace FAQPhone.Views
                 );
                 if (App.Access.Contains(Constants.ACCESS_OPERATOR))
                 {
-                    items.Add(new MenuItemModel() { CommandName = Constants.OPERATOR_FAQ, Icon = FontAwesome.FAUserMd });
+                    items.Add(new MenuItemModel() { CommandName = Constants.OPERATOR_FAQ, Icon = FontAwesome.FAUserCircle });
                 }
             }
             items.Add(new MenuItemModel() { CommandName = Constants.ACCOUNT, Icon = FontAwesome.FAAddressCardO });
@@ -170,7 +170,8 @@ namespace FAQPhone.Views
                         break;
                     case Constants.ACCOUNT:
                         var account = await this.accountService.GetMe();
-                        await this.Navigation.PushAsync(new ProfilePage(account));
+                        //await this.Navigation.PushAsync(new ProfilePage(account));
+                        await this.Navigation.PushAsync(new AccountPage(account));
                         break;
                     //case "FILE_PICKER":
                     //    FilePickerHelper.Open();

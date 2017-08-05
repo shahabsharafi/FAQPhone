@@ -403,5 +403,6 @@ namespace Awesome
 
         //customize
         public static string FAAddressCardO = "\uf2bc";
+        public static string FAUserCircle = "\uf2bd";
     }
 }

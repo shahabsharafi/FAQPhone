@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:infr="clr-namespace:FAQPhone.Inferstructure;assembly=FAQPhone"
+             xmlns:icon="clr-namespace:Awesome;assembly=FAQPhone"
+	         x:Class="FAQPhone.Views.AccountPage"
+             Title="{infr:Translate account}">
+    <ScrollView>
+        <StackLayout Style="{StaticResource pageStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label Text="{x:Static icon:FontAwesome.FAAddressCardO}" FontFamily="fontawesome" VerticalTextAlignment="Start" Margin="10,0,0,0" TextColor="#4e5758" FontSize="90" Grid.Row="0" Grid.Column="1" Grid.RowSpan="4" />
+                <Label Text="{Binding fullName}" TextColor="#4e5758" FontSize="Large" HorizontalTextAlignment="End" Grid.Row="0" Grid.Column="0" />
+                <Label Text="{Binding email}" TextColor="#4e5758" FontSize="Small" HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="0" />
+                <Label Text="{Binding mobile}" TextColor="#4e5758" FontSize="Small" HorizontalTextAlignment="End" Grid.Row="2" Grid.Column="0" />
+                <Label Text="{Binding credit}" TextColor="#4e5758" FontSize="Small" HorizontalTextAlignment="End" Grid.Row="3" Grid.Column="0" />
+                <Button Text="{infr:Translate command_edit}" Command="{Binding EditCommand}" StyleClass="Info" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" />
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -179,8 +179,6 @@ namespace FAQPhone.Views
 
         public async Task saveCommand()
         {
-            this.model.email = "";
-            this.model.sms = "";
             if (this.model.education == null)
             {
                 this.model.education = new EducationModel();

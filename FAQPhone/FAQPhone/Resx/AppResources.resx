@@ -336,7 +336,7 @@
   <data name="contact_province" xml:space="preserve">
     <value>استان</value>
   </data>
-  <data name="contact_sms" xml:space="preserve">
+  <data name="contact_mobile" xml:space="preserve">
     <value>تلفن همراه</value>
   </data>
   <data name="contact_work" xml:space="preserve">
@@ -365,5 +365,11 @@
   </data>
   <data name="education_university" xml:space="preserve">
     <value>دانشگاه</value>
+  </data>
+  <data name="account_credit" xml:space="preserve">
+    <value>اعتبار</value>
+  </data>
+  <data name="command_edit" xml:space="preserve">
+    <value>ویرایش</value>
   </data>
 </root>

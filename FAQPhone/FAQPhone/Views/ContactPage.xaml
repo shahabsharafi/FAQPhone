@@ -39,7 +39,6 @@
                 SuggestionItemDataTemplate="{StaticResource SugestionItemTemplate}"
                 Suggestions="{Binding CityList, Mode=TwoWay}" />
             <Entry Placeholder="{infr:Translate contact_email}" Text="{Binding email, Mode=TwoWay}" />
-            <Entry Placeholder="{infr:Translate contact_sms}" Text="{Binding sms, Mode=TwoWay}" />
             <Entry Placeholder="{infr:Translate contact_house}" Text="{Binding house, Mode=TwoWay}" />
             <Entry Placeholder="{infr:Translate contact_work}" Text="{Binding work, Mode=TwoWay}" />
             <Button Text="{infr:Translate command_save}" Command="{Binding SaveCommand}" StyleClass="Info" />
