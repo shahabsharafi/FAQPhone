@@ -6,8 +6,10 @@
              Title="{infr:Translate discussion_edit}">
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}" >
-            <Label Text="{Binding price, Mode=TwoWay}" />
-            <Label Text="{infr:Translate discussion_edit_title_help}" />
+            <StackLayout BackgroundColor="#337ab7" Padding="10,10,10,10">
+                <Label Text="{Binding price, Mode=TwoWay}" TextColor="White" />
+                <Label Text="{infr:Translate discussion_edit_title_help}" TextColor="White"  />
+            </StackLayout>
             <Entry x:Name="title" Placeholder="{infr:Translate discussion_edit_title}" Text="{Binding title, Mode=TwoWay}" />
             <Button Text="{infr:Translate command_next}" Command="{Binding NextCommand}" StyleClass="Info" IsEnabled="{ Binding CanNext }" />
             <Label x:Name="messageLabel" />

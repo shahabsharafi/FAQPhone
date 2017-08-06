@@ -170,6 +170,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to متن پیغام.
+        /// </summary>
+        internal static string chat_text {
+            get {
+                return ResourceManager.GetString("chat_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تایید کد.
         /// </summary>
         internal static string checkcode {

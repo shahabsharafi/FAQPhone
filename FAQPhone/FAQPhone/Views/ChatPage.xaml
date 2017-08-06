@@ -3,12 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:infr="clr-namespace:FAQPhone.Inferstructure;assembly=FAQPhone"
              xmlns:render="clr-namespace:CustomRenderer;assembly=FAQPhone"
+             xmlns:controls="clr-namespace:CustomControl;assembly=FAQPhone"
              x:Class="FAQPhone.Views.ChatPage"
              Title="{infr:Translate chat}">
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}">
             <StackLayout IsVisible="{ Binding Editable }">
-                <Editor  x:Name="text" Text="{Binding replay, Mode=TwoWay}" FontSize="Small" BackgroundColor="#efefef" HeightRequest="80" />
+                <controls:ExtendedEditor  x:Name="text" Placeholder="{infr:Translate chat_text}"  Text="{Binding replay, Mode=TwoWay}" FontSize="Small" BackgroundColor="#efefef" HeightRequest="80" />
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />

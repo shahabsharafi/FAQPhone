@@ -8,6 +8,7 @@
 		<!-- Application resource dictionary -->
         <ResourceDictionary MergedWith="light:LightThemeResources">
             <Style TargetType="Entry">
+                <Setter Property="FontFamily" Value="Irsans" />
                 <Setter Property="HorizontalTextAlignment" Value="{Binding Direction}" />
             </Style>
             <Style TargetType="Label">

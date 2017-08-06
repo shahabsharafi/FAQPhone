@@ -372,4 +372,7 @@
   <data name="command_edit" xml:space="preserve">
     <value>ویرایش</value>
   </data>
+  <data name="chat_text" xml:space="preserve">
+    <value>متن پیغام</value>
+  </data>
 </root>

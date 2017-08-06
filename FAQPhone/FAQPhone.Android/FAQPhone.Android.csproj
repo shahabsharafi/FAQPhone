@@ -129,8 +129,10 @@
     <Compile Include="com.xamarin.recipes.filepicker\FilePickerActivity.cs" />
     <Compile Include="com.xamarin.recipes.filepicker\Helpers.cs" />
     <Compile Include="CustomRenderers\CustomButtonRenderer.cs" />
+    <Compile Include="CustomRenderers\CustomEntryRenderer.cs" />
     <Compile Include="CustomRenderers\CustomLabelRenderer.cs" />
     <Compile Include="CustomRenderers\DiscussionRenderer.cs" />
+    <Compile Include="CustomRenderers\ExtendedEditorRenderer.cs" />
     <Compile Include="CustomRenderers\MessageRenderer.cs" />
     <Compile Include="Infrastructure\FilePickerLoader.cs" />
     <Compile Include="MainActivity.cs" />
