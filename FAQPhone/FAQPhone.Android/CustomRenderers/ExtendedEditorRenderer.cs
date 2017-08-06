@@ -14,6 +14,7 @@ using Xamarin.Forms;
 using CustomControl;
 using System.ComponentModel;
 using FAQPhone.Droid.CustomRenderers;
+using Android.Graphics;
 
 [assembly: ExportRenderer(typeof(ExtendedEditor), typeof(ExtendedEditorRenderer))]
 
