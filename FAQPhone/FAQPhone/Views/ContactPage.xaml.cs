@@ -63,11 +63,17 @@ namespace FAQPhone.Views
             if (this.model.contact != null)
             {
                 this.house = model.contact.house;
-                this.work = model.contact.work;                
-                this.SelectedProvince = App.AttributeList.Find(o => o._id == model.contact.province);
-                this.ProvinceText = this.SelectedProvince.caption;
-                this.SelectedCity = App.AttributeList.Find(o => o._id == model.contact.city);
-                this.CityText = this.SelectedCity.caption;
+                this.work = model.contact.work;
+                if (model.contact.province != null)
+                {
+                    this.SelectedProvince = App.AttributeList.Find(o => o._id == model.contact.province);
+                    this.ProvinceText = this.SelectedProvince.caption;
+                }                
+                if (model.contact.city != null)
+                {
+                    this.SelectedCity = App.AttributeList.Find(o => o._id == model.contact.city);
+                    this.CityText = this.SelectedCity.caption;
+                }                
                 this.address = model.contact.address;
                 this.pcode = model.contact.pcode;
             }
@@ -173,8 +179,14 @@ namespace FAQPhone.Views
             this.model.email = this.email;
             this.model.contact.house= this.house;
             this.model.contact.work = this.work;
-            this.model.contact.province = this.SelectedProvince._id;
-            this.model.contact.city = this.SelectedCity._id;
+            if (this.SelectedProvince != null)
+            {
+                this.model.contact.province = this.SelectedProvince._id;
+            }
+            if (this.SelectedCity != null)
+            {
+                this.model.contact.city = this.SelectedCity._id;
+            }
             this.model.contact.address = this.address;
             this.model.contact.pcode = this.pcode;
             await this.accountService.Save(this.model);

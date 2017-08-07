@@ -78,14 +78,26 @@ namespace FAQPhone.Views
             }
             if (this.model.education != null)
             {
-                this.SelectedGrade = App.AttributeList.Find(o => o._id == model.education.grade);
-                this.GradeText = this.SelectedGrade.caption;
-                this.SelectedMajor = App.AttributeList.Find(o => o._id == model.education.major);
-                this.MajorText = this.SelectedMajor.caption;
-                this.SelectedUniversity = App.AttributeList.Find(o => o._id == model.education.university);
-                this.UniversityText = this.SelectedUniversity.caption;
-                this.SelectedLevel = App.AttributeList.Find(o => o._id == model.education.level);
-                this.LevelText = this.SelectedLevel.caption;
+                if (this.model.education.grade != null)
+                {
+                    this.SelectedGrade = App.AttributeList.Find(o => o._id == this.model.education.grade);
+                    this.GradeText = this.SelectedGrade.caption;
+                }
+                if (this.model.education.major != null)
+                {
+                    this.SelectedMajor = App.AttributeList.Find(o => o._id == this.model.education.major);
+                    this.MajorText = this.SelectedMajor.caption;
+                }
+                if (this.model.education.university != null)
+                {
+                    this.SelectedUniversity = App.AttributeList.Find(o => o._id == this.model.education.university);
+                    this.UniversityText = this.SelectedUniversity.caption;
+                }
+                if (this.model.education.level != null)
+                {
+                    this.SelectedLevel = App.AttributeList.Find(o => o._id == this.model.education.level);
+                    this.LevelText = this.SelectedLevel.caption;
+                }
             }
         }
         private IAccountService accountService { get; set; }
@@ -183,10 +195,24 @@ namespace FAQPhone.Views
             {
                 this.model.education = new EducationModel();
             }
-            this.model.education.grade = this.SelectedGrade._id;
-            this.model.education.major = this.SelectedMajor._id;
-            this.model.education.university = this.SelectedUniversity._id;
-            this.model.education.level = this.SelectedLevel._id;
+            if (this.SelectedGrade != null)
+            {
+                this.model.education.grade = this.SelectedGrade._id;
+            }
+            if (this.SelectedMajor != null)
+            {
+                this.model.education.major = this.SelectedMajor._id;
+            }
+            if (this.SelectedUniversity != null)
+            {
+                this.model.education.university = this.SelectedUniversity._id;
+            }
+            if (this.SelectedLevel != null)
+            {
+                this.model.education.level = this.SelectedLevel._id;
+            }
+            await this.accountService.Save(this.model);
+            await this.Navigation.PopAsync();
         }
     }
 }
