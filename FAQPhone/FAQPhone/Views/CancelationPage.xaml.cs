@@ -121,7 +121,7 @@ namespace FAQPhone.Views
                     text = ResourceManagerHelper.GetValue(message)
                 });
                 model.items = l.ToArray();
-                model.state = 3;
+                model.state = Constants.DISCUSSION_STATE_REPORT;
                 model.cancelation = cancelation;
                 model.userRead = false;
                 model.to = new AccountModel() { username = App.Username };

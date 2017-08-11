@@ -62,7 +62,7 @@ namespace FAQPhone.Views
         {
             /////
             var codeResult = await this.accountService.SendCode(this.mobile);            
-            await this.Navigation.PushAsync(new SecurityCodePage(this.flow, this.mobile, codeResult));
+            await this.Navigation.PushAsync(new SecurityCodePage(this.flow, this.mobile.ToEnglishNumber(), codeResult));
         }
     }
 }

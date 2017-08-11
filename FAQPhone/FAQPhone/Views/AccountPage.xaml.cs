@@ -78,7 +78,10 @@ namespace FAQPhone.Views
             }
             this.mobile = model.mobile;
             this.email = model.email;
-            this.credit = ResourceManagerHelper.GetValue("account_credit") + ":" + (model.credit).ToString();
+            this.credit = 
+                ResourceManagerHelper.GetValue("account_credit") + ":" + 
+                (model.credit).ToString() + " " + 
+                ResourceManagerHelper.GetValue("unit_of_mony_caption");
         }
 
         private IAccountService accountService { get; set; }

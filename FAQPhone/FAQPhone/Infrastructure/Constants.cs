@@ -33,5 +33,10 @@ namespace FAQPhone.Inferstructure
         public const string CANCELATION_UNRELATED_TEXT = "cancelation_unrelated_text";
         public const string CANCELATION_ANNOYING_TEXT = "cancelation_annoying_text";
         public const string CANCELATION_OFFENSIV_TEXT = "cancelation_offensiv_text";
+
+        public const int DISCUSSION_STATE_CREATE = 0;
+        public const int DISCUSSION_STATE_RECIVED = 1;
+        public const int DISCUSSION_STATE_FINISHED = 2;
+        public const int DISCUSSION_STATE_REPORT = 3;
     } 
 }

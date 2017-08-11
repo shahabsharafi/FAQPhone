@@ -214,7 +214,7 @@
     <value>ارسال</value>
   </data>
   <data name="discussion_recive_display" xml:space="preserve">
-    <value>عنوان قابل نمایش</value>
+    <value>عنوانی برای این گفتگو وارد کنید</value>
   </data>
   <data name="discussion_revice" xml:space="preserve">
     <value>دربافت سوال</value>
@@ -259,7 +259,7 @@
     <value>ادامه</value>
   </data>
   <data name="discussion_edit_title_help" xml:space="preserve">
-    <value>در این قسمت یک عنوان مناسب برای سوال خود انتخاب کنید و برای رفتن به قسمت ارسال سوال دکمه ادامه را فشار دهید</value>
+    <value>یک عنوان برای سوال یا گفتگوی خود وارد کنید تا بعدا بتوانید در آرشیو خود به راحتی آنها را پیدا کرده و مدیریت کنید</value>
   </data>
   <data name="discussion_tag_new" xml:space="preserve">
     <value>نمایه جدید</value>
@@ -373,6 +373,9 @@
     <value>ویرایش</value>
   </data>
   <data name="chat_text" xml:space="preserve">
-    <value>متن پیغام</value>
+    <value>سوال یا پیغام خود را وارد کنید</value>
+  </data>
+  <data name="unit_of_mony_caption" xml:space="preserve">
+    <value>تومان</value>
   </data>
 </root>

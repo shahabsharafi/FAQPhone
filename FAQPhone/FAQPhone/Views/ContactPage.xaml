@@ -38,10 +38,10 @@
                 SelectedItem="{Binding SelectedCity, Mode=TwoWay}"
                 SuggestionItemDataTemplate="{StaticResource SugestionItemTemplate}"
                 Suggestions="{Binding CityList, Mode=TwoWay}" />
-            <Entry Placeholder="{infr:Translate contact_email}" Text="{Binding email, Mode=TwoWay}" />
+            <Entry Placeholder="{infr:Translate contact_email}" Keyboard="Email" Text="{Binding email, Mode=TwoWay}" />
             <Entry Placeholder="{infr:Translate contact_house}" Text="{Binding house, Mode=TwoWay}" />
             <Entry Placeholder="{infr:Translate contact_work}" Text="{Binding work, Mode=TwoWay}" />
-            <Button Text="{infr:Translate command_save}" Command="{Binding SaveCommand}" StyleClass="Info" />
+            <Button Text="{infr:Translate command_next}" Command="{Binding SaveCommand}" StyleClass="Info" />
             <Label Text="{Binding CountDisplay}"/>
         </StackLayout>
     </ScrollView>

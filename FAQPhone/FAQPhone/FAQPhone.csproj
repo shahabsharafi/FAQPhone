@@ -46,6 +46,7 @@
     <Compile Include="Infrastructure\EventToCommandBehavior.cs" />
     <Compile Include="Infrastructure\ExtendedButton.cs" />
     <Compile Include="Infrastructure\ExtendedEditor.cs" />
+    <Compile Include="Infrastructure\ExtentionMethods.cs" />
     <Compile Include="Infrastructure\FilePickerHelper.cs" />
     <Compile Include="Infrastructure\FlowType.cs" />
     <Compile Include="Infrastructure\Constants.cs" />

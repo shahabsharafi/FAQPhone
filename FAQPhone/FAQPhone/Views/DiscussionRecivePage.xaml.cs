@@ -101,7 +101,7 @@ namespace FAQPhone.Views
             /////
             if (!string.IsNullOrWhiteSpace(this.display))
             {
-                model.state = 1;
+                model.state = Constants.DISCUSSION_STATE_RECIVED;
                 model.display = this.display;
                 model.to = new AccountModel() { username = App.Username };
                 await this.discussionService.Save(model);
@@ -159,7 +159,7 @@ namespace FAQPhone.Views
         public async Task reportCommand()
         {
             /////     
-            model.state = 3;
+            model.state = Constants.DISCUSSION_STATE_REPORT;
             model.to = new AccountModel() { username = App.Username };
             await this.discussionService.Save(model);
             await this.Navigation.PopAsync();

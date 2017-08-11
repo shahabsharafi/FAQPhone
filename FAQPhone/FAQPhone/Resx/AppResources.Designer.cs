@@ -170,7 +170,7 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to متن پیغام.
+        ///   Looks up a localized string similar to سوال یا پیغام خود را وارد کنید.
         /// </summary>
         internal static string chat_text {
             get {
@@ -413,7 +413,7 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to در این قسمت یک عنوان مناسب برای سوال خود انتخاب کنید و برای رفتن به قسمت ارسال سوال دکمه ادامه را فشار دهید.
+        ///   Looks up a localized string similar to یک عنوان برای سوال یا گفتگوی خود وارد کنید تا بعدا بتوانید در آرشیو خود به راحتی آنها را پیدا کرده و مدیریت کنید.
         /// </summary>
         internal static string discussion_edit_title_help {
             get {
@@ -440,7 +440,7 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to عنوان قابل نمایش.
+        ///   Looks up a localized string similar to عنوانی برای این گفتگو وارد کنید.
         /// </summary>
         internal static string discussion_recive_display {
             get {
@@ -787,6 +787,15 @@ namespace FAQPhone.Resx {
         internal static string signup {
             get {
                 return ResourceManager.GetString("signup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تومان.
+        /// </summary>
+        internal static string unit_of_mony_caption {
+            get {
+                return ResourceManager.GetString("unit_of_mony_caption", resourceCulture);
             }
         }
         

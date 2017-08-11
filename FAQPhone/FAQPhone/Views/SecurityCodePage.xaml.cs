@@ -67,7 +67,8 @@ namespace FAQPhone.Views
         public async Task checkCodeCommand()
         {
             /////
-            if (this.securitycode == this.codeResult.code)
+            string securitycode = this.securitycode.ToEnglishNumber();
+            if (securitycode == this.codeResult.code)
             {
                 if (this.flow == FlowType.Signup)
                 {

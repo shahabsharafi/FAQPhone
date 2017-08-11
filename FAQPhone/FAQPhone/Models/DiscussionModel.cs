@@ -22,7 +22,7 @@ namespace FAQPhone.Models
         public AccountModel to { get; set; }
         public string title { get; set; }
         public string display { get; set; }
-        public int state { get; set; }
+        public int state { get; set; }//0: created, 1: recived, 2:finished, 3: report
         public int cancelation { get; set; }//1: CANCELATION_UNCLEAR, 2:CANCELATION_UNRELATED, 3:CANCELATION_ANNOYING, 4:CANCELATION_OFFENSIV
         public long price { get; set; }
         public decimal payment { get; set; }

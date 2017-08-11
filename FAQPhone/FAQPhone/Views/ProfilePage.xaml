@@ -13,14 +13,7 @@
             <Entry Placeholder="{infr:Translate profile_placeOfIssues}" Text="{Binding placeOfIssues, Mode=TwoWay}" />
             <Entry Placeholder="{infr:Translate profile_nationalCode}" Text="{Binding nationalCode, Mode=TwoWay}" />
             <Entry Placeholder="{infr:Translate profile_birthPlace}" Text="{Binding birthPlace, Mode=TwoWay}" />
-            <Button Text="{infr:Translate command_save}" Command="{Binding SaveCommand}" StyleClass="Info" >
-                <Button.BorderRadius>
-                    <!-- HACK: fixes a bug where border doesn't get draw unless there is a radius. -->
-                    <OnPlatform x:TypeArguments="x:Int32">
-                        <OnPlatform.Android>7</OnPlatform.Android>
-                    </OnPlatform>
-                </Button.BorderRadius>
-            </Button>
+            <Button Text="{infr:Translate command_next}" Command="{Binding SaveCommand}" StyleClass="Info" />
             <Label Text="{Binding CountDisplay}"/>
         </StackLayout>
     </ScrollView>

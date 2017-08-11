@@ -60,8 +60,8 @@ namespace FAQPhone.Views
             this.List = new ObservableCollection<DiscussionDetailModel>();
             this.IsOperator = state == Constants.OPERATOR_INPROGRESS_FAQ;
             this.Editable = (state == Constants.OPERATOR_INPROGRESS_FAQ || (state == Constants.USER_INPROGRESS_FAQ && model.state < 2));
-            this.HasFinishing = this.IsOperator;
-            this.HasReporting = this.IsOperator;
+            this.HasFinishing = this.IsOperator && model.state != Constants.DISCUSSION_STATE_REPORT && model.state != Constants.DISCUSSION_STATE_FINISHED;
+            this.HasReporting = this.IsOperator && model.state != Constants.DISCUSSION_STATE_REPORT && model.state != Constants.DISCUSSION_STATE_FINISHED;
             this.setList(this.model.items.ToList());
         }
         private IDiscussionService discussionService { get; set; }
@@ -193,7 +193,7 @@ namespace FAQPhone.Views
                 });
                 model.items = l.ToArray();
             }
-            model.state = 2;
+            model.state = Constants.DISCUSSION_STATE_FINISHED;
             await this.discussionService.Save(model);
             await this.Navigation.PopAsync();
         }

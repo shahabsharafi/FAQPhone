@@ -92,7 +92,7 @@ namespace FAQPhone.Views
                 title = this.title,
                 from = new AccountModel() { username = App.Username },
                 createDate = DateTime.Now,
-                state = 0,
+                state = Constants.DISCUSSION_STATE_CREATE,
                 userRead = false,
                 operatorRead = false,
                 department = new DepartmentModel() { _id = this.department._id },
