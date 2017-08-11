@@ -138,11 +138,8 @@
   <data name="signup" xml:space="preserve">
     <value>ثبت نام</value>
   </data>
-  <data name="checkcode" xml:space="preserve">
-    <value>تایید کد</value>
-  </data>
-  <data name="securitycode" xml:space="preserve">
-    <value>کد امنیتی</value>
+  <data name="security_code" xml:space="preserve">
+    <value>کد تایید</value>
   </data>
   <data name="sendcode" xml:space="preserve">
     <value>ارسال کد امنیتی</value>
@@ -377,5 +374,8 @@
   </data>
   <data name="unit_of_mony_caption" xml:space="preserve">
     <value>تومان</value>
+  </data>
+  <data name="security_code_help" xml:space="preserve">
+    <value>کدی که با پیامک برای شما ارسال شده را اینجا وارد کنید</value>
   </data>
 </root>

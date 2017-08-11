@@ -179,15 +179,6 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to تایید کد.
-        /// </summary>
-        internal static string checkcode {
-            get {
-                return ResourceManager.GetString("checkcode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to پاسخ.
         /// </summary>
         internal static string command_accept {
@@ -728,11 +719,20 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to کد امنیتی.
+        ///   Looks up a localized string similar to کد تایید.
         /// </summary>
-        internal static string securitycode {
+        internal static string security_code {
             get {
-                return ResourceManager.GetString("securitycode", resourceCulture);
+                return ResourceManager.GetString("security_code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کدی که با پیامک برای شما ارسال شده را اینجا وارد کنید.
+        /// </summary>
+        internal static string security_code_help {
+            get {
+                return ResourceManager.GetString("security_code_help", resourceCulture);
             }
         }
         
