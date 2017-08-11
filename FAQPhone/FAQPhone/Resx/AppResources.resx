@@ -141,8 +141,8 @@
   <data name="security_code" xml:space="preserve">
     <value>کد تایید</value>
   </data>
-  <data name="sendcode" xml:space="preserve">
-    <value>ارسال کد امنیتی</value>
+  <data name="send_code" xml:space="preserve">
+    <value>شناسایی</value>
   </data>
   <data name="signin" xml:space="preserve">
     <value>ورود به سامانه</value>
@@ -377,5 +377,8 @@
   </data>
   <data name="security_code_help" xml:space="preserve">
     <value>کدی که با پیامک برای شما ارسال شده را اینجا وارد کنید</value>
+  </data>
+  <data name="security_caption" xml:space="preserve">
+    <value>تایید شماره تلفن</value>
   </data>
 </root>

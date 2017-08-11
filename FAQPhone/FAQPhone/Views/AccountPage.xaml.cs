@@ -24,7 +24,7 @@ namespace FAQPhone.Views
         {
             InitializeComponent();
             var factory = App.Resolve<AccountViewModelFactory>();
-            var vm = factory.Create(Navigation, model);
+            var vm = factory.Create(this, model);
             this.Appearing += (sender, e) => {
                 Task.Run(async () => await vm.Load()).Wait();
             };
@@ -39,16 +39,16 @@ namespace FAQPhone.Views
         {
             this.accountService = accountService;
         }
-        public AccountViewModel Create(INavigation navigation, AccountModel model)
+        public AccountViewModel Create(ContentPage page, AccountModel model)
         {
-            return new AccountViewModel(this.accountService, navigation, model);
+            return new AccountViewModel(this.accountService, page, model);
         }
     }
 
     public class AccountViewModel : BaseViewModel
     {
 
-        public AccountViewModel(IAccountService accountService, INavigation navigation, AccountModel model) : base(navigation)
+        public AccountViewModel(IAccountService accountService, ContentPage page, AccountModel model) : base(page)
         {
             this.accountService = accountService;
             this.EditCommand = new Command(async () => await editCommand());

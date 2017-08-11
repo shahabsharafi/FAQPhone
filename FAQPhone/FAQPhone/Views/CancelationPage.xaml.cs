@@ -25,7 +25,7 @@ namespace FAQPhone.Views
         {
             InitializeComponent();
             var factory = App.Resolve<CancelationViewModelFactory>();
-            BindingContext = factory.Create(Navigation, model);
+            BindingContext = factory.Create(this, model);
         }
     }
 
@@ -36,16 +36,16 @@ namespace FAQPhone.Views
         {
             this.discussionService = discussionService;
         }
-        public CancelationViewModel Create(INavigation navigation, DiscussionModel model)
+        public CancelationViewModel Create(ContentPage page, DiscussionModel model)
         {
-            return new CancelationViewModel(this.discussionService, navigation, model);
+            return new CancelationViewModel(this.discussionService, page, model);
         }
     }
 
     public class CancelationViewModel : BaseViewModel
     {
 
-        public CancelationViewModel(IDiscussionService discussionService, INavigation navigation, DiscussionModel model) : base(navigation)
+        public CancelationViewModel(IDiscussionService discussionService, ContentPage page, DiscussionModel model) : base(page)
         {
             this.model = model;
             this.discussionService = discussionService;

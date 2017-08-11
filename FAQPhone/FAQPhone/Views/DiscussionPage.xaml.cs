@@ -25,7 +25,7 @@ namespace FAQPhone.Views
         {
             InitializeComponent();
             var factory = App.Resolve<DiscussionPageViewModelFactory>();
-            var vm = factory.Create(Navigation, state, list);
+            var vm = factory.Create(this, state, list);
             this.Appearing += (sender, e) => {
                 Task.Run(async () => await vm.Load()).Wait();
             };
@@ -40,16 +40,16 @@ namespace FAQPhone.Views
         {
             this.discussionService = discussionService;
         }
-        public DiscussionPageViewModel Create(INavigation navigation, string state, List<DiscussionModel> list)
+        public DiscussionPageViewModel Create(ContentPage page, string state, List<DiscussionModel> list)
         {
-            return new DiscussionPageViewModel(this.discussionService, navigation, state, list);
+            return new DiscussionPageViewModel(this.discussionService, page, state, list);
         }
     }
 
     public class DiscussionPageViewModel : BaseViewModel
     {
 
-        public DiscussionPageViewModel(IDiscussionService discussionService, INavigation navigation, string state, List<DiscussionModel> list) : base(navigation)
+        public DiscussionPageViewModel(IDiscussionService discussionService, ContentPage page, string state, List<DiscussionModel> list) : base(page)
         {
             this.discussionService = discussionService;
             this.State = state;

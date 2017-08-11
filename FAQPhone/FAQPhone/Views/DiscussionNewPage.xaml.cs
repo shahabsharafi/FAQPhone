@@ -30,7 +30,7 @@ namespace FAQPhone.Views
                 }
             };            
             var factory = App.Resolve<DiscussionEditViewModelFactory>();
-            BindingContext = factory.Create(Navigation, department);
+            BindingContext = factory.Create(this, department);
         }
     }
 
@@ -40,15 +40,15 @@ namespace FAQPhone.Views
         {
             
         }
-        public DiscussionEditViewModel Create(INavigation navigation, DepartmentModel department)
+        public DiscussionEditViewModel Create(ContentPage page, DepartmentModel department)
         {
-            return new DiscussionEditViewModel(navigation, department);
+            return new DiscussionEditViewModel(page, department);
         }
     }
 
     public class DiscussionEditViewModel : BaseViewModel
     {
-        public DiscussionEditViewModel(INavigation navigation, DepartmentModel department) : base(navigation)
+        public DiscussionEditViewModel(ContentPage page, DepartmentModel department) : base(page)
         {            
             this.CanNext = false;
             this.NextCommand = new Command(async () => await nextCommand());

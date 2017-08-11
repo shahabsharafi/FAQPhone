@@ -25,7 +25,7 @@ namespace FAQPhone.Views
         {
             InitializeComponent();
             var factory = App.Resolve<SecurityCodeViewModelFactory>();
-            BindingContext = factory.Create(Navigation, flow, mobile, codeResult);
+            BindingContext = factory.Create(this, flow, mobile, codeResult);
         }
     }
 
@@ -36,15 +36,15 @@ namespace FAQPhone.Views
         {
             this.accountService = accountService;
         }
-        public SecurityCodeViewModel Create(INavigation navigation, FlowType flow, string mobile, CodeResultModel codeResult)
+        public SecurityCodeViewModel Create(ContentPage page, FlowType flow, string mobile, CodeResultModel codeResult)
         {
-            return new SecurityCodeViewModel(this.accountService, navigation, flow, mobile, codeResult);
+            return new SecurityCodeViewModel(this.accountService, page, flow, mobile, codeResult);
         }
     }
 
     public class SecurityCodeViewModel : BaseViewModel
     {
-        public SecurityCodeViewModel(IAccountService accountService, INavigation navigation, FlowType flow, string mobile, CodeResultModel codeResult) : base(navigation)
+        public SecurityCodeViewModel(IAccountService accountService, ContentPage page, FlowType flow, string mobile, CodeResultModel codeResult) : base(page)
         {
             this.accountService = accountService;
             this.codeResult = codeResult;

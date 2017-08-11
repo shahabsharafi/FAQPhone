@@ -24,7 +24,7 @@ namespace FAQPhone.Views
         {
             InitializeComponent();
             var factory = App.Resolve<SigninViewModelFactory>();
-            BindingContext = factory.Create(Navigation);
+            BindingContext = factory.Create(this);
         }
     }
 
@@ -35,15 +35,15 @@ namespace FAQPhone.Views
         {
             this.accountService = accountService;
         }
-        public SigninViewModel Create(INavigation navigation)
+        public SigninViewModel Create(ContentPage page)
         {
-            return new SigninViewModel(this.accountService, navigation);
+            return new SigninViewModel(this.accountService, page);
         }
     }
 
     public class SigninViewModel : BaseViewModel
     {
-        public SigninViewModel(IAccountService accountService, INavigation navigation) : base(navigation)
+        public SigninViewModel(IAccountService accountService, ContentPage page) : base(page)
         {
             this.accountService = accountService;
             this.SigninCommand = new Command(async () => await signinCommand());

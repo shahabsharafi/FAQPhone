@@ -19,9 +19,9 @@ namespace FAQPhone.Inferstructure
             set { _message = value; OnPropertyChanged(); }
         }
         public INavigation Navigation { get; set; }
-        public BaseViewModel(INavigation navigation)
+        public BaseViewModel(ContentPage page)
         {
-            this.Navigation = navigation;
+            this.Navigation = page.Navigation;
         }
 
         public TextAlignment Direction { get { return ResourceManagerHelper.Direction; } }

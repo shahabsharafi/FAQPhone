@@ -24,7 +24,7 @@ namespace FAQPhone.Views
         {
             InitializeComponent();
             var factory = App.Resolve<ResetPasswordPageViewModelFactory>();
-            BindingContext = factory.Create(Navigation, mobile, codeResult);
+            BindingContext = factory.Create(this, mobile, codeResult);
         }
     }
 
@@ -35,16 +35,16 @@ namespace FAQPhone.Views
         {
             this.accountService = accountService;
         }
-        public ResetPasswordPageViewModel Create(INavigation navigation, string mobile, CodeResultModel codeResult)
+        public ResetPasswordPageViewModel Create(ContentPage page, string mobile, CodeResultModel codeResult)
         {
-            return new ResetPasswordPageViewModel(this.accountService, navigation, mobile, codeResult);
+            return new ResetPasswordPageViewModel(this.accountService, page, mobile, codeResult);
         }
     }
 
     public class ResetPasswordPageViewModel : BaseViewModel
     {
 
-        public ResetPasswordPageViewModel(IAccountService accountService, INavigation navigation, string mobile, CodeResultModel codeResult) : base (navigation)
+        public ResetPasswordPageViewModel(IAccountService accountService, ContentPage page, string mobile, CodeResultModel codeResult) : base (page)
         {
             this.accountService = accountService;
             this.codeResult = codeResult;

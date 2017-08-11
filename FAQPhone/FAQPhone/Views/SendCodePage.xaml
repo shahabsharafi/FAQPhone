@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:infr="clr-namespace:FAQPhone.Inferstructure;assembly=FAQPhone"
              x:Class="FAQPhone.Views.SendCodePage"
-             Title="{infr:Translate sendcode}">
+             Title="{infr:Translate send_code}">
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}">
             <Entry x:Name="mobileEntry" Placeholder="{infr:Translate mobile}" Keyboard="Numeric" Text="{Binding mobile, Mode=TwoWay}" />
-            <Button Text="{infr:Translate sendcode}" Command="{Binding SendCodeCommand}" StyleClass="Info" />
+            <Button Text="{infr:Translate command_next}" Command="{Binding SendCodeCommand}" StyleClass="Info" />
             <Label x:Name="messageLabel" />
         </StackLayout>
     </ScrollView>

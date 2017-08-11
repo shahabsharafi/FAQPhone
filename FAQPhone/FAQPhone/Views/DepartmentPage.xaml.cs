@@ -25,7 +25,7 @@ namespace FAQPhone.Views
         {
             InitializeComponent();
             var factory = App.Resolve<DepartmentPageViewModelFactory>();
-            BindingContext = factory.Create(Navigation, list, pushCount);
+            BindingContext = factory.Create(this, list, pushCount);
         }
     }
 
@@ -36,16 +36,16 @@ namespace FAQPhone.Views
         {
             this.departmentService = departmentService;
         }
-        public DepartmentPageViewModel Create(INavigation navigation, List<DepartmentModel> list, int pushCount)
+        public DepartmentPageViewModel Create(ContentPage page, List<DepartmentModel> list, int pushCount)
         {
-            return new DepartmentPageViewModel(this.departmentService, navigation, list, pushCount);
+            return new DepartmentPageViewModel(this.departmentService, page, list, pushCount);
         }
     }
 
     public class DepartmentPageViewModel : BaseViewModel
     {
 
-        public DepartmentPageViewModel(IDepartmentService departmentService, INavigation navigation, List<DepartmentModel> list, int pushCount) : base(navigation)
+        public DepartmentPageViewModel(IDepartmentService departmentService, ContentPage page, List<DepartmentModel> list, int pushCount) : base(page)
         {
             this._pushCount = pushCount;
             this.departmentService = departmentService;

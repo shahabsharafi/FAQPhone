@@ -23,7 +23,7 @@ namespace FAQPhone.Views
         {
             InitializeComponent();
             var factory = App.Resolve<SignupViewModelFactory>();
-            BindingContext = factory.Create(Navigation, mobile, code);
+            BindingContext = factory.Create(this, mobile, code);
         }
     }
 
@@ -34,15 +34,15 @@ namespace FAQPhone.Views
         {
             this.accountService = accountService;
         }
-        public SignupViewModel Create(INavigation navigation, string mobile, string code)
+        public SignupViewModel Create(ContentPage page, string mobile, string code)
         {
-            return new SignupViewModel(this.accountService, navigation, mobile, code);
+            return new SignupViewModel(this.accountService, page, mobile, code);
         }
     }
 
     public class SignupViewModel : BaseViewModel
     {
-        public SignupViewModel(IAccountService accountService, INavigation navigation, string mobile, string code) : base(navigation)
+        public SignupViewModel(IAccountService accountService, ContentPage page, string mobile, string code) : base(page)
         {
             this.accountService = accountService;
             this.code = code;

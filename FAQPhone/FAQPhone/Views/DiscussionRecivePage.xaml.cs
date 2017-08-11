@@ -26,7 +26,7 @@ namespace FAQPhone.Views
         {
             InitializeComponent();
             var factory = App.Resolve<DiscussionReciveViewModelFactory>();
-            BindingContext = factory.Create(Navigation, model);
+            BindingContext = factory.Create(this, model);
         }
     }
 
@@ -39,15 +39,15 @@ namespace FAQPhone.Views
             this.discussionService = discussionService;
             this.departmentService = departmentService;
         }
-        public DiscussionReciveViewModel Create(INavigation navigation, DiscussionModel model)
+        public DiscussionReciveViewModel Create(ContentPage page, DiscussionModel model)
         {
-            return new DiscussionReciveViewModel(this.discussionService, this.departmentService, navigation, model);
+            return new DiscussionReciveViewModel(this.discussionService, this.departmentService, page, model);
         }
     }
 
     public class DiscussionReciveViewModel : BaseViewModel
     {
-        public DiscussionReciveViewModel(IDiscussionService discussionService, IDepartmentService departmentService, INavigation navigation, DiscussionModel model) : base(navigation)
+        public DiscussionReciveViewModel(IDiscussionService discussionService, IDepartmentService departmentService, ContentPage page, DiscussionModel model) : base(page)
         {
             this.discussionService = discussionService;
             this.departmentService = departmentService;

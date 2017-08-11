@@ -39,6 +39,13 @@ namespace FAQPhone.Services
             return data;
         }
 
+        public async Task<int> GetCount(bool isUser, int[] states)
+        {
+            string url = string.Format(Constants.RestUrl, string.Format("discussions/getcount/{0}/{1}/{2}", isUser, App.Username, string.Join(",", states)));
+            var data = await this.get<int>(url);
+            return data;
+        }
+
         public async Task<DiscussionModel> Recive()
         {
             string url = string.Format(Constants.RestUrl, "discussions/recive");

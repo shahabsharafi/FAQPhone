@@ -25,7 +25,7 @@ namespace FAQPhone.Views
         {
             InitializeComponent();
             var factory = App.Resolve<ProfileViewModelFactory>();
-            BindingContext = factory.Create(Navigation, model);
+            BindingContext = factory.Create(this, model);
         }
     }
 
@@ -36,16 +36,16 @@ namespace FAQPhone.Views
         {
             this.accountService = accountService;
         }
-        public ProfileViewModel Create(INavigation navigation, AccountModel model)
+        public ProfileViewModel Create(ContentPage page, AccountModel model)
         {
-            return new ProfileViewModel(this.accountService, navigation, model);
+            return new ProfileViewModel(this.accountService, page, model);
         }
     }
 
     public class ProfileViewModel : BaseViewModel
     {
 
-        public ProfileViewModel(IAccountService accountService, INavigation navigation, AccountModel model) : base(navigation)
+        public ProfileViewModel(IAccountService accountService, ContentPage page, AccountModel model) : base(page)
         {
             this.accountService = accountService;
             this.model = model;

@@ -719,6 +719,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to تایید شماره تلفن.
+        /// </summary>
+        internal static string security_caption {
+            get {
+                return ResourceManager.GetString("security_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to کد تایید.
         /// </summary>
         internal static string security_code {
@@ -746,11 +755,11 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ارسال کد امنیتی.
+        ///   Looks up a localized string similar to شناسایی.
         /// </summary>
-        internal static string sendcode {
+        internal static string send_code {
             get {
-                return ResourceManager.GetString("sendcode", resourceCulture);
+                return ResourceManager.GetString("send_code", resourceCulture);
             }
         }
         

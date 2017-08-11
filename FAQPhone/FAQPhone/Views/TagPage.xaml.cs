@@ -24,7 +24,7 @@ namespace FAQPhone.Views
         {
             InitializeComponent();
             var factory = App.Resolve<TagViewModelFactory>();
-            BindingContext = factory.Create(Navigation, model);
+            BindingContext = factory.Create(this, model);
         }
     }
 
@@ -35,16 +35,16 @@ namespace FAQPhone.Views
         {
             this.discussionService = discussionService;
         }
-        public TagViewModel Create(INavigation navigation, DiscussionModel model)
+        public TagViewModel Create(ContentPage page, DiscussionModel model)
         {
-            return new TagViewModel(this.discussionService, navigation, model);
+            return new TagViewModel(this.discussionService, page, model);
         }
     }
 
     public class TagViewModel : BaseViewModel
     {
 
-        public TagViewModel(IDiscussionService discussionService, INavigation navigation, DiscussionModel model) : base(navigation)
+        public TagViewModel(IDiscussionService discussionService, ContentPage page, DiscussionModel model) : base(page)
         {
             this.discussionService = discussionService;
             this.AddCommand = new Command(() => addCommand());

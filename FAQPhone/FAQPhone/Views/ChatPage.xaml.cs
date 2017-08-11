@@ -30,7 +30,7 @@ namespace FAQPhone.Views
                 }
             };
             var factory = App.Resolve<ChatViewModelFactory>();
-            BindingContext = factory.Create(Navigation, state, model);
+            BindingContext = factory.Create(this, state, model);
         }
     }
 
@@ -41,16 +41,16 @@ namespace FAQPhone.Views
         {
             this.discussionService = discussionService;
         }
-        public ChatViewModel Create(INavigation navigation, string state, DiscussionModel model)
+        public ChatViewModel Create(ContentPage page, string state, DiscussionModel model)
         {
-            return new ChatViewModel(this.discussionService, navigation, state, model);
+            return new ChatViewModel(this.discussionService, page, state, model);
         }
     }
 
     public class ChatViewModel : BaseViewModel
     {
 
-        public ChatViewModel(IDiscussionService discussionService, INavigation navigation, string state, DiscussionModel model) : base(navigation)
+        public ChatViewModel(IDiscussionService discussionService, ContentPage page, string state, DiscussionModel model) : base(page)
         {
             this.discussionService = discussionService;
             this.SendCommand = new Command(async () => await sendCommand());

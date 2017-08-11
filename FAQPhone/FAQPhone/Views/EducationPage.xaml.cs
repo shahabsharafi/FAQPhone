@@ -27,7 +27,7 @@ namespace FAQPhone.Views
                 this.Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
             };
             var factory = App.Resolve<EducationViewModelFactory>();
-            BindingContext = factory.Create(Navigation, model);
+            BindingContext = factory.Create(this, model);
         }
     }
 
@@ -38,16 +38,16 @@ namespace FAQPhone.Views
         {
             this.accountService = accountService;
         }
-        public EducationViewModel Create(INavigation navigation, AccountModel model)
+        public EducationViewModel Create(ContentPage page, AccountModel model)
         {
-            return new EducationViewModel(this.accountService, navigation, model);
+            return new EducationViewModel(this.accountService, page, model);
         }
     }
 
     public class EducationViewModel : BaseViewModel
     {
 
-        public EducationViewModel(IAccountService accountService, INavigation navigation, AccountModel model) : base(navigation)
+        public EducationViewModel(IAccountService accountService, ContentPage page, AccountModel model) : base(page)
         {
             this.accountService = accountService;
             this.model = model;

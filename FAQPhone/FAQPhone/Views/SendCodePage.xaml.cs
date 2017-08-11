@@ -23,7 +23,7 @@ namespace FAQPhone.Views
         {
             InitializeComponent();
             var factory = App.Resolve<SendCodeViewModelFactory>();
-            BindingContext = factory.Create(Navigation, flow);
+            BindingContext = factory.Create(this, flow);
         }
     }
     
@@ -34,15 +34,15 @@ namespace FAQPhone.Views
         {
             this.accountService = accountService;
         }
-        public SendCodeViewModel Create(INavigation navigation, FlowType flow)
+        public SendCodeViewModel Create(ContentPage page, FlowType flow)
         {
-            return new SendCodeViewModel(this.accountService, navigation, flow);
+            return new SendCodeViewModel(this.accountService, page, flow);
         }
     }
     
     public class SendCodeViewModel : BaseViewModel
     {
-        public SendCodeViewModel(IAccountService accountService, INavigation navigation, FlowType flow) : base(navigation)
+        public SendCodeViewModel(IAccountService accountService, ContentPage page, FlowType flow) : base(page)
         {
             this.accountService = accountService;
             this.flow = flow;
@@ -61,8 +61,9 @@ namespace FAQPhone.Views
         public async Task sendCodeCommand()
         {
             /////
-            var codeResult = await this.accountService.SendCode(this.mobile);            
-            await this.Navigation.PushAsync(new SecurityCodePage(this.flow, this.mobile.ToEnglishNumber(), codeResult));
+            var mobile = this.mobile.ToEnglishNumber();
+            var codeResult = await this.accountService.SendCode(mobile);            
+            await this.Navigation.PushAsync(new SecurityCodePage(this.flow, mobile, codeResult));
         }
     }
 }

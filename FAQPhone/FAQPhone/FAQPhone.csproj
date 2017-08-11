@@ -38,6 +38,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomRenderer\BadgeLabel.cs" />
     <Compile Include="CustomRenderer\DiscussionViewCell.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Infrastructure\AutoCompleteView.cs" />

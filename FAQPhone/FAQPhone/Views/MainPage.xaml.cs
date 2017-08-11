@@ -27,7 +27,7 @@ namespace FAQPhone.Views
         {
             InitializeComponent();
             var factory = App.Resolve<MainPageViewModelFactory>();
-            BindingContext = factory.Create(Navigation, menu);
+            BindingContext = factory.Create(this, menu);
         }
     }
 
@@ -42,25 +42,30 @@ namespace FAQPhone.Views
             this.departmentService = departmentService;
             this.discussionService = discussionService;
         }
-        public MainPageViewModel Create(INavigation navigation, string menu)
+        public MainPageViewModel Create(ContentPage page, string menu)
         {
-            return new MainPageViewModel(this.accountService, this.departmentService, this.discussionService, navigation, menu);
+            return new MainPageViewModel(this.accountService, this.departmentService, this.discussionService, page, menu);
         }
     }
 
     public class MainPageViewModel : BaseViewModel
     {
 
-        public MainPageViewModel(IAccountService accountService, IDepartmentService departmentService, IDiscussionService discussionService, INavigation navigation, string menu) : base(navigation)
+        public MainPageViewModel(IAccountService accountService, IDepartmentService departmentService, IDiscussionService discussionService, ContentPage page, string menu) : base(page)
         {
+            this.accountService = accountService;
+            this.departmentService = departmentService;
+            this.discussionService = discussionService;
             this.List = new ObservableCollection<MenuItemModel>();
             List<MenuItemModel> items = new List<MenuItemModel>();
             if (menu == Constants.OPERATOR_FAQ || (menu == null && App.Access.Contains(Constants.ACCESS_OPERATOR)))
             {
+                int count = 0;
+                Task.Run(async () => count = await this.discussionService.GetCount(false, new int[] { 0, 1, 2, 3 })).Wait();
                 items.AddRange(
                     new MenuItemModel[] {
                         new MenuItemModel() { CommandName = Constants.OPERATOR_RECEIVE_FAQ, Icon = FontAwesome.FADownload },
-                        new MenuItemModel() { CommandName = Constants.OPERATOR_INPROGRESS_FAQ, Icon = FontAwesome.FATasks }
+                        new MenuItemModel() { CommandName = Constants.OPERATOR_INPROGRESS_FAQ, Icon = FontAwesome.FATasks, Badge = count.ToString() }
                     }
                 );
                 if (App.Access.Contains(Constants.ACCESS_USER))
@@ -70,10 +75,12 @@ namespace FAQPhone.Views
             }
             else if (menu == Constants.USER_FAQ || (menu == null && App.Access.Contains(Constants.ACCESS_USER)))
             {
+                int count = 0;
+                Task.Run(async () => count = await this.discussionService.GetCount(true, new int[] { 0, 1, 2, 3 })).Wait();
                 items.AddRange(
                     new MenuItemModel[] {
                         new MenuItemModel() { CommandName = Constants.USER_CREATE_FAQ, Icon = FontAwesome.FAPlus },
-                        new MenuItemModel() { CommandName = Constants.USER_INPROGRESS_FAQ, Icon = FontAwesome.FATasks }
+                        new MenuItemModel() { CommandName = Constants.USER_INPROGRESS_FAQ, Icon = FontAwesome.FATasks, Badge = count.ToString() }
                     }
                 );
                 if (App.Access.Contains(Constants.ACCESS_OPERATOR))
@@ -83,10 +90,7 @@ namespace FAQPhone.Views
             }
             items.Add(new MenuItemModel() { CommandName = Constants.ACCOUNT, Icon = FontAwesome.FAAddressCardO });
             items.Add(new MenuItemModel() { CommandName = Constants.SIGNOUT, Icon = FontAwesome.FASignOut });
-            this.setList(items);
-            this.accountService = accountService;
-            this.departmentService = departmentService;
-            this.discussionService = discussionService;
+            this.setList(items);            
             this.SelectItemCommand = new Command<MenuItemModel>(async (model) => await selectItemCommand(model));
         }
 
@@ -160,6 +164,10 @@ namespace FAQPhone.Views
                         if (l != null && l.Count() > 0)
                         {
                             await this.Navigation.PushAsync(new DiscussionPage(model.CommandName, l));
+                        }
+                        else
+                        {
+                            
                         }
                         break;
                     case Constants.SIGNOUT:
