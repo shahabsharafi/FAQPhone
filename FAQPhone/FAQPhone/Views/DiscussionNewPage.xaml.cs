@@ -62,7 +62,7 @@ namespace FAQPhone.Views
             get { return _title; }
             set
             {
-                if (string.IsNullOrWhiteSpace(_title) || _title.Length < 30)
+                if (string.IsNullOrWhiteSpace(value) || value.Length <= 30)
                 {
                     _title = value;
                     CanNext = !string.IsNullOrWhiteSpace(_title);

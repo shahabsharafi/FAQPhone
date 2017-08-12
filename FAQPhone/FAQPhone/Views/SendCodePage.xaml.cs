@@ -56,7 +56,7 @@ namespace FAQPhone.Views
             get { return _mobile; }
             set
             {
-                if (string.IsNullOrWhiteSpace(_mobile) || _mobile.Length < 11)
+                if (string.IsNullOrWhiteSpace(value) || value.Length <= 11)
                 {
                     _mobile = value;                    
                 }
