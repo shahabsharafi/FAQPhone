@@ -65,9 +65,9 @@ namespace FAQPhone.Views
                 if (string.IsNullOrWhiteSpace(_title) || _title.Length < 30)
                 {
                     _title = value;
-                    OnPropertyChanged();
                     CanNext = !string.IsNullOrWhiteSpace(_title);
                 }
+                OnPropertyChanged();
             }
         }
 

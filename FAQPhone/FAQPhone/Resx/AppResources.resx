@@ -399,4 +399,13 @@
   <data name="app_version" xml:space="preserve">
     <value>0.4</value>
   </data>
+  <data name="command_no" xml:space="preserve">
+    <value>خیر</value>
+  </data>
+  <data name="command_yes" xml:space="preserve">
+    <value>بله</value>
+  </data>
+  <data name="message_text_are_you_sure" xml:space="preserve">
+    <value>آبا مطمئن هستید</value>
+  </data>
 </root>

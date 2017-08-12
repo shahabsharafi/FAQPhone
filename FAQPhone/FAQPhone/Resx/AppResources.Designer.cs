@@ -251,6 +251,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to خیر.
+        /// </summary>
+        internal static string command_no {
+            get {
+                return ResourceManager.GetString("command_no", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تایید.
         /// </summary>
         internal static string command_ok {
@@ -310,6 +319,15 @@ namespace FAQPhone.Resx {
         internal static string command_send {
             get {
                 return ResourceManager.GetString("command_send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to بله.
+        /// </summary>
+        internal static string command_yes {
+            get {
+                return ResourceManager.GetString("command_yes", resourceCulture);
             }
         }
         
@@ -616,6 +634,15 @@ namespace FAQPhone.Resx {
         internal static string mainpage {
             get {
                 return ResourceManager.GetString("mainpage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to آبا مطمئن هستید.
+        /// </summary>
+        internal static string message_text_are_you_sure {
+            get {
+                return ResourceManager.GetString("message_text_are_you_sure", resourceCulture);
             }
         }
         

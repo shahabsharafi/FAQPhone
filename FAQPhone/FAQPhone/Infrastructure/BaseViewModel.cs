@@ -30,6 +30,14 @@ namespace FAQPhone.Inferstructure
             var c = ResourceManagerHelper.GetValue(cancel);
             return this.Page.DisplayAlert(t, m, c);
         }
+        public Task<bool> DisplayAlert(string title, string message, string accept, string cancel)
+        {
+            var t = ResourceManagerHelper.GetValue(title);
+            var m = ResourceManagerHelper.GetValue(message);
+            var a = ResourceManagerHelper.GetValue(accept);
+            var c = ResourceManagerHelper.GetValue(cancel);
+            return this.Page.DisplayAlert(t, m, a, c);
+        }
         public INavigation Navigation { get { return this.Page.Navigation; } }
         public TextAlignment Direction { get { return ResourceManagerHelper.Direction; } }
         public LayoutOptions Layout { get { return ResourceManagerHelper.Layout; } }

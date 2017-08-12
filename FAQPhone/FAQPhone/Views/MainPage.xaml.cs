@@ -192,13 +192,17 @@ namespace FAQPhone.Views
                         }
                         break;
                     case Constants.SETTING:
-                        await this.RootNavigate(new MainPage(model.CommandName));
+                        await this.Navigation.PushAsync(new MainPage(model.CommandName));
                         break;
                     case Constants.SIGNOUT:
-                        this.accountService.SignOut();
-                        Settings.Username = string.Empty;
-                        Settings.Password = string.Empty;
-                        await this.RootNavigate(new SendCodePage(FlowType.Signup));
+                        var flag = await this.DisplayAlert("message_title_alert", "message_text_are_you_sure", "command_yes", "command_no");
+                        if (flag)
+                        {
+                            this.accountService.SignOut();
+                            Settings.Username = string.Empty;
+                            Settings.Password = string.Empty;
+                            await this.RootNavigate(new SendCodePage(FlowType.Signup));
+                        }
                         break;
                     case Constants.ACCOUNT:
                         var account = await this.accountService.GetMe();

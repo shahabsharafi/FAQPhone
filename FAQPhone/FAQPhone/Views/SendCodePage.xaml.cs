@@ -56,11 +56,11 @@ namespace FAQPhone.Views
             get { return _mobile; }
             set
             {
-                if (string.IsNullOrWhiteSpace(_mobile) || _mobile.Length < 12)
+                if (string.IsNullOrWhiteSpace(_mobile) || _mobile.Length < 11)
                 {
-                    _mobile = value;
-                    OnPropertyChanged();
+                    _mobile = value;                    
                 }
+                OnPropertyChanged();
             }
         }
         public ICommand SendCodeCommand { protected set; get; }
