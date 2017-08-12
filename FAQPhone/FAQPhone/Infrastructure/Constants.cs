@@ -18,6 +18,7 @@ namespace FAQPhone.Inferstructure
         public const string USER_INPROGRESS_FAQ = "user_inprogress_faq";
         public const string USER_FAQ = "user_faq";
         public const string ACCOUNT = "account";
+        public const string ABOUT_US = "about_us";
         public const string SETTING = "setting";
         public const string SIGNOUT = "signout";
 

@@ -390,4 +390,13 @@
   <data name="message_title_alert" xml:space="preserve">
     <value>اخطار</value>
   </data>
+  <data name="about_us" xml:space="preserve">
+    <value>درباره ما</value>
+  </data>
+  <data name="app_name" xml:space="preserve">
+    <value>پرسانه</value>
+  </data>
+  <data name="app_version" xml:space="preserve">
+    <value>0.4</value>
+  </data>
 </root>

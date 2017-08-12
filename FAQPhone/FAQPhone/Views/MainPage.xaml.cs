@@ -72,6 +72,9 @@ namespace FAQPhone.Views
                 {
                     items.Add(new MenuItemModel() { CommandName = Constants.USER_FAQ, Icon = FontAwesome.FAUser });
                 }
+                items.Add(new MenuItemModel() { CommandName = Constants.ACCOUNT, Icon = FontAwesome.FAAddressCardO });
+                items.Add(new MenuItemModel() { CommandName = Constants.ABOUT_US, Icon = FontAwesome.FAInfoCircle });
+                items.Add(new MenuItemModel() { CommandName = Constants.SETTING, Icon = FontAwesome.FACog });
             }
             else if (menu == Constants.USER_FAQ || (menu == null && App.Access.Contains(Constants.ACCESS_USER)))
             {
@@ -87,9 +90,15 @@ namespace FAQPhone.Views
                 {
                     items.Add(new MenuItemModel() { CommandName = Constants.OPERATOR_FAQ, Icon = FontAwesome.FAUserCircle });
                 }
+                items.Add(new MenuItemModel() { CommandName = Constants.ACCOUNT, Icon = FontAwesome.FAAddressCardO });
+                items.Add(new MenuItemModel() { CommandName = Constants.ABOUT_US, Icon = FontAwesome.FAInfoCircle });
+                items.Add(new MenuItemModel() { CommandName = Constants.SETTING, Icon = FontAwesome.FACog });
             }
-            items.Add(new MenuItemModel() { CommandName = Constants.ACCOUNT, Icon = FontAwesome.FAAddressCardO });
-            items.Add(new MenuItemModel() { CommandName = Constants.SIGNOUT, Icon = FontAwesome.FASignOut });
+            else if (menu == Constants.SETTING)
+            {
+                items.Add(new MenuItemModel() { CommandName = Constants.SIGNOUT, Icon = FontAwesome.FASignOut });
+            }
+                     
             this.setList(items);            
             this.SelectItemCommand = new Command<MenuItemModel>(async (model) => await selectItemCommand(model));
         }
@@ -182,6 +191,9 @@ namespace FAQPhone.Views
                             await this.DisplayAlert("message_title_alert", "message_text_not_exists", "command_ok");
                         }
                         break;
+                    case Constants.SETTING:
+                        await this.RootNavigate(new MainPage(model.CommandName));
+                        break;
                     case Constants.SIGNOUT:
                         this.accountService.SignOut();
                         Settings.Username = string.Empty;
@@ -190,8 +202,10 @@ namespace FAQPhone.Views
                         break;
                     case Constants.ACCOUNT:
                         var account = await this.accountService.GetMe();
-                        //await this.Navigation.PushAsync(new ProfilePage(account));
                         await this.Navigation.PushAsync(new AccountPage(account));
+                        break;
+                    case Constants.ABOUT_US:
+                        await this.Navigation.PushAsync(new AboutPage());
                         break;
                     //case "FILE_PICKER":
                     //    FilePickerHelper.Open();

@@ -62,6 +62,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to درباره ما.
+        /// </summary>
+        internal static string about_us {
+            get {
+                return ResourceManager.GetString("about_us", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to حساب کاربری.
         /// </summary>
         internal static string account {
@@ -76,6 +85,24 @@ namespace FAQPhone.Resx {
         internal static string account_credit {
             get {
                 return ResourceManager.GetString("account_credit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to پرسانه.
+        /// </summary>
+        internal static string app_name {
+            get {
+                return ResourceManager.GetString("app_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0.4.
+        /// </summary>
+        internal static string app_version {
+            get {
+                return ResourceManager.GetString("app_version", resourceCulture);
             }
         }
         
