@@ -60,10 +60,14 @@ namespace FAQPhone.Views
         public string title
         {
             get { return _title; }
-            set {
-                _title = value;
-                OnPropertyChanged();
-                CanNext = !string.IsNullOrWhiteSpace(_title);
+            set
+            {
+                if (string.IsNullOrWhiteSpace(_title) || _title.Length < 30)
+                {
+                    _title = value;
+                    OnPropertyChanged();
+                    CanNext = !string.IsNullOrWhiteSpace(_title);
+                }
             }
         }
 

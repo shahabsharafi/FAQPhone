@@ -18,12 +18,19 @@ namespace FAQPhone.Inferstructure
             get { return ResourceManagerHelper.GetValue(_message); }
             set { _message = value; OnPropertyChanged(); }
         }
-        public INavigation Navigation { get; set; }
+        public ContentPage Page { get; set; }
         public BaseViewModel(ContentPage page)
         {
-            this.Navigation = page.Navigation;
+            this.Page = page;
         }
-
+        public Task DisplayAlert(string title, string message, string cancel)
+        {
+            var t = ResourceManagerHelper.GetValue(title);
+            var m = ResourceManagerHelper.GetValue(message);
+            var c = ResourceManagerHelper.GetValue(cancel);
+            return this.Page.DisplayAlert(t, m, c);
+        }
+        public INavigation Navigation { get { return this.Page.Navigation; } }
         public TextAlignment Direction { get { return ResourceManagerHelper.Direction; } }
         public LayoutOptions Layout { get { return ResourceManagerHelper.Layout; } }
 

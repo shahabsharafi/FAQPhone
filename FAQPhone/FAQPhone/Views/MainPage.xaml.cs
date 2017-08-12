@@ -141,12 +141,20 @@ namespace FAQPhone.Views
                         {
                             await this.Navigation.PushAsync(new DepartmentPage(dl));
                         }
+                        else
+                        {
+                            await this.DisplayAlert("message_title_alert", "message_text_not_exists", "command_ok");
+                        }
                         break;
                     case Constants.USER_INPROGRESS_FAQ:
                         l = await this.discussionService.GetList(true, new int[] { 0, 1, 2, 3 });
                         if (l != null && l.Count() > 0)
                         {
                             await this.Navigation.PushAsync(new DiscussionPage(model.CommandName, l));
+                        }
+                        else
+                        {
+                            await this.DisplayAlert("message_title_alert", "message_text_not_exists", "command_ok");
                         }
                         break;
                     case Constants.OPERATOR_FAQ:
@@ -158,6 +166,10 @@ namespace FAQPhone.Views
                         {
                             await this.Navigation.PushAsync(new DiscussionRecivePage(d));
                         }
+                        else
+                        {
+                            await this.DisplayAlert("message_title_alert", "message_text_not_exists", "command_ok");
+                        }
                         break;
                     case Constants.OPERATOR_INPROGRESS_FAQ:
                         l = await this.discussionService.GetList(false, new int[] { 0, 1, 2, 3 });
@@ -167,7 +179,7 @@ namespace FAQPhone.Views
                         }
                         else
                         {
-                            
+                            await this.DisplayAlert("message_title_alert", "message_text_not_exists", "command_ok");
                         }
                         break;
                     case Constants.SIGNOUT:

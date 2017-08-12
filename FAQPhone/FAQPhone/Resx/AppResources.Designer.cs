@@ -224,6 +224,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to تایید.
+        /// </summary>
+        internal static string command_ok {
+            get {
+                return ResourceManager.GetString("command_ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to انصراف.
         /// </summary>
         internal static string command_reject {
@@ -580,6 +589,24 @@ namespace FAQPhone.Resx {
         internal static string mainpage {
             get {
                 return ResourceManager.GetString("mainpage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to موردی یافت نشد!.
+        /// </summary>
+        internal static string message_text_not_exists {
+            get {
+                return ResourceManager.GetString("message_text_not_exists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اخطار.
+        /// </summary>
+        internal static string message_title_alert {
+            get {
+                return ResourceManager.GetString("message_title_alert", resourceCulture);
             }
         }
         

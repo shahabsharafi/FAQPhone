@@ -381,4 +381,13 @@
   <data name="security_caption" xml:space="preserve">
     <value>تایید شماره تلفن</value>
   </data>
+  <data name="command_ok" xml:space="preserve">
+    <value>تایید</value>
+  </data>
+  <data name="message_text_not_exists" xml:space="preserve">
+    <value>موردی یافت نشد!</value>
+  </data>
+  <data name="message_title_alert" xml:space="preserve">
+    <value>اخطار</value>
+  </data>
 </root>

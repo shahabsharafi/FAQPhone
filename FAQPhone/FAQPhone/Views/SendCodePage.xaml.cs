@@ -54,7 +54,14 @@ namespace FAQPhone.Views
         public string mobile
         {
             get { return _mobile; }
-            set { _mobile = value; OnPropertyChanged(); }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(_mobile) || _mobile.Length < 12)
+                {
+                    _mobile = value;
+                    OnPropertyChanged();
+                }
+            }
         }
         public ICommand SendCodeCommand { protected set; get; }
 
