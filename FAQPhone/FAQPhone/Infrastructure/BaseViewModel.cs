@@ -1,4 +1,5 @@
-﻿using FAQPhone.Infrastructure;
+﻿using FAQPhone.Helpers;
+using FAQPhone.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,18 +26,11 @@ namespace FAQPhone.Inferstructure
         }
         public Task DisplayAlert(string title, string message, string cancel)
         {
-            var t = ResourceManagerHelper.GetValue(title);
-            var m = ResourceManagerHelper.GetValue(message);
-            var c = ResourceManagerHelper.GetValue(cancel);
-            return this.Page.DisplayAlert(t, m, c);
+            return Utility.DisplayAlert(this.Page, title, message, cancel);
         }
         public Task<bool> DisplayAlert(string title, string message, string accept, string cancel)
         {
-            var t = ResourceManagerHelper.GetValue(title);
-            var m = ResourceManagerHelper.GetValue(message);
-            var a = ResourceManagerHelper.GetValue(accept);
-            var c = ResourceManagerHelper.GetValue(cancel);
-            return this.Page.DisplayAlert(t, m, a, c);
+            return Utility.DisplayAlert(this.Page, title, message, accept, cancel);
         }
         public INavigation Navigation { get { return this.Page.Navigation; } }
         public TextAlignment Direction { get { return ResourceManagerHelper.Direction; } }

@@ -33,6 +33,17 @@ namespace FAQPhone
             }
         }
 
+        public Task DisplayAlert(string title, string message, string cancel)
+        {
+            Page page = Utility.GetCurrentPage();
+            return Utility.DisplayAlert(page, title, message, cancel);
+        }
+        public Task<bool> DisplayAlert(string title, string message, string accept, string cancel)
+        {
+            Page page = Utility.GetCurrentPage();
+            return Utility.DisplayAlert(page, title, message, accept, cancel);
+        }
+
         async Task Login()
         {
             SigninModel model = new SigninModel()

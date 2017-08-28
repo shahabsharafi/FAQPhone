@@ -665,6 +665,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to اشکالی پیش آمده.
+        /// </summary>
+        internal static string message_unknown_error {
+            get {
+                return ResourceManager.GetString("message_unknown_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to موبایل.
         /// </summary>
         internal static string mobile {

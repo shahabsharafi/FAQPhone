@@ -41,6 +41,7 @@
     <Compile Include="CustomRenderer\BadgeLabel.cs" />
     <Compile Include="CustomRenderer\DiscussionViewCell.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Helpers\Utility.cs" />
     <Compile Include="Infrastructure\AutoCompleteView.cs" />
     <Compile Include="Infrastructure\BaseViewModel.cs" />
     <Compile Include="Infrastructure\BehaviorBase.cs" />

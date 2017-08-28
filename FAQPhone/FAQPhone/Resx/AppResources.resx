@@ -408,4 +408,7 @@
   <data name="message_text_are_you_sure" xml:space="preserve">
     <value>آبا مطمئن هستید</value>
   </data>
+  <data name="message_unknown_error" xml:space="preserve">
+    <value>اشکالی پیش آمده</value>
+  </data>
 </root>
