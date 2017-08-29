@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "982684421883",
+    "firebase_url": "https://faqphone-df51a.firebaseio.com",
+    "project_id": "faqphone-df51a",
+    "storage_bucket": "faqphone-df51a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:982684421883:android:cc3d08e04e04acef",
+        "android_client_info": {
+          "package_name": "com.faqphone.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "982684421883-iuktm7hm6uuhh3of4o31md812fqqrtm9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpdPryZYT812xyWAqr2f8sD0BE_nnSbKE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -411,4 +411,7 @@
   <data name="message_unknown_error" xml:space="preserve">
     <value>اشکالی پیش آمده</value>
   </data>
+  <data name="message_google_play_services_erorr" xml:space="preserve">
+    <value>خطا در راه اندازی سرویس گوگل</value>
+  </data>
 </root>

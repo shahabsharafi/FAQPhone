@@ -638,6 +638,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to خطا در راه اندازی سرویس گوگل.
+        /// </summary>
+        internal static string message_google_play_services_erorr {
+            get {
+                return ResourceManager.GetString("message_google_play_services_erorr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to آبا مطمئن هستید.
         /// </summary>
         internal static string message_text_are_you_sure {
