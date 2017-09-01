@@ -32,6 +32,7 @@ namespace FilePicker
         }
 
         INavigation _navigation;
+        public string Path { get; private set; }
         public async Task Open()
         {
             await _navigation.PushAsync(_selector);
@@ -43,6 +44,7 @@ namespace FilePicker
             if (_selector.SelectedItem.IsFile)
             {
                 _navigation.PopAsync();
+                Path = _stack.First() + "/" + _selector.SelectedItem.Name;
                 Select?.Invoke(this, new EventArgs());                
             }
             else
@@ -51,11 +53,11 @@ namespace FilePicker
                 if (_selector.SelectedItem.Name == "...")
                 {
                     _stack.Pop();
-                    path = _stack.Last();
+                    path = _stack.First();
                 }
                 else
                 {
-                    path = _stack.Last() + "/" + _selector.SelectedItem.Name;
+                    path = _stack.First() + "/" + _selector.SelectedItem.Name;
                     this._stack.Push(path);
                 }
                 IList<PathModel> list = DependencyService.Get<IFileService>().GetFileInfos(path);

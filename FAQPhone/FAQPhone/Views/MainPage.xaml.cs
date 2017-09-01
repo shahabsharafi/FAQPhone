@@ -213,7 +213,7 @@ namespace FAQPhone.Views
                         await filePicker.Open();
                         filePicker.Select += (sender, e) =>
                         {
-                            var a = 1;
+                            this.Page.DisplayAlert("Alert", filePicker.Path, "Ok");
                         };
                         //await this.Navigation.PushAsync(new AboutPage());
                         break;
