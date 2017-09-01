@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FAQPhone.Inferstructure
+namespace FAQPhone.Infarstructure
 {
     public class Constants
     {

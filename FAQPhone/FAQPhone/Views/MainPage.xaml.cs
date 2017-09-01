@@ -1,6 +1,6 @@
 ﻿using Awesome;
 using FAQPhone.Helpers;
-using FAQPhone.Inferstructure;
+using FAQPhone.Infarstructure;
 using FAQPhone.Infrastructure;
 using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
@@ -209,7 +209,13 @@ namespace FAQPhone.Views
                         await this.Navigation.PushAsync(new AccountPage(account));
                         break;
                     case Constants.ABOUT_US:
-                        await this.Navigation.PushAsync(new AboutPage());
+                        FilePicker.FilePickerPage filePicker = new FilePicker.FilePickerPage(this.Navigation);
+                        await filePicker.Open();
+                        filePicker.Select += (sender, e) =>
+                        {
+                            var a = 1;
+                        };
+                        //await this.Navigation.PushAsync(new AboutPage());
                         break;
                     //case "FILE_PICKER":
                     //    FilePickerHelper.Open();

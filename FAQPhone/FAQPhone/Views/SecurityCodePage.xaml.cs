@@ -1,5 +1,5 @@
 ﻿using FAQPhone.Helpers;
-using FAQPhone.Inferstructure;
+using FAQPhone.Infarstructure;
 using FAQPhone.Infrastructure;
 using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;

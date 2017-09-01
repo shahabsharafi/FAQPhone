@@ -40,6 +40,9 @@
     </Compile>
     <Compile Include="CustomRenderer\BadgeLabel.cs" />
     <Compile Include="CustomRenderer\DiscussionViewCell.cs" />
+    <Compile Include="FilePicker\FilePickerPage.cs" />
+    <Compile Include="FilePicker\IFileService.cs" />
+    <Compile Include="FilePicker\PathModel.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Helpers\Utility.cs" />
     <Compile Include="Infrastructure\AutoCompleteView.cs" />
@@ -49,12 +52,10 @@
     <Compile Include="Infrastructure\ExtendedButton.cs" />
     <Compile Include="Infrastructure\ExtendedEditor.cs" />
     <Compile Include="Infrastructure\ExtentionMethods.cs" />
-    <Compile Include="Infrastructure\FilePickerHelper.cs" />
     <Compile Include="Infrastructure\FlowType.cs" />
     <Compile Include="Infrastructure\Constants.cs" />
     <Compile Include="CustomRenderer\MessageViewCell.cs" />
     <Compile Include="Infrastructure\FontAwesome.cs" />
-    <Compile Include="Infrastructure\IFilePicker.cs" />
     <Compile Include="Infrastructure\ResourceManagerHelper.cs" />
     <Compile Include="Infrastructure\SelectedItemEventArgsToSelectedItemConverter.cs" />
     <Compile Include="Infrastructure\TranslateExtension.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Models\AutResultModel.cs" />
     <Compile Include="Models\CodeResultModel.cs" />
     <Compile Include="Models\DepartmentModel.cs" />
+    <Compile Include="Models\DirectoryModel.cs" />
     <Compile Include="Models\DiscussionModel.cs" />
     <Compile Include="Models\MenuItemModel.cs" />
     <Compile Include="Models\PaginationModel.cs" />
@@ -88,6 +90,9 @@
     <Compile Include="Services\Interfaces\IDiscussionService.cs" />
     <Compile Include="Services\Interfaces\IRestService.cs" />
     <Compile Include="Services\RestService .cs" />
+    <Compile Include="Singleselect\SingleSelectItem.cs" />
+    <Compile Include="Singleselect\SelectSingleBasePage.cs" />
+    <Compile Include="Singleselect\SingleSelectViewModel.cs" />
     <Compile Include="Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>

@@ -1,4 +1,4 @@
-﻿using FAQPhone.Inferstructure;
+﻿using FAQPhone.Infarstructure;
 using FAQPhone.Infrastructure;
 using System;
 using System.Collections.Generic;

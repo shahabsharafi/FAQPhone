@@ -20,7 +20,7 @@ namespace com.xamarin.recipes.filepicker
     /// </remarks>
     public class FileListFragment : ListFragment
     {
-        public static readonly string DefaultInitialDirectory = "/";
+        public static readonly string DefaultInitialDirectory = (string)Android.OS.Environment.ExternalStorageDirectory;
         private FileListAdapter _adapter;
         private DirectoryInfo _directory;
 

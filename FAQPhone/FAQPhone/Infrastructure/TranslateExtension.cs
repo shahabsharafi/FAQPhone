@@ -5,7 +5,7 @@ using System.Resources;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace FAQPhone.Inferstructure
+namespace FAQPhone.Infarstructure
 {
     // You exclude the 'Extension' suffix when using in Xaml markup
     [ContentProperty ("Text")]

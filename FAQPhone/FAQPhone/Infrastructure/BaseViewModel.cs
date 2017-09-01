@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace FAQPhone.Inferstructure
+namespace FAQPhone.Infarstructure
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

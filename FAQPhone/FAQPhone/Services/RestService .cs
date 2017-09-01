@@ -1,4 +1,4 @@
-﻿using FAQPhone.Inferstructure;
+﻿using FAQPhone.Infarstructure;
 using FAQPhone.Infrastructure;
 using FAQPhone.Services.Interfaces;
 using Newtonsoft.Json;

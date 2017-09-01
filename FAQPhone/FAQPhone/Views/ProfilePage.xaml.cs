@@ -1,4 +1,4 @@
-﻿using FAQPhone.Inferstructure;
+﻿using FAQPhone.Infarstructure;
 using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
 using System;
