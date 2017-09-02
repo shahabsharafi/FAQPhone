@@ -59,6 +59,7 @@
     <Compile Include="Infrastructure\ResourceManagerHelper.cs" />
     <Compile Include="Infrastructure\SelectedItemEventArgsToSelectedItemConverter.cs" />
     <Compile Include="Infrastructure\TranslateExtension.cs" />
+    <Compile Include="Infrastructure\UploadHelper.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\AttributeModel.cs" />
     <Compile Include="Models\AutResultModel.cs" />
