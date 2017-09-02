@@ -32,7 +32,9 @@ namespace FilePicker
         }
 
         INavigation _navigation;
+        public string Dir { get; private set; }
         public string Path { get; private set; }
+        public string FileName { get; private set; }
         public async Task Open()
         {
             await _navigation.PushAsync(_selector);
@@ -44,7 +46,9 @@ namespace FilePicker
             if (_selector.SelectedItem.IsFile)
             {
                 _navigation.PopAsync();
-                Path = _stack.First() + "/" + _selector.SelectedItem.Name;
+                Dir = _stack.First();
+                FileName = _selector.SelectedItem.Name;
+                Path = Dir + "/" + FileName;
                 Select?.Invoke(this, new EventArgs());                
             }
             else

@@ -213,7 +213,10 @@ namespace FAQPhone.Views
                         await filePicker.Open();
                         filePicker.Select += (sender, e) =>
                         {
-                            this.Page.DisplayAlert("Alert", filePicker.Path, "Ok");
+                            Dictionary<string, string> dic = new Dictionary<string, string>();
+                            dic.Add("EntityName", "discussion");
+                            dic.Add("EntityKey", "125");
+                            UploadHelper.UploadFile(Constants.UploadUrl, filePicker.Path, filePicker.FileName, dic);
                         };
                         //await this.Navigation.PushAsync(new AboutPage());
                         break;

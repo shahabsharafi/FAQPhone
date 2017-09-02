@@ -7,11 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace FAQPhone.Infrastructure
+namespace FAQPhone.Helpers
 {
     public class UploadHelper
     {
-        public static async void UploadImage(string url, string path, string fileName, Dictionary<string, string> values = null)
+        public static async void UploadFile(string url, string path, string fileName, Dictionary<string, string> values = null)
         {
             try
             {
