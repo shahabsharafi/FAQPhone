@@ -33,7 +33,7 @@
             <ListView ItemsSource="{ Binding List }" SelectedItem="{ Binding SelectedItem, Mode=TwoWay }">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <render:MessageViewCell Body="{Binding text}" Attachment="{Binding Icon}"  Owner="{Binding owner.username}" />
+                        <render:MessageViewCell Body="{Binding text}" Icon="{Binding Icon}"  Owner="{Binding owner.username}" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
