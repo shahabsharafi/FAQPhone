@@ -1,4 +1,5 @@
 ﻿using FAQPhone.Infarstructure;
+using FAQPhone.Infrastructure;
 using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
 using FilePicker;
@@ -54,7 +55,7 @@ namespace FAQPhone.Views
         public ChatViewModel(IDiscussionService discussionService, ContentPage page, string state, DiscussionModel model) : base(page)
         {
             this.discussionService = discussionService;
-            this.SelectItemCommand = new Command<DiscussionDetailModel>(async (m) => await selectItemCommand(m));
+            this.SelectItemCommand = new Command<DiscussionDetailModel>((d) => selectItemCommand(d));
             this.SendCommand = new Command(async () => await sendCommand());
             this.FinishCommand = new Command(async () => await finishCommand());
             this.ReportCommand = new Command(async () => await reportCommand());
@@ -65,7 +66,18 @@ namespace FAQPhone.Views
             this.HasFinishing = this.IsOperator && model.state != Constants.DISCUSSION_STATE_REPORT && model.state != Constants.DISCUSSION_STATE_FINISHED;
             this.HasReporting = this.IsOperator && model.state != Constants.DISCUSSION_STATE_REPORT && model.state != Constants.DISCUSSION_STATE_FINISHED;
             this.setList(this.model.items.ToList());
+            _downloadService = DependencyService.Get<IDownloadService>();
+            _downloadService.Downloaded += (s, e) =>
+            {
+                if(_currentDetail != null) _currentDetail.Mode = 3;
+            };
+            _downloadService.Failed += (s, e) =>
+            {
+                if (_currentDetail != null) _currentDetail.Mode = 1;
+            };
         }
+        private DiscussionDetailModel _currentDetail;
+        private IDownloadService _downloadService;
         private IDiscussionService discussionService { get; set; }
 
         object _selectedItem;
@@ -149,10 +161,13 @@ namespace FAQPhone.Views
                 {
                     var fileService = DependencyService.Get<IFileService>();
                     string documentsPath = fileService.GetDocumentsPath();
-                    item.Icon = fileService.Exists(documentsPath + "\\" + item.attachment) 
-                        ? Awesome.FontAwesome.FAFile 
-                        : Awesome.FontAwesome.FADownload;
+                    item.Mode = fileService.Exists(documentsPath + "/" + item.attachment) ? 3: 1;                    
                 }
+                else
+                {
+                    item.Mode = 0;
+                }
+                
                 this.List.Add(item);
             }
         }
@@ -225,10 +240,20 @@ namespace FAQPhone.Views
 
         public ICommand SelectItemCommand { protected set; get; }
 
-        public async Task selectItemCommand(DiscussionDetailModel model)
+        public void selectItemCommand(DiscussionDetailModel d)
         {
-            if (model == null)
+            if (d == null)
                 return;
+            if (d.Mode == 1)
+            {
+                _currentDetail = d;
+                _downloadService.Start(d.attachment);
+                d.Mode = 2;
+            }
+            else if (d.Mode == 3)
+            {
+                DependencyService.Get<IFileService>().OpenFile(d.attachment);
+            }
             this.SelectedItem = null;
         }
     }

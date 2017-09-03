@@ -11,6 +11,6 @@ namespace FAQPhone.Infrastructure
         event EventHandler Downloaded;
 
         event EventHandler Failed;
-        void Start();
+        void Start(string fileName);
     }
 }

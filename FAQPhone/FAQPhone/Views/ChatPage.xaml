@@ -31,6 +31,9 @@
                 </Grid>
             </StackLayout>
             <ListView ItemsSource="{ Binding List }" SelectedItem="{ Binding SelectedItem, Mode=TwoWay }">
+                <ListView.Behaviors>
+                    <local:EventToCommandBehavior EventName="ItemSelected" Command="{Binding SelectItemCommand}" Converter="{StaticResource SelectedItemConverter}" />
+                </ListView.Behaviors>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <render:MessageViewCell Body="{Binding text}" Icon="{Binding Icon}"  Owner="{Binding owner.username}" />

@@ -35,6 +35,14 @@ namespace FAQPhone.Droid.CustomRenderers
                 var view = (context as Activity).LayoutInflater.Inflate(isMine ? Resource.Layout.message_item_owner : Resource.Layout.message_item_opponent, null);
                 MessageIconView = view.FindViewById<TextView>(Resource.Id.message_icon);
                 MessageTextView = view.FindViewById<TextView>(Resource.Id.message);
+
+                var font = Typeface.CreateFromAsset(Forms.Context.ApplicationContext.Assets, "Irsans.ttf");
+                var fontawesome = Typeface.CreateFromAsset(Forms.Context.ApplicationContext.Assets, "fontawesome.ttf");
+
+                MessageTextView.Typeface = font;
+                MessageIconView.Typeface = fontawesome;
+                MessageIconView.TextSize = 25;
+
                 if (string.IsNullOrEmpty(cell.Icon))
                 {
                     MessageTextView.Visibility = ViewStates.Visible;

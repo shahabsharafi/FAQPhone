@@ -28,7 +28,8 @@ namespace FAQPhone.Droid.Infrastructure
 
         public string GetDocumentsPath()
         {
-            return System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            return documentsPath;
         }
 
         public IList<PathModel> GetFileInfos(string path)
@@ -63,8 +64,8 @@ namespace FAQPhone.Droid.Infrastructure
         
         public void OpenFile(string filePath)
         {
-
-            var bytes = File.ReadAllBytes(filePath);
+            string localPath = Path.Combine(GetDocumentsPath(), filePath);
+            var bytes = File.ReadAllBytes(localPath);
 
             //Copy the private file's data to the EXTERNAL PUBLIC location
             string externalStorageState = global::Android.OS.Environment.ExternalStorageState;

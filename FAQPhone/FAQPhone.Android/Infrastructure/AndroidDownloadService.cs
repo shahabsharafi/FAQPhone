@@ -25,7 +25,8 @@ namespace FAQPhone.Droid.Infrastructure
         Uri _url;
         public event EventHandler Downloaded;
         public event EventHandler Failed;
-        public AndroidDownloadService(string fileName)
+        string FileName { get; set; }
+        public AndroidDownloadService()
         {
             webClient = new WebClient();
             webClient.DownloadDataCompleted += (s, e) => {
@@ -33,7 +34,7 @@ namespace FAQPhone.Droid.Infrastructure
                 {
                     var bytes = e.Result;
                     string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-                    string localPath = Path.Combine(documentsPath, fileName);
+                    string localPath = Path.Combine(documentsPath, this.FileName);
                     File.WriteAllBytes(localPath, bytes); // writes to local storage
                     Downloaded?.Invoke(this, new EventArgs());
                 }
@@ -41,12 +42,13 @@ namespace FAQPhone.Droid.Infrastructure
                 {
                     Failed?.Invoke(this, new EventArgs());
                 }
-            };
-            this._url = new Uri(Constants.UploadUrl + "/" + fileName);
+            };            
         }
 
-        public void Start()
+        public void Start(string fileName)
         {
+            this.FileName = fileName;
+            this._url = new Uri(Constants.UploadUrl + "/" + this.FileName);
             try
             {
                 webClient.DownloadDataAsync(this._url);

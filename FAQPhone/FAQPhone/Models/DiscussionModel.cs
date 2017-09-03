@@ -2,20 +2,56 @@
 using FAQPhone.Infrastructure;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FAQPhone.Models
 {
-    public class DiscussionDetailModel
+    public class DiscussionDetailModel : INotifyPropertyChanged
     {
         public string _id { get; set; }
         public AccountModel owner { get; set; }
         public DateTime createDate { get; set; }
         public string attachment { get; set; }
         public string text { get; set; }
-        public string Icon { get; set; }
+        string _Icon;
+        public string Icon
+        {
+            get { return _Icon; }
+            set { _Icon = value; OnPropertyChanged(); }
+        }//0: has not attachment, 1: has attachment, 2: downloading, 3: downloaded
+
+        int _Mode;
+        public int Mode
+        {
+            get { return _Mode; }
+            set
+            {
+                _Mode = value;
+                switch (value)
+                {
+                    case 0:
+                        Icon = string.Empty;
+                        break;
+                    case 1:
+                        Icon = Awesome.FontAwesome.FADownload;
+                        break;
+                    case 2:
+                        Icon = Awesome.FontAwesome.FASpinner;
+                        break;
+                    case 3:
+                        Icon = Awesome.FontAwesome.FAFile;
+                        break;
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName]string propertyName = "") =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
     public class DiscussionModel
     {
