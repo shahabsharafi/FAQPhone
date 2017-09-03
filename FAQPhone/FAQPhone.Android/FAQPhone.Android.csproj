@@ -144,6 +144,7 @@
     <Compile Include="CustomRenderers\ExtendedEditorRenderer.cs" />
     <Compile Include="CustomRenderers\MessageRenderer.cs" />
     <Compile Include="Infrastructure\AndroidFileService.cs" />
+    <Compile Include="Infrastructure\AndroidDownloadService.cs" />
     <Compile Include="Infrastructure\FileExtentions.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />

@@ -50,6 +50,11 @@ namespace FAQPhone.Droid.Infrastructure
         {
             return File.ReadAllBytes(path);
         }
+
+        public bool Exists(string path)
+        {
+            return File.Exists(path);
+        }
         
         public void OpenFile(string filePath)
         {
