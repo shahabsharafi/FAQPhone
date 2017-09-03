@@ -22,6 +22,7 @@ namespace FAQPhone.Droid.CustomRenderers
         internal class NativeAndroidCell : LinearLayout, INativeElementView
         {
             public TextView MessageTextView { get; set; }
+            public TextView MessageIconView { get; set; }
 
             public MessageViewCell MessageViewCell { get; private set; }
             public Element Element => MessageViewCell;
@@ -32,14 +33,26 @@ namespace FAQPhone.Droid.CustomRenderers
 
                 bool isMine = cell.Owner == App.Username;
                 var view = (context as Activity).LayoutInflater.Inflate(isMine ? Resource.Layout.message_item_owner : Resource.Layout.message_item_opponent, null);
+                MessageIconView = view.FindViewById<TextView>(Resource.Id.message_icon);
                 MessageTextView = view.FindViewById<TextView>(Resource.Id.message);
-
+                if (string.IsNullOrEmpty(cell.Icon))
+                {
+                    MessageTextView.Visibility = ViewStates.Visible;
+                    MessageIconView.Visibility = ViewStates.Invisible;
+                }
+                else
+                {
+                    MessageTextView.Visibility = ViewStates.Invisible;
+                    MessageIconView.Visibility = ViewStates.Visible;
+                }
+                
                 AddView(view);
             }
 
             public void UpdateCell(MessageViewCell cell)
-            {
+            {                
                 MessageTextView.Text = cell.Body;
+                MessageIconView.Text = cell.Icon;
             }
         }
 
@@ -70,7 +83,11 @@ namespace FAQPhone.Droid.CustomRenderers
             var nativeCell = (MessageViewCell)sender;
             if (e.PropertyName == MessageViewCell.BodyProperty.PropertyName)
             {
-                cell.MessageTextView.Text = nativeCell.Body;
+                cell.MessageTextView.Text = nativeCell.Body; 
+            }
+            if (e.PropertyName == MessageViewCell.IconProperty.PropertyName)
+            {
+                cell.MessageIconView.Text = nativeCell.Icon;
             }
         }
     }

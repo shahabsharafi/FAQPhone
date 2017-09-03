@@ -4,8 +4,14 @@
              xmlns:infr="clr-namespace:FAQPhone.Infarstructure;assembly=FAQPhone"
              xmlns:render="clr-namespace:CustomRenderer;assembly=FAQPhone"
              xmlns:controls="clr-namespace:CustomControl;assembly=FAQPhone"
+             xmlns:local="clr-namespace:EventToCommandBehavior"
              x:Class="FAQPhone.Views.ChatPage"
              Title="{infr:Translate chat}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}">
             <StackLayout IsVisible="{ Binding Editable }">
@@ -24,10 +30,10 @@
                     <Button Text="{infr:Translate command_report}" Command="{Binding ReportCommand}" StyleClass="Info" IsVisible="{ Binding HasReporting }" Grid.Row="1" Grid.Column="0" />
                 </Grid>
             </StackLayout>
-            <ListView ItemsSource="{ Binding List }">
+            <ListView ItemsSource="{ Binding List }" SelectedItem="{ Binding SelectedItem, Mode=TwoWay }">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <render:MessageViewCell Body="{Binding text}"  Owner="{Binding owner.username}" />
+                        <render:MessageViewCell Body="{Binding text}" Attachment="{Binding Icon}"  Owner="{Binding owner.username}" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

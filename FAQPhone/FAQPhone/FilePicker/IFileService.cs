@@ -10,6 +10,7 @@ namespace FilePicker
     {
         IList<PathModel> GetFileInfos(string path = null);
         string GetBaseDirectory();
+        string GetDocumentsPath();
         byte[] ReadAllBytes(string path);
         bool Exists(string path);
         void OpenFile(string filePath);

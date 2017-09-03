@@ -1,6 +1,7 @@
 ﻿using FAQPhone.Infarstructure;
 using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
+using FilePicker;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -53,6 +54,7 @@ namespace FAQPhone.Views
         public ChatViewModel(IDiscussionService discussionService, ContentPage page, string state, DiscussionModel model) : base(page)
         {
             this.discussionService = discussionService;
+            this.SelectItemCommand = new Command<DiscussionDetailModel>(async (m) => await selectItemCommand(m));
             this.SendCommand = new Command(async () => await sendCommand());
             this.FinishCommand = new Command(async () => await finishCommand());
             this.ReportCommand = new Command(async () => await reportCommand());
@@ -65,6 +67,13 @@ namespace FAQPhone.Views
             this.setList(this.model.items.ToList());
         }
         private IDiscussionService discussionService { get; set; }
+
+        object _selectedItem;
+        public object SelectedItem
+        {
+            get { return _selectedItem; }
+            set { _selectedItem = value; OnPropertyChanged(); }
+        }
         private DiscussionModel model { get; set; }
 
         bool IsOperator { get; set; }
@@ -136,6 +145,14 @@ namespace FAQPhone.Views
             this.List.Clear();
             foreach (var item in list)
             {
+                if (!string.IsNullOrEmpty(item.attachment))
+                {
+                    var fileService = DependencyService.Get<IFileService>();
+                    string documentsPath = fileService.GetDocumentsPath();
+                    item.Icon = fileService.Exists(documentsPath + "\\" + item.attachment) 
+                        ? Awesome.FontAwesome.FAFile 
+                        : Awesome.FontAwesome.FADownload;
+                }
                 this.List.Add(item);
             }
         }
@@ -204,6 +221,15 @@ namespace FAQPhone.Views
         {
             /////     
             await this.Navigation.PushAsync(new CancelationPage(model));
+        }
+
+        public ICommand SelectItemCommand { protected set; get; }
+
+        public async Task selectItemCommand(DiscussionDetailModel model)
+        {
+            if (model == null)
+                return;
+            this.SelectedItem = null;
         }
     }
 }

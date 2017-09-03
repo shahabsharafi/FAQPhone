@@ -32,7 +32,14 @@ namespace CustomRenderer
             this.View = stack;
         }
         */
-        
+
+        public static readonly BindableProperty IconProperty = BindableProperty.Create("Icon", typeof(string), typeof(MessageViewCell), "");
+        public string Icon
+        {
+            get { return (string)GetValue(IconProperty); }
+            set { SetValue(IconProperty, value); }
+        }
+
         public static readonly BindableProperty BodyProperty = BindableProperty.Create("Body", typeof(string), typeof(MessageViewCell), "");
 
         public string Body

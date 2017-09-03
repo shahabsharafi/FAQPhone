@@ -77,6 +77,7 @@ namespace FAQPhone.Views
                 OnPropertyChanged();
             }
         }
+
         string _text;
         public string text
         {
