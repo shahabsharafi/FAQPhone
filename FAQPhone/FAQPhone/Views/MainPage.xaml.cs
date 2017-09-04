@@ -209,16 +209,7 @@ namespace FAQPhone.Views
                         await this.Navigation.PushAsync(new AccountPage(account));
                         break;
                     case Constants.ABOUT_US:
-                        FilePicker.FilePickerPage filePicker = new FilePicker.FilePickerPage(this.Navigation);
-                        await filePicker.Open();
-                        filePicker.Select += (sender, e) =>
-                        {
-                            Dictionary<string, string> dic = new Dictionary<string, string>();
-                            dic.Add("EntityName", "discussion");
-                            dic.Add("EntityKey", "125");
-                            UploadHelper.UploadFile(Constants.UploadUrl, filePicker.Path, filePicker.FileName, dic);
-                        };
-                        //await this.Navigation.PushAsync(new AboutPage());
+                        await this.Navigation.PushAsync(new AboutPage());
                         break;
                     //case "FILE_PICKER":
                     //    FilePickerHelper.Open();

@@ -33,7 +33,7 @@ namespace FAQPhone.Droid.Infrastructure
                 try
                 {
                     var bytes = e.Result;
-                    string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+                    string documentsPath = (string)Android.OS.Environment.ExternalStorageDirectory;//System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
                     string localPath = Path.Combine(documentsPath, this.FileName);
                     File.WriteAllBytes(localPath, bytes); // writes to local storage
                     Downloaded?.Invoke(this, new EventArgs());

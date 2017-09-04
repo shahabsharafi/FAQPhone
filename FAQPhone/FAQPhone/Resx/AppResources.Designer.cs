@@ -224,6 +224,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to الصاق فایل.
+        /// </summary>
+        internal static string command_attach {
+            get {
+                return ResourceManager.GetString("command_attach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ویرایش.
         /// </summary>
         internal static string command_edit {

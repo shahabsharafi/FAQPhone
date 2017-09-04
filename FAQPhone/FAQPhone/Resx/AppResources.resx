@@ -414,4 +414,7 @@
   <data name="message_google_play_services_erorr" xml:space="preserve">
     <value>خطا در راه اندازی سرویس گوگل</value>
   </data>
+  <data name="command_attach" xml:space="preserve">
+    <value>الصاق فایل</value>
+  </data>
 </root>

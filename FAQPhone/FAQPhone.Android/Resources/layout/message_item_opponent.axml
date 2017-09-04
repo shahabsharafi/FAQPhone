@@ -10,7 +10,7 @@
         android:orientation="vertical"
         android:gravity="left"
         android:background="@drawable/bubble_yellow">
-      <TextView
+      <JoanZapata.XamarinIconify.Widget.IconTextView
             android:id="@+id/message_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

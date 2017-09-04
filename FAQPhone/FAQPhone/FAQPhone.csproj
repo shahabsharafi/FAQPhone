@@ -40,6 +40,7 @@
     </Compile>
     <Compile Include="CustomRenderer\BadgeLabel.cs" />
     <Compile Include="CustomRenderer\DiscussionViewCell.cs" />
+    <Compile Include="CustomRenderer\IconicButton.cs" />
     <Compile Include="FilePicker\FilePickerPage.cs" />
     <Compile Include="FilePicker\IFileService.cs" />
     <Compile Include="FilePicker\PathModel.cs" />

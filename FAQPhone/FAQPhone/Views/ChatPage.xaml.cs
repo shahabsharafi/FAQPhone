@@ -1,4 +1,5 @@
-﻿using FAQPhone.Infarstructure;
+﻿using FAQPhone.Helpers;
+using FAQPhone.Infarstructure;
 using FAQPhone.Infrastructure;
 using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
@@ -57,6 +58,7 @@ namespace FAQPhone.Views
             this.discussionService = discussionService;
             this.SelectItemCommand = new Command<DiscussionDetailModel>((d) => selectItemCommand(d));
             this.SendCommand = new Command(async () => await sendCommand());
+            this.AttachCommand = new Command(async () => await attachCommand());
             this.FinishCommand = new Command(async () => await finishCommand());
             this.ReportCommand = new Command(async () => await reportCommand());
             this.model = model;
@@ -170,6 +172,20 @@ namespace FAQPhone.Views
                 
                 this.List.Add(item);
             }
+        }
+
+        public ICommand AttachCommand { protected set; get; }
+        public async Task attachCommand()
+        {
+            FilePicker.FilePickerPage filePicker = new FilePicker.FilePickerPage(this.Navigation);
+            await filePicker.Open();
+            filePicker.Select += (sender, e) =>
+            {
+                Dictionary<string, string> dic = new Dictionary<string, string>();
+                dic.Add("EntityName", "discussion");
+                dic.Add("EntityKey", model._id.ToString());
+                UploadHelper.UploadFile(Constants.UploadUrl, filePicker.Path, filePicker.FileName, dic);
+            };
         }
 
         public ICommand SendCommand { protected set; get; }

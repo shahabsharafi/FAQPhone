@@ -25,7 +25,8 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Button Text="{infr:Translate command_send}" Command="{Binding SendCommand}" StyleClass="Info" IsEnabled="{ Binding CanSending }" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+                    <Button Text="{infr:Translate command_send}" Command="{Binding SendCommand}" StyleClass="Info" IsEnabled="{ Binding CanSending }" Grid.Row="0" Grid.Column="1" />
+                    <Button Text="{infr:Translate command_attach}" Command="{Binding AttachCommand}" StyleClass="Info" Grid.Row="0" Grid.Column="0" />
                     <Button Text="{infr:Translate command_finish}" Command="{Binding FinishCommand}" StyleClass="Info" IsVisible="{ Binding HasFinishing }" Grid.Row="1" Grid.Column="1" />
                     <Button Text="{infr:Translate command_report}" Command="{Binding ReportCommand}" StyleClass="Info" IsVisible="{ Binding HasReporting }" Grid.Row="1" Grid.Column="0" />
                 </Grid>

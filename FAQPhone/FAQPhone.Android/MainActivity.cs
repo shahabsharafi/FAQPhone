@@ -24,6 +24,8 @@ namespace FAQPhone.Droid
 
             base.OnCreate(bundle);
 
+            JoanZapata.XamarinIconify.Iconify.with(new JoanZapata.XamarinIconify.Fonts.FontAwesomeModule());
+
             global::Xamarin.Forms.Forms.Init(this, bundle);
             app = new App();
             LoadApplication(app);

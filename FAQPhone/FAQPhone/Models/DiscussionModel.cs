@@ -37,13 +37,13 @@ namespace FAQPhone.Models
                         Icon = string.Empty;
                         break;
                     case 1:
-                        Icon = Awesome.FontAwesome.FADownload;
+                        Icon = "{ fa-download }";//Awesome.FontAwesome.FADownload;
                         break;
                     case 2:
-                        Icon = Awesome.FontAwesome.FASpinner;
+                        Icon = "{ fa-circle-o-notch spin }";//Awesome.FontAwesome.FASpinner;
                         break;
                     case 3:
-                        Icon = Awesome.FontAwesome.FAFile;
+                        Icon = "{ fa-file }";//Awesome.FontAwesome.FAFile;
                         break;
                 }
             }

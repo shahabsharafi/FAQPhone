@@ -28,7 +28,7 @@ namespace FAQPhone.Droid.Infrastructure
 
         public string GetDocumentsPath()
         {
-            string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            string documentsPath = (string)Android.OS.Environment.ExternalStorageDirectory;//System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             return documentsPath;
         }
 

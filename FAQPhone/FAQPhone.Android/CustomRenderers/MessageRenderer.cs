@@ -22,7 +22,7 @@ namespace FAQPhone.Droid.CustomRenderers
         internal class NativeAndroidCell : LinearLayout, INativeElementView
         {
             public TextView MessageTextView { get; set; }
-            public TextView MessageIconView { get; set; }
+            public JoanZapata.XamarinIconify.Widget.IconTextView MessageIconView { get; set; }
 
             public MessageViewCell MessageViewCell { get; private set; }
             public Element Element => MessageViewCell;
@@ -33,7 +33,7 @@ namespace FAQPhone.Droid.CustomRenderers
 
                 bool isMine = cell.Owner == App.Username;
                 var view = (context as Activity).LayoutInflater.Inflate(isMine ? Resource.Layout.message_item_owner : Resource.Layout.message_item_opponent, null);
-                MessageIconView = view.FindViewById<TextView>(Resource.Id.message_icon);
+                MessageIconView = view.FindViewById<JoanZapata.XamarinIconify.Widget.IconTextView>(Resource.Id.message_icon);
                 MessageTextView = view.FindViewById<TextView>(Resource.Id.message);
 
                 var font = Typeface.CreateFromAsset(Forms.Context.ApplicationContext.Assets, "Irsans.ttf");

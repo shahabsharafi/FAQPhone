@@ -27,6 +27,7 @@ namespace FAQPhone.Droid
 		public static void UpdateIdValues()
 		{
 			global::ModernHttpClient.Resource.String.library_name = global::FAQPhone.Droid.Resource.String.library_name;
+			global::JoanZapata.XamarinIconify.Resource.String.library_name = global::FAQPhone.Droid.Resource.String.library_name;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::FAQPhone.Droid.Resource.Attribute.actionBarSize;
 		}
 		
