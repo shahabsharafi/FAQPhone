@@ -19,7 +19,6 @@ using Xamarin.Forms.Xaml;
 
 namespace FAQPhone.Views
 {
-
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ChatPage : ContentPage
     {
@@ -181,11 +180,19 @@ namespace FAQPhone.Views
             await filePicker.Open();
             filePicker.Select += (sender, e) =>
             {
-                Dictionary<string, string> dic = new Dictionary<string, string>();
-                dic.Add("EntityName", "discussion");
-                dic.Add("EntityKey", model._id.ToString());
-                UploadHelper.UploadFile(Constants.UploadUrl, filePicker.Path, filePicker.FileName, dic);
+                upload(filePicker.Path, filePicker.FileName);
             };
+        }
+
+        public async void upload(string path, string fileName)
+        {
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic.Add("EntityName", "discussion");
+            dic.Add("EntityKey", model._id.ToString());
+            var d = await UploadHelper.UploadFile<DiscussionDetailModel>(Constants.UploadUrl, path, fileName, dic);
+            var l = this.model.items.ToList();
+            l.Add(d);
+            this.setList(l);
         }
 
         public ICommand SendCommand { protected set; get; }

@@ -48,7 +48,7 @@ namespace FAQPhone.Droid.Infrastructure
         public void Start(string fileName)
         {
             this.FileName = fileName;
-            this._url = new Uri(Constants.UploadUrl + "/" + this.FileName);
+            this._url = new Uri(Constants.DownloadUrl + "/" + this.FileName);
             try
             {
                 webClient.DownloadDataAsync(this._url);

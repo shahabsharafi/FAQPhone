@@ -1,8 +1,10 @@
 ﻿using FilePicker;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -11,8 +13,9 @@ namespace FAQPhone.Helpers
 {
     public class UploadHelper
     {
-        public static async void UploadFile(string url, string path, string fileName, Dictionary<string, string> values = null)
+        public static async Task<T> UploadFile<T>(string url, string path, string fileName, Dictionary<string, string> values = null)
         {
+            T resultObj = default(T);
             try
             {
                 //read file into upfilebytes array
@@ -20,6 +23,7 @@ namespace FAQPhone.Helpers
 
                 //create new HttpClient and MultipartFormDataContent and add our file, and StudentId
                 HttpClient client = new HttpClient();
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", App.Token);
                 MultipartFormDataContent content = new MultipartFormDataContent();
                 ByteArrayContent fileContent = new ByteArrayContent(upfilebytes);
                 content.Add(fileContent, "File", fileName);
@@ -37,11 +41,19 @@ namespace FAQPhone.Helpers
                 //read response result as a string async into json var
                 var responsestr = response.Content.ReadAsStringAsync().Result;
 
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsStringAsync();
+                    resultObj = JsonConvert.DeserializeObject<T>(result);
+                }
+
             }
             catch (Exception e)
             {
                 throw;
             }
+
+            return resultObj;
         }
     }
 }
