@@ -30,7 +30,7 @@ namespace FAQPhone.Helpers
             var c = ResourceManagerHelper.GetValue(cancel);
             return page.DisplayAlert(t, m, c);
         }
-        public static Task<bool> Confirm(string message = Constants.MESSAGE_TEXT_ARE_YOU_SURE, string title = Constants.MESSAGE_TITLE_ALERT, string accept = Constants.COMMAND_YES, string cancel = Constants.COMMAND_NO)
+        public static Task<bool> Confirm(string message = Constants.MESSAGE_ARE_YOU_SURE, string title = Constants.MESSAGE_TITLE_ALERT, string accept = Constants.COMMAND_YES, string cancel = Constants.COMMAND_NO)
         {
             var page = GetCurrentPage();
             var t = ResourceManagerHelper.GetValue(title);

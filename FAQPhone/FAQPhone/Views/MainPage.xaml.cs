@@ -61,7 +61,7 @@ namespace FAQPhone.Views
             if (menu == Constants.OPERATOR_FAQ || (menu == null && App.Access.Contains(Constants.ACCESS_OPERATOR)))
             {
                 int count = 0;
-                Task.Run(async () => count = await this.discussionService.GetCount()).Wait();
+                Task.Run(async () => count = await this.discussionService.GetCount(false)).Wait();
                 items.AddRange(
                     new MenuItemModel[] {
                         new MenuItemModel() { CommandName = Constants.OPERATOR_RECEIVE_FAQ, Icon = FontAwesome.FADownload },
@@ -79,7 +79,7 @@ namespace FAQPhone.Views
             else if (menu == Constants.USER_FAQ || (menu == null && App.Access.Contains(Constants.ACCESS_USER)))
             {
                 int count = 0;
-                Task.Run(async () => count = await this.discussionService.GetCount()).Wait();
+                Task.Run(async () => count = await this.discussionService.GetCount(true)).Wait();
                 items.AddRange(
                     new MenuItemModel[] {
                         new MenuItemModel() { CommandName = Constants.USER_CREATE_FAQ, Icon = FontAwesome.FAPlus },
@@ -152,18 +152,18 @@ namespace FAQPhone.Views
                         }
                         else
                         {
-                            await Utility.Alert("message_text_not_exists");
+                            await Utility.Alert("message_not_exists");
                         }
                         break;
                     case Constants.USER_INPROGRESS_FAQ:
-                        l = await this.discussionService.GetList();
+                        l = await this.discussionService.GetList(true);
                         if (l != null && l.Count() > 0)
                         {
                             await this.Navigation.PushAsync(new DiscussionPage(model.CommandName, l));
                         }
                         else
                         {
-                            await Utility.Alert("message_text_not_exists");
+                            await Utility.Alert("message_not_exists");
                         }
                         break;
                     case Constants.OPERATOR_FAQ:
@@ -177,18 +177,18 @@ namespace FAQPhone.Views
                         }
                         else
                         {
-                            await Utility.Alert("message_text_not_exists");
+                            await Utility.Alert("message_not_exists");
                         }
                         break;
                     case Constants.OPERATOR_INPROGRESS_FAQ:
-                        l = await this.discussionService.GetList();
+                        l = await this.discussionService.GetList(false);
                         if (l != null && l.Count() > 0)
                         {
                             await this.Navigation.PushAsync(new DiscussionPage(model.CommandName, l));
                         }
                         else
                         {
-                            await Utility.Alert("message_text_not_exists");
+                            await Utility.Alert("message_not_exists");
                         }
                         break;
                     case Constants.SETTING:

@@ -10,7 +10,8 @@ namespace FAQPhone.Infarstructure
     {
         //public static string BaseUrl { get { return "http://94.182.227.163:4000"; } }
         //public static string BaseUrl { get { return "http://192.168.1.104:4000"; } }
-        public static string BaseUrl { get { return "http://172.20.10.11:4000"; } }
+        public static string BaseUrl { get { return "http://192.168.1.51:4000"; } }
+        //public static string BaseUrl { get { return "http://172.20.10.11:4000"; } }
         public static string RestUrl { get { return BaseUrl + "/api/{0}"; } }
         public static string UploadUrl { get { return BaseUrl + "/api/uploads"; } }
         public static string DownloadUrl { get { return BaseUrl + "/uploads"; } }
@@ -46,7 +47,7 @@ namespace FAQPhone.Infarstructure
 
         public const string MESSAGE_TITLE_ALERT = "message_title_alert";
         public const string MESSAGE_UNKNOWN_ERROR = "message_unknown_error";
-        public const string MESSAGE_TEXT_ARE_YOU_SURE = "message_text_are_you_sure";
+        public const string MESSAGE_ARE_YOU_SURE = "message_are_you_sure";
 
         public const string COMMAND_OK = "command_ok";
         public const string COMMAND_YES = "command_yes";

@@ -27,7 +27,7 @@ namespace FAQPhone.Views
             var factory = App.Resolve<DiscussionPageViewModelFactory>();
             var vm = factory.Create(this, state, list);
             this.Appearing += (sender, e) => {
-                Task.Run(async () => await vm.Load()).Wait();
+                Task.Run(async () => await vm.Load(state == Constants.USER_INPROGRESS_FAQ)).Wait();
             };
             BindingContext = vm;
         }
@@ -66,11 +66,11 @@ namespace FAQPhone.Views
         string State { get; set; }
 
         bool _loaded = false;
-        public async Task Load()
+        public async Task Load(bool asUser)
         {
             if (this._loaded)
             {
-                var l = await this.discussionService.GetList();
+                var l = await this.discussionService.GetList(asUser);
                 this.setList(l);
             }
             else

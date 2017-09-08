@@ -32,16 +32,16 @@ namespace FAQPhone.Services
             base.OnSaving(obj);
         }
 
-        public override async Task<List<DiscussionModel>> GetList()
+        public async Task<List<DiscussionModel>> GetList(bool asUser)
         {
-            string url = string.Format(Constants.RestUrl, string.Format("discussions/getlist/{0}", string.Join(",", new int[] { 0, 1, 2, 3 })));
+            string url = string.Format(Constants.RestUrl, string.Format("discussions/getlist/{0}", asUser));
             var data = await this.get<List<DiscussionModel>>(url);
             return data;
         }
 
-        public async Task<int> GetCount()
+        public async Task<int> GetCount(bool asUser)
         {
-            string url = string.Format(Constants.RestUrl, string.Format("discussions/getcount/{0}", string.Join(",", new int[] { 0, 1, 2, 3 })));
+            string url = string.Format(Constants.RestUrl, string.Format("discussions/getcount/{0}", asUser));
             var data = await this.get<int>(url);
             return data;
         }

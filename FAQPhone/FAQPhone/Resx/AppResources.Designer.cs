@@ -647,6 +647,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to آبا مطمئن هستید.
+        /// </summary>
+        internal static string message_are_you_sure {
+            get {
+                return ResourceManager.GetString("message_are_you_sure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to خطا در راه اندازی سرویس گوگل.
         /// </summary>
         internal static string message_google_play_services_erorr {
@@ -656,20 +665,11 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to آبا مطمئن هستید.
-        /// </summary>
-        internal static string message_text_are_you_sure {
-            get {
-                return ResourceManager.GetString("message_text_are_you_sure", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to موردی یافت نشد!.
         /// </summary>
-        internal static string message_text_not_exists {
+        internal static string message_not_exists {
             get {
-                return ResourceManager.GetString("message_text_not_exists", resourceCulture);
+                return ResourceManager.GetString("message_not_exists", resourceCulture);
             }
         }
         
@@ -679,6 +679,15 @@ namespace FAQPhone.Resx {
         internal static string message_title_alert {
             get {
                 return ResourceManager.GetString("message_title_alert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اشکال در دسترسی به سیستم.
+        /// </summary>
+        internal static string message_unauthentication_error {
+            get {
+                return ResourceManager.GetString("message_unauthentication_error", resourceCulture);
             }
         }
         

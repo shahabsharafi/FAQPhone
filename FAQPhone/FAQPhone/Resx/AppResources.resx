@@ -384,7 +384,7 @@
   <data name="command_ok" xml:space="preserve">
     <value>تایید</value>
   </data>
-  <data name="message_text_not_exists" xml:space="preserve">
+  <data name="message_not_exists" xml:space="preserve">
     <value>موردی یافت نشد!</value>
   </data>
   <data name="message_title_alert" xml:space="preserve">
@@ -405,7 +405,7 @@
   <data name="command_yes" xml:space="preserve">
     <value>بله</value>
   </data>
-  <data name="message_text_are_you_sure" xml:space="preserve">
+  <data name="message_are_you_sure" xml:space="preserve">
     <value>آبا مطمئن هستید</value>
   </data>
   <data name="message_unknown_error" xml:space="preserve">
@@ -416,5 +416,8 @@
   </data>
   <data name="command_attach" xml:space="preserve">
     <value>الصاق فایل</value>
+  </data>
+  <data name="message_unauthentication_error" xml:space="preserve">
+    <value>اشکال در دسترسی به سیستم</value>
   </data>
 </root>
