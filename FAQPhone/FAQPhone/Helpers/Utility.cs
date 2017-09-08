@@ -1,4 +1,5 @@
-﻿using FAQPhone.Infrastructure;
+﻿using FAQPhone.Infarstructure;
+using FAQPhone.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,15 +22,17 @@ namespace FAQPhone.Helpers
             }
             return currPage;
         }
-        public static Task DisplayAlert(Page page, string title, string message, string cancel)
+        public static Task Alert(string message = Constants.MESSAGE_UNKNOWN_ERROR, string title = Constants.MESSAGE_TITLE_ALERT, string cancel = Constants.COMMAND_OK)
         {
+            var page = GetCurrentPage();
             var t = ResourceManagerHelper.GetValue(title);
             var m = ResourceManagerHelper.GetValue(message);
             var c = ResourceManagerHelper.GetValue(cancel);
             return page.DisplayAlert(t, m, c);
         }
-        public static Task<bool> DisplayAlert(Page page, string title, string message, string accept, string cancel)
+        public static Task<bool> Confirm(string message = Constants.MESSAGE_TEXT_ARE_YOU_SURE, string title = Constants.MESSAGE_TITLE_ALERT, string accept = Constants.COMMAND_YES, string cancel = Constants.COMMAND_NO)
         {
+            var page = GetCurrentPage();
             var t = ResourceManagerHelper.GetValue(title);
             var m = ResourceManagerHelper.GetValue(message);
             var a = ResourceManagerHelper.GetValue(accept);

@@ -70,7 +70,7 @@ namespace FAQPhone.Views
         {
             if (this._loaded)
             {
-                var l = await this.discussionService.GetList(!this.IsOperator, new int[] { 0, 1, 2, 3 });
+                var l = await this.discussionService.GetList();
                 this.setList(l);
             }
             else

@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using System.Threading.Tasks;
+using FAQPhone.Helpers;
 
 namespace FAQPhone.Droid
 {
@@ -36,12 +37,12 @@ namespace FAQPhone.Droid
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            app.DisplayAlert("message_title_alert", "message_unknown_error", "command_ok");
+            Utility.Alert();
         }
 
         private void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
         {
-            app.DisplayAlert("message_title_alert", "message_unknown_error", "command_ok");
+            Utility.Alert();
         }
     }
 }

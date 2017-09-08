@@ -43,5 +43,13 @@ namespace FAQPhone.Infarstructure
         public const int DISCUSSION_STATE_RECIVED = 1;
         public const int DISCUSSION_STATE_FINISHED = 2;
         public const int DISCUSSION_STATE_REPORT = 3;
+
+        public const string MESSAGE_TITLE_ALERT = "message_title_alert";
+        public const string MESSAGE_UNKNOWN_ERROR = "message_unknown_error";
+        public const string MESSAGE_TEXT_ARE_YOU_SURE = "message_text_are_you_sure";
+
+        public const string COMMAND_OK = "command_ok";
+        public const string COMMAND_YES = "command_yes";
+        public const string COMMAND_NO = "command_no";
     } 
 }

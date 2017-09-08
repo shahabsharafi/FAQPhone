@@ -24,14 +24,6 @@ namespace FAQPhone.Infarstructure
         {
             this.Page = page;
         }
-        public Task DisplayAlert(string title, string message, string cancel)
-        {
-            return Utility.DisplayAlert(this.Page, title, message, cancel);
-        }
-        public Task<bool> DisplayAlert(string title, string message, string accept, string cancel)
-        {
-            return Utility.DisplayAlert(this.Page, title, message, accept, cancel);
-        }
         public INavigation Navigation { get { return this.Page.Navigation; } }
         public TextAlignment Direction { get { return ResourceManagerHelper.Direction; } }
         public LayoutOptions Layout { get { return ResourceManagerHelper.Layout; } }

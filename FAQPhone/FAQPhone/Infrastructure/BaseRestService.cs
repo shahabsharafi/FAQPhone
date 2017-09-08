@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using FAQPhone.Helpers;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -37,6 +38,7 @@ namespace FAQPhone.Infrastructure
             }
             catch (Exception ex)
             {
+                await Utility.Alert(ex.GetMessage());
                 Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
             return obj;
@@ -62,6 +64,7 @@ namespace FAQPhone.Infrastructure
             }
             catch (Exception ex)
             {
+                await Utility.Alert(ex.GetMessage());
                 Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
         }
@@ -88,6 +91,7 @@ namespace FAQPhone.Infrastructure
             }
             catch (Exception ex)
             {
+                await Utility.Alert(ex.GetMessage());
                 Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
             return resultObj;
@@ -109,6 +113,7 @@ namespace FAQPhone.Infrastructure
             }
             catch (Exception ex)
             {
+                await Utility.Alert(ex.GetMessage());
                 Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
         }

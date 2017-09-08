@@ -24,13 +24,13 @@ namespace FAQPhone.Services
         {
             
         }
-        public async  Task<List<T>> GetList()
+        public virtual async  Task<List<T>> GetList()
         {
             string url = this.getUrl("");
             return await this.get<List<T>>(url);
         }
 
-        public async Task<T> Get(string id)
+        public virtual async Task<T> Get(string id)
         {
             string url = this.getUrl(id);
             return await this.get<T>(id);
@@ -41,14 +41,14 @@ namespace FAQPhone.Services
 
         }
 
-        public async Task Save(T obj)
+        public virtual async Task Save(T obj)
         {
             this.OnSaving(obj);
             string url = this.getUrl("");
             await this.post<T>(url, obj);
         }
 
-        public async Task Delete(string id)
+        public virtual async Task Delete(string id)
         {
             string url = this.getUrl(id);
             await this.delete(url);

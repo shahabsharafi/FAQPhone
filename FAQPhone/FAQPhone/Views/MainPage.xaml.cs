@@ -61,7 +61,7 @@ namespace FAQPhone.Views
             if (menu == Constants.OPERATOR_FAQ || (menu == null && App.Access.Contains(Constants.ACCESS_OPERATOR)))
             {
                 int count = 0;
-                Task.Run(async () => count = await this.discussionService.GetCount(false, new int[] { 0, 1, 2, 3 })).Wait();
+                Task.Run(async () => count = await this.discussionService.GetCount()).Wait();
                 items.AddRange(
                     new MenuItemModel[] {
                         new MenuItemModel() { CommandName = Constants.OPERATOR_RECEIVE_FAQ, Icon = FontAwesome.FADownload },
@@ -79,7 +79,7 @@ namespace FAQPhone.Views
             else if (menu == Constants.USER_FAQ || (menu == null && App.Access.Contains(Constants.ACCESS_USER)))
             {
                 int count = 0;
-                Task.Run(async () => count = await this.discussionService.GetCount(true, new int[] { 0, 1, 2, 3 })).Wait();
+                Task.Run(async () => count = await this.discussionService.GetCount()).Wait();
                 items.AddRange(
                     new MenuItemModel[] {
                         new MenuItemModel() { CommandName = Constants.USER_CREATE_FAQ, Icon = FontAwesome.FAPlus },
@@ -152,18 +152,18 @@ namespace FAQPhone.Views
                         }
                         else
                         {
-                            await this.DisplayAlert("message_title_alert", "message_text_not_exists", "command_ok");
+                            await Utility.Alert("message_text_not_exists");
                         }
                         break;
                     case Constants.USER_INPROGRESS_FAQ:
-                        l = await this.discussionService.GetList(true, new int[] { 0, 1, 2, 3 });
+                        l = await this.discussionService.GetList();
                         if (l != null && l.Count() > 0)
                         {
                             await this.Navigation.PushAsync(new DiscussionPage(model.CommandName, l));
                         }
                         else
                         {
-                            await this.DisplayAlert("message_title_alert", "message_text_not_exists", "command_ok");
+                            await Utility.Alert("message_text_not_exists");
                         }
                         break;
                     case Constants.OPERATOR_FAQ:
@@ -177,25 +177,25 @@ namespace FAQPhone.Views
                         }
                         else
                         {
-                            await this.DisplayAlert("message_title_alert", "message_text_not_exists", "command_ok");
+                            await Utility.Alert("message_text_not_exists");
                         }
                         break;
                     case Constants.OPERATOR_INPROGRESS_FAQ:
-                        l = await this.discussionService.GetList(false, new int[] { 0, 1, 2, 3 });
+                        l = await this.discussionService.GetList();
                         if (l != null && l.Count() > 0)
                         {
                             await this.Navigation.PushAsync(new DiscussionPage(model.CommandName, l));
                         }
                         else
                         {
-                            await this.DisplayAlert("message_title_alert", "message_text_not_exists", "command_ok");
+                            await Utility.Alert("message_text_not_exists");
                         }
                         break;
                     case Constants.SETTING:
                         await this.Navigation.PushAsync(new MainPage(model.CommandName));
                         break;
                     case Constants.SIGNOUT:
-                        var flag = await this.DisplayAlert("message_title_alert", "message_text_are_you_sure", "command_yes", "command_no");
+                        var flag = await Utility.Confirm();
                         if (flag)
                         {
                             this.accountService.SignOut();

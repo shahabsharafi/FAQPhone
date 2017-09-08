@@ -9,8 +9,8 @@ namespace FAQPhone.Services.Interfaces
 {
     public interface IDiscussionService : IRestService<DiscussionModel>
     {
-        Task<List<DiscussionModel>> GetList(bool isUser, int[] states);
-        Task<int> GetCount(bool isUser, int[] states);
+        Task<List<DiscussionModel>> GetList();
+        Task<int> GetCount();
         Task<DiscussionModel> Recive();
     }
 }

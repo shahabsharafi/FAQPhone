@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FAQPhone.Infarstructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,10 @@ namespace FAQPhone.Infrastructure
             for (int i = 0; i < 10; i++)
                 chash = chash.Replace(pn[i], en[i]);
             return chash;
+        }
+        public static string GetMessage(this Exception e)
+        {
+            return string.IsNullOrWhiteSpace(e.Message) ? Constants.MESSAGE_UNKNOWN_ERROR : e.Message;
         }
     }
 }
