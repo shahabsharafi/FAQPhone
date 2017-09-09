@@ -26,7 +26,7 @@ namespace FAQPhone.Helpers
         {
             var page = GetCurrentPage();
             var t = ResourceManagerHelper.GetValue(title);
-            var m = ResourceManagerHelper.GetValue(message);
+            var m = ResourceManagerHelper.GetValue(message) ?? ResourceManagerHelper.GetValue(Constants.MESSAGE_UNKNOWN_ERROR);            
             var c = ResourceManagerHelper.GetValue(cancel);
             return page.DisplayAlert(t, m, c);
         }
@@ -34,7 +34,7 @@ namespace FAQPhone.Helpers
         {
             var page = GetCurrentPage();
             var t = ResourceManagerHelper.GetValue(title);
-            var m = ResourceManagerHelper.GetValue(message);
+            var m = ResourceManagerHelper.GetValue(message) ?? ResourceManagerHelper.GetValue(Constants.MESSAGE_UNKNOWN_ERROR);
             var a = ResourceManagerHelper.GetValue(accept);
             var c = ResourceManagerHelper.GetValue(cancel);
             return page.DisplayAlert(t, m, a, c);
