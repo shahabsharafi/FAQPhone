@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:infr="clr-namespace:FAQPhone.Infarstructure;assembly=FAQPhone"
+             x:Class="FAQPhone.Views.ConnectingPage"
+             Title="{infr:Translate connecting_caption}">
+  <ScrollView>
+        <StackLayout Padding="10">
+            <Label Text="{ Binding StateCaption }" FontFamily="fontawesome" HorizontalTextAlignment="Center" TextColor="#4e5758" FontSize="90" />
+            <Button Text="{ Binding CommandCaption }" Command="{Binding TryCommand}" StyleClass="Info" IsVisible="{ Binding NotConnected }" />
+            <Button Text="{infr:Translate resetpassword}" Command="{Binding ResetPasswordCommand}" StyleClass="Info" IsVisible="{ Binding NotConnected }" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

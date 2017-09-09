@@ -44,6 +44,36 @@ namespace FAQPhone.Infrastructure
             return obj;
         }
 
+        protected async Task UnmanagedPost<T>(string url, T obj) where T : new()
+        {
+            var uri = new Uri(url);
+
+            var json = JsonConvert.SerializeObject(obj);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = null;
+            response = await client.PostAsync(uri, content);
+        }
+
+        protected async Task<T2> UnmanagedPost<T1, T2>(string url, T1 obj) where T1 : new()
+        {
+            T2 resultObj = default(T2);
+            var uri = new Uri(url);
+
+            var json = JsonConvert.SerializeObject(obj);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = null;
+            response = await client.PostAsync(uri, content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                resultObj = JsonConvert.DeserializeObject<T2>(result);
+            }
+            return resultObj;
+        }
+
         protected async Task post<T>(string url, T obj) where T : new()
         {
             var uri = new Uri(url);
@@ -55,11 +85,6 @@ namespace FAQPhone.Infrastructure
 
                 HttpResponseMessage response = null;
                 response = await client.PostAsync(uri, content);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    Debug.WriteLine(@"				Not successfull");
-                }
 
             }
             catch (Exception ex)

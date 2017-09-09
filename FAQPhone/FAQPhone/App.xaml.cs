@@ -20,19 +20,19 @@ namespace FAQPhone
         {
             InitializeComponent();
             BindingContext = new AppViewModel();
-
+            
             App.Initialize();
 
             if (!String.IsNullOrEmpty(Settings.Username) && !String.IsNullOrEmpty(Settings.Password))
             {
-                Task.Run(async () => await this.Login()).Wait();
+                Task.Run(async () => await Login()).Wait();
             }
             else
             {
-                this.Go(false);
+                var page = new SendCodePage();
+                MainPage = new NavigationPage(page);
             }
         }
-
         async Task Login()
         {
             SigninModel model = new SigninModel()
@@ -40,23 +40,19 @@ namespace FAQPhone
                 username = Settings.Username,
                 password = Settings.Password
             };
-            var accountService = App.Resolve<AccountService>();
-            var flag = await accountService.SignIn(model);
-            var attributeService = App.Resolve<AttributeService>();
-            AttributeList = await attributeService.GetAll();
-            Go(flag);
-        }
-
-        void Go(bool flag)
-        {
-            if (flag)
+            try
             {
-                var page = new MainPage();
-                MainPage = new NavigationPage(page);
+                var accountService = App.Resolve<AccountService>();
+                var flag = await accountService.SignIn(model);
+                if (flag)
+                {
+                    var page = new MainPage();
+                    MainPage = new NavigationPage(page);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                var page = new SendCodePage(FlowType.Signup);
+                var page = new ConnectingPage();
                 MainPage = new NavigationPage(page);
             }
         }
@@ -67,6 +63,7 @@ namespace FAQPhone
             App.Container.RegisterType<IAccountService, AccountService>();
             App.Container.RegisterType<IDepartmentService, DepartmentService>();
             App.Container.RegisterType<IDiscussionService, DiscussionService>();
+            App.Container.RegisterType<IAttributeService, AttributeService>();
         }
 
         public static string Username { get; set; }

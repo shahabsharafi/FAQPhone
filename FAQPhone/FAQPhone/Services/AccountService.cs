@@ -39,7 +39,7 @@ namespace FAQPhone.Services
         {
             //string url = string.Format(Constants.RestUrl, "accounts/authenticate");
             var url = this.getUrl("authenticate");
-            var result = await this.post<SigninModel, AutResultModel>(url, model);
+            var result = await this.UnmanagedPost<SigninModel, AutResultModel>(url, model);
             if (result.success == true)
             {
                 setAutenticationInfo(result);

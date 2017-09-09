@@ -233,6 +233,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to اتصال به شبکه.
+        /// </summary>
+        internal static string command_connect {
+            get {
+                return ResourceManager.GetString("command_connect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ویرایش.
         /// </summary>
         internal static string command_edit {
@@ -332,6 +341,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to سعی مجدد.
+        /// </summary>
+        internal static string command_try {
+            get {
+                return ResourceManager.GetString("command_try", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to بله.
         /// </summary>
         internal static string command_yes {
@@ -346,6 +364,15 @@ namespace FAQPhone.Resx {
         internal static string confirm {
             get {
                 return ResourceManager.GetString("confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اتصال به شبکه.
+        /// </summary>
+        internal static string connecting_caption {
+            get {
+                return ResourceManager.GetString("connecting_caption", resourceCulture);
             }
         }
         

@@ -19,11 +19,11 @@ namespace FAQPhone.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SendCodePage : ContentPage
     {
-        public SendCodePage(FlowType flow)
+        public SendCodePage()
         {
             InitializeComponent();
             var factory = App.Resolve<SendCodeViewModelFactory>();
-            BindingContext = factory.Create(this, flow);
+            BindingContext = factory.Create(this);
         }
     }
     
@@ -34,22 +34,20 @@ namespace FAQPhone.Views
         {
             this.accountService = accountService;
         }
-        public SendCodeViewModel Create(ContentPage page, FlowType flow)
+        public SendCodeViewModel Create(ContentPage page)
         {
-            return new SendCodeViewModel(this.accountService, page, flow);
+            return new SendCodeViewModel(this.accountService, page);
         }
     }
     
     public class SendCodeViewModel : BaseViewModel
     {
-        public SendCodeViewModel(IAccountService accountService, ContentPage page, FlowType flow) : base(page)
+        public SendCodeViewModel(IAccountService accountService, ContentPage page) : base(page)
         {
             this.accountService = accountService;
-            this.flow = flow;
             this.SendCodeCommand = new Command(async () => await sendCodeCommand());
         }
         private IAccountService accountService { get; set; }
-        private FlowType flow { get; set; }
         string _mobile;
         public string mobile
         {
@@ -70,7 +68,7 @@ namespace FAQPhone.Views
             /////
             var mobile = this.mobile.ToEnglishNumber();
             var codeResult = await this.accountService.SendCode(mobile);            
-            await this.Navigation.PushAsync(new SecurityCodePage(this.flow, mobile, codeResult));
+            await this.Navigation.PushAsync(new SecurityCodePage(mobile, codeResult));
         }
     }
 }

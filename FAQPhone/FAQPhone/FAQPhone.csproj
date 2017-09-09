@@ -64,6 +64,7 @@
     <Compile Include="Helpers\UploadHelper.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\AttributeModel.cs" />
+    <Compile Include="Models\ResultModel.cs" />
     <Compile Include="Models\AutResultModel.cs" />
     <Compile Include="Models\CodeResultModel.cs" />
     <Compile Include="Models\DepartmentModel.cs" />
@@ -108,6 +109,9 @@
     <Compile Include="Views\ChatPage.xaml.cs">
       <DependentUpon>ChatPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ConnectingPage.xaml.cs">
+      <DependentUpon>ConnectingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ContactPage.xaml.cs">
       <DependentUpon>ContactPage.xaml</DependentUpon>
     </Compile>
@@ -129,9 +133,6 @@
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ResetPasswordPage.xaml.cs">
-      <DependentUpon>ResetPasswordPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\SecurityCodePage.xaml.cs">
       <DependentUpon>SecurityCodePage.xaml</DependentUpon>
     </Compile>
@@ -140,12 +141,6 @@
     </Compile>
     <Compile Include="Views\SendCodePage.xaml.cs">
       <DependentUpon>SendCodePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SigninPage.xaml.cs">
-      <DependentUpon>SigninPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SignupPage.xaml.cs">
-      <DependentUpon>SignupPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TagPage.xaml.cs">
       <DependentUpon>TagPage.xaml</DependentUpon>
@@ -214,19 +209,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\SignupPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Views\SecurityCodePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\SigninPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -239,12 +222,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ProfilePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\ResetPasswordPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -317,6 +294,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\AboutPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ConnectingPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

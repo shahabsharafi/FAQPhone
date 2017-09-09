@@ -21,11 +21,11 @@ namespace FAQPhone.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SecurityCodePage : ContentPage
     {
-        public SecurityCodePage(FlowType flow, string mobile, CodeResultModel codeResult)
+        public SecurityCodePage(string mobile, CodeResultModel codeResult)
         {
             InitializeComponent();
             var factory = App.Resolve<SecurityCodeViewModelFactory>();
-            BindingContext = factory.Create(this, flow, mobile, codeResult);
+            BindingContext = factory.Create(this, mobile, codeResult);
         }
     }
 
@@ -36,25 +36,23 @@ namespace FAQPhone.Views
         {
             this.accountService = accountService;
         }
-        public SecurityCodeViewModel Create(ContentPage page, FlowType flow, string mobile, CodeResultModel codeResult)
+        public SecurityCodeViewModel Create(ContentPage page, string mobile, CodeResultModel codeResult)
         {
-            return new SecurityCodeViewModel(this.accountService, page, flow, mobile, codeResult);
+            return new SecurityCodeViewModel(this.accountService, page, mobile, codeResult);
         }
     }
 
     public class SecurityCodeViewModel : BaseViewModel
     {
-        public SecurityCodeViewModel(IAccountService accountService, ContentPage page, FlowType flow, string mobile, CodeResultModel codeResult) : base(page)
+        public SecurityCodeViewModel(IAccountService accountService, ContentPage page, string mobile, CodeResultModel codeResult) : base(page)
         {
             this.accountService = accountService;
             this.codeResult = codeResult;
-            this.flow = flow;
             this.mobile = mobile;
             this.CheckCodeCommand = new Command(async () => await checkCodeCommand());
         }
         IAccountService accountService { get; set; }
         private CodeResultModel codeResult { get; set; }
-        private FlowType flow { get; set; }
         private string mobile { get; set; }
         string _securitycode;
         public string securitycode
@@ -70,60 +68,45 @@ namespace FAQPhone.Views
             string securitycode = this.securitycode.ToEnglishNumber();
             if (securitycode == this.codeResult.code)
             {
-                if (this.flow == FlowType.Signup)
+                if (this.codeResult.username == "")
                 {
-                    if (this.codeResult.username == "")
+                    //await this.RootNavigate(new SignupPage(this.mobile, this.codeResult.code));
+                    AccountChangeModel model = new AccountChangeModel()
                     {
-                        //await this.RootNavigate(new SignupPage(this.mobile, this.codeResult.code));
-                        AccountChangeModel model = new AccountChangeModel()
-                        {
-                            code = this.codeResult.code,
-                            mobile = this.mobile,
-                            username = this.mobile,
-                            password = this.codeResult.code
-                        };
-                        if (await this.accountService.SignUp(model))
-                        {
-                            Settings.Username = this.mobile;
-                            Settings.Password = this.codeResult.code;
-                            await RootNavigate(new MainPage());
-                        }
-                        else
-                        {
-                            this.message = "err_securitycode_failed";
-                        }
+                        code = this.codeResult.code,
+                        mobile = this.mobile,
+                        username = this.mobile,
+                        password = this.codeResult.code
+                    };
+                    if (await this.accountService.SignUp(model))
+                    {
+                        Settings.Username = this.mobile;
+                        Settings.Password = this.codeResult.code;
+                        await RootNavigate(new MainPage());
                     }
                     else
                     {
-                        AccountChangeModel model = new AccountChangeModel()
-                        {
-                            code = this.codeResult.code,
-                            mobile = this.mobile,
-                            username = this.codeResult.username,
-                            password = this.codeResult.code
-                        };
-                        if (await this.accountService.ResetPassword(model))
-                        {
-                            Settings.Username = this.codeResult.username;
-                            Settings.Password = this.codeResult.code;
-                            await RootNavigate(new MainPage());
-                        }
-                        else
-                        {
-                            this.message = "err_securitycode_failed";
-                        }
+                        this.message = "err_securitycode_failed";
                     }
-                    //
                 }
-                else if (this.flow == FlowType.ForgetPassword)
+                else
                 {
-                    if (this.codeResult.username != "")
+                    AccountChangeModel model = new AccountChangeModel()
                     {
-                        await this.RootNavigate(new ResetPasswordPage(this.mobile, this.codeResult));
+                        code = this.codeResult.code,
+                        mobile = this.mobile,
+                        username = this.codeResult.username,
+                        password = this.codeResult.code
+                    };
+                    if (await this.accountService.ResetPassword(model))
+                    {
+                        Settings.Username = this.codeResult.username;
+                        Settings.Password = this.codeResult.code;
+                        await RootNavigate(new MainPage());
                     }
                     else
                     {
-                        this.message = "err_securitycode_mobilenotfound";
+                        this.message = "err_securitycode_failed";
                     }
                 }
             }

@@ -36,26 +36,30 @@ namespace FAQPhone.Views
         IAccountService accountService;
         IDepartmentService departmentService;
         IDiscussionService discussionService;
-        public MainPageViewModelFactory(IAccountService accountService, IDepartmentService departmentService, IDiscussionService discussionService)
+        IAttributeService attributeService;
+        public MainPageViewModelFactory(IAccountService accountService, IAttributeService attributeService, IDepartmentService departmentService, IDiscussionService discussionService)
         {
             this.accountService = accountService;
             this.departmentService = departmentService;
             this.discussionService = discussionService;
+            this.attributeService = attributeService;
         }
         public MainPageViewModel Create(ContentPage page, string menu)
         {
-            return new MainPageViewModel(this.accountService, this.departmentService, this.discussionService, page, menu);
+            return new MainPageViewModel(this.accountService, this.attributeService, this.departmentService, this.discussionService, page, menu);
         }
     }
 
     public class MainPageViewModel : BaseViewModel
     {
 
-        public MainPageViewModel(IAccountService accountService, IDepartmentService departmentService, IDiscussionService discussionService, ContentPage page, string menu) : base(page)
+        public MainPageViewModel(IAccountService accountService, IAttributeService attributeService, IDepartmentService departmentService, IDiscussionService discussionService, ContentPage page, string menu) : base(page)
         {
             this.accountService = accountService;
+            this.attributeService = attributeService;
             this.departmentService = departmentService;
             this.discussionService = discussionService;
+            Task.Run(async () => await loadAttribute());
             this.List = new ObservableCollection<MenuItemModel>();
             List<MenuItemModel> items = new List<MenuItemModel>();
             if (menu == Constants.OPERATOR_FAQ || (menu == null && App.Access.Contains(Constants.ACCESS_OPERATOR)))
@@ -103,6 +107,11 @@ namespace FAQPhone.Views
             this.SelectItemCommand = new Command<MenuItemModel>(async (model) => await selectItemCommand(model));
         }
 
+        private async Task loadAttribute()
+        {
+            App.AttributeList = await this.attributeService.GetAll();
+        }
+
         private void setList(List<MenuItemModel> list)
         {
             this.List.Clear();
@@ -115,6 +124,7 @@ namespace FAQPhone.Views
         IAccountService accountService { get; set; }
         IDepartmentService departmentService { get; set; }
         IDiscussionService discussionService { get; set; }
+        IAttributeService attributeService { get; set; }
 
         object _selectedItem;
         public object SelectedItem
@@ -201,7 +211,7 @@ namespace FAQPhone.Views
                             this.accountService.SignOut();
                             Settings.Username = string.Empty;
                             Settings.Password = string.Empty;
-                            await this.RootNavigate(new SendCodePage(FlowType.Signup));
+                            await this.RootNavigate(new SendCodePage());
                         }
                         break;
                     case Constants.ACCOUNT:
@@ -211,9 +221,6 @@ namespace FAQPhone.Views
                     case Constants.ABOUT_US:
                         await this.Navigation.PushAsync(new AboutPage());
                         break;
-                    //case "FILE_PICKER":
-                    //    FilePickerHelper.Open();
-                    //    break;
                 }
                 this.SelectedItem = null;
             }            

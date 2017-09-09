@@ -420,4 +420,13 @@
   <data name="message_unauthentication_error" xml:space="preserve">
     <value>اشکال در دسترسی به سیستم</value>
   </data>
+  <data name="command_try" xml:space="preserve">
+    <value>سعی مجدد</value>
+  </data>
+  <data name="connecting_caption" xml:space="preserve">
+    <value>اتصال به شبکه</value>
+  </data>
+  <data name="command_connect" xml:space="preserve">
+    <value>اتصال به شبکه</value>
+  </data>
 </root>
