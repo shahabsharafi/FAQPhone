@@ -53,7 +53,10 @@ namespace FAQPhone.Views
             this.CanNext = false;
             this.NextCommand = new Command(async () => await nextCommand());
             this.department = department;
-            this.price = ResourceManagerHelper.GetValue("discussion_recive_price") + ":" + department.price;
+            this.price = 
+                ResourceManagerHelper.GetValue("discussion_recive_price") + ":" + 
+                department.price + " " + 
+                ResourceManagerHelper.GetValue("unit_of_mony_caption");
         }
 
         string _title;
