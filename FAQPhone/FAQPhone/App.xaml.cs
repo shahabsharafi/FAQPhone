@@ -40,21 +40,26 @@ namespace FAQPhone
                 username = Settings.Username,
                 password = Settings.Password
             };
+            var err = false;
+            var flag = false;
             try
             {
                 var accountService = App.Resolve<AccountService>();
-                var flag = await accountService.SignIn(model);
-                if (flag)
-                {
-                    var page = new MainPage();
-                    MainPage = new NavigationPage(page);
-                }
+                flag = await accountService.SignIn(model);
             }
             catch (Exception ex)
             {
+                err = true;
                 var page = new ConnectingPage();
                 MainPage = new NavigationPage(page);
             }
+            
+            if (!err && flag)
+            {
+                var page = new MainPage();
+                MainPage = new NavigationPage(page);
+            }
+            
         }
         public static UnityContainer Container { get; set; }
         public static void Initialize()

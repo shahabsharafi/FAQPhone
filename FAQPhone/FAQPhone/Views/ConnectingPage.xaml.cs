@@ -93,9 +93,21 @@ namespace FAQPhone.Views
                 username = Settings.Username,
                 password = Settings.Password
             };
+            var err = false;
+            var flag = false;
             try
             {
-                var flag = await accountService.SignIn(model);
+                flag = await accountService.SignIn(model);
+            }
+            catch (Exception ex)
+            {
+                err = true;
+                this.StateCaption = "";
+                NotConnected = true;
+                CommandCaption = ResourceManagerHelper.GetValue(Constants.COMMAND_TRY);
+            }
+            if (!err)
+            {
                 if (flag)
                 {
                     await this.RootNavigate(new MainPage());
@@ -104,13 +116,7 @@ namespace FAQPhone.Views
                 {
                     await this.RootNavigate(new SendCodePage());
                 }
-            }
-            catch (Exception ex)
-            {
-                this.StateCaption = "";
-                NotConnected = true;
-                CommandCaption = ResourceManagerHelper.GetValue(Constants.COMMAND_TRY);
-            }            
+            }    
         }
     }
 }
