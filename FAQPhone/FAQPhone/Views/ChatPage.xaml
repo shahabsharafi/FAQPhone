@@ -4,8 +4,10 @@
              xmlns:infr="clr-namespace:FAQPhone.Infarstructure;assembly=FAQPhone"
              xmlns:render="clr-namespace:CustomRenderer;assembly=FAQPhone"
              xmlns:controls="clr-namespace:CustomControl;assembly=FAQPhone"
+             xmlns:progress="clr-namespace:ProgressRingControl.Forms.Plugin;assembly=ProgressRing.Forms.Plugin"
              xmlns:local="clr-namespace:EventToCommandBehavior"
-             x:Class="FAQPhone.Views.ChatPage"
+             xmlns:icon="clr-namespace:Awesome;assembly=FAQPhone"
+	         x:Class="FAQPhone.Views.ChatPage"
              Title="{infr:Translate chat}">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -14,6 +16,7 @@
     </ContentPage.Resources>
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}">
+            <Label Text="{x:Static icon:FontAwesome.FASpinner}" FontFamily="fontawesome" TextColor="#4e5758" FontSize="90" IsVisible="{ Binding ShowProgress }" HorizontalOptions="Center" />
             <StackLayout IsVisible="{ Binding Editable }">
                 <controls:ExtendedEditor  x:Name="text" Placeholder="{infr:Translate chat_text}"  Text="{Binding replay, Mode=TwoWay}" FontSize="Small" BackgroundColor="#efefef" HeightRequest="80" />
                 <Grid>

@@ -40,7 +40,7 @@ namespace FAQPhone.Models
                         Icon = "{ fa-download }";//Awesome.FontAwesome.FADownload;
                         break;
                     case 2:
-                        Icon = "{ fa-circle-o-notch spin }";//Awesome.FontAwesome.FASpinner;
+                        Icon = "{ fa-spinner }";//Awesome.FontAwesome.FASpinner;
                         break;
                     case 3:
                         Icon = "{ fa-file }";//Awesome.FontAwesome.FAFile;

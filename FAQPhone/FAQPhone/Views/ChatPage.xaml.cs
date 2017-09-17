@@ -62,8 +62,9 @@ namespace FAQPhone.Views
             this.ReportCommand = new Command(async () => await reportCommand());
             this.model = model;
             this.List = new ObservableCollection<DiscussionDetailModel>();
-            this.IsOperator = state == Constants.OPERATOR_INPROGRESS_FAQ;
-            this.Editable = (state == Constants.OPERATOR_INPROGRESS_FAQ || (state == Constants.USER_INPROGRESS_FAQ && model.state < 2));
+            this._state = state;
+            this.IsOperator = this._state == Constants.OPERATOR_INPROGRESS_FAQ;
+            this.Editable = (this._state == Constants.OPERATOR_INPROGRESS_FAQ || (this._state == Constants.USER_INPROGRESS_FAQ && model.state < 2));
             this.HasFinishing = this.IsOperator && model.state != Constants.DISCUSSION_STATE_REPORT && model.state != Constants.DISCUSSION_STATE_FINISHED;
             this.HasReporting = this.IsOperator && model.state != Constants.DISCUSSION_STATE_REPORT && model.state != Constants.DISCUSSION_STATE_FINISHED;
             this.setList(this.model.items.ToList());
@@ -76,7 +77,9 @@ namespace FAQPhone.Views
             {
                 if (_currentDetail != null) _currentDetail.Mode = 1;
             };
+            this.ShowProgress = false;
         }
+        private string _state;
         private DiscussionDetailModel _currentDetail;
         private IDownloadService _downloadService;
         private IDiscussionService discussionService { get; set; }
@@ -182,14 +185,36 @@ namespace FAQPhone.Views
             {
                 upload(filePicker.Path, filePicker.FileName);
             };
+        }        
+
+        bool _ShowProgress;
+        public bool ShowProgress
+        {
+            get { return _ShowProgress; }
+            set {
+                _ShowProgress = value;
+                if (value)
+                    this.Editable = false;
+                else
+                    this.Editable = (this._state == Constants.OPERATOR_INPROGRESS_FAQ || (this._state == Constants.USER_INPROGRESS_FAQ && model.state < 2));
+                OnPropertyChanged();
+            }
         }
 
         public async void upload(string path, string fileName)
         {
-            Dictionary<string, string> dic = new Dictionary<string, string>();
+            Dictionary <string, string> dic = new Dictionary<string, string>();
             dic.Add("EntityName", "discussion");
             dic.Add("EntityKey", model._id.ToString());
-            var d = await UploadHelper.UploadFile<DiscussionDetailModel>(Constants.UploadUrl, path, fileName, dic);
+            var d = await UploadHelper.UploadFile<DiscussionDetailModel>(
+                Constants.UploadUrl, 
+                path, 
+                fileName, 
+                (state) => {
+                    this.ShowProgress = state;
+                }, 
+                dic
+            );
             var l = this.model.items.ToList();
             l.Add(d);
             this.setList(l);
