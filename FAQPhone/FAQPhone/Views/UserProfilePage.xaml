@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:infr="clr-namespace:FAQPhone.Infarstructure;assembly=FAQPhone"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=FAQPhone"
+             x:Class="FAQPhone.Views.UserProfilePage"
+             Title="{infr:Translate profile}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!--  this isn't working yet  -->
+            <DataTemplate x:Key="SugestionItemTemplate">
+                <ViewCell Height="40">
+                    <ViewCell.View>
+                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Label HorizontalOptions="Start"
+                                   Text="{Binding caption}"
+                                   TextColor="#4e5758" 
+                                   FontSize="Small" 
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center" />
+                        </StackLayout>
+                    </ViewCell.View>
+                </ViewCell>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+        <StackLayout Style="{StaticResource pageStyle}">
+            <Entry Placeholder="{infr:Translate contact_email}" Keyboard="Email" Text="{Binding email, Mode=TwoWay}" />
+            <controls:AutoCompleteView 
+                Placeholder="{infr:Translate education_grade}"
+                DefaultText="{Binding GradeText, Mode=TwoWay}"
+                SelectedItem="{Binding SelectedGrade, Mode=TwoWay}"
+                SuggestionItemDataTemplate="{StaticResource SugestionItemTemplate}"
+                Suggestions="{Binding GradeList, Mode=TwoWay}" />
+            <controls:AutoCompleteView 
+                Placeholder="{infr:Translate contact_province}"
+                DefaultText="{Binding ProvinceText, Mode=TwoWay}"
+                SelectedItem="{Binding SelectedProvince, Mode=TwoWay}"
+                SuggestionItemDataTemplate="{StaticResource SugestionItemTemplate}"
+                Suggestions="{Binding ProvinceList, Mode=TwoWay}" />
+            <controls:AutoCompleteView 
+                Placeholder="{infr:Translate contact_city}"
+                DefaultText="{Binding CityText, Mode=TwoWay}"
+                SelectedItem="{Binding SelectedCity, Mode=TwoWay}"
+                SuggestionItemDataTemplate="{StaticResource SugestionItemTemplate}"
+                Suggestions="{Binding CityList, Mode=TwoWay}" />
+            <Button Text="{infr:Translate command_next}" Command="{Binding SaveCommand}" StyleClass="Info" />
+            <Label Text="{Binding CountDisplay}"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
