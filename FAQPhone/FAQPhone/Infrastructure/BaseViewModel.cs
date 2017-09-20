@@ -13,6 +13,18 @@ namespace FAQPhone.Infarstructure
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
+        private bool _isBusy;
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set
+            {
+                _isBusy = value;
+                this.ChangeIsBusy(value);
+                OnPropertyChanged();
+            }
+        }
+        public virtual void ChangeIsBusy(bool state) { }
         string _message;
         public string message
         {

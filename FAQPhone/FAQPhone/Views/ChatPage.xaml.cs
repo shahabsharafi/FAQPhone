@@ -77,7 +77,7 @@ namespace FAQPhone.Views
             {
                 if (_currentDetail != null) _currentDetail.Mode = 1;
             };
-            this.ShowProgress = false;
+            //this.ShowProgress = false;
         }
         private string _state;
         private DiscussionDetailModel _currentDetail;
@@ -185,21 +185,28 @@ namespace FAQPhone.Views
             {
                 upload(filePicker.Path, filePicker.FileName);
             };
-        }        
-
-        bool _ShowProgress;
-        public bool ShowProgress
-        {
-            get { return _ShowProgress; }
-            set {
-                _ShowProgress = value;
-                if (value)
-                    this.Editable = false;
-                else
-                    this.Editable = (this._state == Constants.OPERATOR_INPROGRESS_FAQ || (this._state == Constants.USER_INPROGRESS_FAQ && model.state < 2));
-                OnPropertyChanged();
-            }
         }
+
+        public override void ChangeIsBusy(bool state)
+        {
+            this.Editable = state
+                ? false
+                : (this._state == Constants.OPERATOR_INPROGRESS_FAQ || (this._state == Constants.USER_INPROGRESS_FAQ && model.state < 2));
+        }
+
+        //bool _ShowProgress;
+        //public bool ShowProgress
+        //{
+        //    get { return _ShowProgress; }
+        //    set {
+        //        _ShowProgress = value;
+        //        if (value)
+        //            this.Editable = false;
+        //        else
+        //            this.Editable = (this._state == Constants.OPERATOR_INPROGRESS_FAQ || (this._state == Constants.USER_INPROGRESS_FAQ && model.state < 2));
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         public async void upload(string path, string fileName)
         {
@@ -211,7 +218,8 @@ namespace FAQPhone.Views
                 path, 
                 fileName, 
                 (state) => {
-                    this.ShowProgress = state;
+                    //this.ShowProgress = state;
+                    this.IsBusy = state;
                 }, 
                 dic
             );

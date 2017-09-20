@@ -146,11 +146,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="com.xamarin.recipes.filepicker\FileListAdapter.cs" />
-    <Compile Include="com.xamarin.recipes.filepicker\FileListFragment.cs" />
-    <Compile Include="com.xamarin.recipes.filepicker\FileListRowViewHolder.cs" />
-    <Compile Include="com.xamarin.recipes.filepicker\FilePickerActivity.cs" />
-    <Compile Include="com.xamarin.recipes.filepicker\Helpers.cs" />
     <Compile Include="CustomRenderers\BadgeLabelRenderer.cs" />
     <Compile Include="CustomRenderers\CustomButtonRenderer.cs" />
     <Compile Include="CustomRenderers\CustomEntryRenderer.cs" />
