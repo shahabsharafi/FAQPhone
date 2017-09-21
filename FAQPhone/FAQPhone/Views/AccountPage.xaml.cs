@@ -20,11 +20,11 @@ namespace FAQPhone.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AccountPage : ContentPage
     {
-        public AccountPage(AccountModel model)
+        public AccountPage(AccountModel model, string parm)
         {
             InitializeComponent();
             var factory = App.Resolve<AccountViewModelFactory>();
-            var vm = factory.Create(this, model);
+            var vm = factory.Create(this, model, parm);
             this.Appearing += (sender, e) => {
                 Task.Run(async () => await vm.Load()).Wait();
             };
@@ -39,21 +39,24 @@ namespace FAQPhone.Views
         {
             this.accountService = accountService;
         }
-        public AccountViewModel Create(ContentPage page, AccountModel model)
+        public AccountViewModel Create(ContentPage page, AccountModel model, string parm)
         {
-            return new AccountViewModel(this.accountService, page, model);
+            return new AccountViewModel(this.accountService, page, model, parm);
         }
     }
 
     public class AccountViewModel : BaseViewModel
     {
 
-        public AccountViewModel(IAccountService accountService, ContentPage page, AccountModel model) : base(page)
+        public AccountViewModel(IAccountService accountService, ContentPage page, AccountModel model, string parm) : base(page)
         {
+            this._parm = parm;
             this.accountService = accountService;
             this.EditCommand = new Command(async () => await editCommand());
             this.model = model;            
         }
+
+        string _parm { get; set; }
 
         bool _loaded = false;
         public async Task Load()
@@ -118,8 +121,15 @@ namespace FAQPhone.Views
         public ICommand EditCommand { protected set; get; }
 
         public async Task editCommand()
-        {            
-            await this.Navigation.PushAsync(new ProfilePage(this.model));
+        {
+            if (this._parm == Constants.ACCESS_OPERATOR)
+            {
+                await this.Navigation.PushAsync(new ProfilePage(this.model));
+            }
+            else
+            {
+                await this.Navigation.PushAsync(new UserProfilePage(this.model));
+            }
         }
     }
 }

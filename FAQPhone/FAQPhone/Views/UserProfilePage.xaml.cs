@@ -20,14 +20,14 @@ namespace FAQPhone.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserProfilePage : ContentPage
     {
-        public UserProfilePage()
+        public UserProfilePage(AccountModel model)
         {
             InitializeComponent();
             this.Appearing += (sender, e) => {
                 this.Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
             };
             var factory = App.Resolve<UserProfileViewModelFactory>();
-            BindingContext = factory.Create(this, null);
+            BindingContext = factory.Create(this, model);
         }
     }
 

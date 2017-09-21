@@ -15,6 +15,7 @@ namespace FAQPhone.Models
             }
         }
         public string CommandName { get; set; }
+        public string[] Parms { get; set; }
         public string Icon { get; set; }
         public string Badge { get; set; }
         public bool ShowBadge
