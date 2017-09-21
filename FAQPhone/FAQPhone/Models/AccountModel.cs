@@ -15,10 +15,17 @@ namespace FAQPhone.Models
         public string placeOfIssues { get; set; }
         public string nationalCode { get; set; }
         public string birthPlace { get; set; }
+        public string sex { get; set; }
+        public string status { get; set; }
+        public string jobState { get; set; }
+        public string religion { get; set; }
+        public string sect { get; set; }
+        public string reference { get; set; }
     }
     public class ContactModel {
         public string house { get; set; }
         public string work { get; set; }
+        public string country { get; set; }
         public string province { get; set; }
         public string city { get; set; }
         public string address { get; set; }

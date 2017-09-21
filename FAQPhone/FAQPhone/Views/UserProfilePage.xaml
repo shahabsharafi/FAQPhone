@@ -4,7 +4,7 @@
              xmlns:infr="clr-namespace:FAQPhone.Infarstructure;assembly=FAQPhone"
              xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=FAQPhone"
              x:Class="FAQPhone.Views.UserProfilePage"
-             Title="{infr:Translate profile}">
+             Title="UserProfilePage">
     <ContentPage.Resources>
         <ResourceDictionary>
             <!--  this isn't working yet  -->
@@ -28,11 +28,11 @@
         <StackLayout Style="{StaticResource pageStyle}">
             <Entry Placeholder="{infr:Translate contact_email}" Keyboard="Email" Text="{Binding email, Mode=TwoWay}" />
             <controls:AutoCompleteView 
-                Placeholder="{infr:Translate education_grade}"
-                DefaultText="{Binding GradeText, Mode=TwoWay}"
-                SelectedItem="{Binding SelectedGrade, Mode=TwoWay}"
+                Placeholder="{infr:Translate contact_country}"
+                DefaultText="{Binding CountryText, Mode=TwoWay}"
+                SelectedItem="{Binding SelectedCountry, Mode=TwoWay}"
                 SuggestionItemDataTemplate="{StaticResource SugestionItemTemplate}"
-                Suggestions="{Binding GradeList, Mode=TwoWay}" />
+                Suggestions="{Binding CountryList, Mode=TwoWay}" />
             <controls:AutoCompleteView 
                 Placeholder="{infr:Translate contact_province}"
                 DefaultText="{Binding ProvinceText, Mode=TwoWay}"
@@ -45,6 +45,43 @@
                 SelectedItem="{Binding SelectedCity, Mode=TwoWay}"
                 SuggestionItemDataTemplate="{StaticResource SugestionItemTemplate}"
                 Suggestions="{Binding CityList, Mode=TwoWay}" />
+            <Picker 
+                Title="{infr:Translate profile_sex}" 
+                ItemsSource="{ Binding SexList }" 
+                ItemDisplayBinding="{ Binding caption }" 
+                SelectedItem="{ Binding SelectedSex }" />
+            <controls:AutoCompleteView 
+                Placeholder="{infr:Translate education_grade}"
+                DefaultText="{Binding GradeText, Mode=TwoWay}"
+                SelectedItem="{Binding SelectedGrade, Mode=TwoWay}"
+                SuggestionItemDataTemplate="{StaticResource SugestionItemTemplate}"
+                Suggestions="{Binding GradeList, Mode=TwoWay}" />
+            <Picker 
+                Title="{infr:Translate account_religion}" 
+                ItemsSource="{ Binding ReligionList }" 
+                ItemDisplayBinding="{ Binding caption }" 
+                SelectedItem="{ Binding SelectedReligion }" />
+            <Picker 
+                Title="{infr:Translate account_sect}" 
+                ItemsSource="{ Binding SextList }" 
+                ItemDisplayBinding="{ Binding caption }" 
+                SelectedItem="{ Binding SelectedSect }" />
+            <controls:AutoCompleteView 
+                Placeholder="{infr:Translate account_reference}"
+                DefaultText="{Binding ReferenceText, Mode=TwoWay}"
+                SelectedItem="{Binding SelectedReference, Mode=TwoWay}"
+                SuggestionItemDataTemplate="{StaticResource SugestionItemTemplate}"
+                Suggestions="{Binding ReferenceList, Mode=TwoWay}" />
+            <Picker 
+                Title="{infr:Translate account_status}" 
+                ItemsSource="{ Binding StatusList }" 
+                ItemDisplayBinding="{ Binding caption }" 
+                SelectedItem="{ Binding SelectedStatus }" />
+            <Picker 
+                Title="{infr:Translate account_jobState}" 
+                ItemsSource="{ Binding JobStateList }" 
+                ItemDisplayBinding="{ Binding caption }" 
+                SelectedItem="{ Binding SelectedJobState }" />
             <Button Text="{infr:Translate command_next}" Command="{Binding SaveCommand}" StyleClass="Info" />
             <Label Text="{Binding CountDisplay}"/>
         </StackLayout>
