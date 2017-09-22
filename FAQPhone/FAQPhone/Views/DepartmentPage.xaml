@@ -20,7 +20,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout VerticalOptions="CenterAndExpand">
-                                <Label Text="{Binding caption}" TextColor="#4e5758" FontSize="Small" FontAttributes="Bold" HorizontalTextAlignment="End" />
+                                <Label Text="{Binding caption}" TextColor="#4e5758" FontSize="Small" FontAttributes="Bold" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

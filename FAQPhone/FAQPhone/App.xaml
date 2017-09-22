@@ -9,12 +9,14 @@
         <ResourceDictionary MergedWith="light:LightThemeResources">
             <Style TargetType="Entry">
                 <Setter Property="FontFamily" Value="Irsans" />
-                <Setter Property="HorizontalTextAlignment" Value="{Binding Direction}" />
+                <Setter Property="HorizontalTextAlignment" Value="End" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
             </Style>
             <Style TargetType="Label">
                 <Setter Property="FontFamily" Value="Irsans" />
                 <Setter Property="TextColor" Value="#4e5758" />
-                <Setter Property="HorizontalTextAlignment" Value="{Binding Direction}" />
+                <Setter Property="HorizontalTextAlignment" Value="End" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
             </Style>
             <Style x:Key="pageStyle" TargetType="StackLayout">
                 <Setter Property="VerticalOptions" Value="StartAndExpand" />

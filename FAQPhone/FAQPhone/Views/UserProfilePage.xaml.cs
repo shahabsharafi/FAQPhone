@@ -467,7 +467,7 @@ namespace FAQPhone.Views
             }
 
             await this.accountService.Save(this.model);
-            await this.Navigation.PushAsync(new EducationPage(this.model));
+            await this.Navigation.PopAsync();
         }
     }
 }

@@ -82,6 +82,7 @@
                 ItemsSource="{ Binding JobStateList }" 
                 ItemDisplayBinding="{ Binding caption }" 
                 SelectedItem="{ Binding SelectedJobState }" />
+            <Button Text="{infr:Translate command_save}" Command="{Binding SaveCommand}" StyleClass="Info" />
         </StackLayout>
     </ScrollView>
 </ContentPage>

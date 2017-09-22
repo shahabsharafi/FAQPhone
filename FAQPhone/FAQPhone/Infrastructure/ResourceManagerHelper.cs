@@ -39,7 +39,7 @@ namespace FAQPhone.Infrastructure
             get
             {
                 var dr = GetValue("direction");
-                return dr == "RTL" ? LayoutOptions.EndAndExpand : LayoutOptions.StartAndExpand;
+                return dr == "RTL" ? LayoutOptions.End : LayoutOptions.Start;
             }
         }
     }
