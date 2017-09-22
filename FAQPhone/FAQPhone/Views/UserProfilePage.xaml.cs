@@ -23,9 +23,6 @@ namespace FAQPhone.Views
         public UserProfilePage(AccountModel model)
         {
             InitializeComponent();
-            this.Appearing += (sender, e) => {
-                this.Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
-            };
             var factory = App.Resolve<UserProfileViewModelFactory>();
             BindingContext = factory.Create(this, model);
         }
@@ -65,7 +62,7 @@ namespace FAQPhone.Views
             var sexList = App.AttributeList.Where(o => o.type == "sex");
             foreach (var item in sexList)
             {
-                this.CountryList.Add(item);
+                this.SexList.Add(item);
             }
             var statusList = App.AttributeList.Where(o => o.type == "status");
             foreach (var item in statusList)

@@ -429,4 +429,25 @@
   <data name="command_connect" xml:space="preserve">
     <value>اتصال به شبکه</value>
   </data>
+  <data name="contact_country" xml:space="preserve">
+    <value>کشور</value>
+  </data>
+  <data name="account_jobState" xml:space="preserve">
+    <value>وضعیت شغلی</value>
+  </data>
+  <data name="account_reference" xml:space="preserve">
+    <value>مرجع تقلید</value>
+  </data>
+  <data name="account_religion" xml:space="preserve">
+    <value>دین</value>
+  </data>
+  <data name="account_sect" xml:space="preserve">
+    <value>مذهب</value>
+  </data>
+  <data name="account_status" xml:space="preserve">
+    <value>وضعیت تاهل</value>
+  </data>
+  <data name="profile_sex" xml:space="preserve">
+    <value>جنسیت</value>
+  </data>
 </root>

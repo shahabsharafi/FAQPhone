@@ -4,7 +4,7 @@
              xmlns:infr="clr-namespace:FAQPhone.Infarstructure;assembly=FAQPhone"
              xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=FAQPhone"
              x:Class="FAQPhone.Views.UserProfilePage"
-             Title="UserProfilePage">
+             Title="{infr:Translate profile}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <!--  this isn't working yet  -->
@@ -63,7 +63,7 @@
                 SelectedItem="{ Binding SelectedReligion }" />
             <Picker 
                 Title="{infr:Translate account_sect}" 
-                ItemsSource="{ Binding SextList }" 
+                ItemsSource="{ Binding SectList }" 
                 ItemDisplayBinding="{ Binding caption }" 
                 SelectedItem="{ Binding SelectedSect }" />
             <controls:AutoCompleteView 
@@ -82,8 +82,6 @@
                 ItemsSource="{ Binding JobStateList }" 
                 ItemDisplayBinding="{ Binding caption }" 
                 SelectedItem="{ Binding SelectedJobState }" />
-            <Button Text="{infr:Translate command_next}" Command="{Binding SaveCommand}" StyleClass="Info" />
-            <Label Text="{Binding CountDisplay}"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>

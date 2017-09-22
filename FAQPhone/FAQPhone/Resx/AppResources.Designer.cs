@@ -89,6 +89,51 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to وضعیت شغلی.
+        /// </summary>
+        internal static string account_jobState {
+            get {
+                return ResourceManager.GetString("account_jobState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مرجع تقلید.
+        /// </summary>
+        internal static string account_reference {
+            get {
+                return ResourceManager.GetString("account_reference", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to دین.
+        /// </summary>
+        internal static string account_religion {
+            get {
+                return ResourceManager.GetString("account_religion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مذهب.
+        /// </summary>
+        internal static string account_sect {
+            get {
+                return ResourceManager.GetString("account_sect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to وضعیت تاهل.
+        /// </summary>
+        internal static string account_status {
+            get {
+                return ResourceManager.GetString("account_status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to پرسانه.
         /// </summary>
         internal static string app_name {
@@ -391,6 +436,15 @@ namespace FAQPhone.Resx {
         internal static string contact_city {
             get {
                 return ResourceManager.GetString("contact_city", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کشور.
+        /// </summary>
+        internal static string contact_country {
+            get {
+                return ResourceManager.GetString("contact_country", resourceCulture);
             }
         }
         
@@ -850,6 +904,15 @@ namespace FAQPhone.Resx {
         internal static string profile_placeOfIssues {
             get {
                 return ResourceManager.GetString("profile_placeOfIssues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to جنسیت.
+        /// </summary>
+        internal static string profile_sex {
+            get {
+                return ResourceManager.GetString("profile_sex", resourceCulture);
             }
         }
         
