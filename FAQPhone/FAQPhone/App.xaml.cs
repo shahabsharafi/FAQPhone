@@ -25,7 +25,9 @@ namespace FAQPhone
 
             if (!String.IsNullOrEmpty(Settings.Username) && !String.IsNullOrEmpty(Settings.Password))
             {
-                Task.Run(async () => await Login()).Wait();
+                //Task.Run(async () => await Login()).Wait();
+                var page = new ConnectingPage();
+                MainPage = new NavigationPage(page);
             }
             else
             {
@@ -33,6 +35,7 @@ namespace FAQPhone
                 MainPage = new NavigationPage(page);
             }
         }
+        /*
         async Task Login()
         {
             SigninModel model = new SigninModel()
@@ -61,6 +64,7 @@ namespace FAQPhone
             }
             
         }
+        */
         public static UnityContainer Container { get; set; }
         public static void Initialize()
         {

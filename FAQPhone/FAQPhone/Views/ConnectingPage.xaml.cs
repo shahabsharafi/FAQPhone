@@ -26,8 +26,21 @@ namespace FAQPhone.Views
         public ConnectingPage()
         {
             InitializeComponent();
+
             var factory = App.Resolve<ConnectingViewModelFactory>();
-            BindingContext = factory.Create(this);            
+            var vm = factory.Create(this);
+            this.Appearing += (sender, e) => {
+                try
+                {
+                    vm.tryCommand();
+                }
+                catch
+                {
+
+                }
+                //Task.Run(async () => await vm.tryCommand()).Wait();
+            };
+            BindingContext = vm;            
         }
     }
 
@@ -49,27 +62,12 @@ namespace FAQPhone.Views
         public ConnectingViewModel(IAccountService accountService, ContentPage page) : base(page)
         {
             this.accountService = accountService;
-            NotConnected = true;
             CommandCaption = ResourceManagerHelper.GetValue(Constants.COMMAND_CONNECT);
-            this.TryCommand = new Command(async () => await tryCommand());
+            this.TryCommand = new Command(() => tryCommand());
             this.ResetPasswordCommand = new Command(async () => await resetPasswordCommand());
         }
 
         IAccountService accountService;
-
-        string _StateCaption;
-        public string StateCaption
-        {
-            get { return _StateCaption; }
-            set { _StateCaption = value; OnPropertyChanged(); }
-        }
-
-        bool _NotConnected;
-        public bool NotConnected
-        {
-            get { return _NotConnected; }
-            set { _NotConnected = value; OnPropertyChanged(); }
-        }
 
         string _CommandCaption;
         public string CommandCaption
@@ -84,10 +82,9 @@ namespace FAQPhone.Views
         }
 
         public ICommand TryCommand { protected set; get; }
-        public async Task tryCommand()
+        public async void tryCommand()
         {
-            this.StateCaption = FontAwesome.FASpinner;
-            NotConnected = false;
+            this.IsBusy = true;
             SigninModel model = new SigninModel()
             {
                 username = Settings.Username,
@@ -99,13 +96,12 @@ namespace FAQPhone.Views
             {
                 flag = await accountService.SignIn(model);
             }
-            catch (Exception ex)
+            catch
             {
                 err = true;
-                this.StateCaption = "";
-                NotConnected = true;
                 CommandCaption = ResourceManagerHelper.GetValue(Constants.COMMAND_TRY);
             }
+            this.IsBusy = false;
             if (!err)
             {
                 if (flag)

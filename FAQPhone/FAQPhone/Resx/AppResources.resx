@@ -450,4 +450,10 @@
   <data name="profile_sex" xml:space="preserve">
     <value>جنسیت</value>
   </data>
+  <data name="connecting_wating" xml:space="preserve">
+    <value>در حال اتصال...</value>
+  </data>
+  <data name="message_profile_not_completed" xml:space="preserve">
+    <value>ابتدا اطلاعات کاربری را کامل کنید</value>
+  </data>
 </root>

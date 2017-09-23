@@ -27,7 +27,11 @@ namespace FAQPhone.Views
         {
             InitializeComponent();
             var factory = App.Resolve<MainPageViewModelFactory>();
-            BindingContext = factory.Create(this, menu);
+            var vm = factory.Create(this, menu);
+            this.Appearing += (sender, e) => {
+                vm.ClearCompleteProfile();
+            };
+            BindingContext = vm;
         }
     }
 
@@ -62,6 +66,7 @@ namespace FAQPhone.Views
             Task.Run(async () => await loadAttribute());
             this.List = new ObservableCollection<MenuItemModel>();
             List<MenuItemModel> items = new List<MenuItemModel>();
+            
             if (menu == Constants.OPERATOR_FAQ || (menu == null && App.Access.Contains(Constants.ACCESS_OPERATOR)))
             {
                 int count = 0;
@@ -107,6 +112,21 @@ namespace FAQPhone.Views
             this.SelectItemCommand = new Command<MenuItemModel>(async (model) => await selectItemCommand(model));
         }
 
+        bool? _completeProfile = null;
+        async Task<bool> CompleteProfile()
+        {
+            if (!this._completeProfile.HasValue)
+            {
+                AccountModel me = await this.accountService.GetMe();
+                this._completeProfile = !string.IsNullOrWhiteSpace(me?.profile?.firstName);
+            }
+            return this._completeProfile.Value;
+        }
+        public void ClearCompleteProfile()
+        {
+            this._completeProfile = null;
+        }
+
         private async Task loadAttribute()
         {
             App.AttributeList = await this.attributeService.GetAll();
@@ -148,76 +168,35 @@ namespace FAQPhone.Views
                 return;
             if (!string.IsNullOrEmpty(model.CommandName))
             {
-                List<DiscussionModel> l;
+                
                 switch (model.CommandName)
                 {
                     case Constants.USER_FAQ:
                         await this.RootNavigate(new MainPage(model.CommandName));
                         break;
                     case Constants.USER_CREATE_FAQ:
-                        var dl = await this.departmentService.GetByParent("");
-                        if (dl != null && dl.Count() > 0)
-                        {
-                            await this.Navigation.PushAsync(new DepartmentPage(dl));
-                        }
-                        else
-                        {
-                            await Utility.Alert("message_not_exists");
-                        }
+                        await CreateFAQByUser();
                         break;
                     case Constants.USER_INPROGRESS_FAQ:
-                        l = await this.discussionService.GetList(true);
-                        if (l != null && l.Count() > 0)
-                        {
-                            await this.Navigation.PushAsync(new DiscussionPage(model.CommandName, l));
-                        }
-                        else
-                        {
-                            await Utility.Alert("message_not_exists");
-                        }
+                        await ReadInprogressFAQByUser(model);
                         break;
                     case Constants.OPERATOR_FAQ:
                         await this.RootNavigate(new MainPage(model.CommandName));
                         break;
                     case Constants.OPERATOR_RECEIVE_FAQ:
-                        var d = await this.discussionService.Recive();
-                        if (d != null)
-                        {
-                            await this.Navigation.PushAsync(new DiscussionRecivePage(d));
-                        }
-                        else
-                        {
-                            await Utility.Alert("message_not_exists");
-                        }
+                        await ReciveFAQByOperator();
                         break;
                     case Constants.OPERATOR_INPROGRESS_FAQ:
-                        l = await this.discussionService.GetList(false);
-                        if (l != null && l.Count() > 0)
-                        {
-                            await this.Navigation.PushAsync(new DiscussionPage(model.CommandName, l));
-                        }
-                        else
-                        {
-                            await Utility.Alert("message_not_exists");
-                        }
+                        await ReadInprogressFAQByOperator(model);
                         break;
                     case Constants.SETTING:
                         await this.Navigation.PushAsync(new MainPage(model.CommandName));
                         break;
                     case Constants.SIGNOUT:
-                        var flag = await Utility.Confirm();
-                        if (flag)
-                        {
-                            this.accountService.SignOut();
-                            Settings.Username = string.Empty;
-                            Settings.Password = string.Empty;
-                            await this.RootNavigate(new SendCodePage());
-                        }
+                        await Signout();
                         break;
                     case Constants.ACCOUNT:
-                        var parm = model.Parms[0];
-                        var account = await this.accountService.GetMe();
-                        await this.Navigation.PushAsync(new AccountPage(account, parm));
+                        await ViewAndChangeAccountProfile(model);
                         break;
                     case Constants.ABOUT_US:
                         await this.Navigation.PushAsync(new AboutPage());
@@ -225,6 +204,105 @@ namespace FAQPhone.Views
                 }
                 this.SelectedItem = null;
             }            
+        }
+
+        private async Task ViewAndChangeAccountProfile(MenuItemModel model)
+        {
+            var parm = model.Parms[0];
+            var account = await this.accountService.GetMe();
+            await this.Navigation.PushAsync(new AccountPage(account, parm));
+        }
+
+        private async Task Signout()
+        {
+            var flag = await Utility.Confirm();
+            if (flag)
+            {
+                this.accountService.SignOut();
+                Settings.Username = string.Empty;
+                Settings.Password = string.Empty;
+                await this.RootNavigate(new SendCodePage());
+            }
+        }
+
+        private async Task ReadInprogressFAQByOperator(MenuItemModel model)
+        {
+            if (await this.CompleteProfile())
+            {
+                List<DiscussionModel> l = await this.discussionService.GetList(false);
+                if (l != null && l.Count() > 0)
+                {
+                    await this.Navigation.PushAsync(new DiscussionPage(model.CommandName, l));
+                }
+                else
+                {
+                    await Utility.Alert("message_not_exists");
+                }
+            }
+            else
+            {
+                await Utility.Alert("message_profile_not_completed");
+            }
+        }
+
+        private async Task ReciveFAQByOperator()
+        {
+            if (await this.CompleteProfile())
+            {
+                var d = await this.discussionService.Recive();
+                if (d != null)
+                {
+                    await this.Navigation.PushAsync(new DiscussionRecivePage(d));
+                }
+                else
+                {
+                    await Utility.Alert("message_not_exists");
+                }
+            }
+            else
+            {
+                await Utility.Alert("message_profile_not_completed");
+            }
+        }
+
+        private async Task ReadInprogressFAQByUser(MenuItemModel model)
+        {
+            if (await this.CompleteProfile())
+            {
+                List<DiscussionModel> l = await this.discussionService.GetList(true);
+                if (l != null && l.Count() > 0)
+                {
+                    await this.Navigation.PushAsync(new DiscussionPage(model.CommandName, l));
+                }
+                else
+                {
+                    await Utility.Alert("message_not_exists");
+                }
+            }
+            else
+            {
+                await Utility.Alert("message_profile_not_completed");
+            }
+        }
+
+        private async Task CreateFAQByUser()
+        {
+            if (await this.CompleteProfile())
+            {
+                var dl = await this.departmentService.GetByParent("");
+                if (dl != null && dl.Count() > 0)
+                {
+                    await this.Navigation.PushAsync(new DepartmentPage(dl));
+                }
+                else
+                {
+                    await Utility.Alert("message_not_exists");
+                }
+            }
+            else
+            {
+                await Utility.Alert("message_profile_not_completed");
+            }
         }
     }
 }

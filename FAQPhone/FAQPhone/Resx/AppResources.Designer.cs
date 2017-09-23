@@ -422,6 +422,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to در حال اتصال....
+        /// </summary>
+        internal static string connecting_wating {
+            get {
+                return ResourceManager.GetString("connecting_wating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to اطلاعات تماس.
         /// </summary>
         internal static string contact {
@@ -751,6 +760,15 @@ namespace FAQPhone.Resx {
         internal static string message_not_exists {
             get {
                 return ResourceManager.GetString("message_not_exists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ابتدا اطلاعات کاربری را کامل کنید.
+        /// </summary>
+        internal static string message_profile_not_completed {
+            get {
+                return ResourceManager.GetString("message_profile_not_completed", resourceCulture);
             }
         }
         
