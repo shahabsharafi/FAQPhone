@@ -118,7 +118,7 @@ namespace FAQPhone.Views
             if (!this._completeProfile.HasValue)
             {
                 AccountModel me = await this.accountService.GetMe();
-                this._completeProfile = !string.IsNullOrWhiteSpace(me?.profile?.firstName);
+                this._completeProfile = (!string.IsNullOrWhiteSpace(me?.profile?.firstName)) || (!string.IsNullOrWhiteSpace(me?.email));
             }
             return this._completeProfile.Value;
         }
