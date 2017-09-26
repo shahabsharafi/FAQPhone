@@ -27,18 +27,19 @@ namespace Singleselect
                 icon.FontSize = 20;
 
                 Label name = new Label();
-				name.SetBinding(Label.TextProperty, new Binding("Name"));               
+                name.HorizontalTextAlignment = TextAlignment.Start;
+                name.SetBinding(Label.TextProperty, new Binding("Name"));               
 				
 				RelativeLayout layout = new RelativeLayout();
-				layout.Children.Add (icon, 
-					Constraint.Constant (5), 
+                layout.Children.Add (icon, 
+					Constraint.Constant(5), 
 					Constraint.Constant (5),
 					Constraint.RelativeToParent (p => 25),
 					Constraint.RelativeToParent (p => p.Height - 10)
 				);
-				layout.Children.Add (name, 
-					Constraint.RelativeToParent (p => 30), 
-					Constraint.Constant (5),
+				layout.Children.Add (name,
+                    Constraint.Constant(35),
+                    Constraint.Constant (5),
                     Constraint.RelativeToParent(p => p.Width - 30),
 					Constraint.RelativeToParent (p => p.Height - 10)
 				);

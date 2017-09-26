@@ -4,6 +4,7 @@ using FAQPhone.Infrastructure;
 using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
 using FilePicker;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -25,12 +26,16 @@ namespace FAQPhone.Views
         public ChatPage(string state, DiscussionModel model, int pushCount)
         {
             InitializeComponent();
-            this.Appearing += (sender, e) => {
+            EventHandler h = null;
+            h = (sender, e) =>
+            {
                 for (var i = 0; i < pushCount; i++)
                 {
-                    this.Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
+                    Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
                 }
+                Appearing -= h;
             };
+            Appearing += h;
             var factory = App.Resolve<ChatViewModelFactory>();
             BindingContext = factory.Create(this, state, model);
         }
@@ -211,8 +216,9 @@ namespace FAQPhone.Views
         public async void upload(string path, string fileName)
         {
             Dictionary <string, string> dic = new Dictionary<string, string>();
+            var json = JsonConvert.SerializeObject(model);
             dic.Add("EntityName", "discussion");
-            dic.Add("EntityKey", model._id.ToString());
+            dic.Add("Entity", json);
             var d = await UploadHelper.UploadFile<DiscussionDetailModel>(
                 Constants.UploadUrl, 
                 path, 
