@@ -512,6 +512,24 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to هدایای من در دیوارمهربانی.
+        /// </summary>
+        internal static string discount_list {
+            get {
+                return ResourceManager.GetString("discount_list", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to هدیه به دیوارمهربانی.
+        /// </summary>
+        internal static string discount_new {
+            get {
+                return ResourceManager.GetString("discount_new", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to فهرست.
         /// </summary>
         internal static string discussion {

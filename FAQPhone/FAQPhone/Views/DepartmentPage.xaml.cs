@@ -1,5 +1,4 @@
 ﻿using FAQPhone.Infarstructure;
-using FAQPhone.Infrastructure;
 using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
 using System;
@@ -49,7 +48,7 @@ namespace FAQPhone.Views
         {
             this._pushCount = pushCount;
             this.departmentService = departmentService;
-            this.SelectItemCommand = new Command<DepartmentModel>(async(model) => await selectItemCommand(model));
+            this.SelectItemCommand = new Command<DepartmentModel>(async (model) => await selectItemCommand(model));
             this.List = new ObservableCollection<DepartmentModel>();
             if (list == null)
             {
@@ -87,11 +86,11 @@ namespace FAQPhone.Views
             }
             else if (list == null || list.Count == 0)
             {
-                await this.Navigation.PushAsync(new DiscussionNewPage(model, this._pushCount));                
+                await this.Navigation.PushAsync(new DiscussionNewPage(model, this._pushCount));
             }
             else
             {
-                await this.Navigation.PushAsync(new DepartmentPage(list, (this._pushCount + 1)));                
+                await this.Navigation.PushAsync(new DepartmentPage(list, (this._pushCount + 1)));
             }
         }
 

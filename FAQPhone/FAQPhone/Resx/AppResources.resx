@@ -456,4 +456,10 @@
   <data name="message_profile_not_completed" xml:space="preserve">
     <value>ابتدا اطلاعات کاربری را کامل کنید</value>
   </data>
+  <data name="discount_list" xml:space="preserve">
+    <value>هدایای من در دیوارمهربانی</value>
+  </data>
+  <data name="discount_new" xml:space="preserve">
+    <value>هدیه به دیوارمهربانی</value>
+  </data>
 </root>

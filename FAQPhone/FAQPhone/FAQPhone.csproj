@@ -65,6 +65,7 @@
     <Compile Include="Helpers\UploadHelper.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\AttributeModel.cs" />
+    <Compile Include="Models\DiscounModel.cs" />
     <Compile Include="Models\ResultModel.cs" />
     <Compile Include="Models\AutResultModel.cs" />
     <Compile Include="Models\CodeResultModel.cs" />
@@ -88,10 +89,12 @@
     <Compile Include="Infrastructure\BaseRestService.cs" />
     <Compile Include="Services\AttributeService.cs" />
     <Compile Include="Services\DepartmentService.cs" />
+    <Compile Include="Services\DiscountService.cs" />
     <Compile Include="Services\DiscussionService.cs" />
     <Compile Include="Services\Interfaces\IAccountService.cs" />
     <Compile Include="Services\Interfaces\IAttributeService.cs" />
     <Compile Include="Services\Interfaces\IDepartmentService.cs" />
+    <Compile Include="Services\Interfaces\IDiscountService.cs" />
     <Compile Include="Services\Interfaces\IDiscussionService.cs" />
     <Compile Include="Services\Interfaces\IRestService.cs" />
     <Compile Include="Services\RestService .cs" />
@@ -118,6 +121,9 @@
     </Compile>
     <Compile Include="Views\DepartmentPage.xaml.cs">
       <DependentUpon>DepartmentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DiscountListPage.xaml.cs">
+      <DependentUpon>DiscountListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DiscussionNewPage.xaml.cs">
       <DependentUpon>DiscussionNewPage.xaml</DependentUpon>
@@ -149,6 +155,10 @@
     <Compile Include="Views\UserProfilePage.xaml.cs">
       <DependentUpon>UserProfilePage.xaml</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\DiscountListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
@@ -240,18 +250,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\DepartmentPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\DiscussionPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Views\DiscussionNewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
@@ -313,6 +311,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\UserProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DiscussionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DepartmentPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
