@@ -25,7 +25,6 @@ namespace FAQPhone
 
             if (!String.IsNullOrEmpty(Settings.Username) && !String.IsNullOrEmpty(Settings.Password))
             {
-                //Task.Run(async () => await Login()).Wait();
                 var page = new ConnectingPage();
                 MainPage = new NavigationPage(page);
             }
@@ -35,36 +34,7 @@ namespace FAQPhone
                 MainPage = new NavigationPage(page);
             }
         }
-        /*
-        async Task Login()
-        {
-            SigninModel model = new SigninModel()
-            {
-                username = Settings.Username,
-                password = Settings.Password
-            };
-            var err = false;
-            var flag = false;
-            try
-            {
-                var accountService = App.Resolve<AccountService>();
-                flag = await accountService.SignIn(model);
-            }
-            catch (Exception ex)
-            {
-                err = true;
-                var page = new ConnectingPage();
-                MainPage = new NavigationPage(page);
-            }
-            
-            if (!err && flag)
-            {
-                var page = new MainPage();
-                MainPage = new NavigationPage(page);
-            }
-            
-        }
-        */
+
         public static UnityContainer Container { get; set; }
         public static void Initialize()
         {
@@ -73,6 +43,7 @@ namespace FAQPhone
             App.Container.RegisterType<IDepartmentService, DepartmentService>();
             App.Container.RegisterType<IDiscussionService, DiscussionService>();
             App.Container.RegisterType<IAttributeService, AttributeService>();
+            App.Container.RegisterType<IDiscountService, DiscountService>();
         }
 
         public static string Username { get; set; }

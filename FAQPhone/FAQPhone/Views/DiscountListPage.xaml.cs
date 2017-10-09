@@ -24,7 +24,11 @@ namespace FAQPhone.Views
         {
             InitializeComponent();
             var factory = App.Resolve<DiscountListViewModelFactory>();
-            BindingContext = factory.Create(this);
+            var vm = factory.Create(this);
+            this.Appearing += (sender, e) => {
+                Task.Run(() => vm.loadItems()).Wait();
+            };
+            BindingContext = vm;
         }
     }
 
@@ -48,11 +52,8 @@ namespace FAQPhone.Views
         {
             this.discountService = discountService;
             this.List = new ObservableCollection<DiscountModel>();
-            Task.Run(async () => await loadItems());
         }
         private IDiscountService discountService { get; set; }
-
-        int _pushCount;
 
         object _selectedItem;
         public object SelectedItem
@@ -79,6 +80,8 @@ namespace FAQPhone.Views
             this.List.Clear();
             foreach (var item in list)
             {
+                item.Username = item.owner.username;
+                item.CategoryCaption = item.category?.caption ?? "";
                 this.List.Add(item);
             }
         }

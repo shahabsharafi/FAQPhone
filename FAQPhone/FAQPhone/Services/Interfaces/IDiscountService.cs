@@ -9,6 +9,6 @@ namespace FAQPhone.Services.Interfaces
 {
     public interface IDiscountService: IRestService<DiscountModel>
     {
-       
+        Task<List<DiscountModel>> GetList();
     }
 }

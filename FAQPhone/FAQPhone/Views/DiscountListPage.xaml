@@ -19,8 +19,8 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout VerticalOptions="CenterAndExpand">
-                                <Label Text="{Binding caption}" TextColor="#4e5758" FontSize="Small" FontAttributes="Bold" />
+                            <StackLayout Orientation="Vertical">
+                                <Label Text = "{Binding CategoryCaption}" TextColor="#4e5758" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

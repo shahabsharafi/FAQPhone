@@ -1,5 +1,6 @@
 ﻿using FAQPhone.Infarstructure;
 using FAQPhone.Infrastructure;
+using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
 using Newtonsoft.Json;
 using System;
@@ -24,10 +25,10 @@ namespace FAQPhone.Services
         {
             
         }
-        public virtual async  Task<List<T>> GetList()
+        public virtual async  Task<PaginationModel<T>> GetPaged()
         {
             string url = this.getUrl("");
-            return await this.get<List<T>>(url);
+            return await this.get<PaginationModel<T>>(url);
         }
 
         public virtual async Task<T> Get(string id)
