@@ -17,7 +17,6 @@ namespace FAQPhone.Models
         public decimal used { get; set; }
         public AttributeModel type { get; set; }
         public DateTime beginDate { get; set; }
-        public string Username { get; set; }
-        public string CategoryCaption { get; set; }
+        public string Caption { get; set; }
     }
 }

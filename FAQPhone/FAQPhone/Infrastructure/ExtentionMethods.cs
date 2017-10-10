@@ -29,5 +29,10 @@ namespace FAQPhone.Infrastructure
         {
             return string.IsNullOrWhiteSpace(e.Message) ? Constants.MESSAGE_UNKNOWN_ERROR : e.Message;
         }
+
+        public static string FormatString(this string input, string format, string d)
+        {
+            return string.IsNullOrWhiteSpace(input) ? d : string.Format(format, input);
+        }
     }
 }

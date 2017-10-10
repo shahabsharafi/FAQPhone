@@ -13,6 +13,7 @@ using System.Windows.Input;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using FAQPhone.Infrastructure;
 
 namespace FAQPhone.Views
 {
@@ -80,8 +81,15 @@ namespace FAQPhone.Views
             this.List.Clear();
             foreach (var item in list)
             {
-                item.Username = item.owner.username;
-                item.CategoryCaption = item.category?.caption ?? "";
+                string fName = item.owner?.profile?.firstName;
+                string lName = item.owner?.profile?.lastName;
+                string category = item.category?.caption ?? "";
+                item.Caption = 
+                    fName.FormatString("{0} ", "") +
+                    lName.FormatString("{0} ", "") + 
+                    category.FormatString("در بخش {0} ", "") +
+                    item.count.ToString().FormatString("{0} عدد ", "") +
+                    item.price.ToString().FormatString("{0} ریالی", "");
                 this.List.Add(item);
             }
         }
