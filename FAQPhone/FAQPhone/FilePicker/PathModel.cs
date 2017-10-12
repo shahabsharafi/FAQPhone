@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FilePicker
 {
-    public class PathModel: ISingleSelectItem
+    public class PathModel
     {
         public string Name { get; set; }
         public bool IsFile { get; set; }

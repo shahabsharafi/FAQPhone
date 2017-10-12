@@ -41,6 +41,7 @@
     <Compile Include="CustomRenderer\BadgeLabel.cs" />
     <Compile Include="CustomRenderer\DiscussionViewCell.cs" />
     <Compile Include="CustomRenderer\IconicButton.cs" />
+    <Compile Include="DepartmentPicker\DepartmentPickerPage.cs" />
     <Compile Include="FilePicker\FilePickerPage.cs" />
     <Compile Include="FilePicker\IFileService.cs" />
     <Compile Include="FilePicker\PathModel.cs" />
@@ -98,7 +99,6 @@
     <Compile Include="Services\Interfaces\IDiscussionService.cs" />
     <Compile Include="Services\Interfaces\IRestService.cs" />
     <Compile Include="Services\RestService .cs" />
-    <Compile Include="Singleselect\SingleSelectItem.cs" />
     <Compile Include="Singleselect\SelectSingleBasePage.cs" />
     <Compile Include="Singleselect\SingleSelectViewModel.cs" />
     <Compile Include="Views\AboutPage.xaml.cs">

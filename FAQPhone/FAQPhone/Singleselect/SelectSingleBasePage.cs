@@ -15,32 +15,37 @@ namespace Singleselect
 	*/
 
 	public class SelectSingleBasePage<T> : ContentPage
-        where T: ISingleSelectItem
     {
 		public class WrappedItemSelectionTemplate : ViewCell
 		{
-			public WrappedItemSelectionTemplate() : base ()
+			public WrappedItemSelectionTemplate(bool hasIcon, bool rtl) : base ()
 			{
-                Label icon = new Label();
-                icon.SetBinding(Label.TextProperty, new Binding("Icon"));
-                icon.FontFamily = "fontawesome";
-                icon.FontSize = 20;
+                RelativeLayout layout = new RelativeLayout();
+                int rm = 5;
+                if (hasIcon)
+                {
+                    Label icon = new Label();
+                    icon.SetBinding(Label.TextProperty, new Binding("Icon"));
+                    icon.FontFamily = "fontawesome";
+                    icon.FontSize = 20;
 
+                    layout.Children.Add(icon,
+                        rtl ? Constraint.RelativeToParent(p => p.Width - 30) : Constraint.Constant(5),
+                        Constraint.Constant(5),
+                        Constraint.RelativeToParent(p => 25),
+                        Constraint.RelativeToParent(p => p.Height - 10)
+                    );
+                    rm += 30;
+                }
+				
                 Label name = new Label();
-                name.HorizontalTextAlignment = TextAlignment.Start;
+                name.HorizontalTextAlignment = rtl ? TextAlignment.End : TextAlignment.Start;
                 name.SetBinding(Label.TextProperty, new Binding("Name"));               
 				
-				RelativeLayout layout = new RelativeLayout();
-                layout.Children.Add (icon, 
-					Constraint.Constant(5), 
-					Constraint.Constant (5),
-					Constraint.RelativeToParent (p => 25),
-					Constraint.RelativeToParent (p => p.Height - 10)
-				);
 				layout.Children.Add (name,
-                    Constraint.Constant(35),
+                    rtl ? Constraint.Constant(5) : Constraint.Constant(rm),
                     Constraint.Constant (5),
-                    Constraint.RelativeToParent(p => p.Width - 30),
+                    Constraint.RelativeToParent(p => p.Width - (hasIcon ? 35 : 10)),
 					Constraint.RelativeToParent (p => p.Height - 10)
 				);
 				View = layout;
@@ -63,13 +68,13 @@ namespace Singleselect
                 }
             }
         }
-		public SelectSingleBasePage(IList<T> items)
+		public SelectSingleBasePage(IList<T> items, bool hasIcon, bool rtl)
 		{
             ViewModel = new SingleSelectViewModel<T>();
             
             WrappedItems = items;
             ListView mainList = new ListView () { 
-				ItemTemplate = new DataTemplate (typeof(WrappedItemSelectionTemplate)),
+				ItemTemplate = new DataTemplate (() => { return new WrappedItemSelectionTemplate(hasIcon, rtl); }),
 			};
             mainList.SetBinding(ListView.ItemsSourceProperty, new Binding("WrappedItems"));
 			mainList.ItemSelected += (sender, e) => {

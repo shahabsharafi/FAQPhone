@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Singleselect
 {
-    public class SingleSelectViewModel<T> where T: ISingleSelectItem
+    public class SingleSelectViewModel<T>
     {
         public SingleSelectViewModel()
         {

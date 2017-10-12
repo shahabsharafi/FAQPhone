@@ -15,6 +15,7 @@ namespace FAQPhone.Models
         public string description { get; set; }
         public string language { get; set; }
         public long price { get; set; }
+        public DepartmentModel[] children { get; set; }
         public string[] accounts { get; set; }
     }
 }

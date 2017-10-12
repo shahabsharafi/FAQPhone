@@ -19,7 +19,7 @@ namespace FilePicker
             this._stack.Push(path);
             IList<PathModel> list = DependencyService.Get<IFileService>().GetFileInfos(path);
             CorrectIcon(list);
-            _selector = new SelectSingleBasePage<PathModel>(list);
+            _selector = new SelectSingleBasePage<PathModel>(list, true, false);
             _selector.Select += Selector_Select;
         }
 

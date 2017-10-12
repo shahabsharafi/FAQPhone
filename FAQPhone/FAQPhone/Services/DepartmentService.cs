@@ -38,5 +38,12 @@ namespace FAQPhone.Services
             var data = await this.get<PaginationModel<DepartmentModel>>(url);
             return data.docs.ToList();
         }
+
+        public async Task<List<DepartmentModel>> GetTree()
+        {
+            string url = this.getUrl() + "/tree";
+            var data = await this.get<PaginationModel<DepartmentModel>>(url);
+            return data.docs.ToList();
+        }
     }
 }
