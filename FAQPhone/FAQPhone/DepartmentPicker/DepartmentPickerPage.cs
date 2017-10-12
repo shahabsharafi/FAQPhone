@@ -33,14 +33,14 @@ namespace FAQPhone.DepartmentPicker
         {
             await _navigation.PushAsync(_selector);
         }
-        public DepartmentModel selectedItem { get; private set; }
+        public DepartmentModel SelectedItem { get; private set; }
         public event EventHandler Select;
         private void Selector_Select(object sender, EventArgs e)
         {
             if (_selector.SelectedItem.children == null && _selector.SelectedItem.children.Length == 0)
             {
                 _navigation.PopAsync();
-                selectedItem = _selector.SelectedItem;
+                SelectedItem = _selector.SelectedItem;
                 Select?.Invoke(this, new EventArgs());
             }
             else

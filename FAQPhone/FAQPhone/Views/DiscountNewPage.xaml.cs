@@ -103,7 +103,12 @@ namespace FAQPhone.Views
 
         public async Task selectCommand()
         {
-
+            DepartmentPicker.DepartmentPickerPage departmentPicker = new DepartmentPicker.DepartmentPickerPage(this.Navigation);
+            await departmentPicker.Open();
+            departmentPicker.Select += (sender, e) =>
+            {
+                this._category = departmentPicker.SelectedItem;
+            };
         }
         public ICommand SaveCommand { protected set; get; }
 
