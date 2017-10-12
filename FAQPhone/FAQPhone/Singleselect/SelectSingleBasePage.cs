@@ -18,14 +18,14 @@ namespace Singleselect
     {
 		public class WrappedItemSelectionTemplate : ViewCell
 		{
-			public WrappedItemSelectionTemplate(bool hasIcon, bool rtl) : base ()
+			public WrappedItemSelectionTemplate(bool hasIcon, bool rtl, string caption, string iconFieldName) : base ()
 			{
                 RelativeLayout layout = new RelativeLayout();
                 int rm = 5;
                 if (hasIcon)
                 {
                     Label icon = new Label();
-                    icon.SetBinding(Label.TextProperty, new Binding("Icon"));
+                    icon.SetBinding(Label.TextProperty, new Binding(iconFieldName));
                     icon.FontFamily = "fontawesome";
                     icon.FontSize = 20;
 
@@ -40,7 +40,7 @@ namespace Singleselect
 				
                 Label name = new Label();
                 name.HorizontalTextAlignment = rtl ? TextAlignment.End : TextAlignment.Start;
-                name.SetBinding(Label.TextProperty, new Binding("Name"));               
+                name.SetBinding(Label.TextProperty, new Binding(caption));               
 				
 				layout.Children.Add (name,
                     rtl ? Constraint.Constant(5) : Constraint.Constant(rm),
@@ -68,13 +68,13 @@ namespace Singleselect
                 }
             }
         }
-		public SelectSingleBasePage(IList<T> items, bool hasIcon, bool rtl)
+		public SelectSingleBasePage(IList<T> items, bool hasIcon, bool rtl, string caption, string iconFieldName = "Icon")
 		{
             ViewModel = new SingleSelectViewModel<T>();
             
             WrappedItems = items;
             ListView mainList = new ListView () { 
-				ItemTemplate = new DataTemplate (() => { return new WrappedItemSelectionTemplate(hasIcon, rtl); }),
+				ItemTemplate = new DataTemplate (() => { return new WrappedItemSelectionTemplate(hasIcon, rtl, caption, iconFieldName); }),
 			};
             mainList.SetBinding(ListView.ItemsSourceProperty, new Binding("WrappedItems"));
 			mainList.ItemSelected += (sender, e) => {

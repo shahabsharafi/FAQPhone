@@ -1,4 +1,5 @@
-﻿using FAQPhone.Infarstructure;
+﻿using FAQPhone.DepartmentPicker;
+using FAQPhone.Infarstructure;
 using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
 using System;
@@ -46,9 +47,10 @@ namespace FAQPhone.Views
         public DiscountNewViewModel(IDiscountService discountService, ContentPage page) : base(page)
         {
             this.discountService = discountService;
-            this.category = new DepartmentModel();
+            this.category = null;
             this.SaveCommand = new Command(async () => await saveCommand());
             this.SelectCommand = new Command(async () => await selectCommand());
+            this.ClearCommand = new Command(async () => await clearCommand());
         }
         private IDiscountService discountService { get; set; }
 
@@ -95,20 +97,36 @@ namespace FAQPhone.Views
         public DepartmentModel category
         {
             get { return _category; }
-            set { _category = value; OnPropertyChanged(); }
+            set {
+                _category = value;
+                OnPropertyChanged();
+                HasCategory = (value != null);
+            }
         }
 
+        bool _HasCategory;
+        public bool HasCategory
+        {
+            get { return _HasCategory; }
+            set { _HasCategory = value; OnPropertyChanged(); }
+        }
 
         public ICommand SelectCommand { protected set; get; }
 
         public async Task selectCommand()
-        {
-            DepartmentPicker.DepartmentPickerPage departmentPicker = new DepartmentPicker.DepartmentPickerPage(this.Navigation);
+        {            
+            DepartmentPicker.DepartmentPickerPage departmentPicker = DepartmentPickerFactory.GetPicker(this.Navigation);
             await departmentPicker.Open();
             departmentPicker.Select += (sender, e) =>
             {
-                this._category = departmentPicker.SelectedItem;
+                this.category = departmentPicker.SelectedItem;
             };
+        }
+        public ICommand ClearCommand { protected set; get; }
+
+        public async Task clearCommand()
+        {
+            this.category = null;
         }
         public ICommand SaveCommand { protected set; get; }
 

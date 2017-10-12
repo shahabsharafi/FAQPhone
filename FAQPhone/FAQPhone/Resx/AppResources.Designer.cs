@@ -575,6 +575,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to جمع کل.
+        /// </summary>
+        internal static string discount_total {
+            get {
+                return ResourceManager.GetString("discount_total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to فهرست.
         /// </summary>
         internal static string discussion {

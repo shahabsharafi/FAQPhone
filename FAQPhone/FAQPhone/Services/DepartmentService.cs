@@ -12,19 +12,18 @@ namespace FAQPhone.Services
 {
     public class DepartmentService : BaseRestService, IDepartmentService
     {
-        protected string _relativeUrl { get; set; }
-        protected string getUrl(string param = "")
-        {
-            return string.Format(Constants.RestUrl, string.Format(this._relativeUrl, param));
-        }
         public DepartmentService() : base()
         {
-            this._relativeUrl = "departments?{0}";
+            
+        }
+        protected string getUrl(string param = "")
+        {
+            return string.Format(Constants.RestUrl, string.Format("departments{0}", param));
         }
         public async Task<List<DepartmentModel>> GetByParent(string parentId)
         {
             string prm = parentId == ""
-                ? "$filter=type eq 'department'"
+                ? "?$filter=type eq 'department'"
                 : "$filter=parentId eq '" + parentId + "'";
             string url = this.getUrl(prm);
             var data = await this.get<PaginationModel<DepartmentModel>>(url);
@@ -33,7 +32,7 @@ namespace FAQPhone.Services
 
         public async Task<List<DepartmentModel>> GetById(string id)
         {
-            string prm = "$filter=_id eq '" + id + "'";
+            string prm = "?$filter=_id eq '" + id + "'";
             string url = this.getUrl(prm);
             var data = await this.get<PaginationModel<DepartmentModel>>(url);
             return data.docs.ToList();
@@ -42,8 +41,8 @@ namespace FAQPhone.Services
         public async Task<List<DepartmentModel>> GetTree()
         {
             string url = this.getUrl() + "/tree";
-            var data = await this.get<PaginationModel<DepartmentModel>>(url);
-            return data.docs.ToList();
+            var data = await this.get<List<DepartmentModel>>(url);
+            return data;
         }
     }
 }

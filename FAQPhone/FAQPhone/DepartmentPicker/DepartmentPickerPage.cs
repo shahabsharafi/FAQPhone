@@ -10,21 +10,39 @@ using Xamarin.Forms;
 
 namespace FAQPhone.DepartmentPicker
 {
+    public class DepartmentPickerFactory
+    {
+        public static DepartmentPickerPage GetPicker(INavigation navigation)
+        {
+            var factory = App.Resolve<DepartmentPickerFactory>();
+            return factory.Create(navigation);
+        }
+        IDepartmentService departmentService;
+        public DepartmentPickerFactory(IDepartmentService departmentService)
+        {
+            this.departmentService = departmentService;
+        }
+        public DepartmentPickerPage Create(INavigation navigation)
+        {
+            return new DepartmentPickerPage(this.departmentService, navigation);
+        }
+    }
     public class DepartmentPickerPage
     {
         SelectSingleBasePage<DepartmentModel> _selector;
         List<DepartmentModel> _list;
-        public DepartmentPickerPage(INavigation navigation)
+        IDepartmentService _departmentService;
+        public DepartmentPickerPage(IDepartmentService departmentService, INavigation navigation)
         {
             this._navigation = navigation;
+            this._departmentService = departmentService;
             Task.Run(() => load()).Wait();            
         }
 
         async Task load ()
         {
-            var services = DependencyService.Get<IDepartmentService>();
-            this._list = await services.GetTree();
-            _selector = new SelectSingleBasePage<DepartmentModel>(this._list, false, true);
+            this._list = await this._departmentService.GetTree();
+            _selector = new SelectSingleBasePage<DepartmentModel>(this._list, false, true, "caption");
             _selector.Select += Selector_Select;
         }
 
@@ -37,7 +55,7 @@ namespace FAQPhone.DepartmentPicker
         public event EventHandler Select;
         private void Selector_Select(object sender, EventArgs e)
         {
-            if (_selector.SelectedItem.children == null && _selector.SelectedItem.children.Length == 0)
+            if (_selector.SelectedItem.children == null || _selector.SelectedItem.children.Length == 0)
             {
                 _navigation.PopAsync();
                 SelectedItem = _selector.SelectedItem;

@@ -1,16 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              xmlns:infr="clr-namespace:FAQPhone.Infarstructure;assembly=FAQPhone"
+             xmlns:local="clr-namespace:BooleanConverter"
+             xmlns:infr="clr-namespace:FAQPhone.Infarstructure;assembly=FAQPhone"
+             xmlns:icon="clr-namespace:Awesome;assembly=FAQPhone"
              x:Class="FAQPhone.Views.DiscountNewPage"
              Title="{infr:Translate discount_new}">
-  <ScrollView>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:InverseBooleanConverter x:Key="Inverse" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}">
             <Entry Placeholder="{infr:Translate discount_price}" Text="{Binding price, Mode=TwoWay}" />
             <Entry Placeholder="{infr:Translate discount_count}" Text="{Binding count, Mode=TwoWay}" />
-            <Label Text="{Binding total}" />
-            <Button Text="{infr:Translate discount_category_selection}" Command="{Binding SelectCommand}" StyleClass="Info" />
-            <Button Text="{infr:Translate command_add}" Command="{Binding AddCommand}" StyleClass="Info" />
+            <Entry Placeholder="{infr:Translate discount_total}" Text="{Binding total}" IsEnabled="false" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Text="{x:Static icon:FontAwesome.FAEllipsisH}" FontFamily="fontawesome" Command="{Binding SelectCommand}" IsVisible="{Binding HasCategory, Converter={StaticResource Inverse}}" Grid.Row="0" Grid.Column="0" />
+                <Button Text="{x:Static icon:FontAwesome.FATrashO}" FontFamily="fontawesome" Command="{Binding ClearCommand}" IsVisible="{Binding HasCategory}" Grid.Row="0" Grid.Column="0" />
+                <Entry Placeholder="{infr:Translate discount_category_selection}" Text="{Binding category.caption}" IsEnabled="false" Grid.Row="0" Grid.Column="1"  />
+            </Grid>
+            <Button Text="{infr:Translate command_save}" Command="{Binding SaveCommand}" StyleClass="Info" />
         </StackLayout>
     </ScrollView>
 </ContentPage>
