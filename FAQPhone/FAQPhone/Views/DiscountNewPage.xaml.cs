@@ -1,4 +1,7 @@
-﻿using System;
+﻿using FAQPhone.Infarstructure;
+using FAQPhone.Models;
+using FAQPhone.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -19,36 +22,109 @@ namespace FAQPhone.Views
         public DiscountNewPage()
         {
             InitializeComponent();
-            BindingContext = new ContentPageViewModel();
+            var factory = App.Resolve<DiscountNewFactory>();
+            BindingContext = factory.Create(this);
         }
     }
 
-    class DiscountNewPageViewModel : INotifyPropertyChanged
+    public class DiscountNewFactory
+    {
+        IDiscountService discountService;
+        public DiscountNewFactory(IDiscountService discountService)
+        {
+            this.discountService = discountService;
+        }
+        public DiscountNewViewModel Create(ContentPage page)
+        {
+            return new DiscountNewViewModel(this.discountService, page);
+        }
+    }
+
+    public class DiscountNewViewModel : BaseViewModel
     {
 
-        public DiscountNewPageViewModel()
+        public DiscountNewViewModel(IDiscountService discountService, ContentPage page) : base(page)
         {
-            IncreaseCountCommand = new Command(IncreaseCount);
+            this.discountService = discountService;
+            this.category = new DepartmentModel();
+            this.SaveCommand = new Command(async () => await saveCommand());
+            this.SelectCommand = new Command(async () => await selectCommand());
+        }
+        private IDiscountService discountService { get; set; }
+
+        string _price;
+        public string price
+        {
+            get { return _price; }
+            set
+            {
+                _price = value;
+                OnPropertyChanged();
+                setTotal();
+            }
         }
 
-        int count;
-
-        string countDisplay = "You clicked 0 times.";
-        public string CountDisplay
+        private void setTotal()
         {
-            get { return countDisplay; }
-            set { countDisplay = value; OnPropertyChanged(); }
+            int price, count;
+            if (int.TryParse(this.price, out price) && int.TryParse(this.count, out count))
+            {
+                this.total = (price * count).ToString();
+            }
         }
 
-        public ICommand IncreaseCountCommand { get; }
+        string _count;
+        public string count
+        {
+            get { return _count; }
+            set {
+                _count = value;
+                OnPropertyChanged();
+                setTotal();
+            }
+        }
 
-        void IncreaseCount() =>
-            CountDisplay = $"You clicked {++count} times";
+        string _total;
+        public string total
+        {
+            get { return _total; }
+            set { _total = value; OnPropertyChanged(); }
+        }
+
+        DepartmentModel _category;
+        public DepartmentModel category
+        {
+            get { return _category; }
+            set { _category = value; OnPropertyChanged(); }
+        }
 
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        void OnPropertyChanged([CallerMemberName]string propertyName = "") =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        public ICommand SelectCommand { protected set; get; }
 
+        public async Task selectCommand()
+        {
+
+        }
+        public ICommand SaveCommand { protected set; get; }
+
+        public async Task saveCommand()
+        {
+            int price, count, total;
+            if (int.TryParse(this.price, out price) && 
+                int.TryParse(this.count, out count) &&
+                int.TryParse(this.total, out total))
+            {
+                DiscountModel model = new DiscountModel()
+                {
+                    owner = new AccountModel() { username = App.Username },
+                    price = price,
+                    count = count,
+                    total = total,
+                    category = this.category
+                };
+                await this.discountService.Save(model);
+                await this.Navigation.PopAsync();
+            }            
+        }
     }
 }

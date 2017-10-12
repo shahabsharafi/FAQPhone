@@ -462,4 +462,19 @@
   <data name="discount_new" xml:space="preserve">
     <value>هدیه به دیوارمهربانی</value>
   </data>
+  <data name="command_select" xml:space="preserve">
+    <value>انتخاب</value>
+  </data>
+  <data name="discount_count" xml:space="preserve">
+    <value>تعداد</value>
+  </data>
+  <data name="discount_price" xml:space="preserve">
+    <value>قیمت</value>
+  </data>
+  <data name="discount_my" xml:space="preserve">
+    <value>بن های من</value>
+  </data>
+  <data name="discount_category_selection" xml:space="preserve">
+    <value>انتخاب بخش</value>
+  </data>
 </root>

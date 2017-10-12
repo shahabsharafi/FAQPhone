@@ -53,6 +53,7 @@ namespace FAQPhone.Views
         {
             this.discountService = discountService;
             this.List = new ObservableCollection<DiscountModel>();
+            this.AddCommand = new Command(async () => await addCommand());
         }
         private IDiscountService discountService { get; set; }
 
@@ -92,6 +93,13 @@ namespace FAQPhone.Views
                     item.price.ToString().FormatString("{0} ریالی", "");
                 this.List.Add(item);
             }
+        }
+        
+        public ICommand AddCommand { protected set; get; }
+
+        public async Task addCommand()
+        {
+            await this.Navigation.PushAsync(new DiscountNewPage());
         }
     }
 }

@@ -359,6 +359,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to انتخاب.
+        /// </summary>
+        internal static string command_select {
+            get {
+                return ResourceManager.GetString("command_select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to همه.
         /// </summary>
         internal static string command_select_all {
@@ -512,6 +521,24 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to انتخاب بخش.
+        /// </summary>
+        internal static string discount_category_selection {
+            get {
+                return ResourceManager.GetString("discount_category_selection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تعداد.
+        /// </summary>
+        internal static string discount_count {
+            get {
+                return ResourceManager.GetString("discount_count", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to هدایای من در دیوارمهربانی.
         /// </summary>
         internal static string discount_list {
@@ -521,11 +548,29 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to بن های من.
+        /// </summary>
+        internal static string discount_my {
+            get {
+                return ResourceManager.GetString("discount_my", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to هدیه به دیوارمهربانی.
         /// </summary>
         internal static string discount_new {
             get {
                 return ResourceManager.GetString("discount_new", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to قیمت.
+        /// </summary>
+        internal static string discount_price {
+            get {
+                return ResourceManager.GetString("discount_price", resourceCulture);
             }
         }
         

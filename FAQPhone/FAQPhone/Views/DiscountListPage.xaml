@@ -12,6 +12,7 @@
     </ContentPage.Resources>
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}">
+            <Button Text="{infr:Translate command_add}" Command="{Binding AddCommand}" StyleClass="Info" />
             <ListView ItemsSource="{ Binding List }" SelectedItem="{ Binding SelectedItem, Mode=TwoWay }" >
                 <ListView.Behaviors>
                     <local:EventToCommandBehavior EventName="ItemSelected" Command="{Binding SelectItemCommand}" Converter="{StaticResource SelectedItemConverter}" />

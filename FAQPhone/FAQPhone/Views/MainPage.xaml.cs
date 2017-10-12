@@ -99,7 +99,7 @@ namespace FAQPhone.Views
                 {
                     items.Add(new MenuItemModel() { CommandName = Constants.OPERATOR_FAQ, Icon = FontAwesome.FAUserCircle });
                 }
-                items.Add(new MenuItemModel() { CommandName = Constants.DISCOUNT_LIST, Icon = FontAwesome.FATicket });
+                items.Add(new MenuItemModel() { CommandName = Constants.MY_DISCOUNT, Icon = FontAwesome.FATicket });
                 items.Add(new MenuItemModel() { CommandName = Constants.ACCOUNT, Icon = FontAwesome.FAAddressCardO, Parms = new string[] { Constants.ACCESS_USER } });
                 items.Add(new MenuItemModel() { CommandName = Constants.ABOUT_US, Icon = FontAwesome.FAInfoCircle });
                 items.Add(new MenuItemModel() { CommandName = Constants.SETTING, Icon = FontAwesome.FACog });
@@ -196,7 +196,7 @@ namespace FAQPhone.Views
                     case Constants.SIGNOUT:
                         await Signout();
                         break;
-                    case Constants.DISCOUNT_LIST:
+                    case Constants.MY_DISCOUNT:
                         await this.Navigation.PushAsync(new DiscountListPage());
                         break;
                     case Constants.ACCOUNT:

@@ -9,7 +9,7 @@ namespace FAQPhone.Infarstructure
     public class Constants
     {
         //public static string BaseUrl { get { return "http://94.182.227.163:4000"; } }
-        public static string BaseUrl { get { return "http://192.168.1.104:4000"; } }
+        public static string BaseUrl { get { return "http://192.168.1.105:4000"; } }
         public static string RestUrl { get { return BaseUrl + "/api/{0}"; } }
         public static string UploadUrl { get { return BaseUrl + "/api/uploads"; } }
         public static string DownloadUrl { get { return BaseUrl + "/uploads"; } }
@@ -21,7 +21,7 @@ namespace FAQPhone.Infarstructure
         public const string USER_INPROGRESS_FAQ = "user_inprogress_faq";
         public const string USER_FAQ = "user_faq";
         public const string ACCOUNT = "account";
-        public const string DISCOUNT_LIST = "discount_list";
+        public const string MY_DISCOUNT = "discount_my";
         public const string ABOUT_US = "about_us";
         public const string SETTING = "setting";
         public const string SIGNOUT = "signout";

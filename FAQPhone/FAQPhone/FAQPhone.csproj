@@ -125,6 +125,9 @@
     <Compile Include="Views\DiscountListPage.xaml.cs">
       <DependentUpon>DiscountListPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\DiscountNewPage.xaml.cs">
+      <DependentUpon>DiscountNewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DiscussionNewPage.xaml.cs">
       <DependentUpon>DiscussionNewPage.xaml</DependentUpon>
     </Compile>
@@ -323,6 +326,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\DepartmentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DiscountNewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

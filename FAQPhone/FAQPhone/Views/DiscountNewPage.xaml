@@ -1,50 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls="clr-namespace:CustomControl;assembly=FAQPhone"
-             xmlns:infr="clr-namespace:FAQPhone.Infarstructure;assembly=FAQPhone"
-             xmlns:local="clr-namespace:EventToCommandBehavior"
+              xmlns:infr="clr-namespace:FAQPhone.Infarstructure;assembly=FAQPhone"
              x:Class="FAQPhone.Views.DiscountNewPage"
-             Title="{infr:Translate discount}">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <local:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
-    <StackLayout Style="{StaticResource pageStyle}">
-        <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" Color="Black" />
-        <StackLayout IsVisible="{ Binding Editable }">
-            <controls:ExtendedEditor  x:Name="text" Placeholder="{infr:Translate chat_text}"  Text="{Binding replay, Mode=TwoWay}" FontSize="Small" BackgroundColor="#efefef" HeightRequest="80" />
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Button Text="{infr:Translate command_send}" Command="{Binding SendCommand}" StyleClass="Info" IsEnabled="{ Binding CanSending }" Grid.Row="0" Grid.Column="1" />
-                <Button Text="{infr:Translate command_attach}" Command="{Binding AttachCommand}" StyleClass="Info" Grid.Row="0" Grid.Column="0" />
-                <Button Text="{infr:Translate command_finish}" Command="{Binding FinishCommand}" StyleClass="Info" IsVisible="{ Binding HasFinishing }" Grid.Row="1" Grid.Column="1" />
-                <Button Text="{infr:Translate command_report}" Command="{Binding ReportCommand}" StyleClass="Info" IsVisible="{ Binding HasReporting }" Grid.Row="1" Grid.Column="0" />
-            </Grid>
+             Title="{infr:Translate discount_new}">
+  <ScrollView>
+        <StackLayout Style="{StaticResource pageStyle}">
+            <Entry Placeholder="{infr:Translate discount_price}" Text="{Binding price, Mode=TwoWay}" />
+            <Entry Placeholder="{infr:Translate discount_count}" Text="{Binding count, Mode=TwoWay}" />
+            <Label Text="{Binding total}" />
+            <Button Text="{infr:Translate discount_category_selection}" Command="{Binding SelectCommand}" StyleClass="Info" />
+            <Button Text="{infr:Translate command_add}" Command="{Binding AddCommand}" StyleClass="Info" />
         </StackLayout>
-        <ScrollView>
-            <ListView ItemsSource="{ Binding List }" SelectedItem="{ Binding SelectedItem, Mode=TwoWay }" >
-                <ListView.Behaviors>
-                    <local:EventToCommandBehavior EventName="ItemSelected" Command="{Binding SelectItemCommand}" Converter="{StaticResource SelectedItemConverter}" />
-                </ListView.Behaviors>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout VerticalOptions="CenterAndExpand">
-                                <Label Text="{Binding caption}" TextColor="#4e5758" FontSize="Small" FontAttributes="Bold" />
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </ScrollView>
-    </StackLayout>
+    </ScrollView>
 </ContentPage>
