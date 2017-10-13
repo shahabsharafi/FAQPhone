@@ -49,11 +49,8 @@ namespace FAQPhone.Services
         public async Task<List<DiscussionModel>> GetDiscoussionWithDiscount()
         {
             string url = string.Format(Constants.RestUrl, "discussions/withdiscount");
-            var data = await this.get<PaginationModel<DiscussionModel>>(url);
-            List<DiscussionModel> list = null;
-            if (data.docs != null && data.docs.Length > 0)
-                list = data.docs.ToList();
-            return list;
+            var data = await this.get<List<DiscussionModel>>(url);
+            return data;
         }
 
         public async Task<DiscussionModel> Recive()

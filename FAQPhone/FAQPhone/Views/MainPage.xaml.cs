@@ -197,7 +197,7 @@ namespace FAQPhone.Views
                         await Signout();
                         break;
                     case Constants.MY_DISCOUNT:
-                        await this.Navigation.PushAsync(new DiscountListPage());
+                        await this.Navigation.PushAsync(new DiscountTabPage());
                         break;
                     case Constants.ACCOUNT:
                         await ViewAndChangeAccountProfile(model);

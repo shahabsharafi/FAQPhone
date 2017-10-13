@@ -521,6 +521,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to همه بن ها.
+        /// </summary>
+        internal static string discount_all {
+            get {
+                return ResourceManager.GetString("discount_all", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to انتخاب بخش.
         /// </summary>
         internal static string discount_category_selection {
@@ -539,7 +548,7 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to هدایای من در دیوارمهربانی.
+        ///   Looks up a localized string similar to هدایای من.
         /// </summary>
         internal static string discount_list {
             get {
@@ -575,11 +584,29 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to بن و دیوار مهربانی.
+        /// </summary>
+        internal static string discount_tab {
+            get {
+                return ResourceManager.GetString("discount_tab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to جمع کل.
         /// </summary>
         internal static string discount_total {
             get {
                 return ResourceManager.GetString("discount_total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to بن های استفاده شده.
+        /// </summary>
+        internal static string discount_used {
+            get {
+                return ResourceManager.GetString("discount_used", resourceCulture);
             }
         }
         

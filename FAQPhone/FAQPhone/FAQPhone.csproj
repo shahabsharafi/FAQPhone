@@ -122,11 +122,17 @@
     <Compile Include="Views\DepartmentPage.xaml.cs">
       <DependentUpon>DepartmentPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\DiscountAllPage.xaml.cs">
+      <DependentUpon>DiscountAllPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DiscountListPage.xaml.cs">
       <DependentUpon>DiscountListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DiscountNewPage.xaml.cs">
       <DependentUpon>DiscountNewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DiscountTabPage.xaml.cs">
+      <DependentUpon>DiscountTabPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DiscountUsedPage.xaml.cs">
       <DependentUpon>DiscountUsedPage.xaml</DependentUpon>
@@ -341,6 +347,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\DiscountUsedPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DiscountTabPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DiscountAllPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
