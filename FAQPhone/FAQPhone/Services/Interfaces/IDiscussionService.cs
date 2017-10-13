@@ -11,6 +11,7 @@ namespace FAQPhone.Services.Interfaces
     {
         Task<List<DiscussionModel>> GetList(bool asUser);
         Task<int> GetCount(bool asUser);
+        Task<List<DiscussionModel>> GetDiscoussionWithDiscount();
         Task<DiscussionModel> Recive();
     }
 }

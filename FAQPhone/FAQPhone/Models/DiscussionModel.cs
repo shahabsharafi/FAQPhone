@@ -65,6 +65,7 @@ namespace FAQPhone.Models
         public long price { get; set; }
         public decimal payment { get; set; }
         public decimal wage { get; set; }
+        public DiscountModel usedDiscount { get; set; }
         public bool userRead { get; set; }
         public bool operatorRead { get; set; }
         public DepartmentModel department { get; set; }
