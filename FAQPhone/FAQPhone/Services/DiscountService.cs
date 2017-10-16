@@ -21,7 +21,7 @@ namespace FAQPhone.Services
             string prm = "$expand=type,owner,category";
             string url = this.getUrl(prm);
             var data = await this.get<PaginationModel<DiscountModel>>(url);
-            List<DiscountModel> list = null;
+            List<DiscountModel> list = new List<DiscountModel>();
             if (data.docs != null && data.docs.Length > 0)
                 list = data.docs.ToList();
             return list;

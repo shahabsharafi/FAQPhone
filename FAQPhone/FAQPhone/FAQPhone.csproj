@@ -38,6 +38,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\ImageButton.cs" />
     <Compile Include="CustomRenderer\BadgeLabel.cs" />
     <Compile Include="CustomRenderer\DiscussionViewCell.cs" />
     <Compile Include="CustomRenderer\IconicButton.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Infrastructure\FontAwesome.cs" />
     <Compile Include="Infrastructure\IDownloadService.cs" />
     <Compile Include="Infrastructure\InverseBooleanConverter.cs" />
+    <Compile Include="Infrastructure\PlatformImageExtension.cs" />
     <Compile Include="Infrastructure\ResourceManagerHelper.cs" />
     <Compile Include="Infrastructure\SelectedItemEventArgsToSelectedItemConverter.cs" />
     <Compile Include="Infrastructure\TranslateExtension.cs" />

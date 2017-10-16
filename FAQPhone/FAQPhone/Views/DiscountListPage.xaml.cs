@@ -54,6 +54,7 @@ namespace FAQPhone.Views
             this.discountService = discountService;
             this.List = new ObservableCollection<DiscountModel>();
             this.AddCommand = new Command(async () => await addCommand());
+            this.SelectItemCommand = new Command<DiscountModel>((model) => selectItemCommand(model));
         }
         private IDiscountService discountService { get; set; }
 
@@ -82,15 +83,15 @@ namespace FAQPhone.Views
             this.List.Clear();
             foreach (var item in list)
             {
-                string fName = item.owner?.profile?.firstName;
-                string lName = item.owner?.profile?.lastName;
+                //string fName = item.owner?.profile?.firstName;
+                //string lName = item.owner?.profile?.lastName;
                 string category = item.category?.caption ?? "";
-                item.Caption = 
-                    fName.FormatString("{0} ", "") +
-                    lName.FormatString("{0} ", "") + 
-                    category.FormatString("در بخش {0} ", "") +
-                    item.count.ToString().FormatString("{0} عدد ", "") +
-                    item.price.ToString().FormatString("{0} ریالی", "");
+                item.Department = 
+                    category.FormatString("در بخش {0} ", "در همه بخش ها");
+                //item.FullName =
+                //    fName.FormatString("{0} ", "") +
+                //    lName.FormatString("{0} ", "");
+                item.Caption = string.Format("تعداد {0} عدد بن {1} ریالی", item.count, item.price);
                 this.List.Add(item);
             }
         }
@@ -100,6 +101,15 @@ namespace FAQPhone.Views
         public async Task addCommand()
         {
             await this.Navigation.PushAsync(new DiscountNewPage());
+        }
+
+        public ICommand SelectItemCommand { protected set; get; }
+
+        public void selectItemCommand(DiscountModel model)
+        {
+            if (model == null)
+                return;
+            this.SelectedItem = null;
         }
     }
 }

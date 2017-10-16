@@ -18,5 +18,7 @@ namespace FAQPhone.Models
         public AttributeModel type { get; set; }
         public DateTime beginDate { get; set; }
         public string Caption { get; set; }
+        public string FullName { get; set; }
+        public string Department { get; set; }
     }
 }
