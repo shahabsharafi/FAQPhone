@@ -51,7 +51,12 @@ namespace FAQPhone.Views
         public DiscussionEditViewModel(ContentPage page, DepartmentModel department) : base(page)
         {            
             this.CanNext = false;
+            this.UsedDiscount = false;
+            this.HasDiscount = true;
+            this.discount = 1000 + " " +
+                ResourceManagerHelper.GetValue("unit_of_mony_caption");
             this.NextCommand = new Command(async () => await nextCommand());
+            this.DiscountCommand = new Command(async () => await discountCommand());
             this.department = department;
             this.price = 
                 ResourceManagerHelper.GetValue("discussion_recive_price") + ":" + 
@@ -81,6 +86,20 @@ namespace FAQPhone.Views
             set { _CanNext = value; OnPropertyChanged(); }
         }
 
+        bool _HasDiscount;
+        public bool HasDiscount
+        {
+            get { return _HasDiscount; }
+            set { _HasDiscount = value; OnPropertyChanged(); }
+        }
+
+        bool _UsedDiscount;
+        public bool UsedDiscount
+        {
+            get { return _UsedDiscount; }
+            set { _UsedDiscount = value; OnPropertyChanged(); }
+        }
+
         string _price;
         public string price
         {
@@ -88,7 +107,21 @@ namespace FAQPhone.Views
             set { _price = value; OnPropertyChanged(); }
         }
 
+        string _discount;
+        public string discount
+        {
+            get { return _discount; }
+            set { _discount = value; OnPropertyChanged(); }
+        }
+
         private DepartmentModel department { get; set; }
+
+        public ICommand DiscountCommand { protected set; get; }
+
+        public async Task discountCommand()
+        {
+            this.UsedDiscount = !this.UsedDiscount;
+        }
         public ICommand NextCommand { protected set; get; }
 
         public async Task nextCommand()

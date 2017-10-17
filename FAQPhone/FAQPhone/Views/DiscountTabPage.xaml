@@ -6,7 +6,6 @@
              xmlns:pages="clr-namespace:FAQPhone.Views;assembly=FAQPhone"
              Title="{infr:Translate discount_tab}">
   <!--Pages can be added as references or inline-->
-    <pages:DiscountUsedPage/>
     <pages:DiscountListPage/>
     <pages:DiscountAllPage/>
 </TabbedPage>

@@ -1,18 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:local="clr-namespace:BooleanConverter"
+             xmlns:markupExtensions="clr-namespace:MarkupExtensions;assembly=FAQPhone"
+             xmlns:customControls="clr-namespace:FAQPhone.CustomControls;assembly=FAQPhone"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:infr="clr-namespace:FAQPhone.Infarstructure;assembly=FAQPhone"
              x:Class="FAQPhone.Views.DiscussionNewPage"
              Title="{infr:Translate discussion_edit}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:InverseBooleanConverter x:Key="Inverse" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}" >
-            <StackLayout BackgroundColor="#337ab7" Padding="10,10,10,10">
-                <Label Text="{Binding price, Mode=TwoWay}" TextColor="White" />
-                <Label Text="{infr:Translate discussion_edit_title_help}" TextColor="White"  />
-            </StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackLayout Padding="5,10,10,5" Grid.Column="1" Grid.Row="0">
+                    <Label Text="{Binding price, Mode=TwoWay}" />
+                    <Label Text="{infr:Translate discussion_edit_title_help}"  />
+                </StackLayout>
+                <StackLayout Padding="10,10,5,5" IsVisible="{ Binding HasDiscount }" Grid.Column="0" Grid.Row="0">
+                    <customControls:ImageButton Source="{markupExtensions:PlatformImage SourceImage='present128x128'}"
+                    Command="{Binding DiscountCommand}" IsVisible="{ Binding UsedDiscount, Converter={StaticResource Inverse} }" />
+                    <customControls:ImageButton Source="{markupExtensions:PlatformImage SourceImage='present128x128_ch'}"
+                    Command="{Binding DiscountCommand}" IsVisible="{ Binding UsedDiscount }" />
+                    <Label FontSize="Micro" HorizontalTextAlignment="Center" Text="{Binding discount, Mode=TwoWay}" />
+                </StackLayout>
+            </Grid>
             <Entry x:Name="title" Placeholder="{infr:Translate discussion_edit_title}" Text="{Binding title, Mode=TwoWay}" />
             <Button Text="{infr:Translate command_next}" Command="{Binding NextCommand}" StyleClass="Info" IsEnabled="{ Binding CanNext }" />
-            <Label x:Name="messageLabel" />
         </StackLayout>
     </ScrollView>
 </ContentPage>
