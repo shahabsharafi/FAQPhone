@@ -20,7 +20,7 @@ namespace FAQPhone.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DiscussionNewPage : ContentPage
     {
-        public DiscussionNewPage(DepartmentModel department, int pushCount)
+        public DiscussionNewPage(DepartmentModel department, DiscountModel discount, int pushCount)
         {
             InitializeComponent();
             this.Appearing += (sender, e) => {
@@ -30,7 +30,7 @@ namespace FAQPhone.Views
                 }
             };            
             var factory = App.Resolve<DiscussionEditViewModelFactory>();
-            BindingContext = factory.Create(this, department);
+            BindingContext = factory.Create(this, department, discount);
         }
     }
 
@@ -40,21 +40,25 @@ namespace FAQPhone.Views
         {
             
         }
-        public DiscussionEditViewModel Create(ContentPage page, DepartmentModel department)
+        public DiscussionEditViewModel Create(ContentPage page, DepartmentModel department, DiscountModel discount)
         {
-            return new DiscussionEditViewModel(page, department);
+            return new DiscussionEditViewModel(page, department, discount);
         }
     }
 
     public class DiscussionEditViewModel : BaseViewModel
     {
-        public DiscussionEditViewModel(ContentPage page, DepartmentModel department) : base(page)
+        public DiscussionEditViewModel(ContentPage page, DepartmentModel department, DiscountModel discount) : base(page)
         {            
             this.CanNext = false;
             this.UsedDiscount = false;
-            this.HasDiscount = true;
-            this.discount = 1000 + " " +
-                ResourceManagerHelper.GetValue("unit_of_mony_caption");
+            this.HasDiscount = (discount != null);
+            if (this.HasDiscount)
+            {
+                this.discount = discount;
+                this.discountPrice = discount.price + " " +
+                    ResourceManagerHelper.GetValue("unit_of_mony_caption");                
+            }
             this.NextCommand = new Command(async () => await nextCommand());
             this.DiscountCommand = new Command(async () => await discountCommand());
             this.department = department;
@@ -107,14 +111,15 @@ namespace FAQPhone.Views
             set { _price = value; OnPropertyChanged(); }
         }
 
-        string _discount;
-        public string discount
+        string _discountPrice;
+        public string discountPrice
         {
-            get { return _discount; }
-            set { _discount = value; OnPropertyChanged(); }
+            get { return _discountPrice; }
+            set { _discountPrice = value; OnPropertyChanged(); }
         }
 
         private DepartmentModel department { get; set; }
+        private DiscountModel discount { get;set; }
 
         public ICommand DiscountCommand { protected set; get; }
 

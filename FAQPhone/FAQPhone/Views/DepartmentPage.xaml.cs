@@ -31,23 +31,26 @@ namespace FAQPhone.Views
     public class DepartmentPageViewModelFactory
     {
         IDepartmentService departmentService;
-        public DepartmentPageViewModelFactory(IDepartmentService departmentService)
+        IDiscountService discountService;
+        public DepartmentPageViewModelFactory(IDepartmentService departmentService, IDiscountService discountService)
         {
             this.departmentService = departmentService;
+            this.discountService = discountService;
         }
         public DepartmentPageViewModel Create(ContentPage page, List<DepartmentModel> list, int pushCount)
         {
-            return new DepartmentPageViewModel(this.departmentService, page, list, pushCount);
+            return new DepartmentPageViewModel(this.departmentService, this.discountService, page, list, pushCount);
         }
     }
 
     public class DepartmentPageViewModel : BaseViewModel
     {
 
-        public DepartmentPageViewModel(IDepartmentService departmentService, ContentPage page, List<DepartmentModel> list, int pushCount) : base(page)
+        public DepartmentPageViewModel(IDepartmentService departmentService, IDiscountService discountService, ContentPage page, List<DepartmentModel> list, int pushCount) : base(page)
         {
             this._pushCount = pushCount;
             this.departmentService = departmentService;
+            this.discountService = discountService;
             this.SelectItemCommand = new Command<DepartmentModel>(async (model) => await selectItemCommand(model));
             this.List = new ObservableCollection<DepartmentModel>();
             if (list == null)
@@ -60,6 +63,7 @@ namespace FAQPhone.Views
             }
         }
         private IDepartmentService departmentService { get; set; }
+        private IDiscountService discountService { get; set; }
 
         int _pushCount;
 
@@ -86,7 +90,8 @@ namespace FAQPhone.Views
             }
             else if (list == null || list.Count == 0)
             {
-                await this.Navigation.PushAsync(new DiscussionNewPage(model, this._pushCount));
+                var discount = await this.discountService.Select(model._id);
+                await this.Navigation.PushAsync(new DiscussionNewPage(model, discount, this._pushCount));
             }
             else
             {
