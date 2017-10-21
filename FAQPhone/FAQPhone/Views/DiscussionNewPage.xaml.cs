@@ -140,6 +140,7 @@ namespace FAQPhone.Views
                 state = Constants.DISCUSSION_STATE_CREATE,
                 userRead = false,
                 operatorRead = false,
+                usedDiscount = new DiscountModel() { _id = this.discount._id },
                 department = new DepartmentModel() { _id = this.department._id },
                 items = new DiscussionDetailModel[] { }
             };
