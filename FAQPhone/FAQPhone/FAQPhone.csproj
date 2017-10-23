@@ -69,6 +69,7 @@
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\AttributeModel.cs" />
     <Compile Include="Models\DiscounModel.cs" />
+    <Compile Include="Models\PollModel.cs" />
     <Compile Include="Models\ResultModel.cs" />
     <Compile Include="Models\AutResultModel.cs" />
     <Compile Include="Models\CodeResultModel.cs" />

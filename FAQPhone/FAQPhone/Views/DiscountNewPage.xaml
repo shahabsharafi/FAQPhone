@@ -13,8 +13,8 @@
     </ContentPage.Resources>
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}">
-            <Entry Placeholder="{infr:Translate discount_price}" Text="{Binding price, Mode=TwoWay}" />
-            <Entry Placeholder="{infr:Translate discount_count}" Text="{Binding count, Mode=TwoWay}" />
+            <Entry Placeholder="{infr:Translate discount_price}" Keyboard="Numeric" Text="{Binding price, Mode=TwoWay}" />
+            <Entry Placeholder="{infr:Translate discount_count}" Keyboard="Numeric" Text="{Binding count, Mode=TwoWay}" />
             <Entry Placeholder="{infr:Translate discount_total}" Text="{Binding total}" IsEnabled="false" />
             <Grid>
                 <Grid.RowDefinitions>
