@@ -69,6 +69,7 @@
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\AttributeModel.cs" />
     <Compile Include="Models\DiscounModel.cs" />
+    <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Models\PollModel.cs" />
     <Compile Include="Models\ResultModel.cs" />
     <Compile Include="Models\AutResultModel.cs" />
@@ -92,6 +93,8 @@
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Infrastructure\BaseRestService.cs" />
     <Compile Include="Services\AttributeService.cs" />
+    <Compile Include="Services\Interfaces\IMessageService.cs" />
+    <Compile Include="Services\MessageService.cs" />
     <Compile Include="Services\DepartmentService.cs" />
     <Compile Include="Services\DiscountService.cs" />
     <Compile Include="Services\DiscussionService.cs" />
