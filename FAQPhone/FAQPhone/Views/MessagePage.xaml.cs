@@ -20,11 +20,11 @@ namespace FAQPhone.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MessagePage : ContentPage
     {
-        public MessagePage()
+        public MessagePage(bool unread)
         {
             InitializeComponent();
             var factory = App.Resolve<MessageViewModelFactory>();
-            var vm = factory.Create(this);
+            var vm = factory.Create(this, unread);
             this.Appearing += (sender, e) => {
                 Task.Run(() => vm.loadItems()).Wait();
             };
@@ -39,22 +39,24 @@ namespace FAQPhone.Views
         {
             this.messageService = messageService;
         }
-        public MessageViewModel Create(ContentPage page)
+        public MessageViewModel Create(ContentPage page, bool unread)
         {
-            return new MessageViewModel(this.messageService, page);
+            return new MessageViewModel(this.messageService, page, unread);
         }
     }
 
     public class MessageViewModel : BaseViewModel
     {
 
-        public MessageViewModel(IMessageService messageService, ContentPage page) : base(page)
+        public MessageViewModel(IMessageService messageService, ContentPage page, bool unread) : base(page)
         {
             this.messageService = messageService;
+            this.unread = unread;
             this.List = new ObservableCollection<MessageModel>();
             this.SelectItemCommand = new Command<MessageModel>((model) => selectItemCommand(model));
         }
         private IMessageService messageService { get; set; }
+        private bool unread { get; set; }
 
         object _selectedItem;
         public object SelectedItem
@@ -72,16 +74,27 @@ namespace FAQPhone.Views
 
         public async Task loadItems()
         {
-            var list = await this.messageService.GetAllMessages();
-            this.setList(list);
+            if (this.unread)
+            {
+                var list = await this.messageService.GetNewMessages();
+                this.setList(list);
+            }
+            else
+            {
+                var list = await this.messageService.GetAllMessages();
+                this.setList(list);
+            }
         }
 
         private void setList(List<MessageModel> list)
         {
             this.List.Clear();
-            foreach (var item in list)
+            if (list != null)
             {
-                this.List.Add(item);
+                foreach (var item in list)
+                {
+                    this.List.Add(item);
+                }
             }
         }
 

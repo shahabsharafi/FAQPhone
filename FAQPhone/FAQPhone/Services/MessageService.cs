@@ -17,18 +17,18 @@ namespace FAQPhone.Services
             
         }
 
-        public async Task<List<MessageModel>> GetMyMessages()
+        public async Task<List<MessageModel>> GetNewMessages()
         {
-            string url = string.Format(Constants.RestUrl, "messages/mymessages");
+            string url = string.Format(Constants.RestUrl, "messages/newmessages");
             var data = await this.get<List<MessageModel>>(url);
             return data;
         }
 
         public async Task<List<MessageModel>> GetAllMessages()
         {
-            string url = string.Format(Constants.RestUrl, "messages");
-            var data = await this.get<PaginationModel<MessageModel>>(url);
-            return data.docs.ToList();
+            string url = string.Format(Constants.RestUrl, "messages/allmessages");
+            var data = await this.get<List<MessageModel>>(url);
+            return data;
         }
     }
 }

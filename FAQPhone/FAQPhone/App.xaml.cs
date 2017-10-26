@@ -44,6 +44,7 @@ namespace FAQPhone
             App.Container.RegisterType<IDiscussionService, DiscussionService>();
             App.Container.RegisterType<IAttributeService, AttributeService>();
             App.Container.RegisterType<IDiscountService, DiscountService>();
+            App.Container.RegisterType<IMessageService, MessageService>();
         }
 
         public static string Username { get; set; }

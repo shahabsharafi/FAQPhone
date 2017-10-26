@@ -106,7 +106,9 @@ namespace FAQPhone.Views
             {
                 if (flag)
                 {
-                    await this.RootNavigate(new MainPage());
+                    var p = new MainPage();
+                    await this.RootNavigate(p);
+                    await p.Navigation.PushAsync(new MessagePage(true));
                 }
                 else
                 {
