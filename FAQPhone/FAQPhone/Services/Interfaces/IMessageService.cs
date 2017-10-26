@@ -10,5 +10,6 @@ namespace FAQPhone.Services.Interfaces
     public interface IMessageService
     {
         Task<List<MessageModel>> GetMyMessages();
+        Task<List<MessageModel>> GetAllMessages();
     }
 }

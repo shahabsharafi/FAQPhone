@@ -24,10 +24,10 @@ namespace FAQPhone.Services
             return data;
         }
 
-        public async Task<List<DepartmentModel>> GetAllMessages()
+        public async Task<List<MessageModel>> GetAllMessages()
         {
             string url = string.Format(Constants.RestUrl, "messages");
-            var data = await this.get<PaginationModel<DepartmentModel>>(url);
+            var data = await this.get<PaginationModel<MessageModel>>(url);
             return data.docs.ToList();
         }
     }
