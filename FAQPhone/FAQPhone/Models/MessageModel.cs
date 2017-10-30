@@ -8,11 +8,12 @@ namespace FAQPhone.Models
 {
     public class MessageModel
     {
-        string title { get; set; }
-        string text { get; set; }
-        AccountModel owner { get; set; }
-        DateTime createDate { get; set; }
-        DateTime issueDate { get; set; }
-        DateTime expireDate { get; set; }
+        public string _id { get; set; }
+        public string title { get; set; }
+        public string text { get; set; }
+        public string owner { get; set; }
+        public DateTime createDate { get; set; }
+        public DateTime issueDate { get; set; }
+        public DateTime expireDate { get; set; }
 }
 }

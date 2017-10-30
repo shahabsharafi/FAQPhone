@@ -47,27 +47,31 @@ namespace FAQPhone.Views
     public class ConnectingViewModelFactory
     {
         IAccountService accountService;
-        public ConnectingViewModelFactory(IAccountService accountService)
+        IMessageService messageService;
+        public ConnectingViewModelFactory(IAccountService accountService, IMessageService messageService)
         {
             this.accountService = accountService;
+            this.messageService = messageService;
         }
         public ConnectingViewModel Create(ContentPage page)
         {
-            return new ConnectingViewModel(accountService, page);
+            return new ConnectingViewModel(accountService, messageService, page);
         }
     }
 
     public class ConnectingViewModel : BaseViewModel
     {
-        public ConnectingViewModel(IAccountService accountService, ContentPage page) : base(page)
+        public ConnectingViewModel(IAccountService accountService, IMessageService messageService, ContentPage page) : base(page)
         {
             this.accountService = accountService;
+            this.messageService = messageService;
             CommandCaption = ResourceManagerHelper.GetValue(Constants.COMMAND_CONNECT);
             this.TryCommand = new Command(() => tryCommand());
             this.ResetPasswordCommand = new Command(async () => await resetPasswordCommand());
         }
 
         IAccountService accountService;
+        IMessageService messageService;
 
         string _CommandCaption;
         public string CommandCaption
@@ -108,7 +112,11 @@ namespace FAQPhone.Views
                 {
                     var p = new MainPage();
                     await this.RootNavigate(p);
-                    await p.Navigation.PushAsync(new MessagePage(true));
+                    //var list = await this.messageService.GetNewMessages();
+                    //if (list != null && list.Count > 0)
+                    //{
+                        await p.Navigation.PushAsync(new MessagePage(true));
+                    //}                   
                 }
                 else
                 {

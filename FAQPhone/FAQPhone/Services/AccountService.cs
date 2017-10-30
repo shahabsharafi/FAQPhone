@@ -16,6 +16,13 @@ namespace FAQPhone.Services
             this._relativeUrl = "accounts/{0}";
         }
 
+        public async Task<List<AccountModel>> GetOperatoreList()
+        {
+            var url = this.getUrl("?$filter = isOperator eq 'true'");
+            var result = await this.get<PaginationModel<AccountModel>>(url);
+            return result.docs.ToList();
+        }
+
         public async Task<CodeResultModel> SendCode(string mobile)
         {
             var url = this.getUrl(string.Format("sendcode/{0}", mobile));

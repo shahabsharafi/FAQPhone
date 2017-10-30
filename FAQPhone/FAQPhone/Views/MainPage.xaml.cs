@@ -71,16 +71,13 @@ namespace FAQPhone.Views
             {
                 int count = 0;
                 Task.Run(async () => count = await this.discussionService.GetCount(false)).Wait();
-                items.AddRange(
-                    new MenuItemModel[] {
-                        new MenuItemModel() { CommandName = Constants.OPERATOR_RECEIVE_FAQ, Icon = FontAwesome.FADownload },
-                        new MenuItemModel() { CommandName = Constants.OPERATOR_INPROGRESS_FAQ, Icon = FontAwesome.FATasks, Badge = count.ToString() }
-                    }
-                );
+                items.Add(new MenuItemModel() { CommandName = Constants.OPERATOR_RECEIVE_FAQ, Icon = FontAwesome.FADownload });
+                items.Add(new MenuItemModel() { CommandName = Constants.OPERATOR_INPROGRESS_FAQ, Icon = FontAwesome.FATasks, Badge = count.ToString() });
                 if (App.Access.Contains(Constants.ACCESS_USER))
                 {
                     items.Add(new MenuItemModel() { CommandName = Constants.USER_FAQ, Icon = FontAwesome.FAUser });
                 }
+                items.Add(new MenuItemModel() { CommandName = Constants.ALL_MESSAGES, Icon = FontAwesome.FAEnvelopeO });
                 items.Add(new MenuItemModel() { CommandName = Constants.ACCOUNT, Icon = FontAwesome.FAAddressCardO, Parms = new string[] { Constants.ACCESS_OPERATOR } });
                 items.Add(new MenuItemModel() { CommandName = Constants.ABOUT_US, Icon = FontAwesome.FAInfoCircle });
                 items.Add(new MenuItemModel() { CommandName = Constants.SETTING, Icon = FontAwesome.FACog });
@@ -89,17 +86,15 @@ namespace FAQPhone.Views
             {
                 int count = 0;
                 Task.Run(async () => count = await this.discussionService.GetCount(true)).Wait();
-                items.AddRange(
-                    new MenuItemModel[] {
-                        new MenuItemModel() { CommandName = Constants.USER_CREATE_FAQ, Icon = FontAwesome.FAPlus },
-                        new MenuItemModel() { CommandName = Constants.USER_INPROGRESS_FAQ, Icon = FontAwesome.FATasks, Badge = count.ToString() }
-                    }
-                );
+                items.Add(new MenuItemModel() { CommandName = Constants.USER_CREATE_FAQ, Icon = FontAwesome.FAPlus });
+                items.Add(new MenuItemModel() { CommandName = Constants.USER_INPROGRESS_FAQ, Icon = FontAwesome.FATasks, Badge = count.ToString() });
                 if (App.Access.Contains(Constants.ACCESS_OPERATOR))
                 {
                     items.Add(new MenuItemModel() { CommandName = Constants.OPERATOR_FAQ, Icon = FontAwesome.FAUserCircle });
                 }
+                items.Add(new MenuItemModel() { CommandName = Constants.OPERATOR_LIST, Icon = FontAwesome.FAUsers });
                 items.Add(new MenuItemModel() { CommandName = Constants.MY_DISCOUNT, Icon = FontAwesome.FATicket });
+                items.Add(new MenuItemModel() { CommandName = Constants.ALL_MESSAGES, Icon = FontAwesome.FAEnvelopeO });
                 items.Add(new MenuItemModel() { CommandName = Constants.ACCOUNT, Icon = FontAwesome.FAAddressCardO, Parms = new string[] { Constants.ACCESS_USER } });
                 items.Add(new MenuItemModel() { CommandName = Constants.ABOUT_US, Icon = FontAwesome.FAInfoCircle });
                 items.Add(new MenuItemModel() { CommandName = Constants.SETTING, Icon = FontAwesome.FACog });
@@ -196,8 +191,14 @@ namespace FAQPhone.Views
                     case Constants.SIGNOUT:
                         await Signout();
                         break;
+                    case Constants.OPERATOR_LIST:
+                        await this.Navigation.PushAsync(new OperatorListPage());
+                        break;
                     case Constants.MY_DISCOUNT:
                         await this.Navigation.PushAsync(new DiscountTabPage());
+                        break;
+                    case Constants.ALL_MESSAGES:
+                        await this.Navigation.PushAsync(new MessagePage(false));
                         break;
                     case Constants.ACCOUNT:
                         await ViewAndChangeAccountProfile(model);

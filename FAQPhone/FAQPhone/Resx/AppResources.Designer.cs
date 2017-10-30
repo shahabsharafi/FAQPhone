@@ -134,6 +134,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to پیغام ها.
+        /// </summary>
+        internal static string all_messages {
+            get {
+                return ResourceManager.GetString("all_messages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to پرسانه.
         /// </summary>
         internal static string app_name {
@@ -854,6 +863,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to پیغام ها.
+        /// </summary>
+        internal static string message_list {
+            get {
+                return ResourceManager.GetString("message_list", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to موردی یافت نشد!.
         /// </summary>
         internal static string message_not_exists {
@@ -931,6 +949,15 @@ namespace FAQPhone.Resx {
         internal static string operator_inprogress_faq {
             get {
                 return ResourceManager.GetString("operator_inprogress_faq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کارشناسان.
+        /// </summary>
+        internal static string operator_list {
+            get {
+                return ResourceManager.GetString("operator_list", resourceCulture);
             }
         }
         

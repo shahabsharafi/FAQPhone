@@ -22,6 +22,8 @@ namespace FAQPhone.Infarstructure
         public const string USER_FAQ = "user_faq";
         public const string ACCOUNT = "account";
         public const string MY_DISCOUNT = "discount_tab";
+        public const string ALL_MESSAGES = "all_messages";
+        public const string OPERATOR_LIST = "operator_list";
         public const string ABOUT_US = "about_us";
         public const string SETTING = "setting";
         public const string SIGNOUT = "signout";

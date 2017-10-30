@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FAQPhone.Views.DiscountListPage"
-             xmlns:markupExtensions="clr-namespace:MarkupExtensions;assembly=FAQPhone"
+             x:Class="FAQPhone.Views.OperatorListPage"
+              xmlns:markupExtensions="clr-namespace:MarkupExtensions;assembly=FAQPhone"
              xmlns:customControls="clr-namespace:FAQPhone.CustomControls;assembly=FAQPhone"
              xmlns:infr="clr-namespace:FAQPhone.Infarstructure;assembly=FAQPhone"
              xmlns:local="clr-namespace:EventToCommandBehavior"
-             Title="{infr:Translate discount_list}">
+             Title="{infr:Translate operator_list}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <local:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
@@ -34,19 +34,13 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
                             <Label Grid.Column="0" Grid.Row="0" Margin="0,7,10,0"
-                                       Text = "{Binding Caption}" FontSize="Small" TextColor="#4e5758" />
+                                       Text = "{Binding FullName}" FontSize="Small" TextColor="#4e5758" />
                             <Label Grid.Row="1" Grid.Column="0" Margin="0,0,10,7"
-                                       Text = "{Binding Department}" FontSize="Small" TextColor="#4e5758" />
+                                       Text = "{Binding Title}" FontSize="Small" TextColor="#4e5758" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <customControls:ImageButton Source="{markupExtensions:PlatformImage SourceImage='IconFAB'}"
-                Command="{Binding AddCommand}"
-                AbsoluteLayout.LayoutFlags="PositionProportional"
-                AbsoluteLayout.LayoutBounds="0,1.0,-1,-1"
-                Opacity="0.5"
-                Margin="20,0,0,40" />
     </AbsoluteLayout>
 </ContentPage>

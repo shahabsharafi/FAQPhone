@@ -49,5 +49,7 @@ namespace FAQPhone.Models
         public ProfileModel profile { get; set; }
         public ContactModel contact { get; set; }
         public EducationModel education { get; set; }
+        public string FullName { get; set; }
+        public string Title { get; set; }
     }
 }

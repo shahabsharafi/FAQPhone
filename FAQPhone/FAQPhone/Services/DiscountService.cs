@@ -29,7 +29,7 @@ namespace FAQPhone.Services
 
         public async Task<DiscountModel> Select(string departmentId)
         {
-            string url = string.Format(Constants.RestUrl, string.Format("discounts/select/{0}", departmentId));
+            string url = string.Format(Constants.RestUrl, string.Format("discounts/select/{0}", departmentId ?? ""));
             var data = await this.get<DiscountModel>(url);
             return data;
         }

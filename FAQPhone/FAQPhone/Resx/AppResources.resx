@@ -489,4 +489,13 @@
   <data name="discount_used" xml:space="preserve">
     <value>بن های استفاده شده</value>
   </data>
+  <data name="operator_list" xml:space="preserve">
+    <value>کارشناسان</value>
+  </data>
+  <data name="message_list" xml:space="preserve">
+    <value>پیغام ها</value>
+  </data>
+  <data name="all_messages" xml:space="preserve">
+    <value>پیغام ها</value>
+  </data>
 </root>

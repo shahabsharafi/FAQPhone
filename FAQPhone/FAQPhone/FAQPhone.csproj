@@ -158,6 +158,9 @@
     <Compile Include="Views\MessagePage.xaml.cs">
       <DependentUpon>MessagePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\OperatorListPage.xaml.cs">
+      <DependentUpon>OperatorListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SecurityCodePage.xaml.cs">
       <DependentUpon>SecurityCodePage.xaml</DependentUpon>
     </Compile>
@@ -365,6 +368,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\MessagePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\OperatorListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

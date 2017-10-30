@@ -4,7 +4,7 @@
              x:Class="FAQPhone.Views.MessagePage"
              xmlns:infr="clr-namespace:FAQPhone.Infarstructure;assembly=FAQPhone"
              xmlns:local="clr-namespace:EventToCommandBehavior"
-             Title="MessagePage">
+             Title="{infr:Translate message_list}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <local:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
