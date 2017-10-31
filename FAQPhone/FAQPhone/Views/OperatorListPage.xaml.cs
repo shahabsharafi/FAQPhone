@@ -58,8 +58,7 @@ namespace FAQPhone.Views
             this.discountService = discountService;
             this.departmentService = departmentService;
             this.List = new ObservableCollection<AccountModel>();
-            this.AddCommand = new Command(async () => await addCommand());
-            this.SelectItemCommand = new Command<AccountModel>((model) => selectItemCommand(model));
+            this.SelectItemCommand = new Command<AccountModel>(async (model) => await selectItemCommand(model));
         }
         private IAccountService accountService { get; set; }
         private IDepartmentService departmentService { get; set; }
@@ -100,20 +99,14 @@ namespace FAQPhone.Views
             }
         }
 
-        public ICommand AddCommand { protected set; get; }
-
-        public async Task addCommand()
-        {
-            
-        }
-
         public ICommand SelectItemCommand { protected set; get; }
 
-        public void selectItemCommand(AccountModel model)
+        public async Task selectItemCommand(AccountModel model)
         {
             if (model == null)
                 return;
             this.SelectedItem = null;
+            await this.Navigation.PushAsync(new DiscussionNewPage(model, null, 1));
         }
     }
 }
