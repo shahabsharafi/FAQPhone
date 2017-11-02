@@ -18,7 +18,7 @@ namespace FAQPhone.Services
 
         public async Task<List<AccountModel>> GetOperatoreList()
         {
-            var url = this.getUrl("?$filter = isOperator eq 'true'");
+            var url = string.Format(Constants.RestUrl, "accounts?$filter=isOperator eq 'true'");
             var result = await this.get<PaginationModel<AccountModel>>(url);
             return result.docs.ToList();
         }
