@@ -18,9 +18,10 @@ namespace FAQPhone.Services
 
         public async Task<List<AccountModel>> GetOperatoreList()
         {
-            var url = string.Format(Constants.RestUrl, "accounts?$filter=isOperator eq 'true'");
-            var result = await this.get<PaginationModel<AccountModel>>(url);
-            return result.docs.ToList();
+            //var url = string.Format(Constants.RestUrl, "accounts?$filter=isOperator eq 'true'");
+            var url = this.getUrl("online");
+            var result = await this.get<List<AccountModel>>(url);
+            return result;
         }
 
         public async Task<CodeResultModel> SendCode(string mobile)
