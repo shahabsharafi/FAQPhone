@@ -1,5 +1,4 @@
-﻿using FAQPhone.Models.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,7 +39,7 @@ namespace FAQPhone.Models
         public string university { get; set; }
         public string level { get; set; }
     }
-    public class AccountModel: IDiscussionCreator
+    public class AccountModel
     {
         public string _id { get; set; }
         public string username { get; set; }

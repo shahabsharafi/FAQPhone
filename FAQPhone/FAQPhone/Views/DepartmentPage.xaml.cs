@@ -91,7 +91,7 @@ namespace FAQPhone.Views
             else if (list == null || list.Count == 0)
             {
                 var discount = await this.discountService.Select(model._id);
-                await this.Navigation.PushAsync(new DiscussionNewPage(model, discount, this._pushCount));
+                await this.Navigation.PushAsync(new DiscussionNewPage(model, null, discount, this._pushCount));
             }
             else
             {

@@ -69,7 +69,6 @@
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\AttributeModel.cs" />
     <Compile Include="Models\DiscounModel.cs" />
-    <Compile Include="Models\Interfaces\IDiscussionCreator.cs" />
     <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Models\PollModel.cs" />
     <Compile Include="Models\ResultModel.cs" />
@@ -378,6 +377,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

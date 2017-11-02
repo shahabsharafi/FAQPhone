@@ -1,7 +1,6 @@
 ﻿using FAQPhone.Infarstructure;
 using FAQPhone.Infrastructure;
 using FAQPhone.Models;
-using FAQPhone.Models.Interfaces;
 using FAQPhone.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -21,7 +20,7 @@ namespace FAQPhone.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DiscussionNewPage : ContentPage
     {
-        public DiscussionNewPage(IDiscussionCreator discussionCreator, DiscountModel discount, int pushCount)
+        public DiscussionNewPage(DepartmentModel departmentModel, AccountModel owner, DiscountModel discount, int pushCount)
         {
             InitializeComponent();
             this.Appearing += (sender, e) => {
@@ -31,7 +30,7 @@ namespace FAQPhone.Views
                 }
             };            
             var factory = App.Resolve<DiscussionEditViewModelFactory>();
-            BindingContext = factory.Create(this, discussionCreator, discount);
+            BindingContext = factory.Create(this, departmentModel, owner, discount);
         }
     }
 
@@ -41,15 +40,15 @@ namespace FAQPhone.Views
         {
             
         }
-        public DiscussionEditViewModel Create(ContentPage page, IDiscussionCreator discussionCreator, DiscountModel discount)
+        public DiscussionEditViewModel Create(ContentPage page, DepartmentModel departmentModel, AccountModel owner, DiscountModel discount)
         {
-            return new DiscussionEditViewModel(page, discussionCreator, discount);
+            return new DiscussionEditViewModel(page, departmentModel, owner, discount);
         }
     }
 
     public class DiscussionEditViewModel : BaseViewModel
     {
-        public DiscussionEditViewModel(ContentPage page, IDiscussionCreator discussionCreator, DiscountModel discount) : base(page)
+        public DiscussionEditViewModel(ContentPage page, DepartmentModel departmentModel, AccountModel owner, DiscountModel discount) : base(page)
         {            
             this.CanNext = false;
             this.UsedDiscount = false;
@@ -62,10 +61,11 @@ namespace FAQPhone.Views
             }
             this.NextCommand = new Command(async () => await nextCommand());
             this.DiscountCommand = new Command(async () => await discountCommand());
-            this.discussionCreator = discussionCreator;
+            this.departmentModel = departmentModel;
+            this.owner = owner;
             this.price = 
                 ResourceManagerHelper.GetValue("discussion_recive_price") + ":" +
-                (discussionCreator?.price ?? 0) + " " + 
+                (owner != null ? (owner.price ?? 0) : (departmentModel?.price ?? 0)) + " " + 
                 ResourceManagerHelper.GetValue("unit_of_mony_caption");
         }
 
@@ -119,7 +119,8 @@ namespace FAQPhone.Views
             set { _discountPrice = value; OnPropertyChanged(); }
         }
 
-        private IDiscussionCreator discussionCreator { get; set; }
+        private DepartmentModel departmentModel { get; set; }
+        private AccountModel owner { get; set; }
         private DiscountModel discount { get;set; }
 
         public ICommand DiscountCommand { protected set; get; }
@@ -141,8 +142,8 @@ namespace FAQPhone.Views
                 state = Constants.DISCUSSION_STATE_CREATE,
                 userRead = false,
                 operatorRead = false,
-                usedDiscount = new DiscountModel() { _id = this.discount._id },
-                department = new DepartmentModel() { _id = this.discussionCreator._id },
+                usedDiscount = this.discount != null ? new DiscountModel() { _id = this.discount._id } : null,
+                department = this.departmentModel != null ? new DepartmentModel() { _id = this.departmentModel._id } : null,
                 items = new DiscussionDetailModel[] { }
             };
             await this.Navigation.PushAsync(new ChatPage(Constants.USER_INPROGRESS_FAQ, model, 1));
