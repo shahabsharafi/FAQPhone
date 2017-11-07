@@ -5,7 +5,8 @@
               xmlns:markupExtensions="clr-namespace:MarkupExtensions;assembly=FAQPhone"
              xmlns:customControls="clr-namespace:FAQPhone.CustomControls;assembly=FAQPhone"
              xmlns:infr="clr-namespace:FAQPhone.Infarstructure;assembly=FAQPhone"
-             xmlns:local="clr-namespace:EventToCommandBehavior"
+             xmlns:icon="clr-namespace:Awesome;assembly=FAQPhone"
+	         xmlns:local="clr-namespace:EventToCommandBehavior"
              Title="{infr:Translate operator_list}">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -16,7 +17,7 @@
         <ListView AbsoluteLayout.LayoutFlags="All"
                 AbsoluteLayout.LayoutBounds="0,1,1,1"
                 VerticalOptions="FillAndExpand" 
-                RowHeight="60"
+                RowHeight="100"
                 ItemsSource="{ Binding List }" 
                 SelectedItem="{ Binding SelectedItem, Mode=TwoWay }" >
             <ListView.Behaviors>
@@ -28,15 +29,24 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="100" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
+                                <RowDefinition Height="3*" />
+                                <RowDefinition Height="2*" />
+                                <RowDefinition Height="2*" />
                             </Grid.RowDefinitions>
+                            <Image Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Margin="2,2,2,2"
+                                   Source="{markupExtensions:PlatformImage SourceImage='man.png'}" />
+                            <Label Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Margin="10,10,10,10"
+                                   HorizontalTextAlignment="Start" VerticalTextAlignment="End" IsVisible="{ Binding IsOnline }"
+                                   Text="{x:Static icon:FontAwesome.FACircle}" FontFamily="fontawesome" TextColor="#4e5758" />
                             <Label Grid.Column="0" Grid.Row="0" Margin="0,7,10,0"
-                                       Text = "{Binding FullName}" FontSize="Small" TextColor="#4e5758" />
+                                       Text = "{Binding FullName}" FontSize="Medium" TextColor="#4e5758" />
                             <Label Grid.Row="1" Grid.Column="0" Margin="0,0,10,7"
                                        Text = "{Binding Title}" FontSize="Small" TextColor="#4e5758" />
+                            <Label Grid.Row="2" Grid.Column="0" Margin="0,0,10,7"
+                                       Text = "{Binding Description}" FontSize="Small" TextColor="#4e5758" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

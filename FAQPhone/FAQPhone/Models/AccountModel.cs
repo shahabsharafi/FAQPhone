@@ -43,6 +43,7 @@ namespace FAQPhone.Models
     {
         public string _id { get; set; }
         public string username { get; set; }
+        public int state { get; set; }
         public string email { get; set; }
         public string mobile { get; set; }
         public decimal credit { get; set; }
@@ -52,5 +53,7 @@ namespace FAQPhone.Models
         public long? price { get; set; }
         public string FullName { get; set; }
         public string Title { get; set; }
+        public string Description { get; set; }
+        public bool IsOnline { get; set; }
     }
 }

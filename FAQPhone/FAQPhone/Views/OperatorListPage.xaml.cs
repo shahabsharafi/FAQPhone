@@ -94,7 +94,9 @@ namespace FAQPhone.Views
                 string university = item.education?.university ?? "";
                 var majorObj = App.AttributeList.SingleOrDefault(o => o._id == major);
                 var universityObj = App.AttributeList.SingleOrDefault(o => o._id == university);
-                item.Title = (majorObj?.caption ?? "") + " دانشگاه " + (universityObj?.caption ?? "");
+                item.Title = (majorObj?.caption ?? "");
+                item.Description = "دانشگاه " + (universityObj?.caption ?? "");
+                item.IsOnline = (item.state == 2);
                 this.List.Add(item);
             }
         }
