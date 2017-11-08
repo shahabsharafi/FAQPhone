@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:infr="clr-namespace:FAQPhone.Infarstructure;assembly=FAQPhone"
              xmlns:icon="clr-namespace:Awesome;assembly=FAQPhone"
-	         x:Class="FAQPhone.Views.AccountPage"
+	         xmlns:markupExtensions="clr-namespace:MarkupExtensions;assembly=FAQPhone"
+             xmlns:customControls="clr-namespace:FAQPhone.CustomControls;assembly=FAQPhone"
+             x:Class="FAQPhone.Views.AccountPage"
              Title="{infr:Translate account}">
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}">
@@ -12,19 +14,24 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Label Text="{x:Static icon:FontAwesome.FAAddressCardO}" FontFamily="fontawesome" VerticalTextAlignment="Start" Margin="10,0,0,0" TextColor="#4e5758" FontSize="90" Grid.Row="0" Grid.Column="1" Grid.RowSpan="4" />
-                <Label Text="{Binding fullName}" TextColor="#4e5758" FontSize="Large" HorizontalTextAlignment="End" Grid.Row="0" Grid.Column="0" />
-                <Label Text="{Binding email}" TextColor="#4e5758" FontSize="Small" HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="0" />
-                <Label Text="{Binding mobile}" TextColor="#4e5758" FontSize="Small" HorizontalTextAlignment="End" Grid.Row="2" Grid.Column="0" />
-                <Label Text="{Binding credit}" TextColor="#4e5758" FontSize="Small" HorizontalTextAlignment="End" Grid.Row="3" Grid.Column="0" />
-                <Button Text="{infr:Translate command_edit}" Command="{Binding EditCommand}" StyleClass="Info" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" />
+                <Image Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Margin="2,2,2,2"
+                    Source="{markupExtensions:PlatformImage SourceImage='man.png'}" />
+                <Label Text="{Binding mobile}" TextColor="#4e5758" Margin="2,2,10,10" FontSize="Large" HorizontalTextAlignment="End" Grid.Row="0" Grid.Column="0" />
+                <Label Text="{Binding credit}" TextColor="#4e5758" Margin="2,2,20,2" FontSize="Small" HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="0" />
+                <customControls:ImageButton Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                    HorizontalOptions="End" Margin="2,2,10,2" Command="{Binding EditCommand}" 
+                    Source="{markupExtensions:PlatformImage SourceImage='camera64x64'}" />
+                <customControls:ImageButton Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
+                    HorizontalOptions="End" Margin="2,2,70,2" Command="{Binding EditCommand}" 
+                    Source="{markupExtensions:PlatformImage SourceImage='picture64x64'}" />
+                <customControls:ImageButton Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
+                    HorizontalOptions="End" Margin="2,2,130,2" Command="{Binding EditCommand}" 
+                    Source="{markupExtensions:PlatformImage SourceImage='edit64x64'}" />
             </Grid>
         </StackLayout>
     </ScrollView>

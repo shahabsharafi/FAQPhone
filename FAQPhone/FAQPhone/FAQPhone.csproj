@@ -40,6 +40,7 @@
     </Compile>
     <Compile Include="CustomControls\ImageButton.cs" />
     <Compile Include="CustomRenderer\BadgeLabel.cs" />
+    <Compile Include="CustomRenderer\CropView.cs" />
     <Compile Include="CustomRenderer\DiscussionViewCell.cs" />
     <Compile Include="CustomRenderer\IconicButton.cs" />
     <Compile Include="DepartmentPicker\DepartmentPickerPage.cs" />
