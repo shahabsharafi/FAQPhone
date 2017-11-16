@@ -53,6 +53,7 @@ namespace FAQPhone.Models
         protected void OnPropertyChanged([CallerMemberName]string propertyName = "") =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
+
     public class DiscussionModel
     {
         public string _id { get; set; }
@@ -66,7 +67,7 @@ namespace FAQPhone.Models
         public decimal payment { get; set; }
         public decimal wage { get; set; }
         public decimal discount { get; set; }
-        public DiscountModel usedDiscount { get; set; }
+        public ObjectModel usedDiscount { get; set; }
         public bool userRead { get; set; }
         public bool operatorRead { get; set; }
         public DepartmentModel department { get; set; }
