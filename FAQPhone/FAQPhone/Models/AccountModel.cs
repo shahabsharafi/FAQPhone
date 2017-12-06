@@ -14,6 +14,7 @@ namespace FAQPhone.Models
         public string no { get; set; }
         public string placeOfIssues { get; set; }
         public string nationalCode { get; set; }
+        public DateTime? birthDay { get; set; }
         public string birthPlace { get; set; }
         public string sex { get; set; }
         public string status { get; set; }

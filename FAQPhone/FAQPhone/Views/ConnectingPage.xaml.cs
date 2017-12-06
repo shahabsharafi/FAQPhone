@@ -7,6 +7,7 @@ using FAQPhone.Services;
 using FAQPhone.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -68,6 +69,32 @@ namespace FAQPhone.Views
             CommandCaption = ResourceManagerHelper.GetValue(Constants.COMMAND_CONNECT);
             this.TryCommand = new Command(() => tryCommand());
             this.ResetPasswordCommand = new Command(async () => await resetPasswordCommand());
+            var languageList = new string[] { "Fa", "Ar" };
+            this.LanguageList = new ObservableCollection<AttributeModel>();
+            foreach (var item in languageList)
+            {
+                string key = string.Format("setting_language_{0}", item.ToLower());
+                string val = ResourceManagerHelper.GetValue(key);
+                this.LanguageList.Add(new AttributeModel() { caption = val, _id = key });
+            }
+        }
+
+        private ObservableCollection<AttributeModel> _LanguageList;
+        public ObservableCollection<AttributeModel> LanguageList
+        {
+            get { return _LanguageList; }
+            set { _LanguageList = value; }
+        }
+
+        private AttributeModel _SelectedLanguage;
+        public AttributeModel SelectedLanguage
+        {
+            get { return _SelectedLanguage; }
+            set
+            {
+                _SelectedLanguage = value;
+                OnPropertyChanged();
+            }
         }
 
         IAccountService accountService;
@@ -89,6 +116,10 @@ namespace FAQPhone.Views
         public async void tryCommand()
         {
             this.IsBusy = true;
+            if (!string.IsNullOrEmpty(this.SelectedLanguage?._id))
+            {
+                Settings.Language = this.SelectedLanguage._id;
+            }
             SigninModel model = new SigninModel()
             {
                 username = Settings.Username,

@@ -56,7 +56,7 @@ namespace FAQPhone.Views
 
     public class MainPageViewModel : BaseViewModel
     {
-
+        bool _isOperator = false;
         public MainPageViewModel(IAccountService accountService, IAttributeService attributeService, IDepartmentService departmentService, IDiscussionService discussionService, ContentPage page, string menu) : base(page)
         {
             this.accountService = accountService;
@@ -66,9 +66,9 @@ namespace FAQPhone.Views
             Task.Run(async () => await loadAttribute());
             this.List = new ObservableCollection<MenuItemModel>();
             List<MenuItemModel> items = new List<MenuItemModel>();
-            
             if (menu == Constants.OPERATOR_FAQ || (menu == null && App.Access.Contains(Constants.ACCESS_OPERATOR)))
             {
+                App.EnterAsOperator = true;
                 int count = 0;
                 Task.Run(async () => count = await this.discussionService.GetCount(false)).Wait();
                 items.Add(new MenuItemModel() { CommandName = Constants.OPERATOR_RECEIVE_FAQ, Icon = FontAwesome.FADownload });
@@ -84,6 +84,7 @@ namespace FAQPhone.Views
             }
             else if (menu == Constants.USER_FAQ || (menu == null && App.Access.Contains(Constants.ACCESS_USER)))
             {
+                App.EnterAsOperator = false;
                 int count = 0;
                 Task.Run(async () => count = await this.discussionService.GetCount(true)).Wait();
                 items.Add(new MenuItemModel() { CommandName = Constants.USER_CREATE_FAQ, Icon = FontAwesome.FAPlus });
@@ -114,7 +115,17 @@ namespace FAQPhone.Views
             if (!this._completeProfile.HasValue)
             {
                 AccountModel me = await this.accountService.GetMe();
-                this._completeProfile = (!string.IsNullOrWhiteSpace(me?.profile?.firstName)) || (!string.IsNullOrWhiteSpace(me?.email));
+                if (App.EnterAsOperator == true)
+                {
+                    this._completeProfile = 
+                        (!string.IsNullOrWhiteSpace(me?.profile?.sex)) && 
+                        (!string.IsNullOrWhiteSpace(me?.education?.grade));
+                } else
+                {
+                    this._completeProfile =
+                        (!string.IsNullOrWhiteSpace(me?.profile?.sex)) &&
+                        (!string.IsNullOrWhiteSpace(me?.education?.grade));
+                }
             }
             return this._completeProfile.Value;
         }

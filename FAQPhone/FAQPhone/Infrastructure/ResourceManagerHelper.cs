@@ -17,7 +17,7 @@ namespace FAQPhone.Infrastructure
             string val = key;
             if (key != null)
             {
-                string ResourceId = "FAQPhone.Resx.AppResources";
+                string ResourceId = "FAQPhone.Resx.Fa";
                 CultureInfo ci = new System.Globalization.CultureInfo("en");
                 ResourceManager temp = new ResourceManager(ResourceId, typeof(ResourceManagerHelper).GetTypeInfo().Assembly);
                 val = temp.GetString(key, ci);                

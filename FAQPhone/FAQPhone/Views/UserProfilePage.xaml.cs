@@ -10,7 +10,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -59,6 +58,9 @@ namespace FAQPhone.Views
             this.ProvinceList = new ObservableCollection<AttributeModel>();
             this.CityList = new ObservableCollection<AttributeModel>();
             this.GradeList = new ObservableCollection<AttributeModel>();
+            this.YearList = new ObservableCollection<AttributeModel>();
+            this.MonthList = new ObservableCollection<AttributeModel>();
+            this.DayList = new ObservableCollection<AttributeModel>();
             var sexList = App.AttributeList.Where(o => o.type == "sex");
             foreach (var item in sexList)
             {
@@ -99,8 +101,31 @@ namespace FAQPhone.Views
             {
                 this.GradeList.Add(item);
             }
+            var pCalendar = DependencyService.Get<CalendarService.IPersianCalendarService>();
+            var pc = pCalendar.GetCalendar();
+            var d = DateTime.Now;
+            var y = pc.GetYear(d);
+            for (int i = y; i >= 1320; i--)
+            {
+                this.YearList.Add(new AttributeModel { caption = i.ToString() });
+            }
+            for (int i = 1; i <= 12; i++)
+            {
+                this.MonthList.Add(new AttributeModel { caption = i.ToString() });
+            }
+            for (int i = 1; i <= 31; i++)
+            {
+                this.DayList.Add(new AttributeModel { caption = i.ToString() });
+            }
             if (this.model.profile != null)
             {
+                if (model.profile.birthDay != null)
+                {
+                    var birthDay = model.profile.birthDay;
+                    this.SelectedYear = this.YearList.ToList().Find(o => o.caption == birthDay?.Year.ToString());
+                    this.SelectedMonth = this.MonthList.ToList().Find(o => o.caption == birthDay?.Month.ToString());
+                    this.SelectedDay = this.DayList.ToList().Find(o => o.caption == birthDay?.Day.ToString());
+                }
                 if (model.profile.sex != null)
                 {
                     this.SelectedSex = App.AttributeList.Find(o => o._id == model.profile.sex);
@@ -152,7 +177,7 @@ namespace FAQPhone.Views
                     this.SelectedGrade = App.AttributeList.Find(o => o._id == this.model.education.grade);
                     this.GradeText = this.SelectedGrade.caption;
                 }
-            }
+            }            
         }
 
         private IAccountService accountService { get; set; }
@@ -170,6 +195,60 @@ namespace FAQPhone.Views
         {
             get { return _work; }
             set { _work = value; OnPropertyChanged(); }
+        }
+
+        private ObservableCollection<AttributeModel> _YearList;
+        public ObservableCollection<AttributeModel> YearList
+        {
+            get { return _YearList; }
+            set { _YearList = value;  }
+        }
+
+        private AttributeModel _SelectedYear;
+        public AttributeModel SelectedYear
+        {
+            get { return _SelectedYear; }
+            set
+            {
+                _SelectedYear = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<AttributeModel> _MonthList;
+        public ObservableCollection<AttributeModel> MonthList
+        {
+            get { return _MonthList; }
+            set { _MonthList = value; }
+        }
+
+        private AttributeModel _SelectedMonth;
+        public AttributeModel SelectedMonth
+        {
+            get { return _SelectedMonth; }
+            set
+            {
+                _SelectedMonth = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<AttributeModel> _DayList;
+        public ObservableCollection<AttributeModel> DayList
+        {
+            get { return _DayList; }
+            set { _DayList = value; }
+        }
+
+        private AttributeModel _SelectedDay;
+        public AttributeModel SelectedDay
+        {
+            get { return _SelectedDay; }
+            set
+            {
+                _SelectedDay = value;
+                OnPropertyChanged();
+            }
         }
 
         private ObservableCollection<AttributeModel> _SexList;
@@ -414,6 +493,18 @@ namespace FAQPhone.Views
             if (this.model.profile == null)
             {
                 this.model.profile = new ProfileModel();
+            }
+            if (this.SelectedYear != null &&
+                this.SelectedMonth != null &&
+                this.SelectedDay != null)
+            {
+                int year, month, day;
+                if (int.TryParse(this.SelectedYear.caption, out year) &&
+                    int.TryParse(this.SelectedMonth.caption, out month) &&
+                    int.TryParse(this.SelectedDay.caption, out day))
+                {
+                    this.model.profile.birthDay = new DateTime(year, month, day);
+                }
             }
             if (this.SelectedSex != null)
             {

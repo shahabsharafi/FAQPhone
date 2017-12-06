@@ -498,4 +498,16 @@
   <data name="all_messages" xml:space="preserve">
     <value>پیغام ها</value>
   </data>
+  <data name="profile_birthDay" xml:space="preserve">
+    <value>تاریخ تولد</value>
+  </data>
+  <data name="setting_language" xml:space="preserve">
+    <value>انتخاب زبان</value>
+  </data>
+  <data name="setting_language_ar" xml:space="preserve">
+    <value>عربی</value>
+  </data>
+  <data name="setting_language_fa" xml:space="preserve">
+    <value>فارسی</value>
+  </data>
 </root>

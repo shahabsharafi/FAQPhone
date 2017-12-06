@@ -47,6 +47,8 @@ namespace FAQPhone
             App.Container.RegisterType<IMessageService, MessageService>();
         }
 
+        public static bool EnterAsOperator { get; set; }
+
         public static string Username { get; set; }
 
         public static string Token { get; set; }

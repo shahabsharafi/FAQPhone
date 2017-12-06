@@ -23,14 +23,14 @@ namespace FAQPhone.Resx {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class AppResources {
+    internal class Ar {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal AppResources() {
+        internal Ar() {
         }
         
         /// <summary>
@@ -40,7 +40,7 @@ namespace FAQPhone.Resx {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FAQPhone.Resx.AppResources", typeof(AppResources).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FAQPhone.Resx.Ar", typeof(Ar).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -989,6 +989,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to تاریخ تولد.
+        /// </summary>
+        internal static string profile_birthDay {
+            get {
+                return ResourceManager.GetString("profile_birthDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to محل تولد.
         /// </summary>
         internal static string profile_birthPlace {
@@ -1120,6 +1129,33 @@ namespace FAQPhone.Resx {
         internal static string setting {
             get {
                 return ResourceManager.GetString("setting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to انتخاب زبان.
+        /// </summary>
+        internal static string setting_language {
+            get {
+                return ResourceManager.GetString("setting_language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to عربی.
+        /// </summary>
+        internal static string setting_language_ar {
+            get {
+                return ResourceManager.GetString("setting_language_ar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to فارسی.
+        /// </summary>
+        internal static string setting_language_fa {
+            get {
+                return ResourceManager.GetString("setting_language_fa", resourceCulture);
             }
         }
         

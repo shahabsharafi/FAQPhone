@@ -1,0 +1,513 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="direction" xml:space="preserve">
+    <value>RTL</value>
+  </data>
+  <data name="username" xml:space="preserve">
+    <value>نام کاربری</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>کلمه عبور</value>
+  </data>
+  <data name="confirm" xml:space="preserve">
+    <value>تایید کلمه عبور</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>ایمیل</value>
+  </data>
+  <data name="mobile" xml:space="preserve">
+    <value>موبایل</value>
+  </data>
+  <data name="signup" xml:space="preserve">
+    <value>ثبت نام</value>
+  </data>
+  <data name="security_code" xml:space="preserve">
+    <value>کد تایید</value>
+  </data>
+  <data name="send_code" xml:space="preserve">
+    <value>شناسایی</value>
+  </data>
+  <data name="signin" xml:space="preserve">
+    <value>ورود به سامانه</value>
+  </data>
+  <data name="forgetpassword" xml:space="preserve">
+    <value>فراموشی کلمه عبور</value>
+  </data>
+  <data name="resetpassword" xml:space="preserve">
+    <value>تغییر کلمه عبور</value>
+  </data>
+  <data name="mainpage" xml:space="preserve">
+    <value>امکانات نرم افزار</value>
+  </data>
+  <data name="err_securitycode_notmatch" xml:space="preserve">
+    <value>کد امنیتی اشتباه است</value>
+  </data>
+  <data name="err_securitycode_mobilenotfound" xml:space="preserve">
+    <value>کاربری با این شماره موبایل قبلا ثبت نام نشده</value>
+  </data>
+  <data name="err_securitycode_failed" xml:space="preserve">
+    <value>فرایند ثبت نام با اشکال مواجه شده</value>
+  </data>
+  <data name="user_faq" xml:space="preserve">
+    <value>نرم افزار کاربر</value>
+  </data>
+  <data name="user_create_faq" xml:space="preserve">
+    <value>سوال جدید</value>
+  </data>
+  <data name="user_inprogress_faq" xml:space="preserve">
+    <value>منتظر پاسخ</value>
+  </data>
+  <data name="user_archived_faq" xml:space="preserve">
+    <value>آرشیو</value>
+  </data>
+  <data name="operator_faq" xml:space="preserve">
+    <value>نرم افزار کارشناس</value>
+  </data>
+  <data name="operator_receive_faq" xml:space="preserve">
+    <value>دریافت سوال</value>
+  </data>
+  <data name="operator_inprogress_faq" xml:space="preserve">
+    <value>در دست اقدام</value>
+  </data>
+  <data name="operator_archived_faq" xml:space="preserve">
+    <value>آرشیو</value>
+  </data>
+  <data name="signout" xml:space="preserve">
+    <value>خروج از سامانه</value>
+  </data>
+  <data name="select_department" xml:space="preserve">
+    <value>انتخاب بخش</value>
+  </data>
+  <data name="command_save" xml:space="preserve">
+    <value>ثبت</value>
+  </data>
+  <data name="discussion_edit" xml:space="preserve">
+    <value>سوال جدید</value>
+  </data>
+  <data name="discussion_edit_text" xml:space="preserve">
+    <value>متن سوال</value>
+  </data>
+  <data name="discussion_edit_title" xml:space="preserve">
+    <value>عنوان سوال</value>
+  </data>
+  <data name="command_send" xml:space="preserve">
+    <value>ارسال</value>
+  </data>
+  <data name="discussion_recive_display" xml:space="preserve">
+    <value>عنوانی برای این گفتگو وارد کنید</value>
+  </data>
+  <data name="discussion_revice" xml:space="preserve">
+    <value>دربافت سوال</value>
+  </data>
+  <data name="command_accept" xml:space="preserve">
+    <value>پاسخ</value>
+  </data>
+  <data name="command_reject" xml:space="preserve">
+    <value>انصراف</value>
+  </data>
+  <data name="command_report" xml:space="preserve">
+    <value>ابطال</value>
+  </data>
+  <data name="discussion" xml:space="preserve">
+    <value>فهرست</value>
+  </data>
+  <data name="chat" xml:space="preserve">
+    <value>گفتگو</value>
+  </data>
+  <data name="command_finish" xml:space="preserve">
+    <value>پاسخ و اتمام گفتگو</value>
+  </data>
+  <data name="command_select_all" xml:space="preserve">
+    <value>همه</value>
+  </data>
+  <data name="command_select_none" xml:space="preserve">
+    <value>هیچکدام</value>
+  </data>
+  <data name="discussion_select_tags" xml:space="preserve">
+    <value>انتخاب نمایه ها</value>
+  </data>
+  <data name="discussion_tags" xml:space="preserve">
+    <value>نمایه ها</value>
+  </data>
+  <data name="discussion_recive_price" xml:space="preserve">
+    <value>قیمت</value>
+  </data>
+  <data name="command_add" xml:space="preserve">
+    <value>افرودن</value>
+  </data>
+  <data name="command_next" xml:space="preserve">
+    <value>ادامه</value>
+  </data>
+  <data name="discussion_edit_title_help" xml:space="preserve">
+    <value>یک عنوان برای سوال یا گفتگوی خود وارد کنید تا بعدا بتوانید در آرشیو خود به راحتی آنها را پیدا کرده و مدیریت کنید</value>
+  </data>
+  <data name="discussion_tag_new" xml:space="preserve">
+    <value>نمایه جدید</value>
+  </data>
+  <data name="discussion_answer" xml:space="preserve">
+    <value>جواب</value>
+  </data>
+  <data name="discussion_question" xml:space="preserve">
+    <value>سوال</value>
+  </data>
+  <data name="discussion_operator" xml:space="preserve">
+    <value>کارشناس</value>
+  </data>
+  <data name="cancelation" xml:space="preserve">
+    <value>ابطال</value>
+  </data>
+  <data name="cancelation_annoying" xml:space="preserve">
+    <value>مزاحم</value>
+  </data>
+  <data name="cancelation_offensiv" xml:space="preserve">
+    <value>توهین آمیز</value>
+  </data>
+  <data name="cancelation_unclear" xml:space="preserve">
+    <value>ناواضح</value>
+  </data>
+  <data name="cancelation_unrelated" xml:space="preserve">
+    <value>نامربوط</value>
+  </data>
+  <data name="cancelation_annoying_text" xml:space="preserve">
+    <value>سوال شما مزاحمت تلقی شده بنابر این مقداری از وجه شما کسر شده و باقی آن بازگردانده میشود و در صورت تکرار ممکن است کاربری شما غیر فعال شود</value>
+  </data>
+  <data name="cancelation_offensiv_text" xml:space="preserve">
+    <value>سوال شما توهین تلقی شده بنابر این مقداری از وجه شما کسر شده و باقی آن بازگردانده میشود و در صورت تکرار ممکن است کاربری شما غیر فعال شود</value>
+  </data>
+  <data name="cancelation_unclear_text" xml:space="preserve">
+    <value>سوال شما واضح نیست بنابراین وجه شما بازگردانده می شود و شما باید سوال خود را بار دیگر و به طور واضح بپرسید</value>
+  </data>
+  <data name="cancelation_unrelated_text" xml:space="preserve">
+    <value>سوال شما به بخش انتحاب شده مربوط نیست بنابراین وجه شما بازگردانده می شود و شما باید سوال خود را بار دیگر و در بخش صحیح بپرسید</value>
+  </data>
+  <data name="profile_birthPlace" xml:space="preserve">
+    <value>محل تولد</value>
+  </data>
+  <data name="profile_fatherName" xml:space="preserve">
+    <value>نام پدر</value>
+  </data>
+  <data name="profile_firstName" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="profile_lastName" xml:space="preserve">
+    <value>نام خانوادگی</value>
+  </data>
+  <data name="profile_nationalCode" xml:space="preserve">
+    <value>کدملی</value>
+  </data>
+  <data name="profile_no" xml:space="preserve">
+    <value>شماره شناسنامه</value>
+  </data>
+  <data name="profile_placeOfIssues" xml:space="preserve">
+    <value>محل صدور</value>
+  </data>
+  <data name="profile" xml:space="preserve">
+    <value>اطلاعات شخصی</value>
+  </data>
+  <data name="contact_city" xml:space="preserve">
+    <value>شهر</value>
+  </data>
+  <data name="contact_email" xml:space="preserve">
+    <value>ایمیل</value>
+  </data>
+  <data name="contact_house" xml:space="preserve">
+    <value>تلفن منزل</value>
+  </data>
+  <data name="contact_province" xml:space="preserve">
+    <value>استان</value>
+  </data>
+  <data name="contact_mobile" xml:space="preserve">
+    <value>تلفن همراه</value>
+  </data>
+  <data name="contact_work" xml:space="preserve">
+    <value>تلفن محل کار</value>
+  </data>
+  <data name="contact" xml:space="preserve">
+    <value>اطلاعات تماس</value>
+  </data>
+  <data name="account" xml:space="preserve">
+    <value>حساب کاربری</value>
+  </data>
+  <data name="setting" xml:space="preserve">
+    <value>تنظیمات</value>
+  </data>
+  <data name="education" xml:space="preserve">
+    <value>اطلاعات تحصیلی</value>
+  </data>
+  <data name="education_grade" xml:space="preserve">
+    <value>درجه</value>
+  </data>
+  <data name="education_level" xml:space="preserve">
+    <value>سطح</value>
+  </data>
+  <data name="education_major" xml:space="preserve">
+    <value>شعبه</value>
+  </data>
+  <data name="education_university" xml:space="preserve">
+    <value>دانشگاه</value>
+  </data>
+  <data name="account_credit" xml:space="preserve">
+    <value>اعتبار</value>
+  </data>
+  <data name="command_edit" xml:space="preserve">
+    <value>ویرایش</value>
+  </data>
+  <data name="chat_text" xml:space="preserve">
+    <value>سوال یا پیغام خود را وارد کنید</value>
+  </data>
+  <data name="unit_of_mony_caption" xml:space="preserve">
+    <value>تومان</value>
+  </data>
+  <data name="security_code_help" xml:space="preserve">
+    <value>کدی که با پیامک برای شما ارسال شده را اینجا وارد کنید</value>
+  </data>
+  <data name="security_caption" xml:space="preserve">
+    <value>تایید شماره تلفن</value>
+  </data>
+  <data name="command_ok" xml:space="preserve">
+    <value>تایید</value>
+  </data>
+  <data name="message_not_exists" xml:space="preserve">
+    <value>موردی یافت نشد!</value>
+  </data>
+  <data name="message_title_alert" xml:space="preserve">
+    <value>اخطار</value>
+  </data>
+  <data name="about_us" xml:space="preserve">
+    <value>درباره ما</value>
+  </data>
+  <data name="app_name" xml:space="preserve">
+    <value>پرسانه</value>
+  </data>
+  <data name="app_version" xml:space="preserve">
+    <value>0.7.1</value>
+  </data>
+  <data name="command_no" xml:space="preserve">
+    <value>خیر</value>
+  </data>
+  <data name="command_yes" xml:space="preserve">
+    <value>بله</value>
+  </data>
+  <data name="message_are_you_sure" xml:space="preserve">
+    <value>آبا مطمئن هستید</value>
+  </data>
+  <data name="message_unknown_error" xml:space="preserve">
+    <value>اشکالی پیش آمده</value>
+  </data>
+  <data name="message_google_play_services_erorr" xml:space="preserve">
+    <value>خطا در راه اندازی سرویس گوگل</value>
+  </data>
+  <data name="command_attach" xml:space="preserve">
+    <value>الصاق فایل</value>
+  </data>
+  <data name="message_unauthentication_error" xml:space="preserve">
+    <value>اشکال در دسترسی به سیستم</value>
+  </data>
+  <data name="command_try" xml:space="preserve">
+    <value>سعی مجدد</value>
+  </data>
+  <data name="connecting_caption" xml:space="preserve">
+    <value>اتصال به شبکه</value>
+  </data>
+  <data name="command_connect" xml:space="preserve">
+    <value>اتصال به شبکه</value>
+  </data>
+  <data name="contact_country" xml:space="preserve">
+    <value>کشور</value>
+  </data>
+  <data name="account_jobState" xml:space="preserve">
+    <value>وضعیت شغلی</value>
+  </data>
+  <data name="account_reference" xml:space="preserve">
+    <value>مرجع تقلید</value>
+  </data>
+  <data name="account_religion" xml:space="preserve">
+    <value>دین</value>
+  </data>
+  <data name="account_sect" xml:space="preserve">
+    <value>مذهب</value>
+  </data>
+  <data name="account_status" xml:space="preserve">
+    <value>وضعیت تاهل</value>
+  </data>
+  <data name="profile_sex" xml:space="preserve">
+    <value>جنسیت</value>
+  </data>
+  <data name="connecting_wating" xml:space="preserve">
+    <value>در حال اتصال...</value>
+  </data>
+  <data name="message_profile_not_completed" xml:space="preserve">
+    <value>ابتدا اطلاعات کاربری را کامل کنید</value>
+  </data>
+  <data name="discount_list" xml:space="preserve">
+    <value>هدایای من</value>
+  </data>
+  <data name="discount_new" xml:space="preserve">
+    <value>هدیه به دیوارمهربانی</value>
+  </data>
+  <data name="command_select" xml:space="preserve">
+    <value>انتخاب</value>
+  </data>
+  <data name="discount_count" xml:space="preserve">
+    <value>تعداد</value>
+  </data>
+  <data name="discount_price" xml:space="preserve">
+    <value>قیمت</value>
+  </data>
+  <data name="discount_my" xml:space="preserve">
+    <value>بن های من</value>
+  </data>
+  <data name="discount_category_selection" xml:space="preserve">
+    <value>انتخاب بخش</value>
+  </data>
+  <data name="discount_total" xml:space="preserve">
+    <value>جمع کل</value>
+  </data>
+  <data name="discount_all" xml:space="preserve">
+    <value>همه بن ها</value>
+  </data>
+  <data name="discount_tab" xml:space="preserve">
+    <value>بن و دیوار مهربانی</value>
+  </data>
+  <data name="discount_used" xml:space="preserve">
+    <value>بن های استفاده شده</value>
+  </data>
+  <data name="operator_list" xml:space="preserve">
+    <value>کارشناسان</value>
+  </data>
+  <data name="message_list" xml:space="preserve">
+    <value>پیغام ها</value>
+  </data>
+  <data name="all_messages" xml:space="preserve">
+    <value>پیغام ها</value>
+  </data>
+  <data name="profile_birthDay" xml:space="preserve">
+    <value>تاریخ تولد</value>
+  </data>
+  <data name="setting_language" xml:space="preserve">
+    <value>انتخاب زبان</value>
+  </data>
+  <data name="setting_language_ar" xml:space="preserve">
+    <value>عربی</value>
+  </data>
+  <data name="setting_language_fa" xml:space="preserve">
+    <value>فارسی</value>
+  </data>
+</root>

@@ -50,6 +50,46 @@
                 ItemsSource="{ Binding SexList }" 
                 ItemDisplayBinding="{ Binding caption }" 
                 SelectedItem="{ Binding SelectedSex }" />
+            <Grid Padding="0,0,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Picker 
+                    Title="---" 
+                    Grid.Row="0" Grid.Column="0"
+                    TextColor="#4e5758"                    
+                    ItemsSource="{ Binding YearList }" 
+                    ItemDisplayBinding="{ Binding caption }" 
+                    SelectedItem="{ Binding SelectedYear }" />
+                <Picker 
+                    Title="---" 
+                    Grid.Row="0" Grid.Column="1"
+                    TextColor="#4e5758"                    
+                    ItemsSource="{ Binding MonthList }" 
+                    ItemDisplayBinding="{ Binding caption }" 
+                    SelectedItem="{ Binding SelectedMonth }" />
+                <Picker 
+                    Title="---" 
+                    Grid.Row="0" Grid.Column="2"
+                    TextColor="#4e5758"                    
+                    ItemsSource="{ Binding DayList }" 
+                    ItemDisplayBinding="{ Binding caption }" 
+                    SelectedItem="{ Binding SelectedDay }" />
+                <Label 
+                    Text="{infr:Translate profile_birthDay}" 
+                    FontSize="Small" 
+                    TextColor="#4e5758" 
+                    Grid.Row="0" 
+                    Grid.Column="3" 
+                    YAlign="End">
+                </Label>
+            </Grid>
             <controls:AutoCompleteView 
                 Placeholder="{infr:Translate education_grade}"
                 DefaultText="{Binding GradeText, Mode=TwoWay}"

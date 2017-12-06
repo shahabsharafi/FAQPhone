@@ -21,13 +21,20 @@ namespace FAQPhone.Helpers
         }
 
         #region Setting Constants
-
+        const string languageKey = "language";
+        private static readonly string languageDefault = "Fa";
         const string usernameKey = "user";
         private static readonly string usernameDefault = null;
         const string passwordKey = "password";
         private static readonly string passwordDefault = null;
 
         #endregion
+
+        public static string Language
+        {
+            get { return AppSettings.GetValueOrDefault(languageKey, languageDefault); }
+            set { AppSettings.AddOrUpdateValue(languageKey, value); }
+        }
 
         public static string Username
         {
