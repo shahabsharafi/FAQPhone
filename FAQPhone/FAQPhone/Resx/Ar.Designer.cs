@@ -521,6 +521,33 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to تماس با ما.
+        /// </summary>
+        internal static string contactus {
+            get {
+                return ResourceManager.GetString("contactus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to عنوان.
+        /// </summary>
+        internal static string contactus_subject {
+            get {
+                return ResourceManager.GetString("contactus_subject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to متن.
+        /// </summary>
+        internal static string contactus_text {
+            get {
+                return ResourceManager.GetString("contactus_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RTL.
         /// </summary>
         internal static string direction {

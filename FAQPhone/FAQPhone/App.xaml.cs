@@ -45,6 +45,7 @@ namespace FAQPhone
             App.Container.RegisterType<IAttributeService, AttributeService>();
             App.Container.RegisterType<IDiscountService, DiscountService>();
             App.Container.RegisterType<IMessageService, MessageService>();
+            App.Container.RegisterType<IEmailService, EmailService>();
         }
 
         public static bool EnterAsOperator { get; set; }

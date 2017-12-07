@@ -510,4 +510,13 @@
   <data name="setting_language_fa" xml:space="preserve">
     <value>فارسی</value>
   </data>
+  <data name="contactus" xml:space="preserve">
+    <value>تماس با ما</value>
+  </data>
+  <data name="contactus_text" xml:space="preserve">
+    <value>متن</value>
+  </data>
+  <data name="contactus_subject" xml:space="preserve">
+    <value>عنوان</value>
+  </data>
 </root>

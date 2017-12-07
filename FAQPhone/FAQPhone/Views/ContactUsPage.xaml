@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FAQPhone.Views.ContactUsPage"
+             xmlns:controls="clr-namespace:CustomControl;assembly=FAQPhone"
+             xmlns:local="clr-namespace:BooleanConverter"
+             xmlns:infr="clr-namespace:FAQPhone.Infarstructure;assembly=FAQPhone"
+             xmlns:icon="clr-namespace:Awesome;assembly=FAQPhone"
+             Title="{infr:Translate contactus}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:InverseBooleanConverter x:Key="Inverse" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+        <StackLayout Style="{StaticResource pageStyle}">
+            <Entry Placeholder="{infr:Translate contactus_subject}" Text="{Binding subject}" />
+            <controls:ExtendedEditor  x:Name="text" Placeholder="{infr:Translate contactus_text}"  Text="{Binding text, Mode=TwoWay}" FontSize="Small" BackgroundColor="#efefef" HeightRequest="80" />
+            <Button Text="{infr:Translate command_send}" Command="{Binding SendCommand}" StyleClass="Info" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
