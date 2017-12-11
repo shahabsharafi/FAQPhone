@@ -108,7 +108,8 @@ namespace FAQPhone.Views
             if (model == null)
                 return;
             this.SelectedItem = null;
-            await this.Navigation.PushAsync(new DiscussionNewPage(null, model, null, 0));
+            //await this.Navigation.PushAsync(new DiscussionNewPage(null, model, null, 0));
+            await this.Navigation.PushAsync(new AccountFeedbackPage(model));
         }
     }
 }
