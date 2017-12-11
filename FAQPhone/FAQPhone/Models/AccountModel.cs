@@ -40,6 +40,12 @@ namespace FAQPhone.Models
         public string university { get; set; }
         public string level { get; set; }
     }
+
+    public class AccountComment
+    {
+        public DateTime createDate { get; set; }
+        public string text { get; set; }
+    }
     public class AccountModel
     {
         public string _id { get; set; }
@@ -56,5 +62,6 @@ namespace FAQPhone.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public bool IsOnline { get; set; }
+        public AccountComment[] comments { get; set; }
     }
 }
