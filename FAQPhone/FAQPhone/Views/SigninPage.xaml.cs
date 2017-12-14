@@ -1,4 +1,5 @@
-﻿using FAQPhone.Infarstructure;
+﻿using FAQPhone.Helpers;
+using FAQPhone.Infarstructure;
 using FAQPhone.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -60,8 +61,21 @@ namespace FAQPhone.Views
 
         public async Task sendCommand()
         {
-
-            await this.Navigation.PopAsync();
+            if (this.password == Settings.LocalPassword)
+            {
+                if (!String.IsNullOrEmpty(Settings.Username) && !String.IsNullOrEmpty(Settings.Password))
+                {
+                    await RootNavigate(new ConnectingPage());
+                }
+                else
+                {
+                    await RootNavigate(new SendCodePage());
+                }
+            }
+            else
+            {
+                await Utility.Alert("message_password_invalid");
+            }
         }
     }
 

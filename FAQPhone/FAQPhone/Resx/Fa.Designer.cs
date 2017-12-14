@@ -971,6 +971,24 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to کلمه عبور و تایید کلمه عبور یکسان نیست.
+        /// </summary>
+        internal static string message_password_confirmation {
+            get {
+                return ResourceManager.GetString("message_password_confirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کلمه عبور اشتباه است.
+        /// </summary>
+        internal static string message_password_invalid {
+            get {
+                return ResourceManager.GetString("message_password_invalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ابتدا اطلاعات کاربری را کامل کنید.
         /// </summary>
         internal static string message_profile_not_completed {

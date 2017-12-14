@@ -34,7 +34,7 @@ namespace FAQPhone.Helpers
         public static Task Alert(string message = Constants.MESSAGE_UNKNOWN_ERROR, string title = Constants.MESSAGE_TITLE_ALERT, string cancel = Constants.COMMAND_OK)
         {
             var t = ResourceManagerHelper.GetValue(title);
-            var m = ResourceManagerHelper.GetValue(message) ?? ResourceManagerHelper.GetValue(Constants.MESSAGE_UNKNOWN_ERROR);            
+            var m = ResourceManagerHelper.GetValue(message) ?? ResourceManagerHelper.GetValue(Constants.MESSAGE_UNKNOWN_ERROR);
             var c = ResourceManagerHelper.GetValue(cancel);
             return Application.Current.MainPage.DisplayAlert(t, m, c);
         }
@@ -73,7 +73,7 @@ namespace FAQPhone.Helpers
             var arr2 = GetVersionInfo(App.SuportVersion);
             var result = 0;
             for (int i = 0; i < 3; i++)
-            {                
+            {
                 if (arr1[i] < arr2[i])
                 {
                     result = -1;
@@ -86,6 +86,24 @@ namespace FAQPhone.Helpers
                     break;
             }
             return result;
+        }
+
+        public static int[] MiladiToShamsi(DateTime dt)
+        {
+            var pCalendar = DependencyService.Get<CalendarService.IPersianCalendarService>();
+            var pc = pCalendar.GetCalendar();
+            var y = pc.GetYear(dt);
+            var m = pc.GetMonth(dt);
+            var d = pc.GetDayOfMonth(dt);
+            int[] arr = new int[] { y, m, d };
+            return arr;
+        }
+
+        public static DateTime ShamsiToMiladi(int y, int m, int d)
+        {
+            var pCalendar = DependencyService.Get<CalendarService.IPersianCalendarService>();
+            var pc = pCalendar.GetCalendar();
+            return pc.ToDateTime(y, m, d, 0, 0, 0, 0);
         }
     }
 }

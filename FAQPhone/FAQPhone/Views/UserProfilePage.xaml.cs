@@ -1,4 +1,5 @@
-﻿using FAQPhone.Infarstructure;
+﻿using FAQPhone.Helpers;
+using FAQPhone.Infarstructure;
 using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
 using System;
@@ -101,10 +102,8 @@ namespace FAQPhone.Views
             {
                 this.GradeList.Add(item);
             }
-            var pCalendar = DependencyService.Get<CalendarService.IPersianCalendarService>();
-            var pc = pCalendar.GetCalendar();
-            var d = DateTime.Now;
-            var y = pc.GetYear(d);
+            var d = Utility.MiladiToShamsi(DateTime.Now);
+            var y = d[0];
             for (int i = y; i >= 1320; i--)
             {
                 this.YearList.Add(new AttributeModel { caption = i.ToString() });
@@ -121,10 +120,10 @@ namespace FAQPhone.Views
             {
                 if (model.profile.birthDay != null)
                 {
-                    var birthDay = model.profile.birthDay;
-                    this.SelectedYear = this.YearList.ToList().Find(o => o.caption == birthDay?.Year.ToString());
-                    this.SelectedMonth = this.MonthList.ToList().Find(o => o.caption == birthDay?.Month.ToString());
-                    this.SelectedDay = this.DayList.ToList().Find(o => o.caption == birthDay?.Day.ToString());
+                    var birthDay = Utility.MiladiToShamsi(model.profile.birthDay.Value);
+                    this.SelectedYear = this.YearList.ToList().Find(o => o.caption == birthDay[0].ToString());
+                    this.SelectedMonth = this.MonthList.ToList().Find(o => o.caption == birthDay[1].ToString());
+                    this.SelectedDay = this.DayList.ToList().Find(o => o.caption == birthDay[2].ToString());
                 }
                 if (model.profile.sex != null)
                 {
@@ -503,7 +502,7 @@ namespace FAQPhone.Views
                     int.TryParse(this.SelectedMonth.caption, out month) &&
                     int.TryParse(this.SelectedDay.caption, out day))
                 {
-                    this.model.profile.birthDay = new DateTime(year, month, day);
+                    this.model.profile.birthDay = Utility.ShamsiToMiladi(year, month, day);
                 }
             }
             if (this.SelectedSex != null)

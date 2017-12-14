@@ -83,15 +83,23 @@ namespace FAQPhone.Models
     {
         public string _id { get; set; }
         public string username { get; set; }
-        public int state { get; set; }
+        public bool blocked { get; set; }
+        public bool disabled { get; set; }
         public string email { get; set; }
         public string mobile { get; set; }
-        public decimal credit { get; set; }
+        public bool isOperator { get; set; }
+        public bool isUser { get; set; }
+        public bool isOrganization { get; set; }
+        public bool isManager { get; set; }
+        public bool sexPrevention { get; set; }
+        public long? price { get; set; }
+        public bool isAdmin { get; set; }
+        public string orgCode { get; set; }
         public ProfileModel profile { get; set; }
         public ContactModel contact { get; set; }
         public EducationModel education { get; set; }
-        public bool sexPrevention { get; set; }
-        public long? price { get; set; }        
+        public int state { get; set; }
+        public decimal credit { get; set; }
         public string FullName { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }

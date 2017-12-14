@@ -552,4 +552,10 @@
   <data name="message_version_sync" xml:space="preserve">
     <value>نسخه نرم افزار بروز می باشد</value>
   </data>
+  <data name="message_password_confirmation" xml:space="preserve">
+    <value>کلمه عبور و تایید کلمه عبور یکسان نیست</value>
+  </data>
+  <data name="message_password_invalid" xml:space="preserve">
+    <value>کلمه عبور اشتباه است</value>
+  </data>
 </root>

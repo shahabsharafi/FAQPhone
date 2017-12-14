@@ -23,8 +23,8 @@ namespace FAQPhone.Helpers
         #region Setting Constants
         const string languageKey = "language";
         private static readonly string languageDefault = "Fa";
-        const string mode = "mode";
-        private static readonly string modeDefault = null;
+        const string localPassword = "localPassword";
+        private static readonly string localPasswordDefault = null;
         const string usernameKey = "user";
         private static readonly string usernameDefault = null;
         const string passwordKey = "password";
@@ -38,10 +38,10 @@ namespace FAQPhone.Helpers
             set { AppSettings.AddOrUpdateValue(languageKey, value); }
         }
 
-        public static string Mode
+        public static string LocalPassword
         {
-            get { return AppSettings.GetValueOrDefault(mode, modeDefault); }
-            set { AppSettings.AddOrUpdateValue(mode, value); }
+            get { return AppSettings.GetValueOrDefault(localPassword, localPasswordDefault); }
+            set { AppSettings.AddOrUpdateValue(localPassword, value); }
         }
 
         public static string Username

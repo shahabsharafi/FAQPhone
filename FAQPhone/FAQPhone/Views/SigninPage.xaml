@@ -5,7 +5,7 @@
              x:Class="FAQPhone.Views.SigninPage">
     <ContentPage.Content>
         <StackLayout Style="{StaticResource pageStyle}">
-            <Entry Placeholder="{infr:Translate account_password}" Text="{Binding password, Mode=TwoWay}" />
+            <Entry Placeholder="{infr:Translate account_password}" IsPassword="True" Text="{Binding password, Mode=TwoWay}" />
             <Button Text="{infr:Translate command_send}" Command="{Binding SendCommand}" StyleClass="Info" />
         </StackLayout>
     </ContentPage.Content>
