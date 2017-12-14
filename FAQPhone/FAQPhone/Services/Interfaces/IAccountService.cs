@@ -20,6 +20,7 @@ namespace FAQPhone.Services.Interfaces
         void SignOut();
 
         Task<AccountModel> GetMe();
+        Task<ResultModel> GetVersion();
 
         bool IsAuthenticated();
     }

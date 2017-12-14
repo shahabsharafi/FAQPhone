@@ -111,13 +111,16 @@ namespace FAQPhone.Views
             {
                 if (flag)
                 {
-                    var p = new MainPage();
-                    await this.RootNavigate(p);
-                    //var list = await this.messageService.GetNewMessages();
-                    //if (list != null && list.Count > 0)
-                    //{
+                    if (Utility.CompareVersion() >= 0)
+                    {
+                        var p = new MainPage();
+                        await this.RootNavigate(p);
                         await p.Navigation.PushAsync(new MessagePage(true));
-                    //}                   
+                    }
+                    else
+                    {
+                        await Utility.Alert("message_unsuported_version");
+                    }
                 }
                 else
                 {

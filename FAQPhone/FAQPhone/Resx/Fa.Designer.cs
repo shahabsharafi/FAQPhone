@@ -260,6 +260,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to بررسی نسخه نرم افزار.
+        /// </summary>
+        internal static string check_version {
+            get {
+                return ResourceManager.GetString("check_version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to پاسخ.
         /// </summary>
         internal static string command_accept {
@@ -544,6 +553,15 @@ namespace FAQPhone.Resx {
         internal static string contactus_text {
             get {
                 return ResourceManager.GetString("contactus_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نسخه جاری.
+        /// </summary>
+        internal static string current_version {
+            get {
+                return ResourceManager.GetString("current_version", resourceCulture);
             }
         }
         
@@ -863,6 +881,24 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to تنظیمات داخلی.
+        /// </summary>
+        internal static string internal_setting {
+            get {
+                return ResourceManager.GetString("internal_setting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to آخرین نسخه.
+        /// </summary>
+        internal static string last_version {
+            get {
+                return ResourceManager.GetString("last_version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to امکانات نرم افزار.
         /// </summary>
         internal static string mainpage {
@@ -944,11 +980,38 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to این نسخه پشتیبانی نمی شود. نرم افزار را بروز رسانی کنید..
+        /// </summary>
+        internal static string message_unsuported_version {
+            get {
+                return ResourceManager.GetString("message_unsuported_version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to دسترسی  به این بخش شما مسدود شده.
         /// </summary>
         internal static string message_user_blocked {
             get {
                 return ResourceManager.GetString("message_user_blocked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نسخه آماده برای دریافت.
+        /// </summary>
+        internal static string message_version_next {
+            get {
+                return ResourceManager.GetString("message_version_next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نسخه نرم افزار بروز می باشد.
+        /// </summary>
+        internal static string message_version_sync {
+            get {
+                return ResourceManager.GetString("message_version_sync", resourceCulture);
             }
         }
         

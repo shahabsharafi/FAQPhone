@@ -27,6 +27,9 @@ namespace FAQPhone.Infarstructure
         public const string CONTACT_US = "contactus";
         public const string ABOUT_US = "about_us";
         public const string SETTING = "setting";
+        public const string INTERNAL_SETTING = "internal_setting";
+        public const string APP_VERSION = "app_version";
+        public const string CHECK_VERSION = "check_version";
         public const string SIGNOUT = "signout";
 
         public const string ACCESS_OPERATOR = "access_operator";

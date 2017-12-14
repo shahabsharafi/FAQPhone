@@ -80,9 +80,17 @@ namespace FAQPhone.Views
                     };
                     if (await this.accountService.SignUp(model))
                     {
-                        Settings.Username = this.mobile;
-                        Settings.Password = this.codeResult.code;
-                        await RootNavigate(new MainPage());
+                        if (Utility.CompareVersion() >= 0)
+                        {
+                            Settings.Username = this.mobile;
+                            Settings.Password = this.codeResult.code;
+                            await RootNavigate(new MainPage());
+                        }
+                        else
+                        {
+                            this.message = "message_unsuported_version";
+                        }
+                        
                     }
                     else
                     {
@@ -100,9 +108,16 @@ namespace FAQPhone.Views
                     };
                     if (await this.accountService.ResetPassword(model))
                     {
-                        Settings.Username = this.codeResult.username;
-                        Settings.Password = this.codeResult.code;
-                        await RootNavigate(new MainPage());
+                        if (Utility.CompareVersion() >= 0)
+                        {
+                            Settings.Username = this.codeResult.username;
+                            Settings.Password = this.codeResult.code;
+                            await RootNavigate(new MainPage());
+                        }
+                        else
+                        {
+                            this.message = "message_unsuported_version";
+                        }
                     }
                     else
                     {

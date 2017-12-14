@@ -49,6 +49,7 @@ namespace FAQPhone
         }
 
         public static bool EnterAsOperator { get; set; }
+        public static string SuportVersion { get; set; }
         public static bool Blocked { get; set; }
 
         public static string Username { get; set; }

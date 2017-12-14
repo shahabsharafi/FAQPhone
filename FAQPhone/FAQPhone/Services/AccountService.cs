@@ -1,4 +1,6 @@
-﻿using FAQPhone.Infarstructure;
+﻿using FAQPhone.Helpers;
+using FAQPhone.Infarstructure;
+using FAQPhone.Infrastructure;
 using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
 using System;
@@ -29,7 +31,7 @@ namespace FAQPhone.Services
             var url = this.getUrl(string.Format("sendcode/{0}", mobile));
             var result = await this.get<CodeResultModel>(url);
             return result;
-        }
+        }        
 
         public async Task<bool> SignUp(AccountChangeModel model)
         {
@@ -63,7 +65,7 @@ namespace FAQPhone.Services
             if (result.success == true)
             {
                 setAutenticationInfo(result);
-                return true;
+                return true;                
             }
             return false;
         }
@@ -78,6 +80,12 @@ namespace FAQPhone.Services
             return await this.get<AccountModel>(url);
         }
 
+        public async Task<ResultModel> GetVersion()
+        {
+            string url = this.getUrl("version");
+            return await this.get<ResultModel>(url);
+        }
+
         public bool IsAuthenticated()
         {
             return !string.IsNullOrEmpty(App.Token);
@@ -85,6 +93,7 @@ namespace FAQPhone.Services
 
         private static void setAutenticationInfo(AutResultModel info)
         {
+            App.SuportVersion = info?.suportVersion;
             App.Blocked = info?.blocked ?? false;
             App.Username = info?.username;
             App.Token = info?.token;

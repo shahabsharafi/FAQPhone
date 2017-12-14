@@ -525,4 +525,25 @@
   <data name="profile_sexPrevention" xml:space="preserve">
     <value>محدودیت سوال از جنس مخالف</value>
   </data>
+  <data name="check_version" xml:space="preserve">
+    <value>بررسی نسخه نرم افزار</value>
+  </data>
+  <data name="current_version" xml:space="preserve">
+    <value>نسخه جاری</value>
+  </data>
+  <data name="internal_setting" xml:space="preserve">
+    <value>تنظیمات داخلی</value>
+  </data>
+  <data name="last_version" xml:space="preserve">
+    <value>آخرین نسخه</value>
+  </data>
+  <data name="message_unsuported_version" xml:space="preserve">
+    <value>این نسخه پشتیبانی نمی شود. نرم افزار را بروز رسانی کنید.</value>
+  </data>
+  <data name="message_version_next" xml:space="preserve">
+    <value>نسخه آماده برای دریافت</value>
+  </data>
+  <data name="message_version_sync" xml:space="preserve">
+    <value>نسخه نرم افزار بروز می باشد</value>
+  </data>
 </root>

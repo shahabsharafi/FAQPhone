@@ -15,6 +15,7 @@ namespace FAQPhone.Models
         public string firstName { get; set; }
         public string lastName { get; set; }
         public bool blocked { get; set; }
+        public string suportVersion { get; set; }
         public string[] access { get; set; }
     }
 }

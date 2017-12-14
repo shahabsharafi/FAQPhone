@@ -103,6 +103,8 @@ namespace FAQPhone.Views
             }
             else if (menu == Constants.SETTING)
             {
+                items.Add(new MenuItemModel() { CommandName = Constants.INTERNAL_SETTING, Icon = FontAwesome.FACog });
+                items.Add(new MenuItemModel() { CommandName = Constants.CHECK_VERSION, Icon = FontAwesome.FACodeFork });
                 items.Add(new MenuItemModel() { CommandName = Constants.SIGNOUT, Icon = FontAwesome.FASignOut });
             }
                      
@@ -199,6 +201,12 @@ namespace FAQPhone.Views
                     case Constants.SETTING:
                         await this.Navigation.PushAsync(new MainPage(model.CommandName));
                         break;
+                    case Constants.CHECK_VERSION:
+                        await this.CheckVersion();
+                        break;
+                    case Constants.INTERNAL_SETTING:
+                        await this.Navigation.PushAsync(new SettingPage());
+                        break;
                     case Constants.SIGNOUT:
                         await Signout();
                         break;
@@ -242,6 +250,24 @@ namespace FAQPhone.Views
                 Settings.Password = string.Empty;
                 await this.RootNavigate(new SendCodePage());
             }
+        }
+
+        private async Task CheckVersion()
+        {
+            var app_version = ResourceManagerHelper.GetValue(Constants.APP_VERSION);
+            var version = await this.accountService.GetVersion();
+            var lastVersion = version.message;
+            var message = "";
+            if (lastVersion == app_version)
+            {
+                message = ResourceManagerHelper.GetValue("message_version_sync");
+            }
+            else
+            {
+                message = string.Format("{0} : {1}", 
+                    ResourceManagerHelper.GetValue("message_version_next"), lastVersion);
+            }
+            await Utility.RegulareAlert(message);
         }
 
         private async Task ReadInprogressFAQByOperator(MenuItemModel model)
