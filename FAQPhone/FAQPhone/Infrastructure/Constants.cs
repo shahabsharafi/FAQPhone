@@ -30,6 +30,7 @@ namespace FAQPhone.Infarstructure
         public const string INTERNAL_SETTING = "internal_setting";
         public const string APP_VERSION = "app_version";
         public const string CHECK_VERSION = "check_version";
+        public const string CHANGE_PASSWORD = "change_password";
         public const string SIGNOUT = "signout";
 
         public const string ACCESS_OPERATOR = "access_operator";

@@ -80,6 +80,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to تکرار کلمه عبور.
+        /// </summary>
+        internal static string account_confirm {
+            get {
+                return ResourceManager.GetString("account_confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to اعتبار.
         /// </summary>
         internal static string account_credit {
@@ -94,6 +103,15 @@ namespace FAQPhone.Resx {
         internal static string account_jobState {
             get {
                 return ResourceManager.GetString("account_jobState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کلمه عبور.
+        /// </summary>
+        internal static string account_password {
+            get {
+                return ResourceManager.GetString("account_password", resourceCulture);
             }
         }
         
@@ -238,6 +256,15 @@ namespace FAQPhone.Resx {
         internal static string cancelation_unrelated_text {
             get {
                 return ResourceManager.GetString("cancelation_unrelated_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تغییر کلمه عبور.
+        /// </summary>
+        internal static string change_password {
+            get {
+                return ResourceManager.GetString("change_password", resourceCulture);
             }
         }
         

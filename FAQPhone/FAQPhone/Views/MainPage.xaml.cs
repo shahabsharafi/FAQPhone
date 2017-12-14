@@ -105,6 +105,7 @@ namespace FAQPhone.Views
             {
                 items.Add(new MenuItemModel() { CommandName = Constants.INTERNAL_SETTING, Icon = FontAwesome.FACog });
                 items.Add(new MenuItemModel() { CommandName = Constants.CHECK_VERSION, Icon = FontAwesome.FACodeFork });
+                items.Add(new MenuItemModel() { CommandName = Constants.CHANGE_PASSWORD, Icon = FontAwesome.FAKey });
                 items.Add(new MenuItemModel() { CommandName = Constants.SIGNOUT, Icon = FontAwesome.FASignOut });
             }
                      
@@ -203,6 +204,9 @@ namespace FAQPhone.Views
                         break;
                     case Constants.CHECK_VERSION:
                         await this.CheckVersion();
+                        break;
+                    case Constants.CHANGE_PASSWORD:
+                        await this.Navigation.PushAsync(new ChangePasswordPage());
                         break;
                     case Constants.INTERNAL_SETTING:
                         await this.Navigation.PushAsync(new SettingPage());

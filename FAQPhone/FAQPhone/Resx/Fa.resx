@@ -525,6 +525,15 @@
   <data name="profile_sexPrevention" xml:space="preserve">
     <value>محدودیت سوال از جنس مخالف</value>
   </data>
+  <data name="account_confirm" xml:space="preserve">
+    <value>تکرار کلمه عبور</value>
+  </data>
+  <data name="account_password" xml:space="preserve">
+    <value>کلمه عبور</value>
+  </data>
+  <data name="change_password" xml:space="preserve">
+    <value>تغییر کلمه عبور</value>
+  </data>
   <data name="check_version" xml:space="preserve">
     <value>بررسی نسخه نرم افزار</value>
   </data>
