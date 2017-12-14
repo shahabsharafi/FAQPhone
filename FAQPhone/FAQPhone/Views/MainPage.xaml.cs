@@ -56,7 +56,6 @@ namespace FAQPhone.Views
 
     public class MainPageViewModel : BaseViewModel
     {
-        bool _isOperator = false;
         public MainPageViewModel(IAccountService accountService, IAttributeService attributeService, IDepartmentService departmentService, IDiscussionService discussionService, ContentPage page, string menu) : base(page)
         {
             this.accountService = accountService;
@@ -119,13 +118,12 @@ namespace FAQPhone.Views
                 AccountModel me = await this.accountService.GetMe();
                 if (App.EnterAsOperator == true)
                 {
-                    this._completeProfile = 
-                        (!string.IsNullOrWhiteSpace(me?.profile?.sex)) && 
-                        (!string.IsNullOrWhiteSpace(me?.education?.grade));
-                } else
+                    this._completeProfile = me.IsComplete();
+                } else 
                 {
                     this._completeProfile =
                         (!string.IsNullOrWhiteSpace(me?.profile?.sex)) &&
+                        (me?.profile?.birthDay != null) &&
                         (!string.IsNullOrWhiteSpace(me?.education?.grade));
                 }
             }
@@ -308,7 +306,11 @@ namespace FAQPhone.Views
 
         private async Task CreateFAQByUser()
         {
-            if (await this.CompleteProfile())
+            if (App.Blocked)
+            {
+                await Utility.Alert("message_user_blocked");
+            }
+            else if (await this.CompleteProfile())
             {
                 var dl = await this.departmentService.GetByParent("");
                 if (dl != null && dl.Count() > 0)

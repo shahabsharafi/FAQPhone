@@ -519,4 +519,10 @@
   <data name="contactus_subject" xml:space="preserve">
     <value>عنوان</value>
   </data>
+  <data name="message_user_blocked" xml:space="preserve">
+    <value>دسترسی  به این بخش شما مسدود شده</value>
+  </data>
+  <data name="profile_sexPrevention" xml:space="preserve">
+    <value>محدودیت سوال از جنس مخالف</value>
+  </data>
 </root>

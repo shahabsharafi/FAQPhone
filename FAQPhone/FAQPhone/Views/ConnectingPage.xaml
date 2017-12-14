@@ -15,11 +15,6 @@
             <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" Color="Black" />
             <Label Text="{infr:Translate connecting_wating}" IsVisible="{Binding IsBusy}" TextColor="#4e5758" FontSize="20" HorizontalTextAlignment="Center"  />
             <StackLayout IsVisible="{ Binding IsBusy, Converter={StaticResource Inverse} }">
-                <Picker 
-                    Title="{infr:Translate setting_language}" 
-                    ItemsSource="{ Binding LanguageList }" 
-                    ItemDisplayBinding="{ Binding caption }" 
-                    SelectedItem="{ Binding SelectedLanguage }" />
                 <Button Text="{ Binding CommandCaption }" Command="{Binding TryCommand}" StyleClass="Info" />
                 <Button Text="{infr:Translate resetpassword}" Command="{Binding ResetPasswordCommand}" StyleClass="Info" />
             </StackLayout>

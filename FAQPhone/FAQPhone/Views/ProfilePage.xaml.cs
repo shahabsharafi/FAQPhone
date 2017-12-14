@@ -49,6 +49,35 @@ namespace FAQPhone.Views
         {
             this.accountService = accountService;
             this.model = model;
+            this.SexList = new ObservableCollection<AttributeModel>();
+            this.StatusList = new ObservableCollection<AttributeModel>();
+            var sexList = App.AttributeList.Where(o => o.type == "sex");
+            foreach (var item in sexList)
+            {
+                this.SexList.Add(item);
+            }
+            var statusList = App.AttributeList.Where(o => o.type == "status");
+            foreach (var item in statusList)
+            {
+                this.StatusList.Add(item);
+            }
+            var pCalendar = DependencyService.Get<CalendarService.IPersianCalendarService>();
+            var pc = pCalendar.GetCalendar();
+            var d = DateTime.Now;
+            var y = pc.GetYear(d);
+            for (int i = y; i >= 1320; i--)
+            {
+                this.YearList.Add(new AttributeModel { caption = i.ToString() });
+            }
+            for (int i = 1; i <= 12; i++)
+            {
+                this.MonthList.Add(new AttributeModel { caption = i.ToString() });
+            }
+            for (int i = 1; i <= 31; i++)
+            {
+                this.DayList.Add(new AttributeModel { caption = i.ToString() });
+            }
+            this.sexPrevention = model.sexPrevention;
             if (this.model.profile != null)
             {
                 this.SaveCommand = new Command(async () => await saveCommand());
@@ -58,11 +87,112 @@ namespace FAQPhone.Views
                 this.no = model.profile.no;
                 this.placeOfIssues = model.profile.placeOfIssues;
                 this.nationalCode = model.profile.nationalCode;
-                this.birthPlace = model.profile.birthPlace;
+                this.birthPlace = model.profile.birthPlace;                
+                if (model.profile.birthDay != null)
+                {
+                    var birthDay = model.profile.birthDay;
+                    this.SelectedYear = this.YearList.ToList().Find(o => o.caption == birthDay?.Year.ToString());
+                    this.SelectedMonth = this.MonthList.ToList().Find(o => o.caption == birthDay?.Month.ToString());
+                    this.SelectedDay = this.DayList.ToList().Find(o => o.caption == birthDay?.Day.ToString());
+                }
+                if (model.profile.sex != null)
+                {
+                    this.SelectedSex = App.AttributeList.Find(o => o._id == model.profile.sex);
+                }
             }
         }
         private IAccountService accountService { get; set; }
-        AccountModel model { get; set; }        
+        AccountModel model { get; set; }
+
+        private ObservableCollection<AttributeModel> _YearList;
+        public ObservableCollection<AttributeModel> YearList
+        {
+            get { return _YearList; }
+            set { _YearList = value; }
+        }
+
+        private AttributeModel _SelectedYear;
+        public AttributeModel SelectedYear
+        {
+            get { return _SelectedYear; }
+            set
+            {
+                _SelectedYear = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<AttributeModel> _MonthList;
+        public ObservableCollection<AttributeModel> MonthList
+        {
+            get { return _MonthList; }
+            set { _MonthList = value; }
+        }
+
+        private AttributeModel _SelectedMonth;
+        public AttributeModel SelectedMonth
+        {
+            get { return _SelectedMonth; }
+            set
+            {
+                _SelectedMonth = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<AttributeModel> _DayList;
+        public ObservableCollection<AttributeModel> DayList
+        {
+            get { return _DayList; }
+            set { _DayList = value; }
+        }
+
+        private AttributeModel _SelectedDay;
+        public AttributeModel SelectedDay
+        {
+            get { return _SelectedDay; }
+            set
+            {
+                _SelectedDay = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<AttributeModel> _SexList;
+        public ObservableCollection<AttributeModel> SexList
+        {
+            get { return _SexList; }
+            set { _SexList = value; OnPropertyChanged(); }
+        }
+
+        private AttributeModel _SelectedSex;
+        public AttributeModel SelectedSex
+        {
+            get { return _SelectedSex; }
+            set
+            {
+                _SelectedSex = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<AttributeModel> _StatusList;
+        public ObservableCollection<AttributeModel> StatusList
+        {
+            get { return _StatusList; }
+            set { _StatusList = value; OnPropertyChanged(); }
+        }
+
+        private AttributeModel _SelectedStatus;
+        public AttributeModel SelectedStatus
+        {
+            get { return _SelectedStatus; }
+            set
+            {
+                _SelectedStatus = value;
+                OnPropertyChanged();
+            }
+        }
 
         string _firstName;
         public string firstName
@@ -113,6 +243,13 @@ namespace FAQPhone.Views
             set { _birthPlace = value; OnPropertyChanged(); }
         }
 
+        bool _sexPrevention;
+        public bool sexPrevention
+        {
+            get { return _sexPrevention; }
+            set { _sexPrevention = value; OnPropertyChanged(); }
+        }
+
         public ICommand SaveCommand { protected set; get; }
 
         public async Task saveCommand()
@@ -121,6 +258,26 @@ namespace FAQPhone.Views
             {
                 this.model.profile = new ProfileModel();
             }
+            if (this.SelectedYear != null &&
+               this.SelectedMonth != null &&
+               this.SelectedDay != null)
+            {
+                int year, month, day;
+                if (int.TryParse(this.SelectedYear.caption, out year) &&
+                    int.TryParse(this.SelectedMonth.caption, out month) &&
+                    int.TryParse(this.SelectedDay.caption, out day))
+                {
+                    this.model.profile.birthDay = new DateTime(year, month, day);
+                }
+            }
+            if (this.SelectedSex != null)
+            {
+                this.model.profile.sex = this.SelectedSex._id;
+            }
+            if (this.SelectedStatus != null)
+            {
+                this.model.profile.status = this.SelectedStatus._id;
+            }
             this.model.profile.firstName = this.firstName;
             this.model.profile.lastName = this.lastName;
             this.model.profile.fatherName = this.fatherName;
@@ -128,6 +285,7 @@ namespace FAQPhone.Views
             this.model.profile.placeOfIssues = this.placeOfIssues;
             this.model.profile.nationalCode = this.nationalCode;
             this.model.profile.birthPlace = this.birthPlace;
+            this.model.sexPrevention = this.sexPrevention;
             await this.accountService.Save(this.model);
             await this.Navigation.PushAsync(new ContactPage(this.model));
         }

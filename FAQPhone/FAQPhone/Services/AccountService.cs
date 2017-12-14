@@ -85,6 +85,7 @@ namespace FAQPhone.Services
 
         private static void setAutenticationInfo(AutResultModel info)
         {
+            App.Blocked = info?.blocked ?? false;
             App.Username = info?.username;
             App.Token = info?.token;
             App.Access = info?.access;

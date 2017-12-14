@@ -22,6 +22,20 @@ namespace FAQPhone.Models
         public string religion { get; set; }
         public string sect { get; set; }
         public string reference { get; set; }
+        public bool IsComplete()
+        {
+            return
+                !string.IsNullOrWhiteSpace(this.firstName) &&
+                !string.IsNullOrWhiteSpace(this.lastName) &&
+                !string.IsNullOrWhiteSpace(this.fatherName) &&
+                !string.IsNullOrWhiteSpace(this.no) &&
+                !string.IsNullOrWhiteSpace(this.placeOfIssues) &&
+                !string.IsNullOrWhiteSpace(this.nationalCode) &&
+                this.birthDay != null &&
+                !string.IsNullOrWhiteSpace(this.birthPlace) &&
+                !string.IsNullOrWhiteSpace(this.sex) &&
+                !string.IsNullOrWhiteSpace(this.status);
+        }
     }
     public class ContactModel {
         public string house { get; set; }
@@ -31,6 +45,17 @@ namespace FAQPhone.Models
         public string city { get; set; }
         public string address { get; set; }
         public string pcode { get; set; }
+        public bool IsComplete()
+        {
+            return
+                !string.IsNullOrWhiteSpace(this.house) &&
+                !string.IsNullOrWhiteSpace(this.work) &&
+                !string.IsNullOrWhiteSpace(this.country) &&
+                !string.IsNullOrWhiteSpace(this.province) &&
+                !string.IsNullOrWhiteSpace(this.city) &&
+                !string.IsNullOrWhiteSpace(this.address) &&
+                !string.IsNullOrWhiteSpace(this.pcode);
+        }
     }
 
     public class EducationModel
@@ -39,6 +64,14 @@ namespace FAQPhone.Models
         public string major { get; set; }
         public string university { get; set; }
         public string level { get; set; }
+        public bool IsComplete()
+        {
+            return
+                !string.IsNullOrWhiteSpace(this.grade) &&
+                !string.IsNullOrWhiteSpace(this.major) &&
+                !string.IsNullOrWhiteSpace(this.university) &&
+                !string.IsNullOrWhiteSpace(this.level);
+        }
     }
 
     public class AccountComment
@@ -57,11 +90,19 @@ namespace FAQPhone.Models
         public ProfileModel profile { get; set; }
         public ContactModel contact { get; set; }
         public EducationModel education { get; set; }
-        public long? price { get; set; }
+        public bool sexPrevention { get; set; }
+        public long? price { get; set; }        
         public string FullName { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public bool IsOnline { get; set; }
         public AccountComment[] comments { get; set; }
+        public bool IsComplete()
+        {
+            return
+                this.profile.IsComplete() &&
+                this.contact.IsComplete() &&
+                this.education.IsComplete();
+        }
     }
 }

@@ -8,11 +8,74 @@
         <StackLayout Style="{StaticResource pageStyle}">
             <Entry Placeholder="{infr:Translate profile_firstName}" Text="{Binding firstName, Mode=TwoWay}" />
             <Entry Placeholder="{infr:Translate profile_lastName}" Text="{Binding lastName, Mode=TwoWay}" />
+            <Picker 
+                Title="{infr:Translate profile_sex}" 
+                ItemsSource="{ Binding SexList }" 
+                ItemDisplayBinding="{ Binding caption }" 
+                SelectedItem="{ Binding SelectedSex }" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Switch Grid.Row="0" Grid.Column="0" 
+                        IsToggled="{Binding sexPrevention}" />
+                <Label Grid.Row="0" Grid.Column="1"
+                       Text="{infr:Translate profile_sexPrevention}" />
+            </Grid>
+            <Grid Padding="0,0,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Picker 
+                    Title="---" 
+                    Grid.Row="0" Grid.Column="0"
+                    TextColor="#4e5758"                    
+                    ItemsSource="{ Binding YearList }" 
+                    ItemDisplayBinding="{ Binding caption }" 
+                    SelectedItem="{ Binding SelectedYear }" />
+                <Picker 
+                    Title="---" 
+                    Grid.Row="0" Grid.Column="1"
+                    TextColor="#4e5758"                    
+                    ItemsSource="{ Binding MonthList }" 
+                    ItemDisplayBinding="{ Binding caption }" 
+                    SelectedItem="{ Binding SelectedMonth }" />
+                <Picker 
+                    Title="---" 
+                    Grid.Row="0" Grid.Column="2"
+                    TextColor="#4e5758"                    
+                    ItemsSource="{ Binding DayList }" 
+                    ItemDisplayBinding="{ Binding caption }" 
+                    SelectedItem="{ Binding SelectedDay }" />
+                <Label 
+                    Text="{infr:Translate profile_birthDay}" 
+                    FontSize="Small" 
+                    TextColor="#4e5758" 
+                    Grid.Row="0" 
+                    Grid.Column="3" 
+                    YAlign="End">
+                </Label>
+            </Grid>
             <Entry Placeholder="{infr:Translate profile_fatherName}" Text="{Binding fatherName, Mode=TwoWay}" />
             <Entry Placeholder="{infr:Translate profile_no}" Text="{Binding no, Mode=TwoWay}" />
             <Entry Placeholder="{infr:Translate profile_placeOfIssues}" Text="{Binding placeOfIssues, Mode=TwoWay}" />
             <Entry Placeholder="{infr:Translate profile_nationalCode}" Text="{Binding nationalCode, Mode=TwoWay}" />
             <Entry Placeholder="{infr:Translate profile_birthPlace}" Text="{Binding birthPlace, Mode=TwoWay}" />
+            <Picker 
+                Title="{infr:Translate account_status}" 
+                ItemsSource="{ Binding StatusList }" 
+                ItemDisplayBinding="{ Binding caption }" 
+                SelectedItem="{ Binding SelectedStatus }" />
             <Button Text="{infr:Translate command_next}" Command="{Binding SaveCommand}" StyleClass="Info" />
             <Label Text="{Binding CountDisplay}"/>
         </StackLayout>

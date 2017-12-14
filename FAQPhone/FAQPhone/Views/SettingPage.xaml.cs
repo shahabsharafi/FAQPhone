@@ -2,53 +2,45 @@
 using FAQPhone.Infarstructure;
 using FAQPhone.Infrastructure;
 using FAQPhone.Models;
-using FAQPhone.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace FAQPhone.Views
 {
-
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SendCodePage : ContentPage
+    public partial class SettingPage : ContentPage
     {
-        public SendCodePage()
+        public SettingPage()
         {
             InitializeComponent();
-            var factory = App.Resolve<SendCodeViewModelFactory>();
+            var factory = App.Resolve<SettingViewModelFactory>();
             BindingContext = factory.Create(this);
         }
     }
-    
-    public class SendCodeViewModelFactory
+
+    public class SettingViewModelFactory
     {
-        IAccountService accountService;
-        public SendCodeViewModelFactory(IAccountService accountService)
+        public SettingViewModelFactory()
         {
-            this.accountService = accountService;
         }
-        public SendCodeViewModel Create(ContentPage page)
+        public SettingViewModel Create(ContentPage page)
         {
-            return new SendCodeViewModel(this.accountService, page);
+            return new SettingViewModel(page);
         }
     }
-    
-    public class SendCodeViewModel : BaseViewModel
+
+    public class SettingViewModel : BaseViewModel
     {
-        public SendCodeViewModel(IAccountService accountService, ContentPage page) : base(page)
+        public SettingViewModel(ContentPage page) : base(page)
         {
-            this.accountService = accountService;
-            this.SendCodeCommand = new Command(async () => await sendCodeCommand());
+            this.SaveCommand = new Command(async () => await saveCommand());
             var languageList = new string[] { "Fa", "Ar" };
             this.LanguageList = new ObservableCollection<AttributeModel>();
             foreach (var item in languageList)
@@ -58,7 +50,6 @@ namespace FAQPhone.Views
                 this.LanguageList.Add(new AttributeModel() { caption = val, _id = key });
             }
         }
-        private IAccountService accountService { get; set; }
 
         private ObservableCollection<AttributeModel> _LanguageList;
         public ObservableCollection<AttributeModel> LanguageList
@@ -77,32 +68,16 @@ namespace FAQPhone.Views
                 OnPropertyChanged();
             }
         }
+        public ICommand SaveCommand { protected set; get; }
 
-        string _mobile;
-        public string mobile
-        {
-            get { return _mobile; }
-            set
-            {
-                if (string.IsNullOrWhiteSpace(value) || value.Length <= 11)
-                {
-                    _mobile = value;                    
-                }
-                OnPropertyChanged();
-            }
-        }
-        public ICommand SendCodeCommand { protected set; get; }
-
-        public async Task sendCodeCommand()
+        public async Task saveCommand()
         {
             /////
             if (!string.IsNullOrEmpty(this.SelectedLanguage?._id))
             {
                 Settings.Language = this.SelectedLanguage._id;
             }
-            var mobile = this.mobile.ToEnglishNumber();
-            var codeResult = await this.accountService.SendCode(mobile);            
-            await this.Navigation.PushAsync(new SecurityCodePage(mobile, codeResult));
+            await this.Navigation.PopAsync();
         }
     }
 }

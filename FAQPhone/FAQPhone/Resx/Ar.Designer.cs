@@ -944,6 +944,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to دسترسی  به این بخش شما مسدود شده.
+        /// </summary>
+        internal static string message_user_blocked {
+            get {
+                return ResourceManager.GetString("message_user_blocked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to موبایل.
         /// </summary>
         internal static string mobile {
@@ -1093,6 +1102,15 @@ namespace FAQPhone.Resx {
         internal static string profile_sex {
             get {
                 return ResourceManager.GetString("profile_sex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to محدودیت سوال از جنس مخالف.
+        /// </summary>
+        internal static string profile_sexPrevention {
+            get {
+                return ResourceManager.GetString("profile_sexPrevention", resourceCulture);
             }
         }
         
