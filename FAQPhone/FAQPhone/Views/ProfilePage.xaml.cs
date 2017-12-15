@@ -52,6 +52,9 @@ namespace FAQPhone.Views
             this.model = model;
             this.SexList = new ObservableCollection<AttributeModel>();
             this.StatusList = new ObservableCollection<AttributeModel>();
+            this.YearList = new ObservableCollection<AttributeModel>();
+            this.MonthList = new ObservableCollection<AttributeModel>();
+            this.DayList = new ObservableCollection<AttributeModel>();
             var sexList = App.AttributeList.Where(o => o.type == "sex");
             foreach (var item in sexList)
             {
@@ -97,6 +100,10 @@ namespace FAQPhone.Views
                 if (model.profile.sex != null)
                 {
                     this.SelectedSex = App.AttributeList.Find(o => o._id == model.profile.sex);
+                }
+                if (model.profile.status != null)
+                {
+                    this.SelectedStatus = App.AttributeList.Find(o => o._id == model.profile.status);
                 }
             }
         }

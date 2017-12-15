@@ -40,10 +40,8 @@ namespace FAQPhone.Views
 
     public class AboutViewModel : BaseViewModel
     {
-
         public AboutViewModel(ContentPage page) : base(page)
         {
-            
         }
     }
 }

@@ -52,9 +52,7 @@ namespace FAQPhone.Models
                 !string.IsNullOrWhiteSpace(this.work) &&
                 !string.IsNullOrWhiteSpace(this.country) &&
                 !string.IsNullOrWhiteSpace(this.province) &&
-                !string.IsNullOrWhiteSpace(this.city) &&
-                !string.IsNullOrWhiteSpace(this.address) &&
-                !string.IsNullOrWhiteSpace(this.pcode);
+                !string.IsNullOrWhiteSpace(this.city);
         }
     }
 

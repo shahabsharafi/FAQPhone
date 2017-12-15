@@ -5,6 +5,8 @@
              xmlns:render="clr-namespace:CustomRenderer;assembly=FAQPhone"
              xmlns:controls="clr-namespace:CustomControl;assembly=FAQPhone"
              xmlns:progress="clr-namespace:ProgressRingControl.Forms.Plugin;assembly=ProgressRing.Forms.Plugin"
+             xmlns:markupExtensions="clr-namespace:MarkupExtensions;assembly=FAQPhone"
+             xmlns:customControls="clr-namespace:FAQPhone.CustomControls;assembly=FAQPhone"
              xmlns:local="clr-namespace:EventToCommandBehavior"
              xmlns:icon="clr-namespace:Awesome;assembly=FAQPhone"
 	         x:Class="FAQPhone.Views.ChatPage"
@@ -14,27 +16,30 @@
             <local:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    <StackLayout Style="{StaticResource pageStyle}">
-        <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" Color="Black" />
-        <StackLayout IsVisible="{ Binding Editable }">
-            <controls:ExtendedEditor  x:Name="text" Placeholder="{infr:Translate chat_text}"  Text="{Binding replay, Mode=TwoWay}" FontSize="Small" BackgroundColor="#efefef" HeightRequest="80" />
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Button Text="{infr:Translate command_send}" Command="{Binding SendCommand}" StyleClass="Info" IsEnabled="{ Binding CanSending }" Grid.Row="0" Grid.Column="1" />
-                <Button Text="{infr:Translate command_attach}" Command="{Binding AttachCommand}" StyleClass="Info" Grid.Row="0" Grid.Column="0" />
-                <Button Text="{infr:Translate command_finish}" Command="{Binding FinishCommand}" StyleClass="Info" IsVisible="{ Binding HasFinishing }" Grid.Row="1" Grid.Column="1" />
-                <Button Text="{infr:Translate command_report}" Command="{Binding ReportCommand}" StyleClass="Info" IsVisible="{ Binding HasReporting }" Grid.Row="1" Grid.Column="0" />
-            </Grid>
-        </StackLayout>
-        <ScrollView>
-            <ListView ItemsSource="{ Binding List }" SelectedItem="{ Binding SelectedItem, Mode=TwoWay }">
+    <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" Color="Black" />
+    <AbsoluteLayout>
+        <Grid AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0,1,1,1"
+            VerticalOptions="FillAndExpand" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <controls:ExtendedEditor
+                Grid.Row="0" Grid.Column="0"
+                IsVisible="{ Binding Editable }"
+                x:Name="text" 
+                Placeholder="{infr:Translate chat_text}"  
+                Text="{Binding replay, Mode=TwoWay}" 
+                FontSize="Small" 
+                BackgroundColor="#efefef" 
+                HeightRequest="80" />
+            <ListView ItemsSource="{ Binding List }" 
+                      Grid.Row="1" Grid.Column="0"
+                      SelectedItem="{ Binding SelectedItem, Mode=TwoWay }">
                 <ListView.Behaviors>
                     <local:EventToCommandBehavior EventName="ItemSelected" Command="{Binding SelectItemCommand}" Converter="{StaticResource SelectedItemConverter}" />
                 </ListView.Behaviors>
@@ -44,6 +49,54 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </ScrollView>
-    </StackLayout>
+        </Grid>
+        <customControls:ImageButton 
+            Source="{markupExtensions:PlatformImage SourceImage='send48x48'}"
+            Command="{Binding SendCommand}" 
+            IsVisible="{ Binding CanSending }"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0,0,-1,-1"
+            Opacity="0.5"
+            Margin="15,40,0,0" />
+        <customControls:ImageButton 
+            Source="{markupExtensions:PlatformImage SourceImage='mic48x48.png'}"
+            Command="{Binding RecordCommand}"
+            IsVisible="{ Binding CanMic }"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0,0,-1,-1"
+            Opacity="0.5"
+            Margin="15,40,0,0" />
+        <customControls:ImageButton 
+            Source="{markupExtensions:PlatformImage SourceImage='mic_off48x48.png'}"
+            Command="{Binding RecordCommand}"
+            IsVisible="{ Binding IsRecording }"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0,0,-1,-1"
+            Opacity="0.5"
+            Margin="15,40,0,0" />
+        <customControls:ImageButton 
+            Source="{markupExtensions:PlatformImage SourceImage='attach48x42'}"
+            Command="{Binding AttachCommand}"
+            IsVisible="{ Binding CanAttach }"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0,0,-1,-1"
+            Opacity="0.5"
+            Margin="65,40,0,0" />
+        <customControls:ImageButton 
+            Source="{markupExtensions:PlatformImage SourceImage='finish48x48'}"
+            Command="{Binding FinishCommand}" 
+            IsVisible="{ Binding HasFinishing }"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0,1.0,-1,-1"
+            Opacity="0.5"
+            Margin="65,0,0,30" />
+        <customControls:ImageButton 
+            Source="{markupExtensions:PlatformImage SourceImage='cancel48x48'}"
+            Command="{Binding ReportCommand}" 
+            IsVisible="{ Binding HasReporting }"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0,1.0,-1,-1"
+            Opacity="0.5"
+            Margin="15,0,0,30" />
+    </AbsoluteLayout>
 </ContentPage>

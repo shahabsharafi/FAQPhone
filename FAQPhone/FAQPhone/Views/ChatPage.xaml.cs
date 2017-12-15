@@ -5,6 +5,7 @@ using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
 using FilePicker;
 using Newtonsoft.Json;
+using Plugin.AudioRecorder;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -56,7 +57,7 @@ namespace FAQPhone.Views
 
     public class ChatViewModel : BaseViewModel
     {
-
+        AudioRecorderService recorder;
         public ChatViewModel(IDiscussionService discussionService, ContentPage page, string state, DiscussionModel model) : base(page)
         {
             this.discussionService = discussionService;
@@ -83,6 +84,21 @@ namespace FAQPhone.Views
                 if (_currentDetail != null) _currentDetail.Mode = 1;
             };
             //this.ShowProgress = false;
+            recorder = new AudioRecorderService
+            {
+                StopRecordingOnSilence = true, //will stop recording after 2 seconds (default)
+                StopRecordingAfterTimeout = true,  //stop recording after a max timeout (defined below)
+                TotalAudioTimeout = TimeSpan.FromSeconds(15) //audio will stop recording after 15 seconds
+            };
+            recorder.AudioInputReceived += Recorder_AudioInputReceived;
+            this.RecordCommand = new Command(() => recordCommand());
+        }
+
+        private async void Recorder_AudioInputReceived(object sender, string audioFile)
+        {
+            this.IsRecording = false;
+            upload(audioFile, "sount_" + Guid.NewGuid().ToString());
+            //do something with the file
         }
         private string _state;
         private DiscussionDetailModel _currentDetail;
@@ -123,11 +139,36 @@ namespace FAQPhone.Views
             get { return _HasFinishing ? "Info" : ""; }
         }
 
+        bool _CanMic;
+        public bool CanMic
+        {
+            get { return _CanMic; }
+            set { _CanMic = value; OnPropertyChanged(); }
+        }
+
+        bool _IsRecording;
+        public bool IsRecording
+        {
+            get { return _IsRecording; }
+            set {
+                _IsRecording = value;
+                OnPropertyChanged();
+                this.CheckState();
+            }
+        }        
+
         bool _CanSending;
         public bool CanSending
         {
             get { return _CanSending; }
             set { _CanSending = value; OnPropertyChanged(); }
+        }
+
+        bool _CanAttach;
+        public bool CanAttach
+        {
+            get { return _CanAttach; }
+            set { _CanAttach = value; OnPropertyChanged(); }
         }
 
         public string SendingStyle
@@ -139,7 +180,11 @@ namespace FAQPhone.Views
         public bool Editable
         {
             get { return _Editable; }
-            set { _Editable = value; OnPropertyChanged(); }
+            set {
+                _Editable = value;
+                OnPropertyChanged();
+                this.CheckState();
+            }
         }
 
         string _replay;
@@ -150,8 +195,15 @@ namespace FAQPhone.Views
             {
                 _replay = value;
                 OnPropertyChanged();
-                CanSending = !string.IsNullOrWhiteSpace(_replay);
+                this.CheckState();
             }
+        }
+
+        private void CheckState()
+        {
+            CanSending = !this._IsRecording && this._Editable && !string.IsNullOrWhiteSpace(_replay);
+            CanAttach = !this._IsRecording && string.IsNullOrWhiteSpace(_replay);
+            CanMic = !this._IsRecording && string.IsNullOrWhiteSpace(_replay);
         }
 
         ObservableCollection<DiscussionDetailModel> _list;
@@ -232,6 +284,27 @@ namespace FAQPhone.Views
             var l = this.model.items.ToList();
             l.Add(d);
             this.setList(l);
+        }
+
+        public ICommand RecordCommand { protected set; get; }
+        public async void recordCommand()
+        {
+            try
+            {
+                if (!recorder.IsRecording)
+                {
+                    this.IsRecording = true;
+                    await recorder.StartRecording();
+                }
+                else
+                {
+                    await recorder.StopRecording();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.IsRecording = false;
+            }
         }
 
         public ICommand SendCommand { protected set; get; }
