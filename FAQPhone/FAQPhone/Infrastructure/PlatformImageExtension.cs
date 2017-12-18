@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FAQPhone.Helpers;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,25 +16,7 @@ namespace MarkupExtensions
             if (SourceImage == null)
                 return null;
 
-            string imagePath;
-            switch (Device.RuntimePlatform)
-            {
-                case Device.Android:
-                    imagePath = SourceImage;
-                    break;
-                case Device.iOS:
-                    imagePath = SourceImage + ".png";
-                    break;
-                case Device.WinPhone:
-                    imagePath = "Images/" + SourceImage + ".png";
-                    break;
-                case Device.Windows:
-                    imagePath = "Images/" + SourceImage + ".png";
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-            return imagePath;
+            return Utility.GetImage(SourceImage);
         }
 
         object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider)

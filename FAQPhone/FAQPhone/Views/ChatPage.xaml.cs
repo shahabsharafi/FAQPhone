@@ -97,7 +97,7 @@ namespace FAQPhone.Views
         private async void Recorder_AudioInputReceived(object sender, string audioFile)
         {
             this.IsRecording = false;
-            upload(audioFile, "sount_" + Guid.NewGuid().ToString());
+            upload(audioFile, "sount.wav");
             //do something with the file
         }
         private string _state;
@@ -269,6 +269,7 @@ namespace FAQPhone.Views
         {
             Dictionary <string, string> dic = new Dictionary<string, string>();
             var json = JsonConvert.SerializeObject(model);
+            dic.Add("has_encode", "true");
             dic.Add("EntityName", "discussion");
             dic.Add("Entity", json);
             var d = await UploadHelper.UploadFile<DiscussionDetailModel>(

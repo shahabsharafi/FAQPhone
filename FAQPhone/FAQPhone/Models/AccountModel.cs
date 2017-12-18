@@ -110,5 +110,10 @@ namespace FAQPhone.Models
                 this.contact.IsComplete() &&
                 this.education.IsComplete();
         }
+
+        public string PictureName
+        {
+            get { return this.username + ".jpg"; }
+        }
     }
 }

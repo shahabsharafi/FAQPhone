@@ -8,6 +8,7 @@
              x:Class="FAQPhone.Views.AccountPage"
              Title="{infr:Translate account}">
     <ScrollView>
+        <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" Color="Black" />
         <StackLayout Style="{StaticResource pageStyle}">
             <Grid>
                 <Grid.RowDefinitions>
@@ -20,14 +21,14 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Image Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Margin="2,2,2,2"
-                    Source="{markupExtensions:PlatformImage SourceImage='man.png'}" />
+                    Source="{Binding SourceImage}" />
                 <Label Text="{Binding mobile}" TextColor="#4e5758" Margin="2,2,10,10" FontSize="Large" HorizontalTextAlignment="End" Grid.Row="0" Grid.Column="0" />
                 <Label Text="{Binding credit}" TextColor="#4e5758" Margin="2,2,20,2" FontSize="Small" HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="0" />
                 <customControls:ImageButton Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-                    HorizontalOptions="End" Margin="2,2,10,2" Command="{Binding EditCommand}" 
+                    HorizontalOptions="End" Margin="2,2,10,2" Command="{Binding TackPictureCommand}" 
                     Source="{markupExtensions:PlatformImage SourceImage='camera64x64'}" />
                 <customControls:ImageButton Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
-                    HorizontalOptions="End" Margin="2,2,70,2" Command="{Binding EditCommand}" 
+                    HorizontalOptions="End" Margin="2,2,70,2" Command="{Binding TackPictureCommand}" 
                     Source="{markupExtensions:PlatformImage SourceImage='picture64x64'}" />
                 <customControls:ImageButton Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
                     HorizontalOptions="End" Margin="2,2,130,2" Command="{Binding EditCommand}" 

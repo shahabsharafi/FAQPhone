@@ -11,6 +11,29 @@ namespace FAQPhone.Helpers
 {
     public class Utility
     {
+        public static string GetImage(string sourceImage) 
+        {
+            string imagePath;
+            switch (Device.RuntimePlatform)
+            {
+                case Device.Android:
+                    imagePath = sourceImage;
+                    break;
+                case Device.iOS:
+                    imagePath = sourceImage + ".png";
+                    break;
+                case Device.WinPhone:
+                    imagePath = "Images/" + sourceImage + ".png";
+                    break;
+                case Device.Windows:
+                    imagePath = "Images/" + sourceImage + ".png";
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            return imagePath;
+
+        }
         public static Task RegulareAlert(string message)
         {
             string title = Constants.MESSAGE_TITLE_ALERT;

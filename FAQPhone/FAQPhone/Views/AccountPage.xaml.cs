@@ -1,16 +1,21 @@
-﻿using FAQPhone.Infarstructure;
+﻿using FAQPhone.Helpers;
+using FAQPhone.Infarstructure;
 using FAQPhone.Infrastructure;
 using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
+using FilePicker;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
+using TackPicture;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -53,7 +58,54 @@ namespace FAQPhone.Views
             this._parm = parm;
             this.accountService = accountService;
             this.EditCommand = new Command(async () => await editCommand());
-            this.model = model;            
+            this.TackPictureCommand = new Command(async () => await tackPictureCommand());
+            this.model = model;
+            var fileService = DependencyService.Get<IFileService>();
+            string documentsPath = fileService.GetDocumentsPath();
+            _downloadService = DependencyService.Get<IDownloadService>();
+            _downloadService.Downloaded += (s, e) =>
+            {
+                this.SourceImage = Path.Combine(documentsPath, this.model.PictureName);
+            };
+            _downloadService.Failed += (s, e) =>
+            {
+                this.SourceImage = Utility.GetImage("man.png");
+            };
+        }
+
+        string _SourceImage;
+        public string SourceImage
+        {
+            get { return _SourceImage; }
+            set { _SourceImage = value; OnPropertyChanged(); }
+        }
+
+        private IDownloadService _downloadService;
+        public ICommand TackPictureCommand { protected set; get; }
+
+        public async Task tackPictureCommand()
+        {
+            Action<string> action = (path) =>
+            {
+                upload(path, this.model.PictureName);
+            };
+            DependencyService.Get<IPictureService>().TakeAPicture(action);
+        }
+
+        public async void upload(string path, string fileName)
+        {
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic.Add("EntityName", "none");
+            var d = await UploadHelper.UploadFile<ResultModel>(
+                Constants.UploadUrl,
+                path,
+                fileName,
+                (state) => {
+                    //this.ShowProgress = state;
+                    this.IsBusy = state;
+                },
+                dic
+            );
         }
 
         string _parm { get; set; }
@@ -61,6 +113,17 @@ namespace FAQPhone.Views
         bool _loaded = false;
         public async Task Load()
         {
+            var fileService = DependencyService.Get<IFileService>();
+            string documentsPath = fileService.GetDocumentsPath();
+            var path = Path.Combine(documentsPath, this.model.PictureName);
+            if (fileService.Exists(path))
+            {
+                this.SourceImage = path;
+            }
+            else
+            {
+                this._downloadService.Start(this.model.PictureName);
+            }
             if (this._loaded)
             {
                 var m = await this.accountService.GetMe();

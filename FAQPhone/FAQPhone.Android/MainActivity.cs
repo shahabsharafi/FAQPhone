@@ -8,6 +8,8 @@ using Android.Widget;
 using Android.OS;
 using System.Threading.Tasks;
 using FAQPhone.Helpers;
+using Android.Content;
+using FAQPhone.Droid.Infrastructure;
 
 namespace FAQPhone.Droid
 {
@@ -44,6 +46,12 @@ namespace FAQPhone.Droid
         {
             Utility.Alert();
         }
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            CameraProvider.GetInstance().TackPictureDown();            
+        }
     }
+
 }
 

@@ -6,6 +6,7 @@
              Title="{infr:Translate about_us}">
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}">
+            <Button Text="Picture" Command="{Binding SendCommand}" StyleClass="Info" />
             <Label Text="{infr:Translate app_name}" FontSize="Large" HorizontalOptions="Center" />
             <Label Text="{infr:Translate app_version}" FontSize="Small" HorizontalOptions="Center" />
             <Label x:Name="b" />
