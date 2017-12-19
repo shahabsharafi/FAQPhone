@@ -40,23 +40,26 @@ namespace FAQPhone.Views
     public class AccountViewModelFactory
     {
         IAccountService accountService;
-        public AccountViewModelFactory(IAccountService accountService)
+        ICommonService commonServic;
+        public AccountViewModelFactory(IAccountService accountService, ICommonService commonServic)
         {
             this.accountService = accountService;
+            this.commonServic = commonServic;
         }
         public AccountViewModel Create(ContentPage page, AccountModel model, string parm)
         {
-            return new AccountViewModel(this.accountService, page, model, parm);
+            return new AccountViewModel(this.accountService, this.commonServic, page, model, parm);
         }
     }
 
     public class AccountViewModel : BaseViewModel
     {
 
-        public AccountViewModel(IAccountService accountService, ContentPage page, AccountModel model, string parm) : base(page)
+        public AccountViewModel(IAccountService accountService, ICommonService commonServic, ContentPage page, AccountModel model, string parm) : base(page)
         {
             this._parm = parm;
             this.accountService = accountService;
+            this.commonServic = commonServic;
             this.EditCommand = new Command(async () => await editCommand());
             this.TackPictureCommand = new Command(async () => await tackPictureCommand());
             this.model = model;
@@ -85,27 +88,20 @@ namespace FAQPhone.Views
 
         public async Task tackPictureCommand()
         {
-            Action<string> action = (path) =>
+            Action<byte[]> action = (data) =>
             {
-                upload(path, this.model.PictureName);
+                upload(data, this.model.PictureName);
             };
             DependencyService.Get<IPictureService>().TakeAPicture(action);
         }
 
-        public async void upload(string path, string fileName)
+        public async void upload(byte[] data, string fileName)
         {
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-            dic.Add("EntityName", "none");
-            var d = await UploadHelper.UploadFile<ResultModel>(
-                Constants.UploadUrl,
-                path,
-                fileName,
-                (state) => {
-                    //this.ShowProgress = state;
+            await UploadHelper.UploadPicture(data, fileName,
+                (state) =>
+                {
                     this.IsBusy = state;
-                },
-                dic
-            );
+                }, 150, 150);
         }
 
         string _parm { get; set; }
@@ -115,10 +111,20 @@ namespace FAQPhone.Views
         {
             var fileService = DependencyService.Get<IFileService>();
             string documentsPath = fileService.GetDocumentsPath();
-            var path = Path.Combine(documentsPath, this.model.PictureName);
+            var path = Path.Combine(documentsPath, this.model.PictureName);            
             if (fileService.Exists(path))
             {
                 this.SourceImage = path;
+                var stat = await this.commonServic.GetFileState(this.model.PictureName);
+                if (stat != null)
+                {
+                    var serverDate = stat.mtime;
+                    var localDate = fileService.GetCreationDate(this.model.PictureName);
+                    if (localDate.Subtract(serverDate).Seconds < 0)
+                    {
+                        this._downloadService.Start(this.model.PictureName);
+                    }
+                }                               
             }
             else
             {
@@ -151,6 +157,7 @@ namespace FAQPhone.Views
         }
 
         private IAccountService accountService { get; set; }
+        private ICommonService commonServic { get; set; }
         AccountModel model { get; set; }
 
         string _fullName;

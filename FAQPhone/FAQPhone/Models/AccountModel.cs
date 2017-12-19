@@ -113,7 +113,7 @@ namespace FAQPhone.Models
 
         public string PictureName
         {
-            get { return this.username + ".jpg"; }
+            get { return this._id + ".jpg"; }
         }
     }
 }

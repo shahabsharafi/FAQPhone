@@ -4,6 +4,6 @@ namespace TackPicture
 {
     public interface IPictureService
     {
-        void TakeAPicture(Action<string> action);
+        void TakeAPicture(Action<byte[]> action);
     }
 }

@@ -49,7 +49,14 @@ namespace FAQPhone.Droid
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
-            CameraProvider.GetInstance().TackPictureDown();            
+            if (requestCode == CameraProvider.CAMERA_CAPTURE)
+            {
+                CameraProvider.GetInstance().PerformCrop();
+            }
+            else if (requestCode == CameraProvider.CROP_PICTURE)
+            { 
+                CameraProvider.GetInstance().TackPictureDown(data);
+            }
         }
     }
 

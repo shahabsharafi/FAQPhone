@@ -7,7 +7,7 @@ namespace FAQPhone.Droid.Infrastructure
     public class AndroidPictureService : TackPicture.IPictureService
     {
         CameraProvider camera;
-        public void TakeAPicture(Action<string> action)
+        public void TakeAPicture(Action<byte[]> action)
         {
             camera = CameraProvider.GetInstance();
             camera.TackPicture();
@@ -15,11 +15,11 @@ namespace FAQPhone.Droid.Infrastructure
             camera.Down += Camera_Down;
         }
 
-        Action<string> _action;
+        Action<byte[]> _action;
 
         private void Camera_Down(object sender, System.EventArgs e)
         {
-            this._action.Invoke(camera.FilePath);
+            this._action.Invoke(camera.Data);
         }
     }
 }

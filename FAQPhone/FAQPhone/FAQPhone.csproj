@@ -73,6 +73,7 @@
     <Compile Include="Models\AttributeModel.cs" />
     <Compile Include="Models\DiscounModel.cs" />
     <Compile Include="Models\EmailModel.cs" />
+    <Compile Include="Models\FileStatModel.cs" />
     <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Models\ObjectModel.cs" />
     <Compile Include="Models\PollModel.cs" />
@@ -103,7 +104,9 @@
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Infrastructure\BaseRestService.cs" />
     <Compile Include="Services\AttributeService.cs" />
+    <Compile Include="Services\CommonService.cs" />
     <Compile Include="Services\EmailService.cs" />
+    <Compile Include="Services\Interfaces\ICommonService.cs" />
     <Compile Include="Services\Interfaces\IEmailService.cs" />
     <Compile Include="Services\Interfaces\IMessageService.cs" />
     <Compile Include="Services\MessageService.cs" />

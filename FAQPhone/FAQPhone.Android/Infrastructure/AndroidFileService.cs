@@ -52,6 +52,11 @@ namespace FAQPhone.Droid.Infrastructure
             return visibleThings.Select(o => new PathModel { Name = o.Name, IsFile = o.IsFile() }).ToList();
         }
 
+        public byte[] LoadAndResizeBitmap(byte[] data, int width, int height)
+        {
+            return FileExtentions.LoadAndResizeBitmap(data, width, height);
+        }
+
         public byte[] ReadAllBytes(string path)
         {
             return File.ReadAllBytes(path);
@@ -61,7 +66,19 @@ namespace FAQPhone.Droid.Infrastructure
         {
             return File.Exists(path);
         }
-        
+
+        public void DeleteFile(string filePath)
+        {
+            string localPath = Path.Combine(GetDocumentsPath(), filePath);
+            File.Delete(localPath);
+        }
+
+        public DateTime GetCreationDate(string filePath)
+        {
+            string localPath = Path.Combine(GetDocumentsPath(), filePath);
+            return File.GetCreationTime(localPath);
+        }
+
         public void OpenFile(string filePath)
         {
             string localPath = Path.Combine(GetDocumentsPath(), filePath);

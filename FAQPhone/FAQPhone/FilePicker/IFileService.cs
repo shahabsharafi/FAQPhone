@@ -12,7 +12,10 @@ namespace FilePicker
         string GetBaseDirectory();
         string GetDocumentsPath();
         byte[] ReadAllBytes(string path);
+        byte[] LoadAndResizeBitmap(byte[] data, int width, int height);
         bool Exists(string path);
         void OpenFile(string filePath);
+        void DeleteFile(string filePath);
+        DateTime GetCreationDate(string filePath);
     }
 }
