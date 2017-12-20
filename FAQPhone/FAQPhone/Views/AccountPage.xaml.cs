@@ -88,6 +88,7 @@ namespace FAQPhone.Views
 
         public async Task tackPictureCommand()
         {
+            this.IsBusy = true;
             Action<byte[]> action = (data) =>
             {
                 upload(data, this.model.PictureName);
@@ -100,7 +101,11 @@ namespace FAQPhone.Views
             await UploadHelper.UploadPicture(data, fileName,
                 (state) =>
                 {
-                    this.IsBusy = state;
+                    if (state == false)
+                    {
+                        this.IsBusy = state;
+                        this._downloadService.Start(this.model.PictureName);
+                    }
                 }, 150, 150);
         }
 
@@ -109,24 +114,7 @@ namespace FAQPhone.Views
         bool _loaded = false;
         public async Task Load()
         {
-            var fileService = DependencyService.Get<IFileService>();
-            string documentsPath = fileService.GetDocumentsPath();
-            var path = Path.Combine(documentsPath, this.model.PictureName);            
-            if (fileService.Exists(path))
-            {
-                this.SourceImage = path;
-                var stat = await this.commonServic.GetFileState(this.model.PictureName);
-                if (stat != null)
-                {
-                    var serverDate = stat.mtime;
-                    var localDate = fileService.GetCreationDate(this.model.PictureName);
-                    if (localDate.Subtract(serverDate).Seconds < 0)
-                    {
-                        this._downloadService.Start(this.model.PictureName);
-                    }
-                }                               
-            }
-            else
+            if (!this.IsBusy)
             {
                 this._downloadService.Start(this.model.PictureName);
             }
