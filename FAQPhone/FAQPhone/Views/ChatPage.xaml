@@ -51,7 +51,7 @@
             </ListView>
         </Grid>
         <customControls:ImageButton 
-            Source="{markupExtensions:PlatformImage SourceImage='send48x48'}"
+            Source="{markupExtensions:PlatformImage SourceImage='send40'}"
             Command="{Binding SendCommand}" 
             IsVisible="{ Binding CanSending }"
             AbsoluteLayout.LayoutFlags="PositionProportional"
@@ -59,7 +59,7 @@
             Opacity="0.5"
             Margin="15,40,0,0" />
         <customControls:ImageButton 
-            Source="{markupExtensions:PlatformImage SourceImage='mic48x48.png'}"
+            Source="{markupExtensions:PlatformImage SourceImage='mic40.png'}"
             Command="{Binding RecordCommand}"
             IsVisible="{ Binding CanMic }"
             AbsoluteLayout.LayoutFlags="PositionProportional"
@@ -67,7 +67,7 @@
             Opacity="0.5"
             Margin="15,40,0,0" />
         <customControls:ImageButton 
-            Source="{markupExtensions:PlatformImage SourceImage='mic_off48x48.png'}"
+            Source="{markupExtensions:PlatformImage SourceImage='mic_off40.png'}"
             Command="{Binding RecordCommand}"
             IsVisible="{ Binding IsRecording }"
             AbsoluteLayout.LayoutFlags="PositionProportional"
@@ -75,7 +75,7 @@
             Opacity="0.5"
             Margin="15,40,0,0" />
         <customControls:ImageButton 
-            Source="{markupExtensions:PlatformImage SourceImage='attach48x42'}"
+            Source="{markupExtensions:PlatformImage SourceImage='attach40'}"
             Command="{Binding AttachCommand}"
             IsVisible="{ Binding CanAttach }"
             AbsoluteLayout.LayoutFlags="PositionProportional"
@@ -83,7 +83,7 @@
             Opacity="0.5"
             Margin="65,40,0,0" />
         <customControls:ImageButton 
-            Source="{markupExtensions:PlatformImage SourceImage='finish48x48'}"
+            Source="{markupExtensions:PlatformImage SourceImage='finish40'}"
             Command="{Binding FinishCommand}" 
             IsVisible="{ Binding HasFinishing }"
             AbsoluteLayout.LayoutFlags="PositionProportional"
@@ -91,7 +91,7 @@
             Opacity="0.5"
             Margin="65,0,0,30" />
         <customControls:ImageButton 
-            Source="{markupExtensions:PlatformImage SourceImage='cancel48x48'}"
+            Source="{markupExtensions:PlatformImage SourceImage='cancel40'}"
             Command="{Binding ReportCommand}" 
             IsVisible="{ Binding HasReporting }"
             AbsoluteLayout.LayoutFlags="PositionProportional"

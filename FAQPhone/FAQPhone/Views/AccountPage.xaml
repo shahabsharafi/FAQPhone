@@ -45,10 +45,10 @@
                 <Label Text="{Binding credit}" TextColor="#4e5758" Margin="2,2,20,2" FontSize="Small" HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="0" />
                 <customControls:ImageButton Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                     HorizontalOptions="End" Margin="2,2,10,2" Command="{Binding TackPictureCommand}" 
-                    Source="{markupExtensions:PlatformImage SourceImage='camera64x64'}" />
+                    Source="{markupExtensions:PlatformImage SourceImage='camera40'}" />
                 <customControls:ImageButton Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
                     HorizontalOptions="End" Margin="2,2,70,2" Command="{Binding EditCommand}" 
-                    Source="{markupExtensions:PlatformImage SourceImage='edit64x64'}" />
+                    Source="{markupExtensions:PlatformImage SourceImage='edit40'}" />
             </Grid>
         </StackLayout>
     </ScrollView>
