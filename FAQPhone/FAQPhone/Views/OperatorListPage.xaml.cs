@@ -1,10 +1,13 @@
-﻿using FAQPhone.Infarstructure;
+﻿using FAQPhone.Helpers;
+using FAQPhone.Infarstructure;
 using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
+using FilePicker;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -59,10 +62,13 @@ namespace FAQPhone.Views
             this.departmentService = departmentService;
             this.List = new ObservableCollection<AccountModel>();
             this.SelectItemCommand = new Command<AccountModel>(async (model) => await selectItemCommand(model));
+            this._downloadHelper = new DownloadHelper<List<AccountModel>>();
         }
         private IAccountService accountService { get; set; }
         private IDepartmentService departmentService { get; set; }
         private IDiscountService discountService { get; set; }
+
+        DownloadHelper<List<AccountModel>> _downloadHelper;
 
         object _selectedItem;
         public object SelectedItem
@@ -86,19 +92,33 @@ namespace FAQPhone.Views
 
         private void setList(List<AccountModel> list)
         {
-            this.List.Clear();
-            foreach (var item in list)
+            Action<List<AccountModel>> action = (List<AccountModel> l) =>
             {
-                item.FullName = (item.profile?.firstName ?? "") + " " + (item.profile?.lastName ?? "");
-                string major = item.education?.major ?? "";
-                string university = item.education?.university ?? "";
-                var majorObj = App.AttributeList.SingleOrDefault(o => o._id == major);
-                var universityObj = App.AttributeList.SingleOrDefault(o => o._id == university);
-                item.Title = (majorObj?.caption ?? "");
-                item.Description = "دانشگاه " + (universityObj?.caption ?? "");
-                item.IsOnline = (item.state == 2);
-                this.List.Add(item);
-            }
+                var fileService = DependencyService.Get<IFileService>();
+                this.List.Clear();
+                foreach (var item in l)
+                {
+                    item.FullName = (item.profile?.firstName ?? "") + " " + (item.profile?.lastName ?? "");
+                    string major = item.education?.major ?? "";
+                    string university = item.education?.university ?? "";
+                    var majorObj = App.AttributeList.SingleOrDefault(o => o._id == major);
+                    var universityObj = App.AttributeList.SingleOrDefault(o => o._id == university);
+                    item.Title = (majorObj?.caption ?? "");
+                    item.Description = "دانشگاه " + (universityObj?.caption ?? "");
+                    item.IsOnline = (item.state == 2);                    
+                    string documentsPath = fileService.GetDocumentsPath();
+                    item.PictureUrl = Path.Combine(documentsPath, item.PictureName);
+                    this.List.Add(item);
+                }
+            };
+            this._downloadHelper.Start(new Queue<string>(list.Select(o => o.PictureName)), action, list);
+            this._downloadHelper.Failed += _downloadHelper_Failed;    
+            
+        }
+
+        private void _downloadHelper_Failed(object sender, EventArgs e)
+        {
+            Utility.Alert();
         }
 
         public ICommand SelectItemCommand { protected set; get; }

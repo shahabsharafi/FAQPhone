@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FAQPhone.Infarstructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -115,5 +116,7 @@ namespace FAQPhone.Models
         {
             get { return this._id + ".jpg"; }
         }
+
+        public string PictureUrl { get; set; }
     }
 }

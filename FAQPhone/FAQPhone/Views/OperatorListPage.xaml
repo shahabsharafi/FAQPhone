@@ -7,6 +7,7 @@
              xmlns:infr="clr-namespace:FAQPhone.Infarstructure;assembly=FAQPhone"
              xmlns:icon="clr-namespace:Awesome;assembly=FAQPhone"
 	         xmlns:local="clr-namespace:EventToCommandBehavior"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
              Title="{infr:Translate operator_list}">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -36,8 +37,26 @@
                                 <RowDefinition Height="2*" />
                                 <RowDefinition Height="2*" />
                             </Grid.RowDefinitions>
-                            <Image Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Margin="2,2,2,2"
-                                   Source="{markupExtensions:PlatformImage SourceImage='man.png'}" />
+                            <controls:CircleImage 
+                                Source="{Binding PictureUrl}" 
+                                Aspect="AspectFill" Grid.Row="0" 
+                                Grid.Column="1" Grid.RowSpan="3" 
+                                BorderColor = "Gray"                    
+                                BorderThickness = "1"
+                                Margin="2,2,2,2">   
+                                <controls:CircleImage.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <On Platform="Android, iOS">110</On>
+                                        <On Platform="WinPhone">150</On>
+                                    </OnPlatform>
+                                </controls:CircleImage.WidthRequest>
+                                <controls:CircleImage.HeightRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <On Platform="Android, iOS">110</On>
+                                        <On Platform="WinPhone">150</On>
+                                    </OnPlatform>
+                                </controls:CircleImage.HeightRequest>
+                            </controls:CircleImage>
                             <Label Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Margin="10,10,10,10"
                                    HorizontalTextAlignment="Start" VerticalTextAlignment="End" IsVisible="{ Binding IsOnline }"
                                    Text="{x:Static icon:FontAwesome.FACircle}" FontFamily="fontawesome" TextColor="#4e5758" />

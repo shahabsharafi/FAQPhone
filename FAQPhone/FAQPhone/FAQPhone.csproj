@@ -47,6 +47,7 @@
     <Compile Include="FilePicker\FilePickerPage.cs" />
     <Compile Include="FilePicker\IFileService.cs" />
     <Compile Include="FilePicker\PathModel.cs" />
+    <Compile Include="Helpers\DownloadHelper.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Helpers\Utility.cs" />
     <Compile Include="Infrastructure\AutoCompleteView.cs" />
