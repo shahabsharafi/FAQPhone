@@ -19,30 +19,37 @@ using FAQPhone.Infrastructure;
 [assembly: Xamarin.Forms.Dependency(typeof(Infrastructure.AndroidDownloadService))]
 namespace FAQPhone.Droid.Infrastructure
 {
-    public class AndroidDownloadService: IDownloadService
+    public class Downloader: IDownloader
     {
         WebClient webClient;
         Uri _url;
         public event EventHandler Downloaded;
         public event EventHandler Failed;
         string FileName { get; set; }
-        public AndroidDownloadService()
+        public Downloader()
         {
             webClient = new WebClient();
             webClient.DownloadDataCompleted += (s, e) => {
-                try
-                {
-                    var bytes = e.Result;
-                    string documentsPath = (string)Android.OS.Environment.ExternalStorageDirectory;//System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-                    string localPath = Path.Combine(documentsPath, this.FileName);
-                    File.WriteAllBytes(localPath, bytes); // writes to local storage
-                    Downloaded?.Invoke(this, new EventArgs());
-                }
-                catch(Exception ex)
+                if (e.Error != null)
                 {
                     Failed?.Invoke(this, new EventArgs());
                 }
-            };            
+                else
+                {
+                    try
+                    {
+                        var bytes = e.Result;
+                        string documentsPath = (string)Android.OS.Environment.ExternalStorageDirectory;//System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+                        string localPath = Path.Combine(documentsPath, this.FileName);
+                        File.WriteAllBytes(localPath, bytes);
+                        Downloaded?.Invoke(this, new EventArgs());
+                    }
+                    catch (Exception ex)
+                    {
+                        Failed?.Invoke(this, new EventArgs());
+                    }
+                }
+            };
         }
 
         public void Start(string fileName)
@@ -57,6 +64,13 @@ namespace FAQPhone.Droid.Infrastructure
             {
                 Failed?.Invoke(this, new EventArgs());
             }
+        }
+    }
+    public class AndroidDownloadService : IDownloadService
+    {
+        public IDownloader GetDownloader()
+        {
+            return new Downloader();
         }
     }
 }

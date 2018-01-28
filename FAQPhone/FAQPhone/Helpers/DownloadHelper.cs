@@ -10,26 +10,26 @@ namespace FAQPhone.Helpers
 {
     public class DownloadHelper<T>
     {
-        IDownloadService _downloadService;
+        IDownloader _downloader;
         Queue<string> _urlList;
         Action<T> _action;
         T _obj;
         public event EventHandler Failed;
         public DownloadHelper()
         {
-            this._downloadService = DependencyService.Get<IDownloadService>();            
-            this._downloadService.Downloaded += (s, e) =>
+            this._downloader = DependencyService.Get<IDownloadService>().GetDownloader();            
+            this._downloader.Downloaded += (s, e) =>
             {
                 if (this._urlList.Count > 0)
                 {
-                    this._downloadService.Start(this._urlList.Dequeue());
+                    this._downloader.Start(this._urlList.Dequeue());
                 }
                 else
                 {
                     this._action?.Invoke(this._obj);
                 }
             };
-            this._downloadService.Failed += (s, e) =>
+            this._downloader.Failed += (s, e) =>
             {
                 this.Failed?.Invoke(this, new EventArgs());
             };
@@ -40,7 +40,7 @@ namespace FAQPhone.Helpers
             this._urlList = urlList;
             this._action = action;
             this._obj = obj;
-            this._downloadService.Start(this._urlList.Dequeue());
+            this._downloader.Start(this._urlList.Dequeue());
         }
     }
 }

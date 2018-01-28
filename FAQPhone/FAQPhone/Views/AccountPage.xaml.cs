@@ -65,12 +65,12 @@ namespace FAQPhone.Views
             this.model = model;
             var fileService = DependencyService.Get<IFileService>();
             string documentsPath = fileService.GetDocumentsPath();
-            _downloadService = DependencyService.Get<IDownloadService>();
-            _downloadService.Downloaded += (s, e) =>
+            _downloader = DependencyService.Get<IDownloadService>().GetDownloader();
+            _downloader.Downloaded += (s, e) =>
             {
                 this.SourceImage = Path.Combine(documentsPath, this.model.PictureName);
             };
-            _downloadService.Failed += (s, e) =>
+            _downloader.Failed += (s, e) =>
             {
                 this.SourceImage = Utility.GetImage("man.png");
             };
@@ -83,10 +83,10 @@ namespace FAQPhone.Views
             set { _SourceImage = value; OnPropertyChanged(); }
         }
 
-        private IDownloadService _downloadService;
+        private IDownloader _downloader;
         public ICommand TackPictureCommand { protected set; get; }
 
-        public async Task tackPictureCommand()
+        private async Task tackPictureCommand()
         {
             this.IsBusy = true;
             Action<byte[]> action = (data) =>
@@ -104,7 +104,7 @@ namespace FAQPhone.Views
                     if (state == false)
                     {
                         this.IsBusy = state;
-                        this._downloadService.Start(this.model.PictureName);
+                        this._downloader.Start(this.model.PictureName);
                     }
                 }, 150, 150);
         }
@@ -116,7 +116,7 @@ namespace FAQPhone.Views
         {
             if (!this.IsBusy)
             {
-                this._downloadService.Start(this.model.PictureName);
+                this._downloader.Start(this.model.PictureName);
             }
             if (this._loaded)
             {

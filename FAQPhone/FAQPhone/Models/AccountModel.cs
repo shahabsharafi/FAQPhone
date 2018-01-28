@@ -51,7 +51,7 @@ namespace FAQPhone.Models
             return
                 !string.IsNullOrWhiteSpace(this.house) &&
                 !string.IsNullOrWhiteSpace(this.work) &&
-                !string.IsNullOrWhiteSpace(this.country) &&
+                //!string.IsNullOrWhiteSpace(this.country) &&
                 !string.IsNullOrWhiteSpace(this.province) &&
                 !string.IsNullOrWhiteSpace(this.city);
         }

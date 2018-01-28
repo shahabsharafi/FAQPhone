@@ -74,12 +74,12 @@ namespace FAQPhone.Views
             this.HasFinishing = this.IsOperator && model.state != Constants.DISCUSSION_STATE_REPORT && model.state != Constants.DISCUSSION_STATE_FINISHED;
             this.HasReporting = this.IsOperator && model.state != Constants.DISCUSSION_STATE_REPORT && model.state != Constants.DISCUSSION_STATE_FINISHED;
             this.setList(this.model.items.ToList());
-            _downloadService = DependencyService.Get<IDownloadService>();
-            _downloadService.Downloaded += (s, e) =>
+            _downloader = DependencyService.Get<IDownloadService>().GetDownloader();
+            _downloader.Downloaded += (s, e) =>
             {
                 if(_currentDetail != null) _currentDetail.Mode = 3;
             };
-            _downloadService.Failed += (s, e) =>
+            _downloader.Failed += (s, e) =>
             {
                 if (_currentDetail != null) _currentDetail.Mode = 1;
             };
@@ -102,7 +102,7 @@ namespace FAQPhone.Views
         }
         private string _state;
         private DiscussionDetailModel _currentDetail;
-        private IDownloadService _downloadService;
+        private IDownloader _downloader;
         private IDiscussionService discussionService { get; set; }
 
         object _selectedItem;
@@ -383,7 +383,7 @@ namespace FAQPhone.Views
             if (d.Mode == 1)
             {
                 _currentDetail = d;
-                _downloadService.Start(d.attachment);
+                _downloader.Start(d.attachment);
                 d.Mode = 2;
             }
             else if (d.Mode == 3)
