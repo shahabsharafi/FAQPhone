@@ -908,6 +908,24 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to راهنما.
+        /// </summary>
+        internal static string info {
+            get {
+                return ResourceManager.GetString("info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://www.yahoo.com.
+        /// </summary>
+        internal static string info_url {
+            get {
+                return ResourceManager.GetString("info_url", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تنظیمات داخلی.
         /// </summary>
         internal static string internal_setting {

@@ -14,6 +14,8 @@ namespace FAQPhone.Infarstructure
         public static string UploadUrl { get { return BaseUrl + "/api/uploads"; } }
         public static string DownloadUrl { get { return BaseUrl + "/uploads"; } }
 
+        public const string INFO_URL = "info_url";
+
         public const string OPERATOR_RECEIVE_FAQ = "operator_receive_faq";
         public const string OPERATOR_INPROGRESS_FAQ = "operator_inprogress_faq";
         public const string OPERATOR_FAQ = "operator_faq";
@@ -25,6 +27,7 @@ namespace FAQPhone.Infarstructure
         public const string ALL_MESSAGES = "all_messages";
         public const string OPERATOR_LIST = "operator_list";
         public const string CONTACT_US = "contactus";
+        public const string INFO = "info";
         public const string ABOUT_US = "about_us";
         public const string SETTING = "setting";
         public const string INTERNAL_SETTING = "internal_setting";

@@ -558,4 +558,10 @@
   <data name="message_password_invalid" xml:space="preserve">
     <value>کلمه عبور اشتباه است</value>
   </data>
+  <data name="info" xml:space="preserve">
+    <value>راهنما</value>
+  </data>
+  <data name="info_url" xml:space="preserve">
+    <value>http://www.yahoo.com</value>
+  </data>
 </root>

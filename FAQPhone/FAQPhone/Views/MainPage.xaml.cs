@@ -79,7 +79,8 @@ namespace FAQPhone.Views
                 items.Add(new MenuItemModel() { CommandName = Constants.ALL_MESSAGES, Icon = FontAwesome.FAEnvelopeO });
                 items.Add(new MenuItemModel() { CommandName = Constants.ACCOUNT, Icon = FontAwesome.FAAddressCardO, Parms = new string[] { Constants.ACCESS_OPERATOR } });
                 items.Add(new MenuItemModel() { CommandName = Constants.CONTACT_US, Icon = FontAwesome.FAPaperPlaneO });
-                items.Add(new MenuItemModel() { CommandName = Constants.ABOUT_US, Icon = FontAwesome.FAInfoCircle });
+                items.Add(new MenuItemModel() { CommandName = Constants.INFO, Icon = FontAwesome.FAInfoCircle });
+                items.Add(new MenuItemModel() { CommandName = Constants.ABOUT_US, Icon = FontAwesome.FAFileText });
                 items.Add(new MenuItemModel() { CommandName = Constants.SETTING, Icon = FontAwesome.FACog });
             }
             else if (menu == Constants.USER_FAQ || (menu == null && App.Access.Contains(Constants.ACCESS_USER)))
@@ -98,7 +99,8 @@ namespace FAQPhone.Views
                 items.Add(new MenuItemModel() { CommandName = Constants.ALL_MESSAGES, Icon = FontAwesome.FAEnvelopeO });
                 items.Add(new MenuItemModel() { CommandName = Constants.ACCOUNT, Icon = FontAwesome.FAAddressCardO, Parms = new string[] { Constants.ACCESS_USER } });
                 items.Add(new MenuItemModel() { CommandName = Constants.CONTACT_US, Icon = FontAwesome.FAPaperPlaneO });
-                items.Add(new MenuItemModel() { CommandName = Constants.ABOUT_US, Icon = FontAwesome.FAInfoCircle });
+                items.Add(new MenuItemModel() { CommandName = Constants.INFO, Icon = FontAwesome.FAInfoCircle });
+                items.Add(new MenuItemModel() { CommandName = Constants.ABOUT_US, Icon = FontAwesome.FAFileText });
                 items.Add(new MenuItemModel() { CommandName = Constants.SETTING, Icon = FontAwesome.FACog });
             }
             else if (menu == Constants.SETTING)
@@ -228,6 +230,9 @@ namespace FAQPhone.Views
                         break;
                     case Constants.CONTACT_US:
                         await this.Navigation.PushAsync(new ContactUsPage());
+                        break;
+                    case Constants.INFO:
+                        await this.Navigation.PushAsync(new HelpPage());
                         break;
                     case Constants.ABOUT_US:
                         await this.Navigation.PushAsync(new AboutPage());
