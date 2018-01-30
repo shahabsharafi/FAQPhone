@@ -20,19 +20,25 @@ namespace FAQPhone.Helpers
             this._downloader = DependencyService.Get<IDownloadService>().GetDownloader();            
             this._downloader.Downloaded += (s, e) =>
             {
-                if (this._urlList.Count > 0)
-                {
-                    this._downloader.Start(this._urlList.Dequeue());
-                }
-                else
-                {
-                    this._action?.Invoke(this._obj);
-                }
+                Next();
             };
             this._downloader.Failed += (s, e) =>
             {
                 this.Failed?.Invoke(this, new EventArgs());
+                Next();
             };
+        }
+
+        private void Next()
+        {
+            if (this._urlList.Count > 0)
+            {
+                this._downloader.Start(this._urlList.Dequeue());
+            }
+            else
+            {
+                this._action?.Invoke(this._obj);
+            }
         }
 
         public void Start(Queue<string> urlList, Action<T> action, T obj)

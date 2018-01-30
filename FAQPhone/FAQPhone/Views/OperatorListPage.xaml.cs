@@ -118,7 +118,7 @@ namespace FAQPhone.Views
 
         private void _downloadHelper_Failed(object sender, EventArgs e)
         {
-            Utility.Alert();
+            //Utility.Alert();
         }
 
         public ICommand SelectItemCommand { protected set; get; }
