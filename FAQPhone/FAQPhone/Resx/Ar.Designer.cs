@@ -908,7 +908,7 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://www.yahoo.com.
+        ///   Looks up a localized string similar to https://www.google.com.
         /// </summary>
         internal static string info_url {
             get {
