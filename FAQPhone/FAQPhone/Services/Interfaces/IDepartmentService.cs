@@ -12,5 +12,6 @@ namespace FAQPhone.Services.Interfaces
         Task<List<DepartmentModel>> GetByParent(string parentId);
         Task<List<DepartmentModel>> GetById(string id);
         Task<List<DepartmentModel>> GetTree();
+        Task<DepartmentModel> Get(string id);
     }
 }

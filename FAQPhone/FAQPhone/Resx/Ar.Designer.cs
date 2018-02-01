@@ -1241,6 +1241,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to قوانین.
+        /// </summary>
+        internal static string rules {
+            get {
+                return ResourceManager.GetString("rules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تایید شماره تلفن.
         /// </summary>
         internal static string security_caption {

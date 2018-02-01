@@ -132,6 +132,9 @@
     <Compile Include="Views\AccountPage.xaml.cs">
       <DependentUpon>AccountPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\BrowserPage.xaml.cs">
+      <DependentUpon>BrowserPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CancelationPage.xaml.cs">
       <DependentUpon>CancelationPage.xaml</DependentUpon>
     </Compile>
@@ -177,9 +180,6 @@
     <Compile Include="Views\EducationPage.xaml.cs">
       <DependentUpon>EducationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\HelpPage.xaml.cs">
-      <DependentUpon>HelpPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -206,6 +206,9 @@
     </Compile>
     <Compile Include="Views\TagPage.xaml.cs">
       <DependentUpon>TagPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TextPage.xaml.cs">
+      <DependentUpon>TextPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserProfilePage.xaml.cs">
       <DependentUpon>UserProfilePage.xaml</DependentUpon>
@@ -454,7 +457,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\HelpPage.xaml">
+    <EmbeddedResource Include="Views\BrowserPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\TextPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

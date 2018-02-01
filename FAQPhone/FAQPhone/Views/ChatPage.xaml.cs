@@ -45,27 +45,31 @@ namespace FAQPhone.Views
     public class ChatViewModelFactory
     {
         IDiscussionService discussionService;
-        public ChatViewModelFactory(IDiscussionService discussionService)
+        IDepartmentService departmentService;
+        public ChatViewModelFactory(IDiscussionService discussionService, IDepartmentService departmentService)
         {
             this.discussionService = discussionService;
+            this.departmentService = departmentService;
         }
         public ChatViewModel Create(ContentPage page, string state, DiscussionModel model)
         {
-            return new ChatViewModel(this.discussionService, page, state, model);
+            return new ChatViewModel(this.discussionService, this.departmentService, page, state, model);
         }
     }
 
     public class ChatViewModel : BaseViewModel
     {
         AudioRecorderService recorder;
-        public ChatViewModel(IDiscussionService discussionService, ContentPage page, string state, DiscussionModel model) : base(page)
+        public ChatViewModel(IDiscussionService discussionService, IDepartmentService departmentService, ContentPage page, string state, DiscussionModel model) : base(page)
         {
             this.discussionService = discussionService;
+            this.departmentService = departmentService;
             this.SelectItemCommand = new Command<DiscussionDetailModel>((d) => selectItemCommand(d));
             this.SendCommand = new Command(async () => await sendCommand());
             this.AttachCommand = new Command(async () => await attachCommand());
             this.FinishCommand = new Command(async () => await finishCommand());
             this.ReportCommand = new Command(async () => await reportCommand());
+            this.RuleCommand = new Command(async () => await ruleCommand());
             this.model = model;
             this.List = new ObservableCollection<DiscussionDetailModel>();
             this._state = state;
@@ -98,12 +102,12 @@ namespace FAQPhone.Views
         {
             this.IsRecording = false;
             upload(audioFile, "sount.wav");
-            //do something with the file
         }
         private string _state;
         private DiscussionDetailModel _currentDetail;
         private IDownloader _downloader;
         private IDiscussionService discussionService { get; set; }
+        private IDepartmentService departmentService { get; set; }
 
         object _selectedItem;
         public object SelectedItem
@@ -251,20 +255,6 @@ namespace FAQPhone.Views
                 : (this._state == Constants.OPERATOR_INPROGRESS_FAQ || (this._state == Constants.USER_INPROGRESS_FAQ && model.state < 2));
         }
 
-        //bool _ShowProgress;
-        //public bool ShowProgress
-        //{
-        //    get { return _ShowProgress; }
-        //    set {
-        //        _ShowProgress = value;
-        //        if (value)
-        //            this.Editable = false;
-        //        else
-        //            this.Editable = (this._state == Constants.OPERATOR_INPROGRESS_FAQ || (this._state == Constants.USER_INPROGRESS_FAQ && model.state < 2));
-        //        OnPropertyChanged();
-        //    }
-        //}
-
         public async void upload(string path, string fileName)
         {
             Dictionary <string, string> dic = new Dictionary<string, string>();
@@ -277,7 +267,6 @@ namespace FAQPhone.Views
                 path, 
                 fileName, 
                 (state) => {
-                    //this.ShowProgress = state;
                     this.IsBusy = state;
                 }, 
                 dic
@@ -333,7 +322,6 @@ namespace FAQPhone.Views
                 await this.discussionService.Save(model);
                 this.replay = string.Empty;
                 this.setList(l);
-                //await this.RootNavigate(new MainPage());
             }
         }
 
@@ -341,7 +329,6 @@ namespace FAQPhone.Views
 
         public async Task finishCommand()
         {
-            ///// 
             if (!string.IsNullOrWhiteSpace(this.replay))
             {
                 if (this.IsOperator)
@@ -370,8 +357,22 @@ namespace FAQPhone.Views
 
         public async Task reportCommand()
         {
-            /////     
             await this.Navigation.PushAsync(new CancelationPage(model));
+        }
+
+        public ICommand RuleCommand { protected set; get; }
+
+        public async Task ruleCommand()
+        {
+            if (this.model.department != null)
+            {
+                var department = await this.departmentService.Get(model.department._id);
+                var title = ResourceManagerHelper.GetValue(Constants.RULES);
+                var text = this.IsOperator 
+                    ? department.operatorRule 
+                    : department.userRule;
+                await this.Navigation.PushAsync(new TextPage(title, text));
+            }
         }
 
         public ICommand SelectItemCommand { protected set; get; }

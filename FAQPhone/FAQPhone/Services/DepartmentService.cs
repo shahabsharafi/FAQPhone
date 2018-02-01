@@ -38,10 +38,25 @@ namespace FAQPhone.Services
             return data.docs.ToList();
         }
 
+        public async Task<string> GetRules(bool asuser, string id)
+        {
+            string prm = "?asuser=" + (asuser ? "True" : "False") + "&id=" + id;
+            string url = this.getUrl(prm);
+            var data = await this.get<ResultModel>(url);
+            return data.message;
+        }
+
         public async Task<List<DepartmentModel>> GetTree()
         {
             string url = this.getUrl() + "/tree";
             var data = await this.get<List<DepartmentModel>>(url);
+            return data;
+        }
+
+        public async Task<DepartmentModel> Get(string id)
+        {
+            string url = this.getUrl() + "/item/" + id;
+            var data = await this.get<DepartmentModel>(url);
             return data;
         }
     }

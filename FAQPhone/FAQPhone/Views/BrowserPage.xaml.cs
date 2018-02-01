@@ -12,33 +12,34 @@ using Xamarin.Forms.Xaml;
 namespace FAQPhone.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HelpPage : ContentPage
+    public partial class BrowserPage : ContentPage
     {
-        public HelpPage()
+        public BrowserPage(string title, string url)
         {
             InitializeComponent();
-            var factory = App.Resolve<HelpViewModelFactory>();
-            BindingContext = factory.Create(this);
+            var factory = App.Resolve<BrowserViewModelFactory>();
+            BindingContext = factory.Create(this, title, url);
         }
     }
 
-    public class HelpViewModelFactory
+    public class BrowserViewModelFactory
     {
-        public HelpViewModelFactory()
+        public BrowserViewModelFactory()
         {
-
+            
         }
-        public HelpViewModel Create(ContentPage page)
+        public BrowserViewModel Create(ContentPage page, string title, string url)
         {
-            return new HelpViewModel(page);
+            return new BrowserViewModel(page, title, url);
         }
     }
 
-    public class HelpViewModel : BaseViewModel
+    public class BrowserViewModel : BaseViewModel
     {
-        public HelpViewModel(ContentPage page) : base(page)
+        public BrowserViewModel(ContentPage page, string title, string url) : base(page)
         {
-            this.Source = ResourceManagerHelper.GetValue(Constants.INFO_URL); ;
+            this.Title = title;
+            this.Source = url;
             this.NavigatingCommand = new Command(() => navigatingCommand());
             this.NavigatedCommand = new Command(() => navigatedCommand());
         }
@@ -60,6 +61,13 @@ namespace FAQPhone.Views
         {
             get { return _Source; }
             set { _Source = value; OnPropertyChanged(); }
+        }
+
+        string _Title;
+        public string Title
+        {
+            get { return _Title; }
+            set { _Title = value; OnPropertyChanged(); }
         }
     }
 }

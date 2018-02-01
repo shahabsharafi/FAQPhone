@@ -8,8 +8,8 @@ namespace FAQPhone.Infarstructure
 {
     public class Constants
     {
-        public static string BaseUrl { get { return "http://94.182.227.163:4000"; } }
-        //public static string BaseUrl { get { return "http://192.168.1.103:4000"; } }
+        //public static string BaseUrl { get { return "http://94.182.227.163:4000"; } }
+        public static string BaseUrl { get { return "http://192.168.1.104:4000"; } }
         public static string RestUrl { get { return BaseUrl + "/api/{0}"; } }
         public static string UploadUrl { get { return BaseUrl + "/api/uploads"; } }
         public static string DownloadUrl { get { return BaseUrl + "/uploads"; } }
@@ -27,6 +27,7 @@ namespace FAQPhone.Infarstructure
         public const string ALL_MESSAGES = "all_messages";
         public const string OPERATOR_LIST = "operator_list";
         public const string CONTACT_US = "contactus";
+        public const string RULES = "rules";
         public const string INFO = "info";
         public const string ABOUT_US = "about_us";
         public const string SETTING = "setting";

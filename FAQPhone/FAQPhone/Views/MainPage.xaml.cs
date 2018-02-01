@@ -232,7 +232,9 @@ namespace FAQPhone.Views
                         await this.Navigation.PushAsync(new ContactUsPage());
                         break;
                     case Constants.INFO:
-                        await this.Navigation.PushAsync(new HelpPage());
+                        var title = ResourceManagerHelper.GetValue(Constants.INFO);
+                        var url = ResourceManagerHelper.GetValue(Constants.INFO_URL);
+                        await this.Navigation.PushAsync(new BrowserPage(title, url));
                         break;
                     case Constants.ABOUT_US:
                         await this.Navigation.PushAsync(new AboutPage());

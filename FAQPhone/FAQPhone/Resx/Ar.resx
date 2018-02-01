@@ -564,4 +564,7 @@
   <data name="info_url" xml:space="preserve">
     <value>https://www.google.com</value>
   </data>
+  <data name="rules" xml:space="preserve">
+    <value>قوانین</value>
+  </data>
 </root>
