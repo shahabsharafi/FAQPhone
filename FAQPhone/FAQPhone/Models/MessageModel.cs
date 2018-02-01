@@ -15,5 +15,6 @@ namespace FAQPhone.Models
         public DateTime createDate { get; set; }
         public DateTime issueDate { get; set; }
         public DateTime expireDate { get; set; }
+        public string IssueDateCaption { get; set; }
 }
 }

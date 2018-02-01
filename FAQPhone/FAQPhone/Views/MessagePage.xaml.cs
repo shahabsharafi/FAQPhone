@@ -93,6 +93,7 @@ namespace FAQPhone.Views
             {
                 foreach (var item in list)
                 {
+                    item.IssueDateCaption = item.issueDate.ToString(@"yy\/MM\/dd");
                     this.List.Add(item);
                 }
             }
