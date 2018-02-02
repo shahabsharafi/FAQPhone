@@ -570,4 +570,7 @@
   <data name="rules" xml:space="preserve">
     <value>قوانین</value>
   </data>
+  <data name="command_tackpicture" xml:space="preserve">
+    <value>عکس گرفتن</value>
+  </data>
 </root>

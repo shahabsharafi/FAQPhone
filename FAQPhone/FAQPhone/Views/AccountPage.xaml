@@ -8,48 +8,37 @@
              x:Class="FAQPhone.Views.AccountPage"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
              Title="{infr:Translate account}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="{markupExtensions:PlatformImage SourceImage='camera40'}" Text ="{infr:Translate command_tackpicture}"  
+              Priority="0" Order="Primary" Command="{Binding TackPictureCommand}" />
+        <ToolbarItem Icon="{markupExtensions:PlatformImage SourceImage='edit40'}" Text ="{infr:Translate command_edit}"  
+              Priority="1" Order="Primary" Command="{Binding EditCommand}" />
+    </ContentPage.ToolbarItems>
     <ScrollView>
         <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" Color="Black" />
         <StackLayout Style="{StaticResource pageStyle}">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <controls:CircleImage 
+            <controls:CircleImage 
                     Source="{Binding SourceImage}" 
+                    HorizontalOptions="Center"
                     Aspect="AspectFill" Grid.Row="0" 
-                    Grid.Column="1" Grid.RowSpan="2" 
                     BorderColor = "Gray"                    
                     BorderThickness = "1"
                     Margin="2,2,2,2">
-                    <controls:CircleImage.WidthRequest>
-                        <OnPlatform x:TypeArguments="x:Double">
-                            <On Platform="Android, iOS">110</On>
-                            <On Platform="WinPhone">150</On>
-                        </OnPlatform>
-                    </controls:CircleImage.WidthRequest>
-                    <controls:CircleImage.HeightRequest>
-                        <OnPlatform x:TypeArguments="x:Double">
-                            <On Platform="Android, iOS">110</On>
-                            <On Platform="WinPhone">150</On>
-                        </OnPlatform>
-                    </controls:CircleImage.HeightRequest>
-                </controls:CircleImage>
-                <Label Text="{Binding mobile}" TextColor="#4e5758" Margin="2,15,10,5" FontSize="Large" HorizontalTextAlignment="End" Grid.Row="0" Grid.Column="0" />
-                <Label Text="{Binding credit}" TextColor="#4e5758" Margin="2,2,20,2" FontSize="Small" HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="0" />
-                <customControls:ImageButton Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-                    HorizontalOptions="End" Margin="2,2,10,2" Command="{Binding TackPictureCommand}" 
-                    Source="{markupExtensions:PlatformImage SourceImage='camera40'}" />
-                <customControls:ImageButton Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
-                    HorizontalOptions="End" Margin="2,2,70,2" Command="{Binding EditCommand}" 
-                    Source="{markupExtensions:PlatformImage SourceImage='edit40'}" />
-            </Grid>
+                <controls:CircleImage.WidthRequest>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Android, iOS">110</On>
+                        <On Platform="WinPhone">150</On>
+                    </OnPlatform>
+                </controls:CircleImage.WidthRequest>
+                <controls:CircleImage.HeightRequest>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Android, iOS">110</On>
+                        <On Platform="WinPhone">150</On>
+                    </OnPlatform>
+                </controls:CircleImage.HeightRequest>
+            </controls:CircleImage>
+            <Label Text="{Binding mobile}" TextColor="#4e5758" FontSize="Large" HorizontalTextAlignment="End" Grid.Row="0" />
+            <Label Text="{Binding credit}" TextColor="#4e5758" FontSize="Small" HorizontalTextAlignment="End" Grid.Row="1" />
         </StackLayout>
     </ScrollView>
 </ContentPage>

@@ -440,6 +440,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to عکس گرفتن.
+        /// </summary>
+        internal static string command_tackpicture {
+            get {
+                return ResourceManager.GetString("command_tackpicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to سعی مجدد.
         /// </summary>
         internal static string command_try {
