@@ -25,11 +25,11 @@ namespace FAQPhone.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AccountPage : ContentPage
     {
-        public AccountPage(AccountModel model, string parm)
+        public AccountPage(AccountModel model, string parm, bool editable = false)
         {
             InitializeComponent();
             var factory = App.Resolve<AccountViewModelFactory>();
-            var vm = factory.Create(this, model, parm);
+            var vm = factory.Create(this, model, parm, editable);
             this.Appearing += (sender, e) => {
                 Task.Run(async () => await vm.Load()).Wait();
             };
@@ -46,18 +46,19 @@ namespace FAQPhone.Views
             this.accountService = accountService;
             this.commonServic = commonServic;
         }
-        public AccountViewModel Create(ContentPage page, AccountModel model, string parm)
+        public AccountViewModel Create(ContentPage page, AccountModel model, string parm, bool editable)
         {
-            return new AccountViewModel(this.accountService, this.commonServic, page, model, parm);
+            return new AccountViewModel(this.accountService, this.commonServic, page, model, parm, editable);
         }
     }
 
     public class AccountViewModel : BaseViewModel
     {
 
-        public AccountViewModel(IAccountService accountService, ICommonService commonServic, ContentPage page, AccountModel model, string parm) : base(page)
+        public AccountViewModel(IAccountService accountService, ICommonService commonServic, ContentPage page, AccountModel model, string parm, bool editable) : base(page)
         {
             this._parm = parm;
+            this.editable = editable;
             this.accountService = accountService;
             this.commonServic = commonServic;
             this.EditCommand = new Command(async () => await editCommand());
@@ -81,6 +82,34 @@ namespace FAQPhone.Views
         {
             get { return _SourceImage; }
             set { _SourceImage = value; OnPropertyChanged(); }
+        }
+
+        string _grade;
+        public string grade
+        {
+            get { return _grade; }
+            set { _grade = value; OnPropertyChanged(); }
+        }
+
+        string _university;
+        public string university
+        {
+            get { return _university; }
+            set { _university = value; OnPropertyChanged(); }
+        }
+
+        bool _isOperator;
+        public bool isOperator
+        {
+            get { return _isOperator; }
+            set { _isOperator = value; OnPropertyChanged(); }
+        }
+
+        bool _editable;
+        public bool editable
+        {
+            get { return _editable; }
+            set { _editable = value; OnPropertyChanged(); }
         }
 
         private IDownloader _downloader;
@@ -134,10 +163,64 @@ namespace FAQPhone.Views
         {
             if (model.profile != null)
             {
-                this.fullName = model.profile.firstName + " " + model.profile.lastName;
+                this.fullName = "";
+                if (!string.IsNullOrWhiteSpace(this.model.profile.sex))
+                {
+                    var sex = App.AttributeList.Find(o => o._id == this.model.profile.sex);
+                    if (sex != null)
+                    {
+                        this.fullName += sex.value == "male"
+                            ? ResourceManagerHelper.GetValue("perfix_male")
+                            : ResourceManagerHelper.GetValue("perfix_female");
+                    }
+                }
+                if (!string.IsNullOrWhiteSpace(this.model.profile.firstName))
+                {
+                    if (!string.IsNullOrWhiteSpace(this.fullName))
+                    {
+                        this.fullName += " ";
+                    }
+                    this.fullName += model.profile.firstName;
+                }
+                if (!string.IsNullOrWhiteSpace(model.profile.lastName))
+                {
+                    if (!string.IsNullOrWhiteSpace(this.fullName))
+                    {
+                        this.fullName += " ";
+                    }
+                    this.fullName += model.profile.lastName;
+                }
+                if (model.profile.birthDay.HasValue)
+                {
+                    var bd = Utility.MiladiToShamsi(model.profile.birthDay.Value);
+                    this.birthDay = 
+                        ResourceManagerHelper.GetValue("profile_birthDay") + 
+                        " " + bd[0] + "/" + bd[1] + "/" + bd[2];
+
+                }                
             }
-            this.mobile = model.mobile;
-            this.email = model.email;
+
+            this.isOperator = (App.EnterAsOperator == true);
+
+            if (this._parm == Constants.ACCESS_OPERATOR)
+            {
+                if (model.education != null)
+                {
+                    if (model.education.grade != null)
+                    {
+                        var grade = App.AttributeList.Find(o => o._id == this.model.education.grade);
+                        this.grade = ResourceManagerHelper.GetValue("education_grade") + " " + grade.caption;
+                    }
+
+                    if (model.education.university != null)
+                    {
+                        var university = App.AttributeList.Find(o => o._id == this.model.education.university);
+                        this.university = ResourceManagerHelper.GetValue("education_university") + " " + university.caption;
+                    }
+                }
+            }
+
+            this.mobile = model.mobile;            
             this.credit = 
                 ResourceManagerHelper.GetValue("account_credit") + ":" + 
                 (model.credit).ToString() + " " + 
@@ -162,11 +245,11 @@ namespace FAQPhone.Views
             set { _mobile = value; OnPropertyChanged(); }
         }
 
-        string _email;
-        public string email
+        string _birthDay;
+        public string birthDay
         {
-            get { return _email; }
-            set { _email = value; OnPropertyChanged(); }
+            get { return _birthDay; }
+            set { _birthDay = value; OnPropertyChanged(); }
         }
 
         string _credit;

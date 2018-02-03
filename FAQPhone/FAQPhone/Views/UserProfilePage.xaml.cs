@@ -182,6 +182,13 @@ namespace FAQPhone.Views
         private IAccountService accountService { get; set; }
         AccountModel model { get; set; }
 
+        string _firstName;
+        public string firstName
+        {
+            get { return _firstName; }
+            set { _firstName = value; OnPropertyChanged(); }
+        }
+
         string _house;
         public string house
         {
@@ -493,6 +500,7 @@ namespace FAQPhone.Views
             {
                 this.model.profile = new ProfileModel();
             }
+            this.model.profile.firstName = this.firstName;
             if (this.SelectedYear != null &&
                 this.SelectedMonth != null &&
                 this.SelectedDay != null)

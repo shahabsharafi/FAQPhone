@@ -352,7 +352,7 @@
     <value>اطلاعات تحصیلی</value>
   </data>
   <data name="education_grade" xml:space="preserve">
-    <value>درجه</value>
+    <value>تحصیلات</value>
   </data>
   <data name="education_level" xml:space="preserve">
     <value>سطح</value>
@@ -572,5 +572,17 @@
   </data>
   <data name="command_tackpicture" xml:space="preserve">
     <value>عکس گرفتن</value>
+  </data>
+  <data name="message_user_profile_not_completed" xml:space="preserve">
+    <value>وارد کردن نام مستعار، جنسیت، تاریخ تولد و تحصیلات اجباری است</value>
+  </data>
+  <data name="nickname" xml:space="preserve">
+    <value>نام مستعار</value>
+  </data>
+  <data name="perfix_female" xml:space="preserve">
+    <value>خانم</value>
+  </data>
+  <data name="perfix_male" xml:space="preserve">
+    <value>آقای</value>
   </data>
 </root>

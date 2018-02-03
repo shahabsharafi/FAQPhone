@@ -836,7 +836,7 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to درجه.
+        ///   Looks up a localized string similar to تحصیلات.
         /// </summary>
         internal static string education_grade {
             get {
@@ -1070,6 +1070,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to وارد کردن نام مستعار، جنسیت، تاریخ تولد و تحصیلات اجباری است.
+        /// </summary>
+        internal static string message_user_profile_not_completed {
+            get {
+                return ResourceManager.GetString("message_user_profile_not_completed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to نسخه آماده برای دریافت.
         /// </summary>
         internal static string message_version_next {
@@ -1093,6 +1102,15 @@ namespace FAQPhone.Resx {
         internal static string mobile {
             get {
                 return ResourceManager.GetString("mobile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نام مستعار.
+        /// </summary>
+        internal static string nickname {
+            get {
+                return ResourceManager.GetString("nickname", resourceCulture);
             }
         }
         
@@ -1147,6 +1165,24 @@ namespace FAQPhone.Resx {
         internal static string password {
             get {
                 return ResourceManager.GetString("password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to خانم.
+        /// </summary>
+        internal static string perfix_female {
+            get {
+                return ResourceManager.GetString("perfix_female", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to آقای.
+        /// </summary>
+        internal static string perfix_male {
+            get {
+                return ResourceManager.GetString("perfix_male", resourceCulture);
             }
         }
         

@@ -12,6 +12,7 @@ namespace FAQPhone.Models
         public string type { get; set; }
         public string caption { get; set; }
         public string parentId { get; set; }
+        public string value { get; set; }
         public override string ToString()
         {
             return caption;

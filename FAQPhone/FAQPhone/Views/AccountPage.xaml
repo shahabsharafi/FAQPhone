@@ -7,6 +7,7 @@
              xmlns:customControls="clr-namespace:FAQPhone.CustomControls;assembly=FAQPhone"
              x:Class="FAQPhone.Views.AccountPage"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             NavigationPage.HasNavigationBar="{Binding editable}"
              Title="{infr:Translate account}">
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="{markupExtensions:PlatformImage SourceImage='camera40'}" Text ="{infr:Translate command_tackpicture}"  
@@ -37,8 +38,11 @@
                     </OnPlatform>
                 </controls:CircleImage.HeightRequest>
             </controls:CircleImage>
-            <Label Text="{Binding mobile}" TextColor="#4e5758" FontSize="Large" HorizontalTextAlignment="End" Grid.Row="0" />
-            <Label Text="{Binding credit}" TextColor="#4e5758" FontSize="Small" HorizontalTextAlignment="End" Grid.Row="1" />
+            <Label Text="{Binding fullName}" TextColor="#4e5758" FontSize="Large" HorizontalTextAlignment="End" />
+            <Label Text="{Binding birthDay}" TextColor="#4e5758" FontSize="Medium" HorizontalTextAlignment="End" />
+            <Label Text="{Binding grade}" IsVisible="{Binding isOperator}" TextColor="#4e5758" FontSize="Medium" HorizontalTextAlignment="End" />
+            <Label Text="{Binding university}" IsVisible="{Binding isOperator}" TextColor="#4e5758" FontSize="Medium" HorizontalTextAlignment="End" />
+            <Label Text="{Binding credit}" TextColor="#4e5758" FontSize="Small" HorizontalTextAlignment="End" />
         </StackLayout>
     </ScrollView>
 </ContentPage>

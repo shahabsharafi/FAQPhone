@@ -45,8 +45,6 @@ namespace FAQPhone.Views
         public AccountFeedbackViewModel(IAccountService accountService, ContentPage page, AccountModel model) : base(page)
         {
             this.accountService = accountService;
-            this.List = new ObservableCollection<AccountComment>();
-            this.SelectItemCommand = new Command<AccountComment>((d) => selectItemCommand(d));
             this.SaveCommand = new Command(async () => await saveCommand());
             this.model = model;
             this.setFields(this.model);
@@ -63,14 +61,7 @@ namespace FAQPhone.Views
             this.credit =
                 ResourceManagerHelper.GetValue("account_credit") + ":" +
                 (model.credit).ToString() + " " +
-                ResourceManagerHelper.GetValue("unit_of_mony_caption");
-            if (model.comments != null)
-            {
-                foreach (var item in model.comments)
-                {
-                    this.List.Add(item);
-                }
-            }            
+                ResourceManagerHelper.GetValue("unit_of_mony_caption");                      
         }
 
         private IAccountService accountService { get; set; }
@@ -121,29 +112,6 @@ namespace FAQPhone.Views
         {
             get { return _CanSending; }
             set { _CanSending = value; OnPropertyChanged(); }
-        }
-
-        ObservableCollection<AccountComment> _list;
-        public ObservableCollection<AccountComment> List
-        {
-            get { return _list; }
-            set { _list = value; OnPropertyChanged(); }
-        }
-
-        object _selectedItem;
-        public object SelectedItem
-        {
-            get { return _selectedItem; }
-            set { _selectedItem = value; OnPropertyChanged(); }
-        }
-
-        public ICommand SelectItemCommand { protected set; get; }
-
-        public void selectItemCommand(AccountComment d)
-        {
-            if (d == null)
-                return;
-            this.SelectedItem = null;
         }
 
         public ICommand SaveCommand { protected set; get; }

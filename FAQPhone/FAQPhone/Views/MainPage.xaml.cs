@@ -127,6 +127,7 @@ namespace FAQPhone.Views
                 } else 
                 {
                     this._completeProfile =
+                        (!string.IsNullOrWhiteSpace(me?.profile?.firstName)) &&
                         (!string.IsNullOrWhiteSpace(me?.profile?.sex)) &&
                         (me?.profile?.birthDay != null) &&
                         (!string.IsNullOrWhiteSpace(me?.education?.grade));
@@ -297,7 +298,7 @@ namespace FAQPhone.Views
             }
             else
             {
-                await Utility.Alert("message_profile_not_completed");
+                await MessageNotCompleteProfile();
             }
         }
 
@@ -317,7 +318,7 @@ namespace FAQPhone.Views
             }
             else
             {
-                await Utility.Alert("message_profile_not_completed");
+                await MessageNotCompleteProfile();
             }
         }
 
@@ -337,7 +338,7 @@ namespace FAQPhone.Views
             }
             else
             {
-                await Utility.Alert("message_profile_not_completed");
+                await MessageNotCompleteProfile();
             }
         }
 
@@ -361,8 +362,21 @@ namespace FAQPhone.Views
             }
             else
             {
+                await MessageNotCompleteProfile();
+            }
+        }
+
+        private static async Task MessageNotCompleteProfile()
+        {
+            if (App.EnterAsOperator == true)
+            {
                 await Utility.Alert("message_profile_not_completed");
             }
+            else
+            {
+                await Utility.Alert("message_user_profile_not_completed");
+            }
+            
         }
     }
 }

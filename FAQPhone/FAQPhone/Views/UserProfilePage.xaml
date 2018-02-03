@@ -26,7 +26,7 @@
     </ContentPage.Resources>
     <ScrollView>
         <StackLayout Style="{StaticResource pageStyle}">
-            <Entry Placeholder="{infr:Translate contact_email}" Keyboard="Email" Text="{Binding email, Mode=TwoWay}" />
+            <Entry Placeholder="{infr:Translate nickname}" Text="{Binding firstName, Mode=TwoWay}" />
             <controls:AutoCompleteView 
                 Placeholder="{infr:Translate contact_country}"
                 DefaultText="{Binding CountryText, Mode=TwoWay}"
