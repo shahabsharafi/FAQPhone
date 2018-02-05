@@ -4,31 +4,29 @@ using FAQPhone.Infrastructure;
 using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
 using FilePicker;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-
-using TackPicture;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace FAQPhone.Views
 {
-
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AccountPage : ContentPage
-    {
-        public AccountPage(AccountModel model, string parm)
-        {
-            InitializeComponent();
-            var factory = App.Resolve<AccountViewModelFactory>();
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class ProfileInfoPage : ContentPage
+	{
+		public ProfileInfoPage (AccountModel model, string parm)
+		{
+			InitializeComponent ();
+            if (parm == Constants.ACCESS_USER)
+            {
+                this.ToolbarItems.RemoveAt(0);
+            }
+            var factory = App.Resolve<ProfileInfoViewModelFactory>();
             var vm = factory.Create(this, model, parm);
             this.Appearing += (sender, e) => {
                 Task.Run(async () => await vm.Load()).Wait();
@@ -37,31 +35,26 @@ namespace FAQPhone.Views
         }
     }
 
-    public class AccountViewModelFactory
+    public class ProfileInfoViewModelFactory
     {
-        IAccountService accountService;
-        ICommonService commonServic;
-        public AccountViewModelFactory(IAccountService accountService, ICommonService commonServic)
+        public ProfileInfoViewModelFactory()
         {
-            this.accountService = accountService;
-            this.commonServic = commonServic;
+            
         }
-        public AccountViewModel Create(ContentPage page, AccountModel model, string parm)
+        public ProfileInfoViewModel Create(ContentPage page, AccountModel model, string parm)
         {
-            return new AccountViewModel(this.accountService, this.commonServic, page, model, parm);
+            return new ProfileInfoViewModel(page, model, parm);
         }
     }
 
-    public class AccountViewModel : BaseViewModel
+    public class ProfileInfoViewModel : BaseViewModel
     {
 
-        public AccountViewModel(IAccountService accountService, ICommonService commonServic, ContentPage page, AccountModel model, string parm) : base(page)
+        public ProfileInfoViewModel(ContentPage page, AccountModel model, string parm) : base(page)
         {
             this._parm = parm;
-            this.accountService = accountService;
-            this.commonServic = commonServic;
-            this.EditCommand = new Command(async () => await editCommand());
-            this.TackPictureCommand = new Command(async () => await tackPictureCommand());
+            this.CreateFAQCommand = new Command(async () => await createFAQCommand());
+            this.CommentCommand = new Command(async () => await commentCommand());
             this.model = model;
             var fileService = DependencyService.Get<IFileService>();
             string documentsPath = fileService.GetDocumentsPath();
@@ -105,50 +98,16 @@ namespace FAQPhone.Views
         }
 
         private IDownloader _downloader;
-        public ICommand TackPictureCommand { protected set; get; }
-
-        private async Task tackPictureCommand()
-        {
-            this.IsBusy = true;
-            Action<byte[]> action = (data) =>
-            {
-                upload(data, this.model.PictureName);
-            };
-            DependencyService.Get<IPictureService>().TakeAPicture(action);
-        }
-
-        public async void upload(byte[] data, string fileName)
-        {
-            await UploadHelper.UploadPicture(data, fileName,
-                (state) =>
-                {
-                    if (state == false)
-                    {
-                        this.IsBusy = state;
-                        this._downloader.Start(this.model.PictureName);
-                    }
-                }, 150, 150);
-        }
 
         string _parm { get; set; }
 
-        bool _loaded = false;
         public async Task Load()
         {
             if (!this.IsBusy)
             {
                 this._downloader.Start(this.model.PictureName);
             }
-            if (this._loaded)
-            {
-                var m = await this.accountService.GetMe();
-                this.setFields(m);
-            }
-            else
-            {
-                this._loaded = true;
-                this.setFields(this.model);
-            }
+            this.setFields(this.model);
         }
 
         void setFields(AccountModel model)
@@ -185,11 +144,11 @@ namespace FAQPhone.Views
                 if (model.profile.birthDay.HasValue)
                 {
                     var bd = Utility.MiladiToShamsi(model.profile.birthDay.Value);
-                    this.birthDay = 
-                        ResourceManagerHelper.GetValue("profile_birthDay") + 
+                    this.birthDay =
+                        ResourceManagerHelper.GetValue("profile_birthDay") +
                         " " + bd[0] + "/" + bd[1] + "/" + bd[2];
 
-                }                
+                }
             }
 
             this.isOperator = (App.EnterAsOperator == true);
@@ -212,15 +171,12 @@ namespace FAQPhone.Views
                 }
             }
 
-            this.mobile = model.mobile;            
-            this.credit = 
-                ResourceManagerHelper.GetValue("account_credit") + ":" + 
-                (model.credit).ToString() + " " + 
+            this.mobile = model.mobile;
+            this.credit =
+                ResourceManagerHelper.GetValue("account_credit") + ":" +
+                (model.credit).ToString() + " " +
                 ResourceManagerHelper.GetValue("unit_of_mony_caption");
         }
-
-        private IAccountService accountService { get; set; }
-        private ICommonService commonServic { get; set; }
         AccountModel model { get; set; }
 
         string _fullName;
@@ -251,18 +207,17 @@ namespace FAQPhone.Views
             set { _credit = value; OnPropertyChanged(); }
         }
 
-        public ICommand EditCommand { protected set; get; }
-
-        public async Task editCommand()
+        public ICommand CreateFAQCommand { protected set; get; }
+        public async Task createFAQCommand()
         {
-            if (this._parm == Constants.ACCESS_OPERATOR)
-            {
-                await this.Navigation.PushAsync(new ProfilePage(this.model));
-            }
-            else
-            {
-                await this.Navigation.PushAsync(new UserProfilePage(this.model));
-            }
+            await this.Navigation.PushAsync(new DiscussionNewPage(null, null, null, 0));
+        }
+
+        public ICommand CommentCommand { protected set; get; }
+
+        public async Task commentCommand()
+        {
+            await this.Navigation.PushAsync(new CommentPage(this.model));
         }
     }
 }

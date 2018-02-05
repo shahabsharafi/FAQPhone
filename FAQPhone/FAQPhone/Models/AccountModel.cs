@@ -73,6 +73,11 @@ namespace FAQPhone.Models
         }
     }
 
+    public class AccountCommentModel
+    {
+        public string caption { get; set; }
+    }
+
     public class AccountComment
     {
         public DateTime createDate { get; set; }

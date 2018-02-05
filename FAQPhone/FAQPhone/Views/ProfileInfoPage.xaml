@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FAQPhone.Views.ProfileInfoPage"
              xmlns:infr="clr-namespace:FAQPhone.Infarstructure;assembly=FAQPhone"
              xmlns:icon="clr-namespace:Awesome;assembly=FAQPhone"
 	         xmlns:markupExtensions="clr-namespace:MarkupExtensions;assembly=FAQPhone"
              xmlns:customControls="clr-namespace:FAQPhone.CustomControls;assembly=FAQPhone"
-             x:Class="FAQPhone.Views.AccountPage"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
              Title="{infr:Translate account}">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="{markupExtensions:PlatformImage SourceImage='camera40'}" Text ="{infr:Translate command_tackpicture}"  
-              Priority="0" Order="Primary" Command="{Binding TackPictureCommand}" />
-        <ToolbarItem Icon="{markupExtensions:PlatformImage SourceImage='edit40'}" Text ="{infr:Translate command_edit}"  
-              Priority="1" Order="Primary" Command="{Binding EditCommand}" />
+        <ToolbarItem Icon="{markupExtensions:PlatformImage SourceImage='comment'}" Text ="{infr:Translate comment}"  
+              Priority="0" Order="Primary" Command="{Binding CommentCommand}" />
+        <ToolbarItem Icon="{markupExtensions:PlatformImage SourceImage='faq'}" Text ="{infr:Translate user_create_faq}"  
+              Priority="1" Order="Primary" Command="{Binding CreateFAQCommand}" />
     </ContentPage.ToolbarItems>
     <ScrollView>
         <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" Color="Black" />

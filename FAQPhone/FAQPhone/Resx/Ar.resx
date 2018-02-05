@@ -582,4 +582,7 @@
   <data name="perfix_male" xml:space="preserve">
     <value>آقای</value>
   </data>
+  <data name="comment" xml:space="preserve">
+    <value>نظرات</value>
+  </data>
 </root>

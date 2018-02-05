@@ -129,7 +129,7 @@ namespace FAQPhone.Views
                 return;
             this.SelectedItem = null;
             //await this.Navigation.PushAsync(new DiscussionNewPage(null, model, null, 0));
-            await this.Navigation.PushAsync(new AccountFeedbackPage(model));
+            await this.Navigation.PushAsync(new ProfileInfoPage(model, Constants.ACCESS_OPERATOR));
         }
     }
 }

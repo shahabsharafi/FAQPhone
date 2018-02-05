@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FAQPhone.Views.CommentPage"
+             xmlns:infr="clr-namespace:FAQPhone.Infarstructure;assembly=FAQPhone"
+             xmlns:render="clr-namespace:CustomRenderer;assembly=FAQPhone"
+             xmlns:controls="clr-namespace:CustomControl;assembly=FAQPhone"
+             xmlns:progress="clr-namespace:ProgressRingControl.Forms.Plugin;assembly=ProgressRing.Forms.Plugin"
+             xmlns:markupExtensions="clr-namespace:MarkupExtensions;assembly=FAQPhone"
+             xmlns:customControls="clr-namespace:FAQPhone.CustomControls;assembly=FAQPhone"
+             xmlns:local="clr-namespace:EventToCommandBehavior"
+             xmlns:icon="clr-namespace:Awesome;assembly=FAQPhone"
+	         Title="{infr:Translate comment}">
+    <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" Color="Black" />
+    <AbsoluteLayout>
+        <Grid AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0,1,1,1"
+            VerticalOptions="FillAndExpand" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <controls:ExtendedEditor
+                Grid.Row="0" Grid.Column="0"
+                x:Name="text" 
+                Placeholder="{infr:Translate chat_text}"  
+                Text="{Binding replay, Mode=TwoWay}" 
+                FontSize="Small" 
+                BackgroundColor="#efefef" 
+                HeightRequest="80" />
+            <ListView ItemsSource="{ Binding List }" 
+                      Grid.Row="1" Grid.Column="0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Margin="0,7,10,0" Text = "{Binding caption}" FontSize="Small" TextColor="#4e5758" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <customControls:ImageButton 
+            Source="{markupExtensions:PlatformImage SourceImage='send40'}"
+            Command="{Binding SendCommand}"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0,0,-1,-1"
+            Opacity="0.5"
+            Margin="15,40,0,0" />
+    </AbsoluteLayout>
+</ContentPage>
