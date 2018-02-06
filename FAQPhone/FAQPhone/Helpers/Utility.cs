@@ -122,6 +122,16 @@ namespace FAQPhone.Helpers
             return arr;
         }
 
+        public static string MiladiToShamsiString(DateTime dt)
+        {
+            var pCalendar = DependencyService.Get<CalendarService.IPersianCalendarService>();
+            var pc = pCalendar.GetCalendar();
+            var y = pc.GetYear(dt);
+            var m = pc.GetMonth(dt);
+            var d = pc.GetDayOfMonth(dt);
+            return string.Format("{0}/{1}/{2}", y, m, d );
+        }
+
         public static DateTime ShamsiToMiladi(int y, int m, int d)
         {
             var pCalendar = DependencyService.Get<CalendarService.IPersianCalendarService>();

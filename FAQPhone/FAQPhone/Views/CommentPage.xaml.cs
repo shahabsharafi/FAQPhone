@@ -1,10 +1,13 @@
-﻿using FAQPhone.Infarstructure;
+﻿using FAQPhone.Helpers;
+using FAQPhone.Infarstructure;
 using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -19,9 +22,8 @@ namespace FAQPhone.Views
 		public CommentPage (AccountModel model)
 		{
 			InitializeComponent ();
-            EventHandler h = null;
             var factory = App.Resolve<CommentViewModelFactory>();
-            BindingContext = factory.Create(this, model);
+            BindingContext = factory.Create(this, model); 
         }
     }
 
@@ -43,13 +45,30 @@ namespace FAQPhone.Views
         public CommentViewModel(IAccountService accountService, ContentPage page, AccountModel model) : base(page)
         {
             this.accountService = accountService;
+            this.SelectItemCommand = new Command<AccountComment>((m) => selectItemCommand(m));
             this.SendCommand = new Command(async () => await sendCommand());
             this.model = model;
-            this.List = new ObservableCollection<AccountCommentModel>();
-            //this.setList(this.model.comments.ToList());
+            this.List = new ObservableCollection<AccountComment>();
+            setList(model.comments.ToList());
         }
         private IAccountService accountService { get; set; }
-        private AccountModel model { get; set; }        
+        private AccountModel model { get; set; }
+
+        public ICommand SelectItemCommand { protected set; get; }
+
+        public void selectItemCommand(AccountComment model)
+        {
+            if (model == null)
+                return;
+            this.SelectedItem = null;
+        }
+
+        object _selectedItem;
+        public object SelectedItem
+        {
+            get { return _selectedItem; }
+            set { _selectedItem = value; OnPropertyChanged(); }
+        }
 
         string _replay;
         public string replay
@@ -62,18 +81,20 @@ namespace FAQPhone.Views
             }
         }
 
-        ObservableCollection<AccountCommentModel> _list;
-        public ObservableCollection<AccountCommentModel> List
+        ObservableCollection<AccountComment> _list;
+        public ObservableCollection<AccountComment> List
         {
             get { return _list; }
             set { _list = value; OnPropertyChanged(); }
         }
 
-        private void setList(List<AccountCommentModel> list)
+        private void setList(List<AccountComment> list)
         {
+            var l = list.OrderByDescending(o => o.createDate);
             this.List.Clear();
-            foreach (var item in list)
+            foreach (var item in l)
             {
+                item.CreateDateCaption = Utility.MiladiToShamsiString(item.createDate);
                 this.List.Add(item);
             }
         }
@@ -85,13 +106,13 @@ namespace FAQPhone.Views
             if (!string.IsNullOrWhiteSpace(this.replay))
             {
                 var l = this.List.ToList();
-                l.Add(new AccountCommentModel()
+                l.Add(new AccountComment()
                 {
-                    //createDate = DateTime.Now,
-                    caption = this.replay
+                    createDate = DateTime.Now,
+                    text = this.replay
                 });
-                //this.model.comments = l.ToArray();
-                //await this.accountService.Save(model);
+                this.model.comments = l.ToArray();
+                await this.accountService.Save(model);
                 this.replay = string.Empty;
                 this.setList(l);
             }
