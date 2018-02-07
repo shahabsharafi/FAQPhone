@@ -99,5 +99,11 @@ namespace FAQPhone.Services
             App.Token = info?.token;
             App.Access = info?.access;
         }
+
+        public async Task<AccountModel> GetByUsername(string username)
+        {
+            string url = this.getUrl(string.Format("byusername/{0}", username));
+            return await this.get<AccountModel>(url);
+        }
     }
 }

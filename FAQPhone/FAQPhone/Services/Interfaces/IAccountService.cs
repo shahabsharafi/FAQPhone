@@ -18,7 +18,7 @@ namespace FAQPhone.Services.Interfaces
         Task<bool> ResetPassword(AccountChangeModel model);
 
         void SignOut();
-
+        Task<AccountModel> GetByUsername(string username);
         Task<AccountModel> GetMe();
         Task<ResultModel> GetVersion();
 

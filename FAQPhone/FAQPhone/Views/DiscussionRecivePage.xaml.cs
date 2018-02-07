@@ -34,26 +34,31 @@ namespace FAQPhone.Views
     {
         IDiscussionService discussionService;
         IDepartmentService departmentService;
-        public DiscussionReciveViewModelFactory(IDiscussionService discussionService, IDepartmentService departmentService)
+        IAccountService accountService;
+        public DiscussionReciveViewModelFactory(IAccountService accountService, IDiscussionService discussionService, IDepartmentService departmentService)
         {
+            this.accountService = accountService;
             this.discussionService = discussionService;
             this.departmentService = departmentService;
         }
         public DiscussionReciveViewModel Create(ContentPage page, DiscussionModel model)
         {
-            return new DiscussionReciveViewModel(this.discussionService, this.departmentService, page, model);
+            return new DiscussionReciveViewModel(this.accountService, this.discussionService, this.departmentService, page, model);
         }
     }
 
     public class DiscussionReciveViewModel : BaseViewModel
     {
-        public DiscussionReciveViewModel(IDiscussionService discussionService, IDepartmentService departmentService, ContentPage page, DiscussionModel model) : base(page)
+        public DiscussionReciveViewModel(IAccountService accountService, IDiscussionService discussionService, IDepartmentService departmentService, ContentPage page, DiscussionModel model) : base(page)
         {
+            this.accountService = accountService;
             this.discussionService = discussionService;
             this.departmentService = departmentService;
             this.AcceptCommand = new Command(async () => await acceptCommand());
             this.RejectCommand = new Command(async () => await rejectCommand());
             this.ReportCommand = new Command(async () => await reportCommand());
+            this.ProfileCommand = new Command(async () => await profileCommand());
+            this.RuleCommand = new Command(async () => await ruleCommand());
             this.model = model;
             this.title = this.model.title;
             if (this.model.items.Length > 0)
@@ -61,6 +66,7 @@ namespace FAQPhone.Views
                 this.text = this.model.items[0].text;
             }
         }
+        private IAccountService accountService { get; set; }
         private IDiscussionService discussionService { get; set; }
         private IDepartmentService departmentService { get; set; }
         DiscussionModel model { get; set; } 
@@ -106,7 +112,6 @@ namespace FAQPhone.Views
 
         public async Task acceptCommand()
         {
-            /////
             if (!string.IsNullOrWhiteSpace(this.display))
             {
                 model.state = Constants.DISCUSSION_STATE_RECIVED;
@@ -115,38 +120,6 @@ namespace FAQPhone.Views
                 await this.discussionService.Save(model);
                 await Navigation.PushAsync(new TagPage(model));
             }
-            /*
-            if (model.department != null && model.department.tags != null && model.department.tags.Length > 0)
-            {
-                var items = new List<CheckItem>();
-                foreach (var item in model.department.tags)
-                {
-                    items.Add(new CheckItem { Name = item });
-                }
-
-                var multiPage = new SelectMultipleBasePage<CheckItem>(items) { Title = ResourceManagerHelper.GetValue("discussion_tags") };
-                multiPage.Select += (sender, e) =>
-                {
-                    var results = multiPage.GetSelection();
-                    if (results != null && results.Count > 0)
-                    {
-                        model.tags = results.Select(o => o.Name).ToArray();
-                    }
-                    else
-                    {
-                        model.tags = new string[] { };                        
-                    }
-                    this.Navigation.PopAsync();
-                    this.Navigation.PopAsync();
-                    this.Navigation.PushAsync(new ChatPage(model));
-                };
-                await Navigation.PushAsync(multiPage);
-            }
-            else
-            {
-                await Navigation.PushAsync(new ChatPage(model));
-            }
-            */
         }
 
         private void MultiPage_Select(object sender, EventArgs e)
@@ -172,6 +145,31 @@ namespace FAQPhone.Views
             await this.discussionService.Save(model);
             await this.Navigation.PopAsync();
         }
-        
+
+        public ICommand RuleCommand { protected set; get; }
+
+        public async Task ruleCommand()
+        {
+            if (this.model.department != null)
+            {
+                var department = await this.departmentService.Get(model.department._id);
+                var title = ResourceManagerHelper.GetValue(Constants.RULES);
+                var text = department.operatorRule;
+                await this.Navigation.PushAsync(new TextPage(title, text));
+            }
+        }
+
+        public ICommand ProfileCommand { protected set; get; }
+        public async Task profileCommand()
+        {
+            string username = model.from.username;
+            var role = Constants.ACCESS_OPERATOR;
+            var user = await this.accountService.GetByUsername(username);
+            if (user != null)
+            {
+                await this.Navigation.PushAsync(new ProfileInfoPage(user, role, false));
+            }
+        }
+
     }
 }

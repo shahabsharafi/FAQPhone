@@ -1196,7 +1196,7 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to اطلاعات شخصی.
+        ///   Looks up a localized string similar to مشخصات فردی.
         /// </summary>
         internal static string profile {
             get {

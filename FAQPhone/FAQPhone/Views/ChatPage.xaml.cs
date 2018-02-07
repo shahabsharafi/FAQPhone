@@ -37,6 +37,10 @@ namespace FAQPhone.Views
                 Appearing -= h;
             };
             Appearing += h;
+            if (state != Constants.OPERATOR_INPROGRESS_FAQ && model.to == null)
+            {
+                this.ToolbarItems.RemoveAt(1);
+            }
             var factory = App.Resolve<ChatViewModelFactory>();
             BindingContext = factory.Create(this, state, model);
         }
@@ -46,29 +50,33 @@ namespace FAQPhone.Views
     {
         IDiscussionService discussionService;
         IDepartmentService departmentService;
-        public ChatViewModelFactory(IDiscussionService discussionService, IDepartmentService departmentService)
+        IAccountService accountService;
+        public ChatViewModelFactory(IAccountService accountService, IDiscussionService discussionService, IDepartmentService departmentService)
         {
             this.discussionService = discussionService;
             this.departmentService = departmentService;
+            this.accountService = accountService;
         }
         public ChatViewModel Create(ContentPage page, string state, DiscussionModel model)
         {
-            return new ChatViewModel(this.discussionService, this.departmentService, page, state, model);
+            return new ChatViewModel(this.accountService, this.discussionService, this.departmentService, page, state, model);
         }
     }
 
     public class ChatViewModel : BaseViewModel
     {
         AudioRecorderService recorder;
-        public ChatViewModel(IDiscussionService discussionService, IDepartmentService departmentService, ContentPage page, string state, DiscussionModel model) : base(page)
+        public ChatViewModel(IAccountService accountService, IDiscussionService discussionService, IDepartmentService departmentService, ContentPage page, string state, DiscussionModel model) : base(page)
         {
             this.discussionService = discussionService;
             this.departmentService = departmentService;
+            this.accountService = accountService;
             this.SelectItemCommand = new Command<DiscussionDetailModel>((d) => selectItemCommand(d));
             this.SendCommand = new Command(async () => await sendCommand());
             this.AttachCommand = new Command(async () => await attachCommand());
             this.FinishCommand = new Command(async () => await finishCommand());
             this.ReportCommand = new Command(async () => await reportCommand());
+            this.ProfileCommand = new Command(async () => await profileCommand());
             this.RuleCommand = new Command(async () => await ruleCommand());
             this.model = model;
             this.List = new ObservableCollection<DiscussionDetailModel>();
@@ -106,6 +114,7 @@ namespace FAQPhone.Views
         private string _state;
         private DiscussionDetailModel _currentDetail;
         private IDownloader _downloader;
+        IAccountService accountService { get; set; }
         private IDiscussionService discussionService { get; set; }
         private IDepartmentService departmentService { get; set; }
 
@@ -372,6 +381,22 @@ namespace FAQPhone.Views
                     ? department.operatorRule 
                     : department.userRule;
                 await this.Navigation.PushAsync(new TextPage(title, text));
+            }
+        }
+
+        public ICommand ProfileCommand { protected set; get; }
+        public async Task profileCommand()
+        {
+            string username;
+            if (this.IsOperator)
+                username = model.from.username;
+            else
+                username = model.to.username;
+            var role = this.IsOperator ? Constants.ACCESS_OPERATOR : Constants.ACCESS_USER;
+            var user = await this.accountService.GetByUsername(username);
+            if (user != null)
+            {
+                await this.Navigation.PushAsync(new ProfileInfoPage(user, role, false));
             }
         }
 

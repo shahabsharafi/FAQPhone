@@ -19,15 +19,15 @@ namespace FAQPhone.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ProfileInfoPage : ContentPage
 	{
-		public ProfileInfoPage (AccountModel model, string parm)
+		public ProfileInfoPage (AccountModel model, string role, bool hasFAQ = true)
 		{
 			InitializeComponent ();
-            if (parm == Constants.ACCESS_USER)
+            if (!hasFAQ)
             {
-                this.ToolbarItems.RemoveAt(0);
+                this.ToolbarItems.RemoveAt(1);
             }
             var factory = App.Resolve<ProfileInfoViewModelFactory>();
-            var vm = factory.Create(this, model, parm);
+            var vm = factory.Create(this, model, role);
             this.Appearing += (sender, e) => {
                 Task.Run(async () => await vm.Load()).Wait();
             };
@@ -41,18 +41,18 @@ namespace FAQPhone.Views
         {
             
         }
-        public ProfileInfoViewModel Create(ContentPage page, AccountModel model, string parm)
+        public ProfileInfoViewModel Create(ContentPage page, AccountModel model, string role)
         {
-            return new ProfileInfoViewModel(page, model, parm);
+            return new ProfileInfoViewModel(page, model, role);
         }
     }
 
     public class ProfileInfoViewModel : BaseViewModel
     {
 
-        public ProfileInfoViewModel(ContentPage page, AccountModel model, string parm) : base(page)
+        public ProfileInfoViewModel(ContentPage page, AccountModel model, string role) : base(page)
         {
-            this._parm = parm;
+            this._role = role;
             this.CreateFAQCommand = new Command(async () => await createFAQCommand());
             this.CommentCommand = new Command(async () => await commentCommand());
             this.model = model;
@@ -99,7 +99,7 @@ namespace FAQPhone.Views
 
         private IDownloader _downloader;
 
-        string _parm { get; set; }
+        string _role { get; set; }
 
         public async Task Load()
         {
@@ -153,7 +153,7 @@ namespace FAQPhone.Views
 
             this.isOperator = (App.EnterAsOperator == true);
 
-            if (this._parm == Constants.ACCESS_OPERATOR)
+            if (this._role == Constants.ACCESS_OPERATOR)
             {
                 if (model.education != null)
                 {

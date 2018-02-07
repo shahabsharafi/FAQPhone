@@ -23,12 +23,21 @@ namespace FAQPhone.Views
         public DiscussionNewPage(DepartmentModel departmentModel, AccountModel owner, DiscountModel discount, int pushCount)
         {
             InitializeComponent();
+            bool isFirstTime = true;
             this.Appearing += (sender, e) => {
-                for (var i = 0; i < pushCount; i++)
+                if (isFirstTime)
                 {
-                    this.Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
+                    isFirstTime = false;
+                    for (var i = 0; i < pushCount; i++)
+                    {
+                        this.Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
+                    }
                 }
-            };            
+            };          
+            if (departmentModel == null)
+            {
+                this.ToolbarItems.RemoveAt(0);
+            }
             var factory = App.Resolve<DiscussionEditViewModelFactory>();
             BindingContext = factory.Create(this, departmentModel, owner, discount);
         }
@@ -61,6 +70,7 @@ namespace FAQPhone.Views
             }
             this.NextCommand = new Command(async () => await nextCommand());
             this.DiscountCommand = new Command(async () => await discountCommand());
+            this.RuleCommand = new Command(async () => await ruleCommand());
             this.departmentModel = departmentModel;
             this.owner = owner;
             this.price = 
@@ -148,6 +158,18 @@ namespace FAQPhone.Views
             };
             await this.Navigation.PushAsync(new ChatPage(Constants.USER_INPROGRESS_FAQ, model, 1));
             //await this.Navigation.PushAsync(new ChatPage(Constants.USER_INPROGRESS_FAQ, model));
+        }
+
+        public ICommand RuleCommand { protected set; get; }
+
+        public async Task ruleCommand()
+        {
+            if (this.departmentModel != null)
+            {
+                var title = ResourceManagerHelper.GetValue(Constants.RULES);
+                var text = this.departmentModel.userRule;
+                await this.Navigation.PushAsync(new TextPage(title, text));
+            }
         }
     }
 }

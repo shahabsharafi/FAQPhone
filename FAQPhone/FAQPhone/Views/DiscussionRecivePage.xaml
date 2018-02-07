@@ -3,28 +3,47 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:infr="clr-namespace:FAQPhone.Infarstructure;assembly=FAQPhone"
              x:Class="FAQPhone.Views.DiscussionRecivePage"
+             xmlns:markupExtensions="clr-namespace:MarkupExtensions;assembly=FAQPhone"
+             xmlns:customControls="clr-namespace:FAQPhone.CustomControls;assembly=FAQPhone"
              Title="{infr:Translate discussion_revice}" StyleId="DiscussionRecivePage">
-    <ScrollView>
-        <StackLayout Style="{StaticResource pageStyle}" >
-            <StackLayout BackgroundColor="#337ab7" Padding="10,10,10,10">
-                <Label Text="{Binding title, Mode=TwoWay}" FontSize="Medium" TextColor="White" />
-                <Label Text="{Binding text, Mode=TwoWay}" FontSize="Small" TextColor="White" />
-            </StackLayout>
-            <Entry x:Name="display" Placeholder="{infr:Translate discussion_recive_display}" Text="{Binding display, Mode=TwoWay}" />
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Button Text="{infr:Translate command_accept}" Command="{Binding AcceptCommand}" StyleClass="Info" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" IsEnabled="{ Binding CanAccepting }" />
-                <Button Text="{infr:Translate command_reject}" Command="{Binding RejectCommand}" StyleClass="Info" Grid.Row="1" Grid.Column="1" />
-                <Button Text="{infr:Translate command_report}" Command="{Binding ReportCommand}" StyleClass="Info" Grid.Row="1" Grid.Column="0" />
-            </Grid>
-            <Label x:Name="messageLabel" />
-        </StackLayout>
-    </ScrollView>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="{markupExtensions:PlatformImage SourceImage='rule40'}" Text ="{infr:Translate rules}"  
+              Priority="0" Order="Primary" Command="{Binding RuleCommand}" />
+        <ToolbarItem Icon="{markupExtensions:PlatformImage SourceImage='profile40'}" Text ="{infr:Translate profile}"  
+              Priority="1" Order="Primary" Command="{Binding ProfileCommand}" />
+    </ContentPage.ToolbarItems>
+    <AbsoluteLayout>
+        <Grid AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0,1,1,1"
+            VerticalOptions="FillAndExpand" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Text="{Binding title, Mode=TwoWay}" FontSize="Large" TextColor="#4e5758" />
+            <Label Grid.Row="1" Text="{Binding text, Mode=TwoWay}" FontSize="Medium" TextColor="#4e5758" />
+            <Entry Grid.Row="2" x:Name="display" Placeholder="{infr:Translate discussion_recive_display}" Text="{Binding display, Mode=TwoWay}" />
+            <Button Grid.Row="3" Text="{infr:Translate command_accept}" Command="{Binding AcceptCommand}" StyleClass="Info" IsEnabled="{ Binding CanAccepting }" />
+        </Grid>
+        <customControls:ImageButton 
+            Source="{markupExtensions:PlatformImage SourceImage='reject40'}"
+            Command="{Binding RejectCommand}" 
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0,1.0,-1,-1"
+            Opacity="0.5"
+            Margin="65,0,0,30" />
+        <customControls:ImageButton 
+            Source="{markupExtensions:PlatformImage SourceImage='cancel40'}"
+            Command="{Binding ReportCommand}" 
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0,1.0,-1,-1"
+            Opacity="0.5"
+            Margin="15,0,0,30" />
+    </AbsoluteLayout>
 </ContentPage>

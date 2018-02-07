@@ -7,6 +7,10 @@
              xmlns:infr="clr-namespace:FAQPhone.Infarstructure;assembly=FAQPhone"
              x:Class="FAQPhone.Views.DiscussionNewPage"
              Title="{infr:Translate discussion_edit}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="{markupExtensions:PlatformImage SourceImage='rule40'}" Text ="{infr:Translate rules}"  
+              Priority="0" Order="Primary" Command="{Binding RuleCommand}" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Resources>
         <ResourceDictionary>
             <local:InverseBooleanConverter x:Key="Inverse" />

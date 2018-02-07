@@ -11,6 +11,12 @@
              xmlns:icon="clr-namespace:Awesome;assembly=FAQPhone"
 	         x:Class="FAQPhone.Views.ChatPage"
              Title="{infr:Translate chat}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="{markupExtensions:PlatformImage SourceImage='rule40'}" Text ="{infr:Translate rules}"  
+              Priority="0" Order="Primary" Command="{Binding RuleCommand}" />
+        <ToolbarItem Icon="{markupExtensions:PlatformImage SourceImage='profile40'}" Text ="{infr:Translate profile}"  
+              Priority="1" Order="Primary" Command="{Binding ProfileCommand}" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Resources>
         <ResourceDictionary>
             <local:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
@@ -89,7 +95,7 @@
             AbsoluteLayout.LayoutFlags="PositionProportional"
             AbsoluteLayout.LayoutBounds="0,1.0,-1,-1"
             Opacity="0.5"
-            Margin="115,0,0,30" />
+            Margin="65,0,0,30" />
         <customControls:ImageButton 
             Source="{markupExtensions:PlatformImage SourceImage='cancel40'}"
             Command="{Binding ReportCommand}" 
@@ -97,13 +103,6 @@
             AbsoluteLayout.LayoutFlags="PositionProportional"
             AbsoluteLayout.LayoutBounds="0,1.0,-1,-1"
             Opacity="0.5"
-            Margin="65,0,0,30" />
-        <customControls:ImageButton 
-            Source="{markupExtensions:PlatformImage SourceImage='rule40'}"
-            Command="{Binding RuleCommand}" 
-            AbsoluteLayout.LayoutFlags="PositionProportional"
-            AbsoluteLayout.LayoutBounds="0,1.0,-1,-1"
-            Opacity="0.5"
-            Margin="15,0,15,30" />
+            Margin="15,0,0,30" />
     </AbsoluteLayout>
 </ContentPage>
