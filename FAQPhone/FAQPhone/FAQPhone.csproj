@@ -73,6 +73,7 @@
     <Compile Include="Helpers\UploadHelper.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\AttributeModel.cs" />
+    <Compile Include="Models\BalanceModel.cs" />
     <Compile Include="Models\DiscounModel.cs" />
     <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Models\FileStatModel.cs" />
@@ -105,8 +106,10 @@
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Infrastructure\BaseRestService.cs" />
     <Compile Include="Services\AttributeService.cs" />
+    <Compile Include="Services\ReportService.cs" />
     <Compile Include="Services\CommonService.cs" />
     <Compile Include="Services\EmailService.cs" />
+    <Compile Include="Services\Interfaces\IReportService.cs" />
     <Compile Include="Services\Interfaces\ICommonService.cs" />
     <Compile Include="Services\Interfaces\IEmailService.cs" />
     <Compile Include="Services\Interfaces\IMessageService.cs" />
@@ -191,6 +194,9 @@
     </Compile>
     <Compile Include="Views\ProfileInfoPage.xaml.cs">
       <DependentUpon>ProfileInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReportBalancePage.xaml.cs">
+      <DependentUpon>ReportBalancePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SecurityCodePage.xaml.cs">
       <DependentUpon>SecurityCodePage.xaml</DependentUpon>
@@ -427,7 +433,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\Interfaces\" />
+    <EmbeddedResource Include="Views\ReportBalancePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ContactUsPage.xaml">

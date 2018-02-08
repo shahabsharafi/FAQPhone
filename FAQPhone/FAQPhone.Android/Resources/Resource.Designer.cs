@@ -3699,8 +3699,8 @@ namespace FAQPhone.Droid
 			// aapt resource value: 0x7f020051
 			public const int comment = 2130837585;
 			
-			// aapt resource value: 0x7f0200be
-			public const int crop_image_menu_crop = 2130837694;
+			// aapt resource value: 0x7f0200c0
+			public const int crop_image_menu_crop = 2130837696;
 			
 			// aapt resource value: 0x7f020052
 			public const int crop_image_menu_flip = 2130837586;
@@ -3999,8 +3999,8 @@ namespace FAQPhone.Droid
 			// aapt resource value: 0x7f0200b4
 			public const int mr_ic_play_light = 2130837684;
 			
-			// aapt resource value: 0x7f0200bd
-			public const int notification_template_icon_bg = 2130837693;
+			// aapt resource value: 0x7f0200bf
+			public const int notification_template_icon_bg = 2130837695;
 			
 			// aapt resource value: 0x7f0200b5
 			public const int picture64x64 = 2130837685;
@@ -4024,7 +4024,13 @@ namespace FAQPhone.Droid
 			public const int send40 = 2130837691;
 			
 			// aapt resource value: 0x7f0200bc
-			public const int splash = 2130837692;
+			public const int sortdown40 = 2130837692;
+			
+			// aapt resource value: 0x7f0200bd
+			public const int sortup40 = 2130837693;
+			
+			// aapt resource value: 0x7f0200be
+			public const int splash = 2130837694;
 			
 			static Drawable()
 			{

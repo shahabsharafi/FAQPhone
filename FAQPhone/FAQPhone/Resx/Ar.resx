@@ -585,4 +585,10 @@
   <data name="comment" xml:space="preserve">
     <value>نظرات</value>
   </data>
+  <data name="report" xml:space="preserve">
+    <value>گزارشات</value>
+  </data>
+  <data name="report_balance" xml:space="preserve">
+    <value>گزارش تراکنش مالی</value>
+  </data>
 </root>

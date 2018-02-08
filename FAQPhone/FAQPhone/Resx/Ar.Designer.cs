@@ -1286,6 +1286,24 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to گزارشات.
+        /// </summary>
+        internal static string report {
+            get {
+                return ResourceManager.GetString("report", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to گزارش تراکنش مالی.
+        /// </summary>
+        internal static string report_balance {
+            get {
+                return ResourceManager.GetString("report_balance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تغییر کلمه عبور.
         /// </summary>
         internal static string resetpassword {
