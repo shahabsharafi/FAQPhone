@@ -21,7 +21,8 @@ namespace FAQPhone.Models
         public string description { get; set; }
         public bool IsDebit { get; set; }
         public bool IsCredit { get; set; }
-        public decimal Amount { get; set; }
+        public string Amount { get; set; }
         public string CreateDateCaption { get; set; }
+        public string SourceCaption { get; set; }
     }
 }

@@ -269,6 +269,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to مبلغ پرداختی.
+        /// </summary>
+        internal static string charge {
+            get {
+                return ResourceManager.GetString("charge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to گفتگو.
         /// </summary>
         internal static string chat {
@@ -620,6 +629,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to هزینه خرید بن.
+        /// </summary>
+        internal static string discount_buy {
+            get {
+                return ResourceManager.GetString("discount_buy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to انتخاب بخش.
         /// </summary>
         internal static string discount_category_selection {
@@ -764,6 +782,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to هزینه پرسش.
+        /// </summary>
+        internal static string discussion_peyment {
+            get {
+                return ResourceManager.GetString("discussion_peyment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to سوال.
         /// </summary>
         internal static string discussion_question {
@@ -823,6 +850,15 @@ namespace FAQPhone.Resx {
         internal static string discussion_tags {
             get {
                 return ResourceManager.GetString("discussion_tags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to دستمزدپاسخگویی.
+        /// </summary>
+        internal static string discussion_wage {
+            get {
+                return ResourceManager.GetString("discussion_wage", resourceCulture);
             }
         }
         

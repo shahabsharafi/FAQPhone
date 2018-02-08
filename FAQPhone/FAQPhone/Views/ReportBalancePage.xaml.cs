@@ -1,5 +1,6 @@
 ﻿using FAQPhone.Helpers;
 using FAQPhone.Infarstructure;
+using FAQPhone.Infrastructure;
 using FAQPhone.Models;
 using FAQPhone.Services.Interfaces;
 using System;
@@ -103,11 +104,13 @@ namespace FAQPhone.Views
             this.List.Clear();
             foreach (var item in l)
             {
-                item.Amount = (item.type == "credit") ? item.credit : item.debit;
+                var amount = (item.type == "credit") ? item.credit : item.debit;
+                item.Amount = string.Format("{0:n0}", amount);
                 item.CreateDateCaption = Utility.MiladiToShamsiString(item.date);
                 item.IsCredit = item.type == "credit";
                 item.IsDebit = item.type == "debit";
-                this.List.Add(item);
+                item.SourceCaption = ResourceManagerHelper.GetValue(item.source);
+                this.List.Add(item);                
             }
         }
     }

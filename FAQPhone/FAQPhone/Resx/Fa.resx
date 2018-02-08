@@ -594,4 +594,16 @@
   <data name="report_balance" xml:space="preserve">
     <value>گزارش تراکنش مالی</value>
   </data>
+  <data name="charge" xml:space="preserve">
+    <value>مبلغ پرداختی</value>
+  </data>
+  <data name="discount_buy" xml:space="preserve">
+    <value>هزینه خرید بن</value>
+  </data>
+  <data name="discussion_peyment" xml:space="preserve">
+    <value>هزینه پرسش</value>
+  </data>
+  <data name="discussion_wage" xml:space="preserve">
+    <value>دستمزدپاسخگویی</value>
+  </data>
 </root>
