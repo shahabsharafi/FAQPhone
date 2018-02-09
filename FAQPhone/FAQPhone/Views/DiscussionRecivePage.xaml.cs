@@ -117,7 +117,7 @@ namespace FAQPhone.Views
                 model.state = Constants.DISCUSSION_STATE_RECIVED;
                 model.display = this.display;
                 model.to = new AccountModel() { username = App.Username };
-                await this.discussionService.Save(model);
+                //await this.discussionService.Save(model);
                 await Navigation.PushAsync(new TagPage(model));
             }
         }

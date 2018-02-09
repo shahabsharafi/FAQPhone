@@ -114,7 +114,7 @@ namespace FAQPhone.Views
             if (this.List.Count > 2)
             {
                 this.model.tags = this.List.Select(o => o.text).ToArray();
-                await this.discussionService.Save(model);
+                //await this.discussionService.Save(model);
                 await this.Navigation.PushAsync(new ChatPage(Constants.OPERATOR_INPROGRESS_FAQ, model, 2));
             }
         }
