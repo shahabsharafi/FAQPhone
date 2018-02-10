@@ -1322,6 +1322,42 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to روز جاری.
+        /// </summary>
+        internal static string quick_d1 {
+            get {
+                return ResourceManager.GetString("quick_d1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to روز گذشته.
+        /// </summary>
+        internal static string quick_d2 {
+            get {
+                return ResourceManager.GetString("quick_d2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ماه جاری.
+        /// </summary>
+        internal static string quick_m1 {
+            get {
+                return ResourceManager.GetString("quick_m1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ماه گذشته.
+        /// </summary>
+        internal static string quick_m2 {
+            get {
+                return ResourceManager.GetString("quick_m2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to گزارشات.
         /// </summary>
         internal static string report {
@@ -1336,6 +1372,15 @@ namespace FAQPhone.Resx {
         internal static string report_balance {
             get {
                 return ResourceManager.GetString("report_balance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to گزارش عملکرد.
+        /// </summary>
+        internal static string report_quick {
+            get {
+                return ResourceManager.GetString("report_quick", resourceCulture);
             }
         }
         

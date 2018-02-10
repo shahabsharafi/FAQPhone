@@ -10,5 +10,6 @@ namespace FAQPhone.Services.Interfaces
     public interface IReportService
     {
         Task<List<BalanceModel>> GetBalance();
+        Task<List<KeyValueModel>> GetQuick();
     }
 }

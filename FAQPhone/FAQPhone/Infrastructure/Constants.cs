@@ -33,6 +33,7 @@ namespace FAQPhone.Infarstructure
         public const string SETTING = "setting";
         public const string REPORT = "report";
         public const string REPORT_BALANCE = "report_balance";
+        public const string REPORT_QUICK = "report_quick";
         public const string INTERNAL_SETTING = "internal_setting";
         public const string APP_VERSION = "app_version";
         public const string CHECK_VERSION = "check_version";

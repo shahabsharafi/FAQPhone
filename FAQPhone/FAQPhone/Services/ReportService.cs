@@ -18,5 +18,12 @@ namespace FAQPhone.Services
             var data = await this.get<List<BalanceModel>>(url);
             return data;
         }
+
+        public async Task<List<KeyValueModel>> GetQuick()
+        {
+            string url = string.Format(Constants.RestUrl, "report/quick");
+            var data = await this.get<List<KeyValueModel>>(url);
+            return data;
+        }
     }
 }

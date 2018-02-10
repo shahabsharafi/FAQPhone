@@ -606,4 +606,19 @@
   <data name="discussion_wage" xml:space="preserve">
     <value>دستمزدپاسخگویی</value>
   </data>
+  <data name="quick_d1" xml:space="preserve">
+    <value>روز جاری</value>
+  </data>
+  <data name="quick_d2" xml:space="preserve">
+    <value>روز گذشته</value>
+  </data>
+  <data name="quick_m1" xml:space="preserve">
+    <value>ماه جاری</value>
+  </data>
+  <data name="quick_m2" xml:space="preserve">
+    <value>ماه گذشته</value>
+  </data>
+  <data name="report_quick" xml:space="preserve">
+    <value>گزارش عملکرد</value>
+  </data>
 </root>

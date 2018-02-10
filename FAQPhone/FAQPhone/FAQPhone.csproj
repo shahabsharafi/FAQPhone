@@ -77,6 +77,7 @@
     <Compile Include="Models\DiscounModel.cs" />
     <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Models\FileStatModel.cs" />
+    <Compile Include="Models\KeyValueModel.cs" />
     <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Models\PollModel.cs" />
     <Compile Include="Models\ResultModel.cs" />
@@ -197,6 +198,9 @@
     </Compile>
     <Compile Include="Views\ReportBalancePage.xaml.cs">
       <DependentUpon>ReportBalancePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReportQuickPage.xaml.cs">
+      <DependentUpon>ReportQuickPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SecurityCodePage.xaml.cs">
       <DependentUpon>SecurityCodePage.xaml</DependentUpon>
@@ -482,6 +486,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\CommentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ReportQuickPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

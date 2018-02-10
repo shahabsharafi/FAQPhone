@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FAQPhone.Views.ReportQuickPage"
+              xmlns:infr="clr-namespace:FAQPhone.Infarstructure;assembly=FAQPhone"
+             xmlns:render="clr-namespace:CustomRenderer;assembly=FAQPhone"
+             xmlns:controls="clr-namespace:CustomControl;assembly=FAQPhone"
+             xmlns:progress="clr-namespace:ProgressRingControl.Forms.Plugin;assembly=ProgressRing.Forms.Plugin"
+             xmlns:markupExtensions="clr-namespace:MarkupExtensions;assembly=FAQPhone"
+             xmlns:customControls="clr-namespace:FAQPhone.CustomControls;assembly=FAQPhone"
+             xmlns:local="clr-namespace:EventToCommandBehavior"
+             xmlns:icon="clr-namespace:Awesome;assembly=FAQPhone"
+	         Title="{infr:Translate report_quick}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <AbsoluteLayout>
+        <ListView AbsoluteLayout.LayoutFlags="All"
+                AbsoluteLayout.LayoutBounds="0,1,1,1"
+                VerticalOptions="FillAndExpand"
+                ItemsSource="{ Binding List }" 
+                SelectedItem="{ Binding SelectedItem, Mode=TwoWay }">
+            <ListView.Behaviors>
+                <local:EventToCommandBehavior EventName="ItemSelected" Command="{Binding SelectItemCommand}" Converter="{StaticResource SelectedItemConverter}" />
+            </ListView.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Grid.Column="1" Margin="5,5,10,5" HorizontalTextAlignment="End"
+                                       Text = "{Binding key}" FontSize="Large" TextColor="#4e5758" />
+                            <Label Grid.Row="0" Grid.Column="0" Margin="10,5,5,5" HorizontalTextAlignment="Start"
+                                       Text = "{Binding value}" FontSize="Large" TextColor="#4e5758" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </AbsoluteLayout>
+</ContentPage>

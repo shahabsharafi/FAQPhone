@@ -79,6 +79,7 @@ namespace FAQPhone.Views
                 items.Add(new MenuItemModel() { CommandName = Constants.ALL_MESSAGES, Icon = FontAwesome.FAEnvelopeO });
                 items.Add(new MenuItemModel() { CommandName = Constants.ACCOUNT, Icon = FontAwesome.FAAddressCardO, Parms = new string[] { Constants.ACCESS_OPERATOR } });
                 items.Add(new MenuItemModel() { CommandName = Constants.CONTACT_US, Icon = FontAwesome.FAPaperPlaneO });
+                items.Add(new MenuItemModel() { CommandName = Constants.REPORT_QUICK, Icon = FontAwesome.FAList });
                 items.Add(new MenuItemModel() { CommandName = Constants.REPORT_BALANCE, Icon = FontAwesome.FAMoney });
                 items.Add(new MenuItemModel() { CommandName = Constants.INFO, Icon = FontAwesome.FAInfoCircle });
                 items.Add(new MenuItemModel() { CommandName = Constants.ABOUT_US, Icon = FontAwesome.FAFileText });
@@ -203,6 +204,9 @@ namespace FAQPhone.Views
                         break;
                     case Constants.OPERATOR_INPROGRESS_FAQ:
                         await ReadInprogressFAQByOperator(model);
+                        break;
+                    case Constants.REPORT_QUICK:
+                        await this.Navigation.PushAsync(new ReportQuickPage());
                         break;
                     case Constants.REPORT_BALANCE:
                         await this.Navigation.PushAsync(new ReportBalancePage());
