@@ -269,7 +269,7 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to مبلغ پرداختی.
+        ///   Looks up a localized string similar to پرداخت پول.
         /// </summary>
         internal static string charge {
             get {

@@ -13,15 +13,16 @@ namespace FAQPhone.Infarstructure
         public static string RestUrl { get { return BaseUrl + "/api/{0}"; } }
         public static string UploadUrl { get { return BaseUrl + "/api/uploads"; } }
         public static string DownloadUrl { get { return BaseUrl + "/uploads"; } }
+        public static string ChargeUrl { get { return BaseUrl + "/charge/{0}"; } }
 
         public const string INFO_URL = "info_url";
-
         public const string OPERATOR_RECEIVE_FAQ = "operator_receive_faq";
         public const string OPERATOR_INPROGRESS_FAQ = "operator_inprogress_faq";
         public const string OPERATOR_FAQ = "operator_faq";
         public const string USER_CREATE_FAQ = "user_create_faq";
         public const string USER_INPROGRESS_FAQ = "user_inprogress_faq";
         public const string USER_FAQ = "user_faq";
+        public const string CHARGE = "charge";
         public const string ACCOUNT = "account";
         public const string MY_DISCOUNT = "discount_tab";
         public const string ALL_MESSAGES = "all_messages";

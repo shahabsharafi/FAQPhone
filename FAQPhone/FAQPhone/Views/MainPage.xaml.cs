@@ -80,7 +80,7 @@ namespace FAQPhone.Views
                 items.Add(new MenuItemModel() { CommandName = Constants.ACCOUNT, Icon = FontAwesome.FAAddressCardO, Parms = new string[] { Constants.ACCESS_OPERATOR } });
                 items.Add(new MenuItemModel() { CommandName = Constants.CONTACT_US, Icon = FontAwesome.FAPaperPlaneO });
                 items.Add(new MenuItemModel() { CommandName = Constants.REPORT_QUICK, Icon = FontAwesome.FAList });
-                items.Add(new MenuItemModel() { CommandName = Constants.REPORT_BALANCE, Icon = FontAwesome.FAMoney });
+                items.Add(new MenuItemModel() { CommandName = Constants.REPORT_BALANCE, Icon = FontAwesome.FAListAlt });
                 items.Add(new MenuItemModel() { CommandName = Constants.INFO, Icon = FontAwesome.FAInfoCircle });
                 items.Add(new MenuItemModel() { CommandName = Constants.ABOUT_US, Icon = FontAwesome.FAFileText });
                 items.Add(new MenuItemModel() { CommandName = Constants.SETTING, Icon = FontAwesome.FACog });
@@ -100,8 +100,9 @@ namespace FAQPhone.Views
                 items.Add(new MenuItemModel() { CommandName = Constants.MY_DISCOUNT, Icon = FontAwesome.FATicket });
                 items.Add(new MenuItemModel() { CommandName = Constants.ALL_MESSAGES, Icon = FontAwesome.FAEnvelopeO });
                 items.Add(new MenuItemModel() { CommandName = Constants.ACCOUNT, Icon = FontAwesome.FAAddressCardO, Parms = new string[] { Constants.ACCESS_USER } });
+                items.Add(new MenuItemModel() { CommandName = Constants.CHARGE, Icon = FontAwesome.FAMoney });
                 items.Add(new MenuItemModel() { CommandName = Constants.CONTACT_US, Icon = FontAwesome.FAPaperPlaneO });
-                items.Add(new MenuItemModel() { CommandName = Constants.REPORT_BALANCE, Icon = FontAwesome.FAMoney });
+                items.Add(new MenuItemModel() { CommandName = Constants.REPORT_BALANCE, Icon = FontAwesome.FAListAlt });
                 items.Add(new MenuItemModel() { CommandName = Constants.INFO, Icon = FontAwesome.FAInfoCircle });
                 items.Add(new MenuItemModel() { CommandName = Constants.ABOUT_US, Icon = FontAwesome.FAFileText });
                 items.Add(new MenuItemModel() { CommandName = Constants.SETTING, Icon = FontAwesome.FACog });
@@ -238,13 +239,18 @@ namespace FAQPhone.Views
                     case Constants.ACCOUNT:
                         await ViewAndChangeAccountProfile(model);
                         break;
+                    case Constants.CHARGE:
+                        var titleCharge = ResourceManagerHelper.GetValue(Constants.CHARGE);
+                        var urlCharge = Constants.BaseUrl;//string.Format(Constants.ChargeUrl, App.Username);
+                        await this.Navigation.PushAsync(new BrowserPage(titleCharge, urlCharge));
+                        break;
                     case Constants.CONTACT_US:
                         await this.Navigation.PushAsync(new ContactUsPage());
                         break;
                     case Constants.INFO:
-                        var title = ResourceManagerHelper.GetValue(Constants.INFO);
-                        var url = ResourceManagerHelper.GetValue(Constants.INFO_URL);
-                        await this.Navigation.PushAsync(new BrowserPage(title, url));
+                        var titleInfo = ResourceManagerHelper.GetValue(Constants.INFO);
+                        var urlInfo = ResourceManagerHelper.GetValue(Constants.INFO_URL);
+                        await this.Navigation.PushAsync(new BrowserPage(titleInfo, urlInfo));
                         break;
                     case Constants.ABOUT_US:
                         await this.Navigation.PushAsync(new AboutPage());

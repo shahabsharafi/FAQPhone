@@ -595,7 +595,7 @@
     <value>گزارش تراکنش مالی</value>
   </data>
   <data name="charge" xml:space="preserve">
-    <value>مبلغ پرداختی</value>
+    <value>پرداخت پول</value>
   </data>
   <data name="discount_buy" xml:space="preserve">
     <value>هزینه خرید بن</value>
