@@ -13,7 +13,7 @@ namespace FAQPhone.Infarstructure
         public static string RestUrl { get { return BaseUrl + "/api/{0}"; } }
         public static string UploadUrl { get { return BaseUrl + "/api/uploads"; } }
         public static string DownloadUrl { get { return BaseUrl + "/uploads"; } }
-        public static string ChargeUrl { get { return BaseUrl + "/charge/{0}"; } }
+        public static string ChargeUrl { get { return BaseUrl + "/api/charge?key={0}"; } }
 
         public const string INFO_URL = "info_url";
         public const string OPERATOR_RECEIVE_FAQ = "operator_receive_faq";

@@ -18,6 +18,13 @@ namespace FAQPhone.Services
             this._relativeUrl = "accounts/{0}";
         }
 
+        public async Task<ResultModel> SetUserKey()
+        {
+            var url = this.getUrl("setuserkey");
+            var result = await this.get<ResultModel>(url);
+            return result;
+        }
+
         public async Task<List<AccountModel>> GetOperatoreList()
         {
             //var url = string.Format(Constants.RestUrl, "accounts?$filter=isOperator eq 'true'");

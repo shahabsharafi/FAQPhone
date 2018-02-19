@@ -100,7 +100,7 @@ namespace FAQPhone.Views
                 items.Add(new MenuItemModel() { CommandName = Constants.MY_DISCOUNT, Icon = FontAwesome.FATicket });
                 items.Add(new MenuItemModel() { CommandName = Constants.ALL_MESSAGES, Icon = FontAwesome.FAEnvelopeO });
                 items.Add(new MenuItemModel() { CommandName = Constants.ACCOUNT, Icon = FontAwesome.FAAddressCardO, Parms = new string[] { Constants.ACCESS_USER } });
-                items.Add(new MenuItemModel() { CommandName = Constants.CHARGE, Icon = FontAwesome.FAMoney });
+                //items.Add(new MenuItemModel() { CommandName = Constants.CHARGE, Icon = FontAwesome.FAMoney });
                 items.Add(new MenuItemModel() { CommandName = Constants.CONTACT_US, Icon = FontAwesome.FAPaperPlaneO });
                 items.Add(new MenuItemModel() { CommandName = Constants.REPORT_BALANCE, Icon = FontAwesome.FAListAlt });
                 items.Add(new MenuItemModel() { CommandName = Constants.INFO, Icon = FontAwesome.FAInfoCircle });
@@ -241,7 +241,7 @@ namespace FAQPhone.Views
                         break;
                     case Constants.CHARGE:
                         var titleCharge = ResourceManagerHelper.GetValue(Constants.CHARGE);
-                        var urlCharge = Constants.BaseUrl;//string.Format(Constants.ChargeUrl, App.Username);
+                        var urlCharge = string.Format(Constants.ChargeUrl, App.Username);
                         await this.Navigation.PushAsync(new BrowserPage(titleCharge, urlCharge));
                         break;
                     case Constants.CONTACT_US:
