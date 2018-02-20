@@ -9,6 +9,7 @@ namespace FAQPhone.Services.Interfaces
 {
     public interface IAccountService: IRestService<AccountModel>
     {
+        Task<ResultModel> SetUserKey();
         Task<List<AccountModel>> GetOperatoreList();
         Task<CodeResultModel> SendCode(string mobile);
 

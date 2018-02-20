@@ -8,12 +8,12 @@ namespace FAQPhone.Infarstructure
 {
     public class Constants
     {
-        public static string BaseUrl { get { return "http://94.182.227.163:4000"; } }
-        //public static string BaseUrl { get { return "http://192.168.1.104:4000"; } }
+        //public static string BaseUrl { get { return "http://94.182.227.163:4000"; } }
+        public static string BaseUrl { get { return "http://172.20.10.11:4000"; } }
         public static string RestUrl { get { return BaseUrl + "/api/{0}"; } }
         public static string UploadUrl { get { return BaseUrl + "/api/uploads"; } }
         public static string DownloadUrl { get { return BaseUrl + "/uploads"; } }
-        public static string ChargeUrl { get { return BaseUrl + "/api/charge?key={0}"; } }
+        public static string ChargeUrl { get { return BaseUrl + "/charge?key={0}"; } }
 
         public const string INFO_URL = "info_url";
         public const string OPERATOR_RECEIVE_FAQ = "operator_receive_faq";
