@@ -170,7 +170,7 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 0.8.5.
+        ///   Looks up a localized string similar to 0.8.7.
         /// </summary>
         internal static string app_version {
             get {
