@@ -1,4 +1,4 @@
-﻿using FAQPhone.Helpers;
+using FAQPhone.Helpers;
 using FAQPhone.Infarstructure;
 using FAQPhone.Infrastructure;
 using FAQPhone.Models;
@@ -89,7 +89,7 @@ namespace FAQPhone.Views
             _downloader = DependencyService.Get<IDownloadService>().GetDownloader();
             _downloader.Downloaded += (s, e) =>
             {
-                if(_currentDetail != null) _currentDetail.Mode = 3;
+                if (_currentDetail != null) _currentDetail.Mode = 3;
             };
             _downloader.Failed += (s, e) =>
             {
@@ -163,12 +163,13 @@ namespace FAQPhone.Views
         public bool IsRecording
         {
             get { return _IsRecording; }
-            set {
+            set
+            {
                 _IsRecording = value;
                 OnPropertyChanged();
                 this.CheckState();
             }
-        }        
+        }
 
         bool _CanSending;
         public bool CanSending
@@ -193,7 +194,8 @@ namespace FAQPhone.Views
         public bool Editable
         {
             get { return _Editable; }
-            set {
+            set
+            {
                 _Editable = value;
                 OnPropertyChanged();
                 this.CheckState();
@@ -235,13 +237,13 @@ namespace FAQPhone.Views
                 {
                     var fileService = DependencyService.Get<IFileService>();
                     string documentsPath = fileService.GetDocumentsPath();
-                    item.Mode = fileService.Exists(documentsPath + "/" + item.attachment) ? 3: 1;                    
+                    item.Mode = fileService.Exists(documentsPath + "/" + item.attachment) ? 3 : 1;
                 }
                 else
                 {
                     item.Mode = 0;
                 }
-                
+
                 this.List.Add(item);
             }
         }
@@ -266,22 +268,23 @@ namespace FAQPhone.Views
 
         public async void upload(string path, string fileName)
         {
-            Dictionary <string, string> dic = new Dictionary<string, string>();
+            Dictionary<string, string> dic = new Dictionary<string, string>();
             var json = JsonConvert.SerializeObject(model);
-            dic.Add("has_encode", "true");
+            //dic.Add("has_encode", "true");
             dic.Add("EntityName", "discussion");
             dic.Add("Entity", json);
             var d = await UploadHelper.UploadFile<DiscussionDetailModel>(
-                Constants.UploadUrl, 
-                path, 
-                fileName, 
+                Constants.UploadUrl,
+                path,
+                fileName,
                 (state) => {
                     this.IsBusy = state;
-                }, 
+                },
                 dic
             );
             var l = this.model.items.ToList();
             l.Add(d);
+            this.model.items = l.ToArray();
             this.setList(l);
         }
 
@@ -327,7 +330,7 @@ namespace FAQPhone.Views
                     owner = new AccountModel() { username = App.Username },
                     text = this.replay
                 });
-                this.model.items = l.ToArray();                
+                this.model.items = l.ToArray();
                 await this.discussionService.Save(model);
                 this.replay = string.Empty;
                 this.setList(l);
@@ -377,8 +380,8 @@ namespace FAQPhone.Views
             {
                 var department = await this.departmentService.Get(model.department._id);
                 var title = ResourceManagerHelper.GetValue(Constants.RULES);
-                var text = this.IsOperator 
-                    ? department.operatorRule 
+                var text = this.IsOperator
+                    ? department.operatorRule
                     : department.userRule;
                 await this.Navigation.PushAsync(new TextPage(title, text));
             }
