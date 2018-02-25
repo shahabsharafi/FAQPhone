@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +8,8 @@ namespace FAQPhone.Infarstructure
 {
     public class Constants
     {
-        //public static string BaseUrl { get { return "http://94.182.227.163:4000"; } }
-        public static string BaseUrl { get { return "http://172.20.10.11:4000"; } }
+        public static string BaseUrl { get { return "http://94.182.227.163:4000"; } }
+        //public static string BaseUrl { get { return "http://172.20.10.11:4000"; } }
         public static string RestUrl { get { return BaseUrl + "/api/{0}"; } }
         public static string UploadUrl { get { return BaseUrl + "/api/uploads"; } }
         public static string DownloadUrl { get { return BaseUrl + "/uploads"; } }
