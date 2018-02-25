@@ -1,4 +1,4 @@
-﻿using FilePicker;
+using FilePicker;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -13,9 +13,9 @@ using FAQPhone.Models;
 using FAQPhone.Infarstructure;
 
 namespace FAQPhone.Helpers
-{    
+{
     public class UploadHelper
-    {        
+    {
         public static async Task<T> UploadFile<T>(string url, string path, string fileName, Action<bool> uploading, Dictionary<string, string> values = null)
         {
             Device.BeginInvokeOnMainThread(() => uploading.Invoke(true));
@@ -27,10 +27,11 @@ namespace FAQPhone.Helpers
 
                 //create new HttpClient and MultipartFormDataContent and add our file, and StudentId
                 HttpClient client = new HttpClient();
+                client.DefaultRequestHeaders.Add("has_encode", "true");
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", App.Token);
-                MultipartFormDataContent content = new MultipartFormDataContent();                
+                MultipartFormDataContent content = new MultipartFormDataContent();
                 ByteArrayContent fileContent = new ByteArrayContent(upfilebytes);
-                content.Add(fileContent, "File", fileName); 
+                content.Add(fileContent, "File", fileName);
                 if (values != null)
                 {
                     foreach (var item in values)
@@ -39,11 +40,11 @@ namespace FAQPhone.Helpers
                         content.Add(cnt, item.Key);
                     }
                 }
-                
+
                 var response = await client.PostAsync(url, content);
 
-                 //read response result as a string async into json var
-                 var responsestr = response.Content.ReadAsStringAsync().Result;
+                //read response result as a string async into json var
+                var responsestr = response.Content.ReadAsStringAsync().Result;
 
                 if (response.IsSuccessStatusCode)
                 {
