@@ -282,6 +282,7 @@ namespace FAQPhone.Views
                 },
                 dic
             );
+            d.isAnswer = (this._state != Constants.OPERATOR_INPROGRESS_FAQ);
             var l = this.model.items.ToList();
             l.Add(d);
             this.model.items = l.ToArray();
@@ -328,6 +329,7 @@ namespace FAQPhone.Views
                 {
                     createDate = DateTime.Now,
                     owner = new AccountModel() { username = App.Username },
+                    isAnswer = (this._state != Constants.OPERATOR_INPROGRESS_FAQ),
                     text = this.replay
                 });
                 this.model.items = l.ToArray();
@@ -356,6 +358,7 @@ namespace FAQPhone.Views
                 {
                     createDate = DateTime.Now,
                     owner = new AccountModel() { username = App.Username },
+                    isAnswer = true,
                     text = this.replay
                 });
                 model.items = l.ToArray();

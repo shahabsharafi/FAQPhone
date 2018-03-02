@@ -14,6 +14,7 @@ namespace FAQPhone.Models
     {
         public string _id { get; set; }
         public AccountModel owner { get; set; }
+        public bool isAnswer { get; set; }
         public DateTime createDate { get; set; }
         public string attachment { get; set; }
         public string text { get; set; }
