@@ -100,7 +100,7 @@ namespace FAQPhone.Views
             {
                 StopRecordingOnSilence = true, //will stop recording after 2 seconds (default)
                 StopRecordingAfterTimeout = true,  //stop recording after a max timeout (defined below)
-                TotalAudioTimeout = TimeSpan.FromSeconds(15) //audio will stop recording after 15 seconds
+                TotalAudioTimeout = TimeSpan.FromSeconds(45) //audio will stop recording after 15 seconds
             };
             recorder.AudioInputReceived += Recorder_AudioInputReceived;
             this.RecordCommand = new Command(() => recordCommand());
