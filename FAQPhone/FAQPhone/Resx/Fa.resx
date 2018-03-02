@@ -171,9 +171,6 @@
   <data name="user_create_faq" xml:space="preserve">
     <value>سوال جدید</value>
   </data>
-  <data name="user_inprogress_faq" xml:space="preserve">
-    <value>منتظر پاسخ</value>
-  </data>
   <data name="user_archived_faq" xml:space="preserve">
     <value>آرشیو</value>
   </data>
@@ -184,7 +181,7 @@
     <value>دریافت سوال</value>
   </data>
   <data name="operator_inprogress_faq" xml:space="preserve">
-    <value>در دست اقدام</value>
+    <value>سوال های دریافت شده</value>
   </data>
   <data name="operator_archived_faq" xml:space="preserve">
     <value>آرشیو</value>
@@ -620,5 +617,14 @@
   </data>
   <data name="report_quick" xml:space="preserve">
     <value>گزارش عملکرد</value>
+  </data>
+  <data name="discussion_user" xml:space="preserve">
+    <value>پرسشگر</value>
+  </data>
+  <data name="user_inprogress_faq" xml:space="preserve">
+    <value>سوال های من</value>
+  </data>
+  <data name="err_credit_is_not_enough" xml:space="preserve">
+    <value>اعتبار شما کافی نیست</value>
   </data>
 </root>

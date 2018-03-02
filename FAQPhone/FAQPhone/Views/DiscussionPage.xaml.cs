@@ -122,6 +122,11 @@ namespace FAQPhone.Views
                 item.Mode = this.IsOperator
                     ? (item.operatorRead ? "read" : "unread")
                     : (item.userRead ? "read" : "unread");
+
+                item.Operator = this.IsOperator
+                        ? (string.Format("{0}: {1} {2}", ResourceManagerHelper.GetValue("discussion_user"), item.from?.profile?.firstName, item.from?.profile?.lastName))
+                        : (string.Format("{0}: {1} {2}", ResourceManagerHelper.GetValue("discussion_operator"), item.to?.profile?.firstName, item.to?.profile?.lastName));
+
                 item.Caption = this.IsOperator ? item.display : item.title;
                 this.List.Add(item);
             }

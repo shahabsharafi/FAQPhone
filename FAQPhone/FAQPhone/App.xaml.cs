@@ -23,7 +23,7 @@ namespace FAQPhone
             
             App.Initialize();
 
-            if (!String.IsNullOrEmpty(Settings.LocalPassword))
+           if (!String.IsNullOrEmpty(Settings.LocalPassword))
             {
                 var page = new SigninPage();
                 MainPage = new NavigationPage(page);

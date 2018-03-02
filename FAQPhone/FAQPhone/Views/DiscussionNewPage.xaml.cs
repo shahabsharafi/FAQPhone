@@ -22,9 +22,16 @@ namespace FAQPhone.Views
     {
         public DiscussionNewPage(DepartmentModel departmentModel, AccountModel owner, DiscountModel discount, int pushCount)
         {
-            InitializeComponent();
+            InitializeComponent();                      
+            if (departmentModel == null)
+            {
+                this.ToolbarItems.RemoveAt(0);
+            }
+            var factory = App.Resolve<DiscussionEditViewModelFactory>();
+            var vm = factory.Create(this, departmentModel, owner, discount);
             bool isFirstTime = true;
             this.Appearing += (sender, e) => {
+                Task.Run(async () => await vm.Load()).Wait();
                 if (isFirstTime)
                 {
                     isFirstTime = false;
@@ -33,32 +40,29 @@ namespace FAQPhone.Views
                         this.Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
                     }
                 }
-            };          
-            if (departmentModel == null)
-            {
-                this.ToolbarItems.RemoveAt(0);
-            }
-            var factory = App.Resolve<DiscussionEditViewModelFactory>();
-            BindingContext = factory.Create(this, departmentModel, owner, discount);
+            };
+            BindingContext = vm;
         }
     }
 
     public class DiscussionEditViewModelFactory
     {
-        public DiscussionEditViewModelFactory()
+        IAccountService accountService;
+        public DiscussionEditViewModelFactory(IAccountService accountService)
         {
-            
+            this.accountService = accountService;
         }
         public DiscussionEditViewModel Create(ContentPage page, DepartmentModel departmentModel, AccountModel owner, DiscountModel discount)
         {
-            return new DiscussionEditViewModel(page, departmentModel, owner, discount);
+            return new DiscussionEditViewModel(accountService, page, departmentModel, owner, discount);
         }
     }
 
     public class DiscussionEditViewModel : BaseViewModel
     {
-        public DiscussionEditViewModel(ContentPage page, DepartmentModel departmentModel, AccountModel owner, DiscountModel discount) : base(page)
-        {            
+        public DiscussionEditViewModel(IAccountService accountService, ContentPage page, DepartmentModel departmentModel, AccountModel owner, DiscountModel discount) : base(page)
+        {
+            this.accountService = accountService;
             this.CanNext = false;
             this.UsedDiscount = false;
             this.HasDiscount = (discount != null);
@@ -73,10 +77,40 @@ namespace FAQPhone.Views
             this.RuleCommand = new Command(async () => await ruleCommand());
             this.departmentModel = departmentModel;
             this.owner = owner;
-            this.price = 
+            this.price = (owner != null ? (owner.price ?? 0) : (departmentModel?.price ?? 0));
+            this.priceCaption = 
                 ResourceManagerHelper.GetValue("discussion_recive_price") + ":" +
-                (owner != null ? (owner.price ?? 0) : (departmentModel?.price ?? 0)) + " " + 
+                this.price + " " + 
                 ResourceManagerHelper.GetValue("unit_of_mony_caption");
+        }
+
+        long price;
+
+        IAccountService accountService;
+        AccountModel me;
+        public async Task Load()
+        {
+            this.me = await accountService.GetMe();
+
+            this.creditCaption =string.Format("{0}: {1}", ResourceManagerHelper.GetValue("account_credit"), this.me.credit);
+            if (me.credit < this.price)
+            {
+                this.Editable = false;
+                this.HasDiscount = false;
+                this.HasCreditError = true;
+            }
+            else
+            {
+                this.HasCreditError = false;
+                this.Editable = true;
+            }
+        }
+
+        string _creditCaption;
+        public string creditCaption
+        {
+            get { return _creditCaption; }
+            set { _creditCaption = value; OnPropertyChanged(); }
         }
 
         string _title;
@@ -101,11 +135,25 @@ namespace FAQPhone.Views
             set { _CanNext = value; OnPropertyChanged(); }
         }
 
+        bool _Editable;
+        public bool Editable
+        {
+            get { return _Editable; }
+            set { _Editable = value; OnPropertyChanged(); }
+        }
+
         bool _HasDiscount;
         public bool HasDiscount
         {
             get { return _HasDiscount; }
             set { _HasDiscount = value; OnPropertyChanged(); }
+        }
+        
+        bool _HasCreditError;
+        public bool HasCreditError
+        {
+            get { return _HasCreditError; }
+            set { _HasCreditError = value; OnPropertyChanged(); }
         }
 
         bool _UsedDiscount;
@@ -115,11 +163,11 @@ namespace FAQPhone.Views
             set { _UsedDiscount = value; OnPropertyChanged(); }
         }
 
-        string _price;
-        public string price
+        string _priceCaption;
+        public string priceCaption
         {
-            get { return _price; }
-            set { _price = value; OnPropertyChanged(); }
+            get { return _priceCaption; }
+            set { _priceCaption = value; OnPropertyChanged(); }
         }
 
         string _discountPrice;

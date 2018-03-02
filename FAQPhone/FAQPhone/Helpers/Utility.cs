@@ -11,7 +11,13 @@ namespace FAQPhone.Helpers
 {
     public class Utility
     {
-        public static string GetImage(string sourceImage) 
+        public static readonly string[] monthNames = { 
+            "فروردین", "اردیبهشت", "خرداد", 
+            "تیر", "مرداد", "شهریور", 
+            "مهر", "آبان", "آذر", 
+            "دی", "بهمن", "اسفند"
+        };
+    public static string GetImage(string sourceImage) 
         {
             string imagePath;
             switch (Device.RuntimePlatform)
@@ -130,6 +136,26 @@ namespace FAQPhone.Helpers
             var m = pc.GetMonth(dt);
             var d = pc.GetDayOfMonth(dt);
             return string.Format("{0}/{1}/{2}", y, m, d );
+        }
+
+        public static string MiladiToShamsiAndTime(DateTime dt)
+        {
+            var pCalendar = DependencyService.Get<CalendarService.IPersianCalendarService>();
+            var pc = pCalendar.GetCalendar();
+            var y = pc.GetYear(dt);
+            var M = pc.GetMonth(dt);
+            var d = pc.GetDayOfMonth(dt);
+            var h = dt.Hour;
+            var m = dt.Minute;
+            var Mn = monthNames[M - 1];
+            var n = DateTime.Now;
+            var ny = pc.GetYear(n);
+            var result = (n.Date.CompareTo(dt.Date) == 0)
+                ? string.Format("{0}:{1}", h, m)
+                : ((ny == y) 
+                    ? string.Format("{0} {1} {2}:{3}", d, Mn, h, m) 
+                    : string.Format("{0} {1} {2} {3}:{4}", d, Mn, y, h, m));
+            return result;
         }
 
         public static DateTime ShamsiToMiladi(int y, int m, int d)

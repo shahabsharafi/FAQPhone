@@ -27,8 +27,10 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <StackLayout Padding="5,10,10,5" Grid.Column="1" Grid.Row="0">
-                    <Label Text="{Binding price, Mode=TwoWay}" />
-                    <Label Text="{infr:Translate discussion_edit_title_help}"  />
+                    <Label Text="{Binding priceCaption, Mode=TwoWay}" />
+                    <Label Text="{Binding creditCaption, Mode=TwoWay}" />
+                    <Label Text="{infr:Translate discussion_edit_title_help}" IsVisible="{ Binding Editable }"  />
+                    <Label Text="{infr:Translate err_credit_is_not_enough}" IsVisible="{ Binding HasCreditError }"  />
                 </StackLayout>
                 <StackLayout Padding="10,10,5,5" IsVisible="{ Binding HasDiscount }" Grid.Column="0" Grid.Row="0">
                     <customControls:ImageButton Source="{markupExtensions:PlatformImage SourceImage='present128x128'}"
@@ -38,8 +40,10 @@
                     <Label FontSize="Micro" HorizontalTextAlignment="Center" Text="{Binding discountPrice, Mode=TwoWay}" />
                 </StackLayout>
             </Grid>
-            <Entry x:Name="title" Placeholder="{infr:Translate discussion_edit_title}" Text="{Binding title, Mode=TwoWay}" />
-            <Button Text="{infr:Translate command_next}" Command="{Binding NextCommand}" StyleClass="Info" IsEnabled="{ Binding CanNext }" />
+            <StackLayout IsVisible="{ Binding Editable }">
+                <Entry x:Name="title" Placeholder="{infr:Translate discussion_edit_title}" Text="{Binding title, Mode=TwoWay}" />
+                <Button Text="{infr:Translate command_next}" Command="{Binding NextCommand}" StyleClass="Info" IsEnabled="{ Binding CanNext }" />
+            </StackLayout>
         </StackLayout>
     </ScrollView>
 </ContentPage>

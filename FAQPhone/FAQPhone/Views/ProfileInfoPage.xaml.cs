@@ -210,7 +210,7 @@ namespace FAQPhone.Views
         public ICommand CreateFAQCommand { protected set; get; }
         public async Task createFAQCommand()
         {
-            await this.Navigation.PushAsync(new DiscussionNewPage(null, null, null, 0));
+            await this.Navigation.PushAsync(new DiscussionNewPage(null,this.model , null, 0));
         }
 
         public ICommand CommentCommand { protected set; get; }

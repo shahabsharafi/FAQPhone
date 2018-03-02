@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using FAQPhone.Helpers;
 
 namespace FAQPhone.Models
 {
@@ -81,23 +82,17 @@ namespace FAQPhone.Models
         {
             get
             {
-                return string.Format("{0}: {1}", ResourceManagerHelper.GetValue("discussion_question"), this.createDate.ToString("HH:mm"));
+                return string.Format("{0}: {1}", ResourceManagerHelper.GetValue("discussion_question"), Utility.MiladiToShamsiAndTime(this.createDate));
             }
         }
         public string AnswerDate
         {
             get
             {
-                return string.Format("{0}: {1}", ResourceManagerHelper.GetValue("discussion_answer"), this.answerDate.ToString("HH:mm"));
+                return string.Format("{0}: {1}", ResourceManagerHelper.GetValue("discussion_answer"), Utility.MiladiToShamsiAndTime(this.createDate));
             }
         }
-        public string Operator
-        {
-            get
-            {
-                return string.Format("{0}: {1} {2}", ResourceManagerHelper.GetValue("discussion_operator"), this.to?.profile?.firstName, this.to?.profile?.lastName);
-            }
-        }
+        public string Operator { get; set; }
         public string Department
         {
             get

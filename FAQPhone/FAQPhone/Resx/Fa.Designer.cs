@@ -863,6 +863,15 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to پرسشگر.
+        /// </summary>
+        internal static string discussion_user {
+            get {
+                return ResourceManager.GetString("discussion_user", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to دستمزدپاسخگویی.
         /// </summary>
         internal static string discussion_wage {
@@ -922,6 +931,15 @@ namespace FAQPhone.Resx {
         internal static string email {
             get {
                 return ResourceManager.GetString("email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اعتبار شما کافی نیست.
+        /// </summary>
+        internal static string err_credit_is_not_enough {
+            get {
+                return ResourceManager.GetString("err_credit_is_not_enough", resourceCulture);
             }
         }
         
@@ -1178,7 +1196,7 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to در دست اقدام.
+        ///   Looks up a localized string similar to سوال های دریافت شده.
         /// </summary>
         internal static string operator_inprogress_faq {
             get {
@@ -1556,7 +1574,7 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to منتظر پاسخ.
+        ///   Looks up a localized string similar to سوال های من.
         /// </summary>
         internal static string user_inprogress_faq {
             get {
