@@ -242,7 +242,7 @@ namespace FAQPhone.Views
                     case Constants.CHARGE:
                         var titleCharge = ResourceManagerHelper.GetValue(Constants.CHARGE);
                         var keyResult = await accountService.SetUserKey();
-                        var urlCharge = string.Format(Constants.ChargeUrl, keyResult.message);
+                        var urlCharge = string.Format(Constants.ChargeUrl, keyResult.message, App.Username);
                         await this.Navigation.PushAsync(new BrowserPage(titleCharge, urlCharge));
                         break;
                     case Constants.CONTACT_US:
