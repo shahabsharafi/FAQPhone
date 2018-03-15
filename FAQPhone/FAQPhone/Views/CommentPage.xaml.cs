@@ -94,7 +94,7 @@ namespace FAQPhone.Views
             this.List.Clear();
             foreach (var item in l)
             {
-                item.CreateDateCaption = Utility.MiladiToShamsiString(item.createDate);
+                item.CreateDateCaption = Utility.MiladiToShamsiAndTime(item.createDate);
                 this.List.Add(item);
             }
         }

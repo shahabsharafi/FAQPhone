@@ -106,7 +106,7 @@ namespace FAQPhone.Views
             {
                 var amount = (item.type == "credit") ? item.credit : item.debit;
                 item.Amount = string.Format("{0:n0}", amount);
-                item.CreateDateCaption = Utility.MiladiToShamsiString(item.date);
+                item.CreateDateCaption = Utility.MiladiToShamsiAndTime(item.date);
                 item.IsCredit = item.type == "credit";
                 item.IsDebit = item.type == "debit";
                 item.SourceCaption = ResourceManagerHelper.GetValue(item.source);
