@@ -269,7 +269,7 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to پرداخت پول.
+        ///   Looks up a localized string similar to افزایش اعتبار.
         /// </summary>
         internal static string charge {
             get {
@@ -287,7 +287,7 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to سوال یا پیغام خود را وارد کنید.
+        ///   Looks up a localized string similar to بنویسید.
         /// </summary>
         internal static string chat_text {
             get {

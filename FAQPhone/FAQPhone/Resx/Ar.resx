@@ -367,7 +367,7 @@
     <value>ویرایش</value>
   </data>
   <data name="chat_text" xml:space="preserve">
-    <value>سوال یا پیغام خود را وارد کنید</value>
+    <value>بنویسید</value>
   </data>
   <data name="unit_of_mony_caption" xml:space="preserve">
     <value>تومان</value>
@@ -589,7 +589,7 @@
     <value>گزارش تراکنش مالی</value>
   </data>
   <data name="charge" xml:space="preserve">
-    <value>پرداخت پول</value>
+    <value>افزایش اعتبار</value>
   </data>
   <data name="discount_buy" xml:space="preserve">
     <value>هزینه خرید بن</value>

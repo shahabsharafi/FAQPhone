@@ -42,6 +42,8 @@
             <Label Text="{Binding grade}" IsVisible="{Binding isOperator}" TextColor="#4e5758" FontSize="Medium" HorizontalTextAlignment="End" />
             <Label Text="{Binding university}" IsVisible="{Binding isOperator}" TextColor="#4e5758" FontSize="Medium" HorizontalTextAlignment="End" />
             <Label Text="{Binding credit}" TextColor="#4e5758" FontSize="Small" HorizontalTextAlignment="End" />
+            <Button Text="{infr:Translate report_balance}" Command="{Binding ShowReportBalanceCommand}" StyleClass="Info" />
+            <Button Text="{infr:Translate charge}" Command="{Binding ChargeCommand}" StyleClass="Info" />
         </StackLayout>
     </ScrollView>
 </ContentPage>

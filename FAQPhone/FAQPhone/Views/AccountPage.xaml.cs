@@ -251,6 +251,20 @@ namespace FAQPhone.Views
             set { _credit = value; OnPropertyChanged(); }
         }
 
+        public ICommand ShowReportBalanceCommand { protected set; get; }
+        public async Task showReportBalanceCommand()
+        {
+            await this.Navigation.PushAsync(new ReportBalancePage());
+        }
+        public ICommand ChargeCommand { protected set; get; }
+        public async Task chargeCommand()
+        {
+            var titleCharge = ResourceManagerHelper.GetValue(Constants.CHARGE);
+            var keyResult = await accountService.SetUserKey();
+            var urlCharge = string.Format(Constants.ChargeUrl, keyResult.message, App.Username);
+            await this.Navigation.PushAsync(new BrowserPage(titleCharge, urlCharge));
+        }
+
         public ICommand EditCommand { protected set; get; }
 
         public async Task editCommand()
