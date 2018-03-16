@@ -359,12 +359,8 @@ namespace FAQPhone.Views
         }
 
         private async Task CreateFAQByUser()
-        {
-            if (App.Blocked)
-            {
-                await Utility.Alert("message_user_blocked");
-            }
-            else if (await this.CompleteProfile())
+        {            
+            if (await this.CompleteProfile())
             {
                 var dl = await this.departmentService.GetByParent("");
                 if (dl != null && dl.Count() > 0)

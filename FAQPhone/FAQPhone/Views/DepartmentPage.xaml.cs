@@ -95,8 +95,15 @@ namespace FAQPhone.Views
             }
             else if (list == null || list.Count == 0)
             {
-                var discount = await this.discountService.Select(model._id);
-                await this.Navigation.PushAsync(new DiscussionNewPage(model, null, discount, this._pushCount));
+                if (App.Blocked)
+                {
+                    await Utility.Alert("message_user_blocked");
+                }
+                else
+                {
+                    var discount = await this.discountService.Select(model._id);
+                    await this.Navigation.PushAsync(new DiscussionNewPage(model, null, discount, this._pushCount));
+                }
             }
             else
             {

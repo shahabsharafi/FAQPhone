@@ -1665,6 +1665,8 @@ namespace FAQPhone.Droid
 			global::ProgressRingControl.Forms.Plugin.Android.Resource.Styleable.ViewStubCompat_android_id = global::FAQPhone.Droid.Resource.Styleable.ViewStubCompat_android_id;
 			global::ProgressRingControl.Forms.Plugin.Android.Resource.Styleable.ViewStubCompat_android_inflatedId = global::FAQPhone.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
 			global::ProgressRingControl.Forms.Plugin.Android.Resource.Styleable.ViewStubCompat_android_layout = global::FAQPhone.Droid.Resource.Styleable.ViewStubCompat_android_layout;
+			global::ScnViewGestures.Droid.Resource.String.ApplicationName = global::FAQPhone.Droid.Resource.String.ApplicationName;
+			global::ScnViewGestures.Droid.Resource.String.Hello = global::FAQPhone.Droid.Resource.String.Hello;
 			global::JoanZapata.XamarinIconify.Resource.String.library_name = global::FAQPhone.Droid.Resource.String.library_name;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::FAQPhone.Droid.Resource.Attribute.actionBarSize;
 		}

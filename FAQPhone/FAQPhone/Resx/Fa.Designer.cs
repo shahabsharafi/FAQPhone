@@ -1394,7 +1394,7 @@ namespace FAQPhone.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to گزارش تراکنش مالی.
+        ///   Looks up a localized string similar to تراکنش مالی.
         /// </summary>
         internal static string report_balance {
             get {

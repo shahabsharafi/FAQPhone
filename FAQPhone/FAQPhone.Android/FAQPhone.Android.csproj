@@ -93,6 +93,18 @@
     <Reference Include="ProgressRing.Forms.Plugin.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.Plugins.Forms.ProgressRing.0.1.2\lib\MonoAndroid10\ProgressRing.Forms.Plugin.Android.dll</HintPath>
     </Reference>
+    <Reference Include="ScnPage.Plugin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ScnSideMenu.Forms.1.2.10\lib\MonoAndroid10\ScnPage.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="ScnSideMenu, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ScnSideMenu.Forms.1.2.10\lib\MonoAndroid10\ScnSideMenu.dll</HintPath>
+    </Reference>
+    <Reference Include="ScnViewGestures, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ScnViewGestures.Forms.1.3.0\lib\MonoAndroid10\ScnViewGestures.dll</HintPath>
+    </Reference>
+    <Reference Include="ScnViewGestures.Droid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ScnViewGestures.Forms.1.3.0\lib\MonoAndroid10\ScnViewGestures.Droid.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.ObjectModel" />

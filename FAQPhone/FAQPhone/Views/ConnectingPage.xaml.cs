@@ -113,6 +113,7 @@ namespace FAQPhone.Views
                 {
                     if (Utility.CompareVersion() >= 0)
                     {
+                        //var p = new MenuPage();
                         var p = new MainPage();
                         await this.RootNavigate(p);
                         await p.Navigation.PushAsync(new MessagePage(true));
