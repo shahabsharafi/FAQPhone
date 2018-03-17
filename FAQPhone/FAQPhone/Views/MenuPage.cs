@@ -7,6 +7,7 @@ using ScnSideMenu.Forms;
 using Singleselect;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,15 +18,57 @@ namespace FAQPhone.Views
 {
     public class MenuPage : SideBarPage
     {
-        public class MenuItemViewModel : SingleSelectViewModel<MenuItemModel> { }
+        public class MenuPageViewModel
+        {
+            public MenuPageViewModel()
+            {
+                _MainMenu = new ObservableCollection<MenuItemModel>();
+                _RightMenu = new ObservableCollection<MenuItemModel>();
+            }
+            private ObservableCollection<MenuItemModel> _MainMenu { get; set; }
+            public IList<MenuItemModel> MainMenu
+            {
+                get
+                {
+                    return _MainMenu;
+                }
+                set
+                {
+                    _MainMenu.Clear();
+                    foreach (var item in value)
+                    {
+                        _MainMenu.Add(item);
+                    }
+                }
+            }
+
+            public IList<MenuItemModel> RightMenu
+            {
+                get
+                {
+                    return _RightMenu;
+                }
+                set
+                {
+                    _RightMenu.Clear();
+                    foreach (var item in value)
+                    {
+                        _RightMenu.Add(item);
+                    }
+                }
+            }
+
+            public ObservableCollection<MenuItemModel> _RightMenu { get; set; }
+        }
         public class WrappedMenuItemTemplate : ViewCell
         {
-            public WrappedMenuItemTemplate() : base()
+            public WrappedMenuItemTemplate() : this(Color.FromHex("#4e5758")) { }
+            public WrappedMenuItemTemplate(Color color) : base()
             {
                 Label lblIcone = new Label() {
                     FontFamily = "fontawesome",
                     FontSize = 20,
-                    TextColor = Color.FromHex("#4e5758"),
+                    TextColor = color,
                     HorizontalTextAlignment = TextAlignment.Center,
                     Margin = new Thickness(5,10,5,0),
                     
@@ -36,7 +79,7 @@ namespace FAQPhone.Views
                 {
                     FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
                     FontAttributes = FontAttributes.Bold,
-                    TextColor = Color.FromHex("#4e5758"),
+                    TextColor = color,
                     Margin = new Thickness(0, 10, 0, 0),
 
                 };
@@ -70,14 +113,56 @@ namespace FAQPhone.Views
             }
         }
         public MenuPage() : base(PanelSetEnum.psRight)
+        {            
+            FillContext();
+            InitToolbar();
+            InitRightMenu();
+            InitMainMenu();
+        }
+
+        private void InitMainMenu()
         {
-            ViewModel = new MenuItemViewModel();
+            ListView list = new ListView()
+            {
+                VerticalOptions = LayoutOptions.FillAndExpand,
+                ItemTemplate = new DataTemplate(() => { return new WrappedMenuItemTemplate(); }),
+            };
+            list.SetBinding(ListView.ItemsSourceProperty, new Binding("MainMenu"));
+            list.ItemSelected += (sender, e) =>
+            {
+                if (e.SelectedItem == null) return;
+                //this.SelectedItem = (T)e.SelectedItem;
+                //Select?.Invoke(this, new EventArgs());
+            };
+            AbsoluteLayout layout = new AbsoluteLayout();
+            layout.Children.Add(list, new Rectangle(0, 1, 1, 1), AbsoluteLayoutFlags.All);
+            ContentLayout.Children.Add(layout);
+        }
 
-            var list = new List<MenuItemModel>();
-            list.Add(new MenuItemModel() { CommandName = Constants.OPERATOR_RECEIVE_FAQ, Icon = FontAwesome.FADownload });
-            list.Add(new MenuItemModel() { CommandName = Constants.OPERATOR_INPROGRESS_FAQ, Icon = FontAwesome.FATasks, Badge = "4" });
-            WrappedItems = list;
+        private void InitRightMenu()
+        {
+            ListView list = new ListView()
+            {
+                VerticalOptions = LayoutOptions.FillAndExpand,
+                ItemTemplate = new DataTemplate(() => { return new WrappedMenuItemTemplate(Color.FromHex("#fff")); }),
+            };
+            list.SetBinding(ListView.ItemsSourceProperty, new Binding("RightMenu"));
+            list.ItemSelected += (sender, e) =>
+            {
+                if (e.SelectedItem == null) return;
+                //this.SelectedItem = (T)e.SelectedItem;
+                //Select?.Invoke(this, new EventArgs());
+            };
+            list.BackgroundColor = Color.FromHex("#24292e");            
+            AbsoluteLayout layout = new AbsoluteLayout();
+            layout.Children.Add(list, new Rectangle(0, 1, 1, 1), AbsoluteLayoutFlags.All);
+                       
+            RightPanelWidth = 300;
+            RightPanel.AddToContext(layout);            
+        }
 
+        private void InitToolbar()
+        {
             ToolbarItems.Add(new Xamarin.Forms.ToolbarItem()
             {
                 Icon = Utility.GetImage("rule40"),
@@ -85,72 +170,30 @@ namespace FAQPhone.Views
                 Order = Xamarin.Forms.ToolbarItemOrder.Primary,
                 Command = new Command(async () => await showMenu())
             });
+        }
 
-            RightPanelWidth = 150;
+        private void FillContext()
+        {
+            var mainList = new List<MenuItemModel>();
+            mainList.Add(new MenuItemModel() { CommandName = Constants.OPERATOR_RECEIVE_FAQ, Icon = FontAwesome.FADownload });
+            mainList.Add(new MenuItemModel() { CommandName = Constants.OPERATOR_INPROGRESS_FAQ, Icon = FontAwesome.FATasks, Badge = "4" });
 
-            RightPanel.AddToContext(new StackLayout
+            var rightList = new List<MenuItemModel>();
+            rightList.Add(new MenuItemModel() { CommandName = Constants.REPORT_QUICK, Icon = FontAwesome.FAList, Badge = "2" });
+            rightList.Add(new MenuItemModel() { CommandName = Constants.REPORT_BALANCE, Icon = FontAwesome.FAListAlt });
+
+            var ViewModel = new MenuPageViewModel()
             {
-                Padding = new Thickness(32),
-                Children =
-                {
-                    new Label
-                    {
-                        Text = "right menu",
-                        TextColor = Color.Red,
-                    }
-                }
-            });
-
-            RightPanel.BackgroundColor = Color.Blue;
-
-            ContentLayout.Children.Add(new AbsoluteLayout()
-            {
-                Children = {
-                    new ListView() {
-                        ItemTemplate = new DataTemplate(() => { return new WrappedMenuItemTemplate(); })
-                    }
-                }
-            });
-
-            ListView mainList = new ListView()
-            {
-                ItemTemplate = new DataTemplate(() => { return new WrappedMenuItemTemplate(); }),
+                MainMenu = mainList,
+                RightMenu = rightList
             };
-            mainList.SetBinding(ListView.ItemsSourceProperty, new Binding("WrappedItems"));
-            mainList.ItemSelected += (sender, e) => {
-                if (e.SelectedItem == null) return;
-                //this.SelectedItem = (T)e.SelectedItem;
-                //Select?.Invoke(this, new EventArgs());
-            };
-            StackLayout stack = new StackLayout()
-            {
-                Orientation = StackOrientation.Vertical,
-            };
-            stack.Children.Add(mainList);
-            ContentLayout.Children.Add(stack);
-
             Content.BindingContext = ViewModel;
         }
+
         public ICommand ShowMenu { protected set; get; }
         public async Task showMenu()
         {
             IsShowRightPanel = !IsShowRightPanel;
-        }
-        public MenuItemViewModel ViewModel;
-        public IList<MenuItemModel> WrappedItems
-        {
-            get
-            {
-                return ViewModel.WrappedItems;
-            }
-            set
-            {
-                ViewModel.WrappedItems.Clear();
-                foreach (var item in value)
-                {
-                    ViewModel.WrappedItems.Add(item);
-                }
-            }
-        }
+        }     
     }
 }
